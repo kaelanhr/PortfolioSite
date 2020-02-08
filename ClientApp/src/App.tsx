@@ -12,6 +12,7 @@ import {
 	Link
 } from "react-router-dom";
 import SimpleNavigationItem from './Components/SimpleNavigationItem';
+import About from './Components/About';
 
 const App: React.FC = () => {
 	return (
@@ -37,6 +38,7 @@ const App: React.FC = () => {
 								<ul>
 									<li>donate/support me?</li>
 									<li>Connect to database</li>
+									<li>Proper sidebar for navigation</li>
 									<li>Add Login</li>
 									<li>Crud on portfolio</li>
 									<li>Add admin section (about and other content)</li>
@@ -50,6 +52,7 @@ const App: React.FC = () => {
 					</Route>
 					<Route exact path="/about">
 						<HelloUser name="Kaelan" />
+						<About title="About Me" />
 					</Route>
 					<Route exact path="/admin">
 						<HelloWorld />
