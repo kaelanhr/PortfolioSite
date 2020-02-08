@@ -1,7 +1,9 @@
+using ConsoleApp.PostgreSQL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -15,7 +17,10 @@ namespace PersonalSite
 			Configuration = configuration;
 		}
 
-		public IConfiguration Configuration { get; }
+		public IConfiguration Configuration
+		{
+			get;
+		}
 
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
@@ -28,6 +33,14 @@ namespace PersonalSite
 			{
 				configuration.RootPath = "ClientApp/build";
 			});
+
+			services.AddDbContext<BloggingContext>(options =>
+				options.UseNpgsql(Configuration.GetConnectionString("BloggingContext")));
+
+			// services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+			// services.AddIdentity<User, IdentityRole<long>>()
+			// 	.AddEntityFrameworkStores<ApplicationDbContext, long>()
+			// 	.AddDefaultTokenProviders();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
