@@ -9,8 +9,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace PersonalSite.Migrations
 {
     [DbContext(typeof(BloggingContext))]
-    [Migration("20200208091941_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20200210090449_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

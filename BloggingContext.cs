@@ -27,7 +27,7 @@ namespace ConsoleApp.PostgreSQL
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
 			optionsBuilder
-				.UseNpgsql("Host=my_host;Database=my_db;Username=postgres;Password=pass");
+				.UseNpgsql("User ID=postgres;Password=pass;Server=localhost;Port=5432;Database=my_db;Integrated Security=true; Pooling=true;Command Timeout=0;");
 
 		}
 	}
