@@ -37,7 +37,6 @@ const App: React.FC = () => {
 								<h2>What is left to do</h2>
 								<ul>
 									<li>donate/support me?</li>
-									<li>Connect to database</li>
 									<li>Proper sidebar for navigation</li>
 									<li>Add Login</li>
 									<li>Crud on portfolio</li>
@@ -46,6 +45,7 @@ const App: React.FC = () => {
 									<li>contact me</li>
 									<li>deploy on web server</li>
 									<li>mobile responsiveness</li>
+									<li>blog posting</li>
 								</ul>
 							</header>
 						</div>
