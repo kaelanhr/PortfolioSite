@@ -1,22 +1,27 @@
 import React, { ReactNode } from 'react'
 
-type LinkProps = {
+interface LinkProps {
 	link: string
-	children: ReactNode | String
 }
+
+interface extendedLinkProps extends LinkProps {
+	children: ReactNode | string
+}
+
 interface ImageLinkProps extends LinkProps {
 	iconPath: string
+	altText?: string
 }
 
 export default function ImageLink(props: ImageLinkProps) {
 	return (
 		<Link link={props.link}>
-			<img src={props.iconPath} />
+			<img src={props.iconPath} alt={props.altText} />
 		</Link>
 	)
 }
 
-export function Link(props: LinkProps) {
+export function Link(props: extendedLinkProps) {
 	return (
 		<a href={props.link}>{props.children}</a>
 	)

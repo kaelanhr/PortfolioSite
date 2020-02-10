@@ -1,5 +1,5 @@
 ﻿import React, { Component } from 'react'
-import ImageLink, { Link } from './SocialLink'
+import ImageLink, { Link } from './Links'
 
 export default class Contact extends Component {
 	render() {
