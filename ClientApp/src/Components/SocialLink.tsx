@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react'
 
 type LinkProps = {
 	link: string
-	children?: ReactNode | String
+	children: ReactNode | String
 }
 interface ImageLinkProps extends LinkProps {
 	iconPath: string
