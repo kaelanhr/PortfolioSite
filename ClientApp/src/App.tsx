@@ -13,6 +13,7 @@ import {
 } from "react-router-dom";
 import SimpleNavigationItem from './Components/SimpleNavigationItem';
 import About from './Components/About';
+import Contact from './Components/Contact';
 
 const App: React.FC = () => {
 	return (
@@ -21,6 +22,7 @@ const App: React.FC = () => {
 				<ul>
 					<SimpleNavigationItem linkUrl="" />
 					<SimpleNavigationItem linkUrl="about" />
+					<SimpleNavigationItem linkUrl="blog" />
 					<SimpleNavigationItem linkUrl="admin" />
 					<SimpleNavigationItem linkUrl="portfolio" />
 					<SimpleNavigationItem linkUrl="contact-me" />
@@ -54,6 +56,9 @@ const App: React.FC = () => {
 						<HelloUser name="Kaelan" />
 						<About title="About Me" />
 					</Route>
+					<Route exact path="/blog">
+						<HelloUser name="Kaelan" />
+					</Route>
 					<Route exact path="/admin">
 						<HelloWorld />
 					</Route>
@@ -61,7 +66,7 @@ const App: React.FC = () => {
 						<MarkdownEditor />
 					</Route>
 					<Route exact path="/contact-me">
-						<Todo />
+						<Contact />
 					</Route>
 				</Switch>
 			</Router>

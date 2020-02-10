@@ -37,7 +37,6 @@ namespace PersonalSite
 			services.AddDbContext<BloggingContext>(options =>
 				options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
-			// services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 			// services.AddIdentity<User, IdentityRole<long>>()
 			// 	.AddEntityFrameworkStores<ApplicationDbContext, long>()
 			// 	.AddDefaultTokenProviders();
