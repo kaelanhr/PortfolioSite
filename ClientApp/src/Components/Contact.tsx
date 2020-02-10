@@ -12,6 +12,8 @@ export default class Contact extends Component {
 					<Link link="instagram.com" />
 					<Link link="twitter.com" />
 					<Link link="tumblr.com" />
+					<Link link="pinterest.com" />
+					<Link link="youtube.com" />
 				</div>
 			</>
 		)
