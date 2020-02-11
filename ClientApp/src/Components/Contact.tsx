@@ -1,5 +1,5 @@
 ﻿import React, { Component } from 'react'
-import ImageLink, { Link } from './Links'
+import ImageLink, { ExternalLink } from './Links'
 
 export default class Contact extends Component {
 	render() {
@@ -14,13 +14,13 @@ export default class Contact extends Component {
 				<textarea />
 				<p>You can also find me at any of the following links</p>
 				<div>
-					<Link link="github.com">Github</Link>
-					<Link link="facebook.com">Facebook</Link>
-					<Link link="instagram.com" >Instagram</Link>
-					<Link link="twitter.com" >Twitter</Link>
-					<Link link="tumblr.com" >Tumblr</Link>
-					<Link link="pinterest.com" >Pinterest</Link>
-					<Link link="youtube.com" >Youtube</Link>
+					<ExternalLink link="github.com">Github</ExternalLink>
+					<ExternalLink link="facebook.com">Facebook</ExternalLink>
+					<ExternalLink link="instagram.com" >Instagram</ExternalLink>
+					<ExternalLink link="twitter.com" >Twitter</ExternalLink>
+					<ExternalLink link="tumblr.com" >Tumblr</ExternalLink>
+					<ExternalLink link="pinterest.com" >Pinterest</ExternalLink>
+					<ExternalLink link="youtube.com" >Youtube</ExternalLink>
 				</div>
 			</>
 		)
