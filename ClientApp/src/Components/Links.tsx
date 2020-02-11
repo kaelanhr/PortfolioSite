@@ -15,13 +15,13 @@ interface ImageLinkProps extends LinkProps {
 
 export default function ImageLink(props: ImageLinkProps) {
 	return (
-		<Link link={props.link}>
+		<ExternalLink link={props.link}>
 			<img src={props.iconPath} alt={props.altText} />
-		</Link>
+		</ExternalLink>
 	)
 }
 
-export function Link(props: extendedLinkProps) {
+export function ExternalLink(props: extendedLinkProps) {
 	return (
 		<a href={props.link}>{props.children}</a>
 	)
