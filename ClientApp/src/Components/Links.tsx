@@ -5,7 +5,7 @@ interface LinkProps {
 }
 
 interface extendedLinkProps extends LinkProps {
-	children: ReactNode | string
+	children: ReactNode
 }
 
 interface ImageLinkProps extends LinkProps {
