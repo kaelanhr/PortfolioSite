@@ -7,16 +7,7 @@ export default class Contact extends Component {
 			<>
 				<h1>Contact Me</h1>
 
-				<p>You can find me at any of the following platforms</p>
-				<div>
-					<SocialMediaLink link="github.com" iconPath="github.png" />
-					<SocialMediaLink link="facebook.com" iconPath="facebook.png" />
-					<SocialMediaLink link="instagram.com" iconPath="instagram.png" />
-					<SocialMediaLink link="twitter.com" iconPath="twitter.png" />
-					<SocialMediaLink link="tumblr.com" iconPath="tumblr.png" />
-					<SocialMediaLink link="pinterest.com" iconPath="pinterest.png" />
-					<SocialMediaLink link="youtube.com" iconPath="youtube.png" />
-				</div>
+
 
 
 				<p>TODO: Add show/hide component here so people can contact me directly</p>
@@ -42,12 +33,4 @@ class ContactForm extends PureComponent {
 			</form>
 		);
 	}
-}
-
-function SocialMediaLink(props: ImageLinkProps) {
-	return (
-		<ExternalLink link={props.link}>
-			<img src={`/Images/SocialMedia/${props.iconPath}`} alt={props.altText} className="social-media-link" />
-		</ExternalLink>
-	)
 }

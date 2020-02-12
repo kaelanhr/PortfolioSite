@@ -68,10 +68,19 @@ const App: React.FC = () => {
 					<Route exact path="/contact-me">
 						<Contact />
 					</Route>
+					<Route component={NotFound} />
 				</Switch>
 			</Router>
 		</>
 	);
+}
+
+function NotFound() {
+	return (
+		<p>
+			The Page you were looking for was not found
+		</p>
+	)
 }
 
 export default App;
