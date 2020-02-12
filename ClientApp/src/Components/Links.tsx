@@ -8,7 +8,7 @@ interface extendedLinkProps extends LinkProps {
 	children: ReactNode
 }
 
-interface ImageLinkProps extends LinkProps {
+export interface ImageLinkProps extends LinkProps {
 	iconPath: string
 	altText?: string
 }
