@@ -16,13 +16,14 @@ export default class About extends Component<AboutProps> {
 
 				<p>You can find me at any of the following platforms</p>
 				<div>
-					<SocialMediaLink link="github.com" iconPath="github.png" />
-					<SocialMediaLink link="facebook.com" iconPath="facebook.png" />
-					<SocialMediaLink link="instagram.com" iconPath="instagram.png" />
-					<SocialMediaLink link="twitter.com" iconPath="twitter.png" />
+					<SocialMediaLink link="https://github.com/KaeIan/" iconPath="github.png" />
+					<SocialMediaLink link="https://www.facebook.com/darkwolf88v" iconPath="facebook.png" />
+					<SocialMediaLink link="https://www.instagram.com/kaelanreece" iconPath="instagram.png" />
+					<SocialMediaLink link="https://twitter.com/KaelanReece" iconPath="twitter.png" />
 					<SocialMediaLink link="tumblr.com" iconPath="tumblr.png" />
 					<SocialMediaLink link="pinterest.com" iconPath="pinterest.png" />
 					<SocialMediaLink link="youtube.com" iconPath="youtube.png" />
+					<SocialMediaLink link="linkedin" iconPath="" />
 				</div>
 			</>
 		)
