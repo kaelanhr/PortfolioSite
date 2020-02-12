@@ -1,10 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import HelloWorld from './Components/W3-Components/HelloWorld';
-import HelloUser from './Components/W3-Components/HelloUser';
-import Todo from './Components/ReactJS-Components/Todo';
-import MarkdownEditor from './Components/ReactJS-Components/MarkdownEditor';
 import {
 	BrowserRouter as Router,
 	Switch,
@@ -51,6 +47,9 @@ const App: React.FC = () => {
 									<li>deploy on web server</li>
 									<li>mobile responsiveness</li>
 									<li>blog posting</li>
+									<li>use sass</li>
+									<li>use rest for end points</li>
+									<li>also use graphql for other endpoints</li>
 								</ul>
 							</header>
 						</div>
