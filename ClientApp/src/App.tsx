@@ -14,6 +14,10 @@ import {
 import SimpleNavigationItem from './Components/SimpleNavigationItem';
 import About from './Components/About';
 import Contact from './Components/Contact';
+import Blog from './Components/Blog';
+import Admin from './Components/Admin';
+import Login from './Components/Login';
+import Portfolio from './Components/Portfolio';
 
 const App: React.FC = () => {
 	return (
@@ -23,7 +27,6 @@ const App: React.FC = () => {
 					<SimpleNavigationItem linkUrl="" />
 					<SimpleNavigationItem linkUrl="about" />
 					<SimpleNavigationItem linkUrl="blog" />
-					<SimpleNavigationItem linkUrl="admin" />
 					<SimpleNavigationItem linkUrl="portfolio" />
 					<SimpleNavigationItem linkUrl="contact-me" />
 				</ul>
@@ -53,17 +56,19 @@ const App: React.FC = () => {
 						</div>
 					</Route>
 					<Route exact path="/about">
-						<HelloUser name="Kaelan" />
-						<About title="About Me" />
+						<About />
 					</Route>
 					<Route exact path="/blog">
-						<HelloUser name="Kaelan" />
+						<Blog />
 					</Route>
 					<Route exact path="/admin">
-						<HelloWorld />
+						<Admin />
+					</Route>
+					<Route exact path="/login">
+						<Login />
 					</Route>
 					<Route exact path="/portfolio">
-						<MarkdownEditor />
+						<Portfolio />
 					</Route>
 					<Route exact path="/contact-me">
 						<Contact />

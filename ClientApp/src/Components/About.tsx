@@ -1,18 +1,14 @@
-import React, { Component } from 'react'
+import React, { Component, PureComponent } from 'react'
 import { ImageLinkProps, ExternalLink } from './Links';
 
-interface AboutProps {
-	title: string
-}
-
-export default class About extends Component<AboutProps> {
+export default class About extends PureComponent {
 	constructor(props) {
 		super(props);
 	}
 	render() {
 		return (
 			<>
-				<h2>{this.props.title}</h2>
+				<h2>About</h2>
 
 				<p>You can find me at any of the following platforms</p>
 				<div>
