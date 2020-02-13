@@ -6,14 +6,14 @@ import {
 	Route,
 	Link
 } from "react-router-dom";
-import NavigationBar from './Components/NavigationBar';
-import About from './Components/About';
-import Contact from './Components/Contact';
-import Blog from './Components/Blog';
-import Admin from './Components/Admin';
-import Login from './Components/Login';
-import Portfolio from './Components/Portfolio';
-import Home from './Components/Home';
+import NavigationBar from './Components/Navigation/NavigationBar';
+import About from './Components/Pages/About';
+import Contact from './Components/Pages/Contact';
+import Blog from './Components/Pages/Blog';
+import Admin from './Components/Pages/Admin';
+import Login from './Components/Pages/Login';
+import Portfolio from './Components/Pages/Portfolio';
+import Home from './Components/Pages/Home';
 
 const App: React.FC = () => {
 	return (
