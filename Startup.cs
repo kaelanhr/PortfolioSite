@@ -34,7 +34,7 @@ namespace PersonalSite
 				configuration.RootPath = "ClientApp/build";
 			});
 
-			services.AddDbContext<BloggingContext>(options =>
+			services.AddDbContext<SiteDbContext>(options =>
 				options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
 			// services.AddIdentity<User, IdentityRole<long>>()
