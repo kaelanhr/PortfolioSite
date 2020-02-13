@@ -37,6 +37,7 @@ const App: React.FC = () => {
 								</p>
 								<h2>What is left to do</h2>
 								<ul>
+									<li>Create models for items</li>
 									<li>donate/support me?</li>
 									<li>Proper sidebar for navigation</li>
 									<li>Add Login</li>
