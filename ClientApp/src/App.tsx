@@ -40,7 +40,7 @@ const App: React.FC = () => {
 									<li>Create models for items</li>
 									<li>donate/support me?</li>
 									<li>Proper sidebar for navigation</li>
-									<li>Add Login</li>
+									<li>Add Login/logout</li>
 									<li>Crud on portfolio</li>
 									<li>Add admin section (about and other content)</li>
 									<li>styling</li>
