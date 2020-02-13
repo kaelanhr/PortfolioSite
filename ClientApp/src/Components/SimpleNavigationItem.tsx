@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 
-interface IProps {
+interface NavItemProps {
 	linkUrl: string
+	displayName: string
+	isDisplayed: boolean
 }
 
-export default class SimpleNavigationItem extends Component<IProps> {
+export default class SimpleNavigationItem extends Component<NavItemProps> {
 	constructor(props) {
 		super(props);
 
