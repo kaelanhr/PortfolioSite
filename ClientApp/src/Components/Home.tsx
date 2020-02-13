@@ -10,7 +10,7 @@ export default function Home() {
 				<p>
 					Welcome to my portfolio website
 								</p>
-				<h2>What is left to do</h2>
+				<h2>What is left to do (in general)</h2>
 				<ul>
 					<li>Create models for items</li>
 					<li>donate/support me?</li>

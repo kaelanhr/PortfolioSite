@@ -16,7 +16,7 @@ export default class About extends PureComponent {
 					<SocialMediaLink link="https://www.facebook.com/darkwolf88v" iconPath="facebook.png" />
 					<SocialMediaLink link="https://www.instagram.com/kaelanreece" iconPath="instagram.png" />
 					<SocialMediaLink link="https://twitter.com/KaelanReece" iconPath="twitter.png" />
-					<SocialMediaLink link="" iconPath="tumblr.png" />
+					<SocialMediaLink link="https://real-life-wolf.tumblr.com/" iconPath="tumblr.png" />
 					<SocialMediaLink link="https://www.pinterest.com.au/darkwolf_v/" iconPath="pinterest.png" />
 					<SocialMediaLink link="https://www.youtube.com/channel/UCkvCPSOUTjSiF2yFwnXhnsQ" iconPath="youtube.png" />
 					<SocialMediaLink link="https://www.linkedin.com/in/kaelan-reece/" iconPath="" />
