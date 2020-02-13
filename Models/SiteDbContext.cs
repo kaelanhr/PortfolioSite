@@ -1,16 +1,12 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using PersonalSite.Models;
 
 namespace ConsoleApp.PostgreSQL
 {
 	public class SiteDbContext : DbContext
 	{
-		public DbSet<Blog> Blogs
-		{
-			get;
-			set;
-		}
-		public DbSet<Post> Posts
+		public DbSet<BlogPost> Blogs
 		{
 			get;
 			set;

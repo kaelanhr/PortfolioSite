@@ -20,11 +20,7 @@ const App: React.FC = () => {
 		<>
 			<Router>
 				<ul>
-					<SimpleNavigationItem linkUrl="" />
-					<SimpleNavigationItem linkUrl="about" />
-					<SimpleNavigationItem linkUrl="blog" />
-					<SimpleNavigationItem linkUrl="portfolio" />
-					<SimpleNavigationItem linkUrl="contact-me" />
+					<SimpleNavigationItem />
 				</ul>
 				<Switch>
 					<Route exact path="/">

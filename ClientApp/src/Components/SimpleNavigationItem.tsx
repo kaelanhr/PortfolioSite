@@ -10,27 +10,33 @@ interface NavItemProps {
 export default class NavigationBar extends Component {
 	constructor(props) {
 		super(props);
+	}
+	render() {
 		let navItems: NavItemProps[];
 		navItems = [
 			{ linkUrl: "", displayName: "Home", isDisplayed: true },
-			{ linkUrl: "admin", displayName: "About", isDisplayed: false },
-			{ linkUrl: "login", displayName: "About", isDisplayed: false },
-			{ linkUrl: "logout", displayName: "About", isDisplayed: false },
+			{ linkUrl: "admin", displayName: "Admin", isDisplayed: false },
+			{ linkUrl: "login", displayName: "Login", isDisplayed: false },
+			{ linkUrl: "logout", displayName: "Logout", isDisplayed: false },
 			{ linkUrl: "about", displayName: "About", isDisplayed: true },
 			{ linkUrl: "blog", displayName: "Blog", isDisplayed: true },
 			{ linkUrl: "portfolio", displayName: "Portfolio", isDisplayed: true },
 			{ linkUrl: "contact-me", displayName: "Contact Me", isDisplayed: true },
 		]
-	}
-	render() {
+
+		const htmlLinks = navItems
+			.filter(link => link.isDisplayed ? link.isDisplayed : false)
+			.map((link) => <SimpleNavigationItem
+				displayName={link.displayName}
+				linkUrl={link.linkUrl}
+				isDisplayed={link.isDisplayed}
+			/>
+			);
 
 		return (
-
-			// < SimpleNavigationItem linkUrl="" />
-			// <SimpleNavigationItem linkUrl="about" />
-			// <SimpleNavigationItem linkUrl="blog" />
-			// <SimpleNavigationItem linkUrl="portfolio" />
-			// <SimpleNavigationItem linkUrl="contact-me" />
+			<div>
+				{htmlLinks}
+			</div>
 		)
 	}
 }

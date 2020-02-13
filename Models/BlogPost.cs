@@ -1,7 +1,13 @@
+
+
+
+using System.ComponentModel.DataAnnotations;
+
 namespace PersonalSite.Models
 {
-	class BlogPost
+	public class BlogPost
 	{
+		[Key]
 		public int BlogId
 		{
 			get;

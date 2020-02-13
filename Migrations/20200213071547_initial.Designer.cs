@@ -8,8 +8,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace PersonalSite.Migrations
 {
-    [DbContext(typeof(BloggingContext))]
-    [Migration("20200210094727_initial")]
+    [DbContext(typeof(SiteDbContext))]
+    [Migration("20200213071547_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,51 +20,25 @@ namespace PersonalSite.Migrations
                 .HasAnnotation("ProductVersion", "3.1.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            modelBuilder.Entity("ConsoleApp.PostgreSQL.Blog", b =>
+            modelBuilder.Entity("PersonalSite.Models.BlogPost", b =>
                 {
                     b.Property<int>("BlogId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("Url")
-                        .HasColumnType("text");
-
-                    b.HasKey("BlogId");
-
-                    b.ToTable("Blogs");
-                });
-
-            modelBuilder.Entity("ConsoleApp.PostgreSQL.Post", b =>
-                {
-                    b.Property<int>("PostId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<int>("BlogId")
-                        .HasColumnType("integer");
 
                     b.Property<string>("Content")
+                        .HasColumnType("text");
+
+                    b.Property<string>("HeaderImagePath")
                         .HasColumnType("text");
 
                     b.Property<string>("Title")
                         .HasColumnType("text");
 
-                    b.HasKey("PostId");
+                    b.HasKey("BlogId");
 
-                    b.HasIndex("BlogId");
-
-                    b.ToTable("Posts");
-                });
-
-            modelBuilder.Entity("ConsoleApp.PostgreSQL.Post", b =>
-                {
-                    b.HasOne("ConsoleApp.PostgreSQL.Blog", "Blog")
-                        .WithMany("Posts")
-                        .HasForeignKey("BlogId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.ToTable("Blogs");
                 });
 #pragma warning restore 612, 618
         }
