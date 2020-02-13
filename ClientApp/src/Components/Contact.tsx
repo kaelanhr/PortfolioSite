@@ -1,5 +1,4 @@
 ﻿import React, { Component, PureComponent } from 'react'
-import ImageLink, { ExternalLink, ImageLinkProps } from './Links'
 
 export default class Contact extends PureComponent {
 	render() {
