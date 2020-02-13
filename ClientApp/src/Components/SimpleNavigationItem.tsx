@@ -7,7 +7,35 @@ interface NavItemProps {
 	isDisplayed: boolean
 }
 
-export default class SimpleNavigationItem extends Component<NavItemProps> {
+export default class NavigationBar extends Component {
+	constructor(props) {
+		super(props);
+		let navItems: NavItemProps[];
+		navItems = [
+			{ linkUrl: "", displayName: "Home", isDisplayed: true },
+			{ linkUrl: "admin", displayName: "About", isDisplayed: false },
+			{ linkUrl: "login", displayName: "About", isDisplayed: false },
+			{ linkUrl: "logout", displayName: "About", isDisplayed: false },
+			{ linkUrl: "about", displayName: "About", isDisplayed: true },
+			{ linkUrl: "blog", displayName: "Blog", isDisplayed: true },
+			{ linkUrl: "portfolio", displayName: "Portfolio", isDisplayed: true },
+			{ linkUrl: "contact-me", displayName: "Contact Me", isDisplayed: true },
+		]
+	}
+	render() {
+
+		return (
+
+			// < SimpleNavigationItem linkUrl="" />
+			// <SimpleNavigationItem linkUrl="about" />
+			// <SimpleNavigationItem linkUrl="blog" />
+			// <SimpleNavigationItem linkUrl="portfolio" />
+			// <SimpleNavigationItem linkUrl="contact-me" />
+		)
+	}
+}
+
+class SimpleNavigationItem extends Component<NavItemProps> {
 	constructor(props) {
 		super(props);
 
