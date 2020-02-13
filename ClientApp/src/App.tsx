@@ -7,7 +7,7 @@ import {
 	Route,
 	Link
 } from "react-router-dom";
-import SimpleNavigationItem from './Components/SimpleNavigationItem';
+import NavigationBar from './Components/NavigationBar';
 import About from './Components/About';
 import Contact from './Components/Contact';
 import Blog from './Components/Blog';
@@ -19,9 +19,7 @@ const App: React.FC = () => {
 	return (
 		<>
 			<Router>
-				<ul>
-					<SimpleNavigationItem />
-				</ul>
+				<NavigationBar />
 				<Switch>
 					<Route exact path="/">
 						<div className="App">

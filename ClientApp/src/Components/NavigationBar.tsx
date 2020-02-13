@@ -26,7 +26,7 @@ export default class NavigationBar extends Component {
 
 		const htmlLinks = navItems
 			.filter(link => link.isDisplayed ? link.isDisplayed : false)
-			.map((link) => <SimpleNavigationItem
+			.map((link) => <NavigationItem
 				displayName={link.displayName}
 				linkUrl={link.linkUrl}
 				isDisplayed={link.isDisplayed}
@@ -34,36 +34,17 @@ export default class NavigationBar extends Component {
 			);
 
 		return (
-			<div>
+			<ul>
 				{htmlLinks}
-			</div>
+			</ul>
 		)
 	}
 }
 
-class SimpleNavigationItem extends Component<NavItemProps> {
-	constructor(props) {
-		super(props);
-
-	}
-
-	render() {
-		let displayName;
-
-		// get the display name by removing the dashes and then capitalizing each word
-		let wordArray = this.props.linkUrl.split("-");
-
-		if (this.props.linkUrl.length > 0) {
-			displayName = wordArray.map(
-				x => (x[0].toUpperCase() + x.substring(1, x.length))
-			).join(" ");
-		} else {
-			displayName = "Home"
-		}
-		return (
-			<li>
-				<Link to={"/" + this.props.linkUrl}>{displayName}</Link>
-			</li>
-		)
-	}
+function NavigationItem(props: NavItemProps) {
+	return (
+		<li>
+			<Link to={"/" + props.linkUrl}>{props.displayName}</Link>
+		</li>
+	)
 }
