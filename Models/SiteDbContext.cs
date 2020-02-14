@@ -1,10 +1,10 @@
-using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using PersonalSite.Models;
 
 namespace ConsoleApp.PostgreSQL
 {
-	public class SiteDbContext : DbContext
+	public class SiteDbContext : IdentityDbContext
 	{
 		public DbSet<BlogPost> Blogs
 		{
@@ -18,12 +18,8 @@ namespace ConsoleApp.PostgreSQL
 		}
 
 		public SiteDbContext()
-		{ }
-
-		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			optionsBuilder
-				.UseNpgsql("User ID=postgres;Password=pass;Server=localhost;Port=5432;Database=my_db;Integrated Security=true; Pooling=true;Command Timeout=0;");
+		
 		}
 	}
 }
