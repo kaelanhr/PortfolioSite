@@ -47,9 +47,9 @@ namespace PersonalSite.Controllers
 		/// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
 		[HttpPost]
 		[AllowAnonymous]
-		[Route("/Login")]
+		[Route("/Identity/Account/Login")]
 		// [ValidateAntiForgeryToken]
-		public async Task<IActionResult> LoginAsync(UserModel userModel)
+		public async Task<IActionResult> LoginAsync([FromBody] UserModel userModel)
 		{
 			if (ModelState.IsValid)
 			{
@@ -64,7 +64,7 @@ namespace PersonalSite.Controllers
 					};
 
 					var claimsIdentity = new ClaimsIdentity(
-					  claims,CookieAuthenticationDefaults.AuthenticationScheme);
+					  claims, CookieAuthenticationDefaults.AuthenticationScheme);
 					var authProperties = new AuthenticationProperties();
 
 					await HttpContext.SignInAsync(
