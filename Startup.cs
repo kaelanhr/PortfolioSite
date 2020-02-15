@@ -1,21 +1,26 @@
+using System;
 using ConsoleApp.PostgreSQL;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
 
 namespace PersonalSite
 {
 	public class Startup
 	{
-		public Startup(IConfiguration configuration)
+
+		private readonly IWebHostEnvironment _currentEnvironment;
+
+		public Startup(IConfiguration configuration, IWebHostEnvironment env)
 		{
+			_currentEnvironment = env;
 			Configuration = configuration;
 		}
 
@@ -62,11 +67,31 @@ namespace PersonalSite
 				options.User.RequireUniqueEmail = true;
 			});
 
+
+			/*			services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+						  .AddCookie(options =>
+						  {
+							  options.Cookie.HttpOnly = true;
+							  options.Cookie.SecurePolicy = _currentEnvironment.IsDevelopment()
+					? CookieSecurePolicy.None : CookieSecurePolicy.Always;
+							  options.Cookie.SameSite = SameSiteMode.Strict;
+						  });*/
+
+
+			services.AddAuthentication(options =>
+			{
+				options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+				options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+			}).AddCookie();
+
 			services.ConfigureApplicationCookie(options =>
 			{
 				// Cookie settings
 				options.Cookie.HttpOnly = true;
 				options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+
+				options.Cookie.SecurePolicy = _currentEnvironment.IsDevelopment() ? CookieSecurePolicy.None : CookieSecurePolicy.Always;
+				options.Cookie.SameSite = SameSiteMode.Strict;
 
 				options.LoginPath = "/Identity/Account/Login";
 				options.AccessDeniedPath = "/Identity/Account/AccessDenied";
@@ -97,6 +122,7 @@ namespace PersonalSite
 			app.UseRouting();
 
 
+			app.UseCookiePolicy();
 			app.UseAuthentication();
 			app.UseAuthorization();
 

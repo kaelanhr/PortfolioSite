@@ -1,5 +1,11 @@
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -47,28 +53,27 @@ namespace PersonalSite.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				// This doesn't count login failures towards account lockout
-				// To enable password failures to trigger account lockout, set lockoutOnFailure: true
-				var result = await _signInManager.PasswordSignInAsync(
-					userModel.Email,
-					userModel.Password,
-					isPersistent: false,
-					lockoutOnFailure: false);
+				// get the user, if the password matches then we can continue on.
+				var user = _userManager.Users.SingleOrDefault(u => u.Email == userModel.Email);
 
-				if (result.Succeeded)
+				if (_userManager.PasswordHasher.VerifyHashedPassword(user, user.PasswordHash, userModel.Password) == PasswordVerificationResult.Success)
 				{
+					var claims = new List<Claim>
+					{
+						new Claim(ClaimTypes.Name, userModel.Email),
+					};
+
+					var claimsIdentity = new ClaimsIdentity(
+					  claims,CookieAuthenticationDefaults.AuthenticationScheme);
+					var authProperties = new AuthenticationProperties();
+
+					await HttpContext.SignInAsync(
+					  CookieAuthenticationDefaults.AuthenticationScheme,
+					  new ClaimsPrincipal(claimsIdentity),
+					  authProperties);
+
 					_logger.LogInformation(1, "User logged in.");
 					return Ok();
-				}
-				if (result.IsLockedOut)
-				{
-					_logger.LogWarning(2, "User account locked out.");
-					return BadRequest();
-				}
-				else
-				{
-					ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-					return new BadRequestObjectResult(ModelState);
 				}
 			}
 

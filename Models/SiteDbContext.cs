@@ -8,15 +8,15 @@ namespace ConsoleApp.PostgreSQL
 	public class SiteDbContext : IdentityDbContext<IdentityUser>
 	{
 
-		public SiteDbContext(DbContextOptions<SiteDbContext> options) : base(options)
+		public SiteDbContext(DbContextOptions<SiteDbContext> options)
+			: base(options)
 		{
-
 		}
 
 		public SiteDbContext()
 		{
-
 		}
+
 		public DbSet<BlogPost> Blogs
 		{
 			get;
