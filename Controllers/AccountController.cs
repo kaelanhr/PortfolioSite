@@ -6,6 +6,9 @@ using Microsoft.Extensions.Logging;
 
 namespace PersonalSite.Controllers
 {
+	/// <summary>
+	/// Manage user accounts login, register, forgot password etc.
+	/// </summary>
 	[Authorize]
 	public class AccountController : Controller
 	{
@@ -14,6 +17,12 @@ namespace PersonalSite.Controllers
 
 		private readonly ILogger _logger;
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="AccountController"/> class.
+		/// </summary>
+		/// <param name="userManager">Identity user manager.</param>
+		/// <param name="signInManager">Identity sign in manager.</param>
+		/// <param name="loggerFactory">Log controller actions.</param>
 		public AccountController(
 			UserManager<IdentityUser> userManager,
 			SignInManager<IdentityUser> signInManager,
@@ -24,6 +33,7 @@ namespace PersonalSite.Controllers
 			_logger = loggerFactory.CreateLogger<AccountController>();
 		}
 
+		#region i dont care about this right now
 		//
 		// GET: /Account/Login
 		[HttpGet]
@@ -72,11 +82,26 @@ namespace PersonalSite.Controllers
 			return null;
 		}
 
-		// POST: /Account/Register
+		// POST: /Account/LogOut
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> LogOut()
+		{
+			await _signInManager.SignOutAsync();
+			_logger.LogInformation(4, "User logged out.");
+			return null;
+		}
+		#endregion
+
+		/// <summary>
+		/// Register a User
+		/// </summary>
+		/// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
 		[HttpPost]
 		[AllowAnonymous]
-		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Register()
+		//[ValidateAntiForgeryToken]
+		[Route("[controller]/Register")]
+		public async Task<IActionResult> RegisterUserAsync()
 		{
 			var username = "blah";
 			var email = "blah@example.com";
@@ -102,14 +127,6 @@ namespace PersonalSite.Controllers
 			return null;
 		}
 
-		// POST: /Account/LogOut
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> LogOut()
-		{
-			await _signInManager.SignOutAsync();
-			_logger.LogInformation(4, "User logged out.");
-			return null;
-		}
+
 	}
 }

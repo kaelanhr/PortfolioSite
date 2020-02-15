@@ -1,16 +1,12 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using PersonalSite.Models;
 
 namespace ConsoleApp.PostgreSQL
 {
-	public class SiteDbContext : IdentityDbContext
+	public class SiteDbContext : IdentityDbContext<IdentityUser>
 	{
-		public DbSet<BlogPost> Blogs
-		{
-			get;
-			set;
-		}
 
 		public SiteDbContext(DbContextOptions<SiteDbContext> options) : base(options)
 		{
@@ -19,7 +15,12 @@ namespace ConsoleApp.PostgreSQL
 
 		public SiteDbContext()
 		{
-		
+
+		}
+		public DbSet<BlogPost> Blogs
+		{
+			get;
+			set;
 		}
 	}
 }
