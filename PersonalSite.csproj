@@ -38,7 +38,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="stylecop.json" CopyToOutputDirectory="PreserveNewest"/>
+		<AdditionalFiles Include="stylecop.json" CopyToOutputDirectory="PreserveNewest"/>
 	</ItemGroup>
 
 	<Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
