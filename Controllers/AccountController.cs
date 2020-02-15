@@ -68,7 +68,7 @@ namespace PersonalSite.Controllers
 				else
 				{
 					ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-					return BadRequest();
+					return new BadRequestObjectResult(ModelState);
 				}
 			}
 
