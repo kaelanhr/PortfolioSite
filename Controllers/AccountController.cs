@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -33,100 +34,129 @@ namespace PersonalSite.Controllers
 			_logger = loggerFactory.CreateLogger<AccountController>();
 		}
 
-		#region i dont care about this right now
-		//
-		// GET: /Account/Login
-		[HttpGet]
-		[AllowAnonymous]
-		public IActionResult Login(string returnUrl = null)
-		{
-			ViewData["ReturnUrl"] = returnUrl;
-			return View();
-		}
-
-		//
-		// POST: /Account/Login
+		/// <summary>
+		/// Logs a user in
+		/// </summary>
+		/// <param name="userModel">Object needed to login a user</param>
+		/// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
 		[HttpPost]
 		[AllowAnonymous]
-		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Login()
+		[Route("/Login")]
+		// [ValidateAntiForgeryToken]
+		public async Task<IActionResult> LoginAsync(UserModel userModel)
 		{
-			var username = "blah";
-			var email = "blah@example.com";
-			var password = "password";
-
 			if (ModelState.IsValid)
 			{
 				// This doesn't count login failures towards account lockout
 				// To enable password failures to trigger account lockout, set lockoutOnFailure: true
-				var result = await _signInManager.PasswordSignInAsync(email,
-					password, false, lockoutOnFailure: false);
+				var result = await _signInManager.PasswordSignInAsync(
+					userModel.Email,
+					userModel.Password,
+					isPersistent: false,
+					lockoutOnFailure: false);
+
 				if (result.Succeeded)
 				{
 					_logger.LogInformation(1, "User logged in.");
-					return null;
+					return Ok();
 				}
 				if (result.IsLockedOut)
 				{
 					_logger.LogWarning(2, "User account locked out.");
-					return View("Lockout");
+					return BadRequest();
 				}
 				else
 				{
 					ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-					return null;
+					return BadRequest();
 				}
 			}
 
-			// If we got this far, something failed, redisplay form
-			return null;
+			// If we got this far, something failed
+			return BadRequest();
 		}
 
+		/// <summary>
+		/// Logs a particular user out.
+		/// </summary>
+		/// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
 		// POST: /Account/LogOut
 		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> LogOut()
+		// [ValidateAntiForgeryToken]
+		[Route("/Logout")]
+		public async Task<IActionResult> LogOutAsync()
 		{
 			await _signInManager.SignOutAsync();
 			_logger.LogInformation(4, "User logged out.");
-			return null;
+			return Ok();
 		}
-		#endregion
 
 		/// <summary>
-		/// Register a User
+		/// Register a User.
 		/// </summary>
+		/// <param name="userModel">Required registration model.</param>
 		/// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
 		[HttpPost]
 		[AllowAnonymous]
-		//[ValidateAntiForgeryToken]
-		[Route("[controller]/Register")]
-		public async Task<IActionResult> RegisterUserAsync()
+		// [ValidateAntiForgeryToken]
+		[Route("/Register")]
+		public async Task<IActionResult> RegisterUserAsync(UserModel userModel)
 		{
-			var username = "blah";
-			var email = "blah@example.com";
-			var password = "password";
+			// TODO: Find out where i need to put the validate anti forgery token
+
 			if (ModelState.IsValid)
 			{
 				var user = new IdentityUser
 				{
-					UserName = email,
-					Email = email
+					UserName = userModel.Email,
+					Email = userModel.Email,
 				};
-				var result = await _userManager.CreateAsync(user, password);
+
+				var result = await _userManager.CreateAsync(user, userModel.Password);
 				if (result.Succeeded)
 				{
-					await _signInManager.SignInAsync(user, isPersistent: false);
 					_logger.LogInformation(3, "User created a new account with password.");
-					return null;
+					return Ok();
 				}
-				// add errors to result
+
+				foreach (var error in result.Errors)
+				{
+					ModelState.AddModelError("Errors", error.Description);
+				}
 			}
 
-			// If we got this far, something failed, redisplay form
-			return null;
+			// If we got this far, something failed
+			return new BadRequestObjectResult(ModelState);
+		}
+	}
+
+	/// <summary>
+	/// attributes used for registration.
+	/// </summary>
+	public class UserModel
+	{
+		/// <summary>
+		/// Gets or sets required valid email address.
+		/// </summary>
+		[Required]
+		[EmailAddress]
+		[Display(Name = "Email")]
+		public string Email
+		{
+			get;
+			set;
 		}
 
-
+		/// <summary>
+		/// Gets or sets password is required.
+		/// </summary>
+		[Required]
+		[DataType(DataType.Password)]
+		[Display(Name = "Password")]
+		public string Password
+		{
+			get;
+			set;
+		}
 	}
 }
