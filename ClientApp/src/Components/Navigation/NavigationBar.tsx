@@ -5,39 +5,57 @@ import axios from 'axios';
 interface NavItemProps {
 	linkUrl: string
 	displayName: string
-	isDisplayed: () => boolean
+	isDisplayed: boolean
 }
 
-function isLoggedIn(): boolean {
-	let isAuthenticated = false;
-	axios.get('/Identity/Account/me')
-		.then(function (response) {
-			console.log(response);
-			if (response.status == 200) {
-				isAuthenticated = true;
-			}
-			//Perform action based on response
-		})
-	return isAuthenticated
+interface IState {
+	isAuthenticated: any
 }
 
-export default class NavigationBar extends Component {
+
+
+export default class NavigationBar extends Component<{}, IState> {
 	constructor(props) {
 		super(props);
+		if (this.isLoggedIn()) {
+			this.state = {
+				isAuthenticated: true
+			};
+		} else {
+			this.state = {
+				isAuthenticated: false
+			};
+		}
 	}
 
-	private navItems: NavItemProps[] = [
-		{ linkUrl: "", displayName: "Home", isDisplayed: () => true },
-		{ linkUrl: "admin", displayName: "Admin", isDisplayed: () => isLoggedIn() },
-		{ linkUrl: "logout", displayName: "Logout", isDisplayed: () => isLoggedIn() },
-		{ linkUrl: "about", displayName: "About", isDisplayed: () => true },
-		{ linkUrl: "blog", displayName: "Blog", isDisplayed: () => true },
-		{ linkUrl: "portfolio", displayName: "Portfolio", isDisplayed: () => true },
-		{ linkUrl: "contact-me", displayName: "Contact Me", isDisplayed: () => true },
-	]
+	isLoggedIn = async () => {
+		let authentication = false;
+		let res = await axios.get('/Identity/Account/me')
+			.then(function (res) {
+				if (res.status == 200) {
+					authentication = true;
+				}
+			})
+			.catch(function (error) {
+				authentication = false
+				//Perform action based on error
+			});
+
+		this.setState({ isAuthenticated: authentication });
+	};
+
 	render() {
-		const htmlLinks = this.navItems
-			.filter(link => link.isDisplayed())
+		let navItems: NavItemProps[] = [
+			{ linkUrl: "", displayName: "Home", isDisplayed: true },
+			{ linkUrl: "admin", displayName: "Admin", isDisplayed: this.state.isAuthenticated },
+			{ linkUrl: "logout", displayName: "Logout", isDisplayed: this.state.isAuthenticated },
+			{ linkUrl: "about", displayName: "About", isDisplayed: true },
+			{ linkUrl: "blog", displayName: "Blog", isDisplayed: true },
+			{ linkUrl: "portfolio", displayName: "Portfolio", isDisplayed: true },
+			{ linkUrl: "contact-me", displayName: "Contact Me", isDisplayed: true },
+		]
+		const htmlLinks = navItems
+			.filter(link => link.isDisplayed)
 			.map((link) => <NavigationItem
 				displayName={link.displayName}
 				linkUrl={link.linkUrl}
