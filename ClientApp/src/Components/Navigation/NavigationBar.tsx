@@ -10,21 +10,25 @@ interface NavItemProps {
 
 interface IState {
 	isAuthenticated: any
+
+}
+
+interface NavBarProps {
 	displayNavBar: boolean
 }
 
-export default class NavigationBar extends Component<{}, IState> {
+export default class NavigationBar extends Component<NavBarProps, IState> {
 	constructor(props) {
 		super(props);
 		if (this.isLoggedIn()) {
 			this.state = {
 				isAuthenticated: true,
-				displayNavBar: true
+				//	displayNavBar: true
 			};
 		} else {
 			this.state = {
 				isAuthenticated: false,
-				displayNavBar: true
+				//	displayNavBar: true
 			};
 		}
 	}
@@ -47,7 +51,7 @@ export default class NavigationBar extends Component<{}, IState> {
 
 	render() {
 		let navClassName = "sidebar"
-		if (!this.state.displayNavBar) {
+		if (!this.props.displayNavBar) {
 			navClassName += " collapsed"
 		}
 		let navItems: NavItemProps[] = [
@@ -70,7 +74,7 @@ export default class NavigationBar extends Component<{}, IState> {
 
 		return (
 			<>
-				<button className="main" onClick={() => this.setState({ displayNavBar: !this.state.displayNavBar })}> Toggle Nav bar</button>
+
 				<div className={navClassName}>
 					<ul>
 						{htmlLinks}
