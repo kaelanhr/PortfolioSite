@@ -44,6 +44,5 @@ namespace PersonalSite.Models
 			get;
 			set;
 		}
-
 	}
 }

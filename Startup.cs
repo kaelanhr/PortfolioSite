@@ -45,7 +45,6 @@ namespace PersonalSite
 				.AddDefaultTokenProviders()
 				.AddEntityFrameworkStores<SiteDbContext>();
 
-
 			services.Configure<IdentityOptions>(options =>
 			{
 				// Password settings.

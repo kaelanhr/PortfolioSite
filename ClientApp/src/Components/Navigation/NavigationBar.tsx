@@ -67,7 +67,7 @@ export default class NavigationBar extends Component<{}, IState> {
 			<ul>
 				{htmlLinks}
 			</ul>
-		)
+		);
 	}
 }
 
