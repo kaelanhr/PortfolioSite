@@ -10,20 +10,21 @@ interface NavItemProps {
 
 interface IState {
 	isAuthenticated: any
+	displayNavBar: boolean
 }
-
-
 
 export default class NavigationBar extends Component<{}, IState> {
 	constructor(props) {
 		super(props);
 		if (this.isLoggedIn()) {
 			this.state = {
-				isAuthenticated: true
+				isAuthenticated: true,
+				displayNavBar: true
 			};
 		} else {
 			this.state = {
-				isAuthenticated: false
+				isAuthenticated: false,
+				displayNavBar: true
 			};
 		}
 	}
@@ -45,6 +46,10 @@ export default class NavigationBar extends Component<{}, IState> {
 	};
 
 	render() {
+		let navClassName = "sidebar"
+		if (!this.state.displayNavBar) {
+			navClassName += " collapsed"
+		}
 		let navItems: NavItemProps[] = [
 			{ linkUrl: "", displayName: "Home", isDisplayed: true },
 			{ linkUrl: "admin", displayName: "Admin", isDisplayed: this.state.isAuthenticated },
@@ -64,16 +69,21 @@ export default class NavigationBar extends Component<{}, IState> {
 			);
 
 		return (
-			<ul>
-				{htmlLinks}
-			</ul>
+			<>
+				<button className="main" onClick={() => this.setState({ displayNavBar: !this.state.displayNavBar })}> Toggle Nav bar</button>
+				<div className={navClassName}>
+					<ul>
+						{htmlLinks}
+					</ul>
+				</div>
+			</>
 		);
 	}
 }
 
 function NavigationItem(props: NavItemProps) {
 	return (
-		<li>
+		<li className="nav-item">
 			<Link to={"/" + props.linkUrl}>{props.displayName}</Link>
 		</li>
 	)
