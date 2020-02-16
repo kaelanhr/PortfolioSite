@@ -31,7 +31,7 @@ export default class Login extends Component<{}, LoginState> {
 							Password: e.target.value
 						})}
 					/>
-					<input type="submit" />
+					<input type="submit" value="Login" />
 				</form>
 			</>
 		)

@@ -15,6 +15,8 @@ import Login from './Components/Pages/Login';
 import Portfolio from './Components/Pages/Portfolio';
 import Home from './Components/Pages/Home';
 import Logout from './Components/Pages/Logout';
+import BlogEntity from './Components/Blog/BlogEntity';
+import { EntityAdminAction } from './Components/Blog/BlogEntity';
 
 const App: React.FC = () => {
 	return (
@@ -30,6 +32,12 @@ const App: React.FC = () => {
 					</Route>
 					<Route exact path="/blog">
 						<Blog />
+					</Route>
+					<Route exact path="/blog/create">
+						<BlogEntity entityAction={"Create"} />
+					</Route>
+					<Route exact path="/blog/update">
+						<BlogEntity entityAction={"Update"} />
 					</Route>
 					<Route exact path="/admin">
 						<Admin />
