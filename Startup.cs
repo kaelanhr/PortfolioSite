@@ -68,16 +68,6 @@ namespace PersonalSite
 			});
 
 
-			/*			services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-						  .AddCookie(options =>
-						  {
-							  options.Cookie.HttpOnly = true;
-							  options.Cookie.SecurePolicy = _currentEnvironment.IsDevelopment()
-					? CookieSecurePolicy.None : CookieSecurePolicy.Always;
-							  options.Cookie.SameSite = SameSiteMode.Strict;
-						  });*/
-
-
 			services.AddAuthentication(options =>
 			{
 				options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;

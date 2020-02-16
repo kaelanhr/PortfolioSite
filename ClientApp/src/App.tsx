@@ -14,6 +14,7 @@ import Admin from './Components/Pages/Admin';
 import Login from './Components/Pages/Login';
 import Portfolio from './Components/Pages/Portfolio';
 import Home from './Components/Pages/Home';
+import Logout from './Components/Pages/Logout';
 
 const App: React.FC = () => {
 	return (
@@ -35,6 +36,9 @@ const App: React.FC = () => {
 					</Route>
 					<Route exact path="/login">
 						<Login />
+					</Route>
+					<Route exact path="/logout">
+						<Logout />
 					</Route>
 					<Route exact path="/portfolio">
 						<Portfolio />

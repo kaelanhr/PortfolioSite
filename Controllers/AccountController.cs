@@ -87,13 +87,37 @@ namespace PersonalSite.Controllers
 		/// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
 		// POST: /Account/LogOut
 		[HttpPost]
+		[Authorize]
 		// [ValidateAntiForgeryToken]
-		[Route("/Logout")]
+		[Route("/Identity/Account/Logout")]
 		public async Task<IActionResult> LogOutAsync()
 		{
+			await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 			await _signInManager.SignOutAsync();
 			_logger.LogInformation(4, "User logged out.");
 			return Ok();
+		}
+
+		/// <summary>
+		/// Check a user is logged in
+		/// </summary>
+		/// <param name="email">The email of the user</param>
+		/// <returns>A <see cref="Task{TResult}"/>Determine whether a user is logged in.</returns>
+		// POST: /Account/LogOut
+		[HttpGet]
+		[Authorize]
+		// [ValidateAntiForgeryToken]
+		[Route("/Identity/Account/me")]
+		public IActionResult CheckLogin()
+		{
+			if (User.Identity.IsAuthenticated)
+			{
+				_logger.LogInformation(4, "User is correctly authenticated");
+				return Ok();
+			}
+
+			_logger.LogInformation(4, "User is not authenticated");
+			return Forbid();
 		}
 
 		/// <summary>
