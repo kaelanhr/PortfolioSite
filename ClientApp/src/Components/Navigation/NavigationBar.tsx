@@ -9,8 +9,8 @@ interface NavItemProps {
 }
 
 interface IState {
-	isAuthenticated: any
-
+	isAuthenticated: boolean
+	isLoading: boolean
 }
 
 interface NavBarProps {
@@ -20,36 +20,31 @@ interface NavBarProps {
 export default class NavigationBar extends Component<NavBarProps, IState> {
 	constructor(props) {
 		super(props);
-		if (this.isLoggedIn()) {
-			this.state = {
-				isAuthenticated: true,
-				//	displayNavBar: true
-			};
-		} else {
-			this.state = {
-				isAuthenticated: false,
-				//	displayNavBar: true
-			};
-		}
+		this.state = {
+			isAuthenticated: false,
+			isLoading: true,
+			//	displayNavBar: true
+		};
 	}
 
-	isLoggedIn = async () => {
-		let authentication = false;
+	async componentDidMount() {
 		let res = await axios.get('/Identity/Account/me')
-			.then(function (res) {
-				if (res.status == 200) {
-					authentication = true;
-				}
+			.then(res => {
+				this.setState({ isAuthenticated: true });
 			})
-			.catch(function (error) {
-				authentication = false
+			.catch(error => {
+				this.setState({ isAuthenticated: false });
 				//Perform action based on error
+			}).finally(() => {
+				this.setState({ isLoading: false });
 			});
-
-		this.setState({ isAuthenticated: authentication });
-	};
+	}
 
 	render() {
+		if (this.state.isLoading) {
+			return null
+		}
+
 		let navClassName = "sidebar"
 		if (!this.props.displayNavBar) {
 			navClassName += " collapsed"
@@ -74,7 +69,6 @@ export default class NavigationBar extends Component<NavBarProps, IState> {
 
 		return (
 			<>
-
 				<div className={navClassName}>
 					<ul>
 						{htmlLinks}
