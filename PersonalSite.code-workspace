@@ -15,7 +15,8 @@
 			"**/bin": true,
 			"**/obj": true,
 			"**/node_modules": true,
-			"**/yarn.lock": true
+			"**/yarn.lock": true,
+			"**/.vscode": true,
 		}
 	}
 }
