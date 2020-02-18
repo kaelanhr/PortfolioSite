@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { store } from '../store';
+import { observer } from 'mobx-react';
 
 interface NavItemProps {
 	linkUrl: string
@@ -17,7 +19,7 @@ interface NavBarProps {
 	displayNavBar: boolean
 }
 
-export default class NavigationBar extends Component<NavBarProps, IState> {
+@observer export default class NavigationBar extends Component<NavBarProps, IState> {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -27,23 +29,8 @@ export default class NavigationBar extends Component<NavBarProps, IState> {
 		};
 	}
 
-	async componentDidMount() {
-		let res = await axios.get('/Identity/Account/me')
-			.then(res => {
-				this.setState({ isAuthenticated: true });
-			})
-			.catch(error => {
-				this.setState({ isAuthenticated: false });
-				//Perform action based on error
-			}).finally(() => {
-				this.setState({ isLoading: false });
-			});
-	}
 
 	render() {
-		if (this.state.isLoading) {
-			return null
-		}
 
 		let navClassName = "sidebar"
 		if (!this.props.displayNavBar) {
@@ -51,8 +38,8 @@ export default class NavigationBar extends Component<NavBarProps, IState> {
 		}
 		let navItems: NavItemProps[] = [
 			{ linkUrl: "", displayName: "Home", isDisplayed: true },
-			{ linkUrl: "admin", displayName: "Admin", isDisplayed: this.state.isAuthenticated },
-			{ linkUrl: "logout", displayName: "Logout", isDisplayed: this.state.isAuthenticated },
+			{ linkUrl: "admin", displayName: "Admin", isDisplayed: store.isLoggedIn },
+			{ linkUrl: "logout", displayName: "Logout", isDisplayed: store.isLoggedIn },
 			{ linkUrl: "about", displayName: "About", isDisplayed: true },
 			{ linkUrl: "blog", displayName: "Blog", isDisplayed: true },
 			{ linkUrl: "portfolio", displayName: "Portfolio", isDisplayed: true },

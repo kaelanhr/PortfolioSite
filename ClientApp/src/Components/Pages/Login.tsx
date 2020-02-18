@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import { store } from '../store';
 
 interface LoginState {
 	Email: string
@@ -41,7 +42,7 @@ export default class Login extends Component<{}, LoginState> {
 		axios.post('/Identity/Account/Login', { "Email": this.state.Email, "Password": this.state.Password })
 			.then(function (response) {
 				console.log(response);
-
+				store.setUserLogin(true);
 				//Perform action based on response
 			})
 			.catch(function (error) {
