@@ -38,12 +38,12 @@ interface NavBarProps {
 		}
 		let navItems: NavItemProps[] = [
 			{ linkUrl: "", displayName: "Home", isDisplayed: true },
-			{ linkUrl: "admin", displayName: "Admin", isDisplayed: store.isLoggedIn },
-			{ linkUrl: "logout", displayName: "Logout", isDisplayed: store.isLoggedIn },
 			{ linkUrl: "about", displayName: "About", isDisplayed: true },
 			{ linkUrl: "blog", displayName: "Blog", isDisplayed: true },
 			{ linkUrl: "portfolio", displayName: "Portfolio", isDisplayed: true },
 			{ linkUrl: "contact-me", displayName: "Contact Me", isDisplayed: true },
+			{ linkUrl: "admin", displayName: "Admin", isDisplayed: store.isLoggedIn },
+			{ linkUrl: "logout", displayName: "Logout", isDisplayed: store.isLoggedIn },
 		]
 		const htmlLinks = navItems
 			.filter(link => link.isDisplayed)
