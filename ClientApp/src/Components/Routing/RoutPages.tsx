@@ -20,14 +20,8 @@ export default class RoutPages extends Component {
 				<Route exact path="/about">
 					<About />
 				</Route>
-				<Route exact path="/blog">
-					<Blog />
-				</Route>
-				<Route exact path="/blog/create">
-					<BlogEntity entityAction={"Create"} />
-				</Route>
-				<Route exact path="/blog/update">
-					<BlogEntity entityAction={"Update"} />
+				<Route path="/blog">
+					<Route component={Blog} />
 				</Route>
 				<Route exact path="/admin">
 					<Admin />

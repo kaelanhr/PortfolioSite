@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Back from '../Back';
 
 
 interface IProps {
@@ -23,6 +24,7 @@ export default class BlogEntity extends Component<IProps> {
 					<input type="text" />
 					<input type="submit" value={(this.props.entityAction == "Create" ? this.props.entityAction : "Update") + " Blog"} />
 				</form>
+				<Back />
 			</>
 		)
 	}

@@ -56,21 +56,22 @@ namespace PersonalSite.Controllers
 				// get the user, if the password matches then we can continue on.
 				var user = _userManager.Users.SingleOrDefault(u => u.Email == userModel.Email);
 
-				if (_userManager.PasswordHasher.VerifyHashedPassword(user, user.PasswordHash, userModel.Password) == PasswordVerificationResult.Success)
+				if (await _userManager.CheckPasswordAsync(user, userModel.Password))
 				{
+					// fetch out the roles for a user and embed the roles
 					var claims = new List<Claim>
 					{
 						new Claim(ClaimTypes.Name, userModel.Email),
 					};
 
 					var claimsIdentity = new ClaimsIdentity(
-					  claims, CookieAuthenticationDefaults.AuthenticationScheme);
+						claims, CookieAuthenticationDefaults.AuthenticationScheme);
 					var authProperties = new AuthenticationProperties();
 
 					await HttpContext.SignInAsync(
-					  CookieAuthenticationDefaults.AuthenticationScheme,
-					  new ClaimsPrincipal(claimsIdentity),
-					  authProperties);
+						CookieAuthenticationDefaults.AuthenticationScheme,
+						new ClaimsPrincipal(claimsIdentity),
+						authProperties);
 
 					_logger.LogInformation(1, "User logged in.");
 					return Ok();
@@ -93,7 +94,6 @@ namespace PersonalSite.Controllers
 		public async Task<IActionResult> LogOutAsync()
 		{
 			await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-			await _signInManager.SignOutAsync();
 			_logger.LogInformation(4, "User logged out.");
 			return Ok();
 		}
