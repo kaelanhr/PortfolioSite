@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using ConsoleApp.PostgreSQL;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -75,6 +76,12 @@ namespace PersonalSite
 
 			services.ConfigureApplicationCookie(options =>
 			{
+				options.Events.OnRedirectToLogin = context =>
+				{
+					context.Response.StatusCode = 401;
+					return Task.CompletedTask;
+				};
+
 				// Cookie settings
 				options.Cookie.HttpOnly = true;
 				options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
@@ -83,7 +90,6 @@ namespace PersonalSite
 				options.Cookie.SameSite = SameSiteMode.Strict;
 
 				options.LoginPath = "/Identity/Account/Login";
-				options.AccessDeniedPath = "/Identity/Account/AccessDenied";
 				options.SlidingExpiration = true;
 			});
 

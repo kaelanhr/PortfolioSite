@@ -12,13 +12,12 @@ export default class Logout extends Component {
 		await axios.post('/Identity/Account/Logout')
 			.then(function (response) {
 				console.log(response);
-				store.setUserLogin(false);
-				//Perform action based on response
+				if (response.status == 200) {
+					store.setUserLogin(false);
+				}
 			})
 			.catch(function (error) {
 				console.log(error);
-				store.setUserLogin(false);
-				//Perform action based on error
 			})
 	};
 	render() {

@@ -42,12 +42,12 @@ export default class Login extends Component<{}, LoginState> {
 		axios.post('/Identity/Account/Login', { "Email": this.state.Email, "Password": this.state.Password })
 			.then(function (response) {
 				console.log(response);
-				store.setUserLogin(true);
-				//Perform action based on response
+				if (response.status == 200) {
+					store.setUserLogin(true);
+				}
 			})
 			.catch(function (error) {
 				console.log(error);
-				//Perform action based on error
 			});
 
 	}
