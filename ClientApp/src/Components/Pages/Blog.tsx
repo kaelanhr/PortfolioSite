@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link, Route, Switch } from 'react-router-dom'
 import BlogEntity from '../Blog/BlogEntity'
+import { IfAdmin } from '../If'
 
 export default class Blog extends Component {
 	render() {
@@ -12,8 +13,10 @@ export default class Blog extends Component {
 							<p>TODO: Blog Page Component</p>
 							<ul>
 								<li>Search Blog</li>
-								<Link to="/blog/create">Create Blog</Link>
-								<Link to="/blog/update">Update Blog</Link>
+								<IfAdmin >
+									<Link to="/blog/create">Create Blog</Link>
+									<Link to="/blog/update">Update Blog</Link>
+								</IfAdmin>
 								<li>Create Blog</li>
 								<li>Read Blog</li>
 								<li>Update Blog</li>
