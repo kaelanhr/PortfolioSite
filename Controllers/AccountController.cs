@@ -55,17 +55,17 @@ namespace PersonalSite.Controllers
 			{
 				// get the user, if the password matches then we can continue on.
 				var user = _userManager.Users.SingleOrDefault(u => u.Email == userModel.Email);
-
 				if (await _userManager.CheckPasswordAsync(user, userModel.Password))
 				{
-					// fetch out the roles for a user and embed the roles
-					var claims = new List<Claim>
-					{
-						new Claim(ClaimTypes.Name, userModel.Email),
-					};
+					var userRolesClaim = (await _userManager.GetRolesAsync(user)).Select(r => new Claim(ClaimTypes.Role, r));
 
 					var claimsIdentity = new ClaimsIdentity(
-						claims, CookieAuthenticationDefaults.AuthenticationScheme);
+						CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name, ClaimTypes.Role);
+
+					claimsIdentity.AddClaim(new Claim("UserId", user.Id.ToString()));
+					claimsIdentity.AddClaim(new Claim(ClaimTypes.Name, user.UserName));
+					claimsIdentity.AddClaims(userRolesClaim);
+
 					var authProperties = new AuthenticationProperties();
 
 					await HttpContext.SignInAsync(
@@ -86,7 +86,7 @@ namespace PersonalSite.Controllers
 		/// Logs a particular user out.
 		/// </summary>
 		/// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
-		// POST: /Account/LogOut
+		[HttpGet]
 		[HttpPost]
 		[Authorize]
 		// [ValidateAntiForgeryToken]
