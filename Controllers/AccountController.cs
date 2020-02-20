@@ -158,6 +158,15 @@ namespace PersonalSite.Controllers
 	}
 
 	/// <summary>
+	/// type returned to the clientside as a user result
+	/// </summary>
+	public class UserResult {
+		public string Email { get; set; }
+		public string UserName { get; set; }
+		public string FirstName { get; set; }
+	}
+
+	/// <summary>
 	/// attributes used for registration.
 	/// </summary>
 	public class UserModel
@@ -168,11 +177,14 @@ namespace PersonalSite.Controllers
 		[Required]
 		[EmailAddress]
 		[Display(Name = "Email")]
-		public string Email
-		{
-			get;
-			set;
-		}
+		public string Email { get; set; }
+
+		/// <summary>
+		/// Gets or sets required username.
+		/// </summary>
+		[Required]
+		[Display(Name = "Username")]
+		public string Username { get; set; }
 
 		/// <summary>
 		/// Gets or sets password is required.
@@ -180,10 +192,6 @@ namespace PersonalSite.Controllers
 		[Required]
 		[DataType(DataType.Password)]
 		[Display(Name = "Password")]
-		public string Password
-		{
-			get;
-			set;
-		}
+		public string Password { get; set; }
 	}
 }
