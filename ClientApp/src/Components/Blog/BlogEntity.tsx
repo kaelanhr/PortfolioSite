@@ -9,7 +9,7 @@ interface IProps {
 export type EntityAdminAction = "Create" | "Update";
 
 export default class BlogEntity extends Component<IProps> {
-	constructor(props) {
+	constructor(props: any) {
 		super(props);
 	}
 
