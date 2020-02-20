@@ -6,18 +6,8 @@ namespace PersonalSite.Models
 	/// <summary>
 	/// Everything contained within a single blog post.
 	/// </summary>
-	public class BlogPost
+	public class BlogPost : AbstractModel
 	{
-		/// <summary>
-		/// Gets or sets primary key of the blog.
-		/// </summary>
-		[Key]
-		public Guid BlogId
-		{
-			get;
-			set;
-		}
-
 		/// <summary>
 		/// Gets or sets blog content.
 		/// </summary>

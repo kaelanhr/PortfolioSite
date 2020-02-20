@@ -1,9 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using PersonalSite.Models;
 
-namespace ConsoleApp.PostgreSQL
+namespace PersonalSite.Models
 {
 	/// <summary>
 	/// The database context used for the site.
@@ -29,10 +28,11 @@ namespace ConsoleApp.PostgreSQL
 		/// <summary>
 		/// Gets or sets blog post so they can be created with EF.
 		/// </summary>
-		public DbSet<BlogPost> Blogs
-		{
-			get;
-			set;
-		}
+		public DbSet<BlogPost> Blog { get; set; }
+
+		/// <summary>
+		/// Gets or sets site content so they can be created with EF.
+		/// </summary>
+		public DbSet<SiteContent> SiteContent { get; set; }
 	}
 }

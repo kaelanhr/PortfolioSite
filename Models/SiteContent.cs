@@ -1,8 +1,8 @@
-namespace
+namespace PersonalSite.Models
 {
-	class SiteContent
+	public class SiteContent : AbstractModel
 	{
-		public string ContentLabel;
-		public string Content;
+		public string ContentLabel { get; set; }
+		public string Content { get; set; }
 	}
 }
