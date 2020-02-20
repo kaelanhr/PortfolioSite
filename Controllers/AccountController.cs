@@ -129,10 +129,8 @@ namespace PersonalSite.Controllers
 		[AllowAnonymous]
 		// [ValidateAntiForgeryToken]
 		[Route("/Register")]
-		public async Task<IActionResult> RegisterUserAsync(UserModel userModel)
+		public async Task<IActionResult> RegisterUserAsync([FromBody] UserModel userModel)
 		{
-			// TODO: Find out where i need to put the validate anti forgery token
-
 			if (ModelState.IsValid)
 			{
 				var user = new IdentityUser

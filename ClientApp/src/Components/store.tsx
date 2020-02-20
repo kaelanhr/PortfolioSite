@@ -6,6 +6,16 @@ export interface IUserState {
 	isLoggedIn: boolean;
 }
 
+interface IUserData {
+	email: string
+	username: string
+	userGroups: IGroupData[]
+}
+
+interface IGroupData {
+	name: string;
+}
+
 export class Store {
 	@observable
 	isLoggedIn: boolean = false
