@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { action, observable, computed } from 'mobx';
 import { observer } from 'mobx-react';
+import { History } from 'history';
 
 export interface IUserState {
 	isLoggedIn: boolean;
@@ -23,6 +24,8 @@ export class Store {
 	@computed get checkLoggedIn() {
 		return this.isLoggedIn;
 	}
+
+	public history: History;
 
 	@action setUserLogin(status: boolean) {
 		this.isLoggedIn = status;

@@ -4,7 +4,7 @@ import { Redirect } from 'react-router';
 import { store } from '../store';
 
 export default class Logout extends Component {
-	constructor(props) {
+	constructor(props: any) {
 		super(props);
 	}
 
@@ -14,6 +14,7 @@ export default class Logout extends Component {
 				console.log(response);
 				if (response.status == 200) {
 					store.setUserLogin(false);
+					store.history.push("/");
 				}
 			})
 			.catch(function (error) {

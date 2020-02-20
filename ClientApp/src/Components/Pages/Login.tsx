@@ -8,7 +8,7 @@ interface LoginState {
 }
 
 export default class Login extends Component<{}, LoginState> {
-	constructor(props) {
+	constructor(props: any) {
 		super(props);
 		this.setState({
 			Password: '',
@@ -37,13 +37,14 @@ export default class Login extends Component<{}, LoginState> {
 			</>
 		)
 	}
-	SubmitHandler = (event) => {
+	SubmitHandler = (event: any) => {
 		event.preventDefault();
 		axios.post('/Identity/Account/Login', { "Email": this.state.Email, "Password": this.state.Password })
 			.then(function (response) {
 				console.log(response);
 				if (response.status == 200) {
 					store.setUserLogin(true);
+					store.history.push("/");
 				}
 			})
 			.catch(function (error) {

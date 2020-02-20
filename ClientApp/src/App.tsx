@@ -1,24 +1,27 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.scss';
 import {
-	BrowserRouter as Router,
-	Switch,
-	Route,
-	Link
-} from "react-router-dom";
+	Router,
+} from "react-router";
 import RoutPages from './Components/Routing/RoutPages';
+import { createBrowserHistory } from 'history';
 import MainApp from './MainApp';
+import { store } from './Components/store';
 
-const App: React.FC = () => {
-	return (
-		<>
-			<Router>
-				<MainApp >
-					<RoutPages />
-				</MainApp>
-			</Router>
-		</>
-	);
+export default class App extends Component {
+	constructor(props: any) {
+		super(props);
+		store.history = createBrowserHistory();
+	}
+	render() {
+		return (
+			<>
+				<Router history={store.history}>
+					<MainApp >
+						<RoutPages />
+					</MainApp>
+				</Router>
+			</>
+		)
+	}
 }
-
-export default App;
