@@ -10,7 +10,6 @@ export default class Contact extends PureComponent {
 				<input type="email" />
 				<p>Message</p>
 				<textarea />
-				<p>You can also find me at any of the following links</p>
 				<input type="submit" />
 			</form>
 		);
