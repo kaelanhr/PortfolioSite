@@ -20,7 +20,6 @@ export default function Home() {
 					<li>deploy on web server</li>
 					<li>mobile responsiveness</li>
 					<li>blog posting</li>
-					<li>use sass</li>
 					<li>Create services for each of the api end points</li>
 					<li>also use graphql for other endpoints</li>
 				</ul>
