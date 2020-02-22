@@ -8,6 +8,9 @@ insert_final_newline = true
 
 [*.cs]
 indent_style = tab
+trim_trailing_whitespace = true
+csharp_prefer_braces = true:
+dotnet_style_prefer_auto_properties = true:suggestion
 
 # SA1309: Field names should not begin with underscore
 dotnet_diagnostic.SA1309.severity = none
@@ -23,3 +26,6 @@ dotnet_diagnostic.RCS1090.severity = none
 
 # SA1633: File should have header
 dotnet_diagnostic.SA1633.severity = none
+
+# SA1402: File may only contain a single type
+dotnet_diagnostic.SA1402.severity = silent
