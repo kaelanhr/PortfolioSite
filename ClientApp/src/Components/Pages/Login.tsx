@@ -1,6 +1,7 @@
 import React, { Component, EventHandler } from 'react'
 import axios from 'axios';
 import { store } from '../store';
+import ErrorMessage from '../error';
 
 interface LoginState {
 	Email: string
@@ -25,7 +26,7 @@ export default class Login extends Component<{}, LoginState> {
 			<>
 				<form onSubmit={this.SubmitHandler}>
 					<h1>Login</h1>
-					<p>{`${this.state.errorMessage}`}</p>
+					<ErrorMessage>{this.state.errorMessage}</ErrorMessage>
 					<br />
 					<input type="Email" onChange={
 						(e) => {
