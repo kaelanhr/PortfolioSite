@@ -8,6 +8,8 @@ interface LoginState {
 	errorMessage: string
 }
 
+const loginError = "Username/Password Combination is incorrect.";
+
 export default class Login extends Component<{}, LoginState> {
 	constructor(props: any) {
 		super(props);
@@ -24,6 +26,7 @@ export default class Login extends Component<{}, LoginState> {
 				<form onSubmit={this.SubmitHandler}>
 					<h1>Login</h1>
 					<p>{`${this.state.errorMessage}`}</p>
+					<br />
 					<input type="Email" onChange={
 						(e) => {
 							this.setState({
@@ -71,8 +74,11 @@ export default class Login extends Component<{}, LoginState> {
 					store.history.push("/");
 				}
 			})
-			.catch(function (error) {
+			.catch(error => {
 				console.log(error);
+				if (this.state.errorMessage != loginError) {
+					this.setState({ errorMessage: loginError })
+				}
 			});
 	}
 }
