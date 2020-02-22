@@ -13,6 +13,7 @@ export default function SocialMediaLinks() {
 			<SocialMediaLink link="https://www.pinterest.com.au/darkwolf_v/" iconPath="pinterest.png" />
 			<SocialMediaLink link="https://www.youtube.com/channel/UCkvCPSOUTjSiF2yFwnXhnsQ" iconPath="youtube.png" />
 			<SocialMediaLink link="https://www.linkedin.com/in/kaelan-reece/" iconPath="linkedin.png" />
+			<SocialMediaLink link="https://www.patreon.com/darkwolf_v" iconPath="patreon.png" />
 		</>
 	)
 }
