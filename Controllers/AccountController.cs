@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,6 +8,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace PersonalSite.Controllers
@@ -21,7 +21,7 @@ namespace PersonalSite.Controllers
 	{
 		private readonly UserManager<IdentityUser> _userManager;
 		private readonly SignInManager<IdentityUser> _signInManager;
-
+		private readonly RoleManager<IdentityRole> _roleManager;
 		private readonly ILogger _logger;
 
 		/// <summary>
@@ -29,14 +29,17 @@ namespace PersonalSite.Controllers
 		/// </summary>
 		/// <param name="userManager">Identity user manager.</param>
 		/// <param name="signInManager">Identity sign in manager.</param>
+		/// /// <param name="roleManager">Identity role manager.</param>
 		/// <param name="loggerFactory">Log controller actions.</param>
 		public AccountController(
 			UserManager<IdentityUser> userManager,
 			SignInManager<IdentityUser> signInManager,
+			RoleManager<IdentityRole> roleManager,
 			ILoggerFactory loggerFactory)
 		{
 			_userManager = userManager;
 			_signInManager = signInManager;
+			_roleManager = roleManager;
 			_logger = loggerFactory.CreateLogger<AccountController>();
 		}
 
@@ -101,23 +104,31 @@ namespace PersonalSite.Controllers
 		/// <summary>
 		/// Check a user is logged in
 		/// </summary>
-		/// <param name="email">The email of the user</param>
 		/// <returns>A <see cref="Task{TResult}"/>Determine whether a user is logged in.</returns>
-		// POST: /Account/LogOut
 		[HttpGet]
 		[Authorize]
 		// [ValidateAntiForgeryToken]
 		[Route("/Identity/Account/me")]
-		public IActionResult CheckLogin()
+		public async Task<UserResult> CheckLoginAsync()
 		{
 			if (User.Identity.IsAuthenticated)
 			{
-				_logger.LogInformation(4, "User is correctly authenticated");
-				return Ok();
+				var user = _userManager.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
+
+				var userRoleNames = (await _userManager.GetRolesAsync(user)).ToList();
+				var userRoles = await _roleManager.Roles.Where(r => userRoleNames.Contains(r.Name)).ToListAsync();
+				_logger.LogInformation(4, "Check whether this user is logged in");
+				return new UserResult
+				{
+					Email = user.Email,
+					FirstName = "",
+					UserName = user.UserName,
+					userGroups = userRoles,
+				};
 			}
 
 			_logger.LogInformation(4, "User is not authenticated");
-			return Forbid();
+			return null;
 		}
 
 		/// <summary>
@@ -129,13 +140,13 @@ namespace PersonalSite.Controllers
 		[AllowAnonymous]
 		// [ValidateAntiForgeryToken]
 		[Route("/Register")]
-		public async Task<IActionResult> RegisterUserAsync([FromBody] UserModel userModel)
+		public async Task<IActionResult> RegisterUserAsync([FromBody] UserRegistrationModel userModel)
 		{
 			if (ModelState.IsValid)
 			{
 				var user = new IdentityUser
 				{
-					UserName = userModel.Email,
+					UserName = userModel.Username,
 					Email = userModel.Email,
 				};
 
@@ -158,26 +169,35 @@ namespace PersonalSite.Controllers
 	}
 
 	/// <summary>
-	/// type returned to the clientside as a user result
+	/// type returned to the clientside as a user result.
 	/// </summary>
-	public class UserResult {
+	public class UserResult
+	{
+		/// <summary>
+		/// Gets or sets the email of the user.
+		/// </summary>
 		public string Email { get; set; }
+
+		/// <summary>
+		/// Username of user.
+		/// </summary>
 		public string UserName { get; set; }
+
+		/// <summary>
+		/// Users first name.
+		/// </summary>
+
 		public string FirstName { get; set; }
+
+		public IEnumerable<IdentityRole> userGroups { get; set; }
 	}
 
 	/// <summary>
 	/// attributes used for registration.
 	/// </summary>
-	public class UserModel
+	public class UserRegistrationModel : UserModel
 	{
-		/// <summary>
-		/// Gets or sets required valid email address.
-		/// </summary>
-		[Required]
-		[EmailAddress]
-		[Display(Name = "Email")]
-		public string Email { get; set; }
+
 
 		/// <summary>
 		/// Gets or sets required username.
@@ -186,6 +206,13 @@ namespace PersonalSite.Controllers
 		[Display(Name = "Username")]
 		public string Username { get; set; }
 
+	}
+
+	/// <summary>
+	/// what is required for minimum user credentials.
+	/// </summary>
+	public class UserModel
+	{
 		/// <summary>
 		/// Gets or sets password is required.
 		/// </summary>
@@ -193,5 +220,13 @@ namespace PersonalSite.Controllers
 		[DataType(DataType.Password)]
 		[Display(Name = "Password")]
 		public string Password { get; set; }
+
+		/// <summary>
+		/// Gets or sets required valid email address.
+		/// </summary>
+		[Required]
+		[EmailAddress]
+		[Display(Name = "Email")]
+		public string Email { get; set; }
 	}
 }

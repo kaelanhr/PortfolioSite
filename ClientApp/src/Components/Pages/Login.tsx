@@ -19,7 +19,6 @@ export default class Login extends Component<{}, LoginState> {
 	render() {
 		return (
 			<>
-				<p>TODO: Implement Login feature</p>
 				<form onSubmit={this.SubmitHandler}>
 					<h1>Login</h1>
 					<input type="Email" onChange={

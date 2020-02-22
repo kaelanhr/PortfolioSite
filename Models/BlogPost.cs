@@ -1,6 +1,3 @@
-using System;
-using System.ComponentModel.DataAnnotations;
-
 namespace PersonalSite.Models
 {
 	/// <summary>
@@ -11,28 +8,16 @@ namespace PersonalSite.Models
 		/// <summary>
 		/// Gets or sets blog content.
 		/// </summary>
-		public string Content
-		{
-			get;
-			set;
-		}
+		public string Content { get; set; }
 
 		/// <summary>
 		/// Gets or sets the header image for the blog.
 		/// </summary>
-		public string HeaderImagePath
-		{
-			get;
-			set;
-		}
+		public string HeaderImagePath { get; set; }
 
 		/// <summary>
 		/// Gets or sets the title of the blog.
 		/// </summary>
-		public string Title
-		{
-			get;
-			set;
-		}
+		public string Title { get; set; }
 	}
 }
