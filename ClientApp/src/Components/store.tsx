@@ -25,6 +25,10 @@ export class Store {
 	@observable
 	userData: IUserData = { email: "", userName: "", userGroups: [] };
 
+	@computed get checkUserData() {
+		return this.userData;
+	}
+
 	@computed get checkLoggedIn() {
 		return this.isLoggedIn;
 	}

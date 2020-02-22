@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { store } from '../store'
+import { Redirect } from 'react-router';
 
 export default class Admin extends Component {
 	constructor(props: any) {
@@ -7,9 +8,12 @@ export default class Admin extends Component {
 
 	}
 	render() {
+		if (!store.checkLoggedIn) {
+			return <Redirect to="/404" />
+		}
 		return (
 			<div>
-				<p>Hello {store.userData.userName}</p>
+				<p>Hello {store.checkUserData.userName}</p>
 				<p>TODO: Admin Page Component</p>
 
 				<h2>What is left to do (in general)</h2>
