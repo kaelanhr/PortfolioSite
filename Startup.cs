@@ -96,10 +96,15 @@ namespace PersonalSite
 				options.SlidingExpiration = true;
 			});
 
+			services.AddAuthorization(options =>
+			{
+				options.AddPolicy("AdminRoleRequired", policy => policy.RequireRole("Administrator"));
+			});
+
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+		public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
 		{
 			if (env.IsDevelopment())
 			{
@@ -140,6 +145,30 @@ namespace PersonalSite
 					spa.UseReactDevelopmentServer(npmScript: "start");
 				}
 			});
+
+
+			if (env.IsDevelopment())
+			{
+				SeedRolesAsync(serviceProvider).Wait();
+			}
+		}
+
+		private static async Task SeedRolesAsync(IServiceProvider serviceProvider)
+		{
+			// initializing custom roles
+			var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+			var userManager = serviceProvider.GetRequiredService<UserManager<SiteUser>>();
+			string[] roleNames = { "Admin", "Member" };
+
+			foreach (var roleName in roleNames)
+			{
+				var roleExist = await roleManager.RoleExistsAsync(roleName);
+				if (!roleExist)
+				{
+					// create the roles and seed them to the database: Question 1
+					await roleManager.CreateAsync(new IdentityRole(roleName));
+				}
+			}
 		}
 	}
 }

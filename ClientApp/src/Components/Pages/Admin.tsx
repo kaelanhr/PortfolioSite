@@ -5,10 +5,9 @@ import { Redirect } from 'react-router';
 export default class Admin extends Component {
 	constructor(props: any) {
 		super(props);
-
 	}
 	render() {
-		if (!store.checkLoggedIn) {
+		if (!store.hasBackendAccess) {
 			return <Redirect to="/404" />
 		}
 		return (

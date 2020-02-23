@@ -33,6 +33,10 @@ export class Store {
 		return this.isLoggedIn;
 	}
 
+	@computed get hasBackendAccess() {
+		return store.userData.userGroups.find(x => x.name == "Admin") != (null || undefined)
+	}
+
 	public history: History;
 
 	@action setUserLogin(status: boolean) {

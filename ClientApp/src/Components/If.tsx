@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { store } from './store';
 import { observer } from 'mobx-react';
+import { isNullOrUndefined } from 'util';
 
 interface IProps {
 	renderCondition: boolean
@@ -19,7 +20,7 @@ interface IProps {
 @observer export class IfAdmin extends Component {
 	render() {
 		return (
-			<If renderCondition={store.isLoggedIn} >
+			<If renderCondition={store.isLoggedIn && store.hasBackendAccess} >
 				{this.props.children}
 			</If>
 		);

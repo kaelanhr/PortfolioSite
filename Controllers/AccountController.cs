@@ -122,9 +122,8 @@ namespace PersonalSite.Controllers
 				return new UserResult
 				{
 					Email = user.Email,
-					FirstName = "",
 					UserName = user.UserName,
-					userGroups = userRoles,
+					userGroups = userRoles.Select(ur => new UserGroupResult { Name = ur.Name }),
 				};
 			}
 
@@ -154,6 +153,7 @@ namespace PersonalSite.Controllers
 				var result = await _userManager.CreateAsync(user, userModel.Password);
 				if (result.Succeeded)
 				{
+					await _userManager.AddToRoleAsync(user, "Member");
 					_logger.LogInformation(3, "User created a new account with password.");
 					return Ok();
 				}
@@ -199,7 +199,7 @@ namespace PersonalSite.Controllers
 		/// </summary>
 		public string LastName { get; set; }
 
-		public IEnumerable<IdentityRole> userGroups { get; set; }
+		public IEnumerable<UserGroupResult> userGroups { get; set; }
 	}
 
 	/// <summary>
@@ -216,6 +216,16 @@ namespace PersonalSite.Controllers
 		[Display(Name = "Username")]
 		public string Username { get; set; }
 
+	}
+
+	public class UserGroupResult
+	{
+		/// <summary>
+		/// Gets or sets the name of the user group.
+		/// </summary>
+		[Required]
+		[Display(Name = "Name")]
+		public string Name { get; set; }
 	}
 
 	/// <summary>

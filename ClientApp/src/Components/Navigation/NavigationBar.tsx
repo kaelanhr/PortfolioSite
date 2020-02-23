@@ -20,7 +20,7 @@ interface NavBarProps {
 }
 
 @observer export default class NavigationBar extends Component<NavBarProps, IState> {
-	constructor(props) {
+	constructor(props: any) {
 		super(props);
 		this.state = {
 			isAuthenticated: false,
@@ -41,7 +41,7 @@ interface NavBarProps {
 			{ linkUrl: "blog", displayName: "Blog", isDisplayed: true },
 			{ linkUrl: "portfolio", displayName: "Portfolio", isDisplayed: true },
 			{ linkUrl: "contact-me", displayName: "Contact Me", isDisplayed: true },
-			{ linkUrl: "admin", displayName: "Admin", isDisplayed: store.isLoggedIn },
+			{ linkUrl: "admin", displayName: "Admin", isDisplayed: store.hasBackendAccess },
 			{ linkUrl: "logout", displayName: "Logout", isDisplayed: store.isLoggedIn },
 		]
 		const htmlLinks = navItems
