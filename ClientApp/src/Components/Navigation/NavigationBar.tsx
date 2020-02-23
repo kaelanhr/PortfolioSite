@@ -41,6 +41,8 @@ interface NavBarProps {
 			{ linkUrl: "blog", displayName: "Blog", isDisplayed: true },
 			{ linkUrl: "portfolio", displayName: "Portfolio", isDisplayed: true },
 			{ linkUrl: "contact-me", displayName: "Contact Me", isDisplayed: true },
+			{ linkUrl: "login", displayName: "Login", isDisplayed: true },
+			{ linkUrl: "register", displayName: "Register", isDisplayed: true },
 			{ linkUrl: "admin", displayName: "Admin", isDisplayed: store.hasBackendAccess },
 			{ linkUrl: "logout", displayName: "Logout", isDisplayed: store.isLoggedIn },
 		]

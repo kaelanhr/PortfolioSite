@@ -9,6 +9,7 @@ import Login from '../Pages/Login'
 import Logout from '../Pages/Logout'
 import Portfolio from '../Pages/Portfolio'
 import Contact from '../Pages/Contact'
+import Register from '../Pages/Register'
 
 export default class RoutPages extends Component {
 	render() {
@@ -32,6 +33,9 @@ export default class RoutPages extends Component {
 				<Route exact path="/logout">
 					<Logout />
 				</Route>
+				<Route exact path="/register">
+					<Register />
+				</Route>				
 				<Route exact path="/portfolio">
 					<Portfolio />
 				</Route>
