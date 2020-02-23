@@ -6,6 +6,10 @@ import { observer } from 'mobx-react';
 
 interface LoginState {
 	errorMessage: string
+	Email: string
+	Password: string
+	ConfirmPassword: string
+	Username: string
 }
 
 @observer
@@ -20,6 +24,10 @@ export default class Register extends Component<{}, LoginState> {
 		super(props);
 		this.state = {
 			errorMessage: '',
+			Email: '',
+			Password: '',
+			ConfirmPassword: '',
+			Username: '',
 		}
 	}
 
@@ -42,13 +50,13 @@ export default class Register extends Component<{}, LoginState> {
 				<ErrorMessage>{this.validationMessage}</ErrorMessage>
 				<form onSubmit={this.SubmitHandler}>
 					<span>Email</span>
-					<input type="text" name="Email" onChange={(e) => { this.Email = e.target.value }} onBlur={this.EmptyHandler} />
+					<input type="text" name="Email" onChange={this.handleUserInput} onBlur={this.EmptyHandler} />
 					<span>Username</span>
-					<input type="text" name="Username" onChange={(e) => { this.Username = e.target.value }} onBlur={this.EmptyHandler} />
+					<input type="text" name="Username" onChange={this.handleUserInput} onBlur={this.EmptyHandler} />
 					<span>Password</span>
-					<input type="password" name="Password" onChange={(e) => { this.Password = e.target.value }} onBlur={this.EmptyHandler} />
+					<input type="password" name="Password" onChange={this.handleUserInput} onBlur={this.EmptyHandler} />
 					<span>Confirm Password</span>
-					<input type="password" name="Confirm Password" onChange={(e) => { this.ConfirmPassword = e.target.value }} onBlur={this.EmptyHandler} />
+					<input type="password" name="Confirm Password" onChange={this.handleUserInput} onBlur={this.EmptyHandler} />
 					<button type="submit">Register</button>
 				</form>
 			</>
@@ -56,7 +64,7 @@ export default class Register extends Component<{}, LoginState> {
 	}
 	// Validate the form on the clientside.
 	ValidateForm = (): boolean => {
-		if (this.Email == '' || this.Username == '' || this.ConfirmPassword == '' || this.Password == '') {
+		if (this.Email == '' || this.state.Username == '' || this.state.ConfirmPassword == '' || this.state.Password == '') {
 			this.setState({ errorMessage: "Email, Password and Username are Required" })
 			return false
 		}
@@ -66,6 +74,10 @@ export default class Register extends Component<{}, LoginState> {
 	SubmitHandler = (event: any) => {
 		event.preventDefault();
 		if (!this.ValidateForm()) { return; }
+	}
+	handleUserInput(e: any) {
+		//this.setState(prevState => ({ ...prevState, [e.target.name]: e.target.value }));
+		//  this.setState(newState as { [P in T]: IState[P]; });
 	}
 	EmptyHandler = (event: any) => {
 		if (event.target.value == '') {
