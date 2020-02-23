@@ -8,9 +8,8 @@ interface LoginState {
 	errorMessage: string
 }
 
-
 @observer
-export default class Register extends Component<LoginState, LoginState> {
+export default class Register extends Component<{}, LoginState> {
 
 	@observable Password = "";
 	@observable ConfirmPassword = "";
@@ -43,13 +42,13 @@ export default class Register extends Component<LoginState, LoginState> {
 				<ErrorMessage>{this.validationMessage}</ErrorMessage>
 				<form onSubmit={this.SubmitHandler}>
 					<span>Email</span>
-					<input type="text" onChange={(e) => { this.Email = e.target.value }} />
+					<input type="text" name="Email" onChange={(e) => { this.Email = e.target.value }} onBlur={this.EmptyHandler} />
 					<span>Username</span>
-					<input type="text" onChange={(e) => { this.Username = e.target.value }} />
+					<input type="text" name="Username" onChange={(e) => { this.Username = e.target.value }} onBlur={this.EmptyHandler} />
 					<span>Password</span>
-					<input type="password" onChange={(e) => { this.Password = e.target.value }} />
+					<input type="password" name="Password" onChange={(e) => { this.Password = e.target.value }} onBlur={this.EmptyHandler} />
 					<span>Confirm Password</span>
-					<input type="password" onChange={(e) => { this.ConfirmPassword = e.target.value }} />
+					<input type="password" name="Confirm Password" onChange={(e) => { this.ConfirmPassword = e.target.value }} onBlur={this.EmptyHandler} />
 					<button type="submit">Register</button>
 				</form>
 			</>
@@ -67,5 +66,14 @@ export default class Register extends Component<LoginState, LoginState> {
 	SubmitHandler = (event: any) => {
 		event.preventDefault();
 		if (!this.ValidateForm()) { return; }
+	}
+	EmptyHandler = (event: any) => {
+		if (event.target.value == '') {
+			this.setState({ errorMessage: `${event.target.name} field is required` })
+			return;
+		}
+		if (this.state.errorMessage != '') {
+			this.setState({ errorMessage: '' })
+		}
 	}
 }
