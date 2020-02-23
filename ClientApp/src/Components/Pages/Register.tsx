@@ -1,39 +1,55 @@
 import React, { Component } from 'react'
 import ErrorMessage from '../error';
+import TextField from '../Inputs/TextField';
+import { observable, computed } from 'mobx';
+import { observer } from 'mobx-react';
 
 interface LoginState {
-	Email: string
-	Password: string
-	ConfirmPassword: string
-	Username: string
 	errorMessage: string
 }
 
-export default class Register extends Component<{}, LoginState> {
-	constructor(props:any) {
+
+@observer
+export default class Register extends Component<LoginState, LoginState> {
+
+	@observable Password = "";
+	@observable ConfirmPassword = "";
+	@observable Email = "";
+	@observable Username = "";
+
+	constructor(props: LoginState) {
 		super(props);
 		this.state = {
-			Email: '',
-			Password: '',
-			ConfirmPassword: '',
-			Username: '',
 			errorMessage: '',
 		}
+	}
+
+	@computed get pwsEqual() {
+		return this.Password === this.ConfirmPassword
+	}
+
+	@computed
+	get validationMessage() {
+		if (!this.pwsEqual) {
+			return "Passwords are not equal"
+		}
+		return null
 	}
 	render() {
 		return (
 			<>
 				<h1>Register</h1>
 				<ErrorMessage>{this.state.errorMessage}</ErrorMessage>
-				<form onSubmit={this.SubmitHandler}> 
+				<ErrorMessage>{this.validationMessage}</ErrorMessage>
+				<form onSubmit={this.SubmitHandler}>
 					<span>Email</span>
-					<input type="text" />
+					<input type="text" onChange={(e) => { this.Email = e.target.value }} />
 					<span>Username</span>
-					<input type="text" />
+					<input type="text" onChange={(e) => { this.Username = e.target.value }} />
 					<span>Password</span>
-					<input type="password" />
+					<input type="password" onChange={(e) => { this.Password = e.target.value }} />
 					<span>Confirm Password</span>
-					<input type="password" />
+					<input type="password" onChange={(e) => { this.ConfirmPassword = e.target.value }} />
 					<button type="submit">Register</button>
 				</form>
 			</>
@@ -41,8 +57,8 @@ export default class Register extends Component<{}, LoginState> {
 	}
 	// Validate the form on the clientside.
 	ValidateForm = (): boolean => {
-		if (this.state.Email == '' || this.state.Password == '') {
-			this.setState({ errorMessage: "Email/Password is Required" })
+		if (this.Email == '' || this.Username == '' || this.ConfirmPassword == '' || this.Password == '') {
+			this.setState({ errorMessage: "Email, Password and Username are Required" })
 			return false
 		}
 		this.setState({ errorMessage: '' })
@@ -51,5 +67,5 @@ export default class Register extends Component<{}, LoginState> {
 	SubmitHandler = (event: any) => {
 		event.preventDefault();
 		if (!this.ValidateForm()) { return; }
-	}	
+	}
 }
