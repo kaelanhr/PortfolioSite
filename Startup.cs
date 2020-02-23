@@ -42,19 +42,22 @@ namespace PersonalSite
 			services.AddDbContext<SiteDbContext>(options =>
 				options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
-			services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+			services.AddIdentity<SiteUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
 				.AddDefaultTokenProviders()
 				.AddEntityFrameworkStores<SiteDbContext>();
 
 			services.Configure<IdentityOptions>(options =>
 			{
-				// Password settings.
-				options.Password.RequireDigit = true;
-				options.Password.RequireLowercase = true;
-				options.Password.RequireNonAlphanumeric = true;
-				options.Password.RequireUppercase = true;
-				options.Password.RequiredLength = 6;
-				options.Password.RequiredUniqueChars = 1;
+				/* Password settings.
+				 * The only limitation we will enforce is length
+				 * any other password restrictions make it easier to decipher
+				*/
+				options.Password.RequireDigit = false;
+				options.Password.RequireLowercase = false;
+				options.Password.RequireNonAlphanumeric = false;
+				options.Password.RequireUppercase = false;
+				options.Password.RequiredLength = 12;
+				options.Password.RequiredUniqueChars = 0;
 
 				// Lockout settings.
 				options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);

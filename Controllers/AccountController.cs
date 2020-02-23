@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using PersonalSite.Models;
 
 namespace PersonalSite.Controllers
 {
@@ -19,8 +20,8 @@ namespace PersonalSite.Controllers
 	[Authorize]
 	public class AccountController : Controller
 	{
-		private readonly UserManager<IdentityUser> _userManager;
-		private readonly SignInManager<IdentityUser> _signInManager;
+		private readonly UserManager<SiteUser> _userManager;
+		private readonly SignInManager<SiteUser> _signInManager;
 		private readonly RoleManager<IdentityRole> _roleManager;
 		private readonly ILogger _logger;
 
@@ -32,8 +33,8 @@ namespace PersonalSite.Controllers
 		/// /// <param name="roleManager">Identity role manager.</param>
 		/// <param name="loggerFactory">Log controller actions.</param>
 		public AccountController(
-			UserManager<IdentityUser> userManager,
-			SignInManager<IdentityUser> signInManager,
+			UserManager<SiteUser> userManager,
+			SignInManager<SiteUser> signInManager,
 			RoleManager<IdentityRole> roleManager,
 			ILoggerFactory loggerFactory)
 		{
@@ -144,7 +145,7 @@ namespace PersonalSite.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				var user = new IdentityUser
+				var user = new SiteUser
 				{
 					UserName = userModel.Username,
 					Email = userModel.Email,
@@ -159,11 +160,16 @@ namespace PersonalSite.Controllers
 
 				foreach (var error in result.Errors)
 				{
-					ModelState.AddModelError("Errors", error.Description);
+					// we do not reveal whether an email account exists in the system.
+					// TODO: find a better way to do this, i do not like relying on a 'string' to check this.
+					if (error.Code != "DuplicateEmail")
+					{
+						ModelState.AddModelError("Errors", error.Description);
+					}
 				}
 			}
 
-			// If we got this far, something failed
+			// If we got this far, something failed, return the error
 			return new BadRequestObjectResult(ModelState);
 		}
 	}
@@ -179,15 +185,19 @@ namespace PersonalSite.Controllers
 		public string Email { get; set; }
 
 		/// <summary>
-		/// Username of user.
+		/// Gets or sets username of user.
 		/// </summary>
 		public string UserName { get; set; }
 
 		/// <summary>
-		/// Users first name.
+		/// Gets or sets users first name.
 		/// </summary>
-
 		public string FirstName { get; set; }
+
+		/// <summary>
+		/// Gets or sets users last name.
+		/// </summary>
+		public string LastName { get; set; }
 
 		public IEnumerable<IdentityRole> userGroups { get; set; }
 	}
