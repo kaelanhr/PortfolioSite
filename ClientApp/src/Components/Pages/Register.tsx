@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import ErrorMessage from '../error';
-import CustomTextField from '../TextField';
 import { observable, computed } from 'mobx';
 import { observer } from 'mobx-react';
+import TextField from '../Inputs/TextField';
 
 interface LoginState {
 	errorMessage: string
@@ -17,38 +17,16 @@ export default class Register extends Component<LoginState> {
 
 	@observable
 	private registrationModel = {
-		Email: 'hello',
+		Email: '',
 		Password: '',
 		ConfirmPassword: '',
 		Username: '',
 	};
-	// @observable Password = "";
-	// @observable ConfirmPassword = "";
-	// @observable Email = "";
-	// @observable Username = "";
 
 	constructor(props: LoginState) {
 		super(props);
-		// this.state = {
-		// 	errorMessage: '',
-		// 	Email: '',
-		// 	Password: '',
-		// 	ConfirmPassword: '',
-		// 	Username: '',
-		// }
 	}
 
-	// @computed get pwsEqual() {
-	// 	return this.Password === this.ConfirmPassword
-	// }
-
-	// @computed
-	// get validationMessage() {
-	// 	if (!this.pwsEqual) {
-	// 		return "Passwords are not equal"
-	// 	}
-	// 	return null
-	// }
 	render() {
 		return (
 			<>
@@ -56,16 +34,18 @@ export default class Register extends Component<LoginState> {
 				{/* <ErrorMessage>{this.state.errorMessage}</ErrorMessage> */}
 				{/* <ErrorMessage>{this.validationMessage}</ErrorMessage> */}
 				<p>{this.registrationModel["Email"]}</p>
+				<p>{this.registrationModel["Password"]}</p>
+				<p>{this.registrationModel["ConfirmPassword"]}</p>
+				<p>{this.registrationModel["Username"]}</p>
 				<form>
-					<CustomTextField model={this.registrationModel} modelProperty={"Email"} />
 					<span>Email</span>
-					<input type="text" name="Email" onChange={this.handleUserInput} onBlur={this.EmptyHandler} />
+					<TextField model={this.registrationModel} modelProperty={"Email"} type="email" />
 					<span>Username</span>
-					<input type="text" name="Username" onChange={this.handleUserInput} onBlur={this.EmptyHandler} />
+					<TextField model={this.registrationModel} modelProperty={"Username"} type="text" />
 					<span>Password</span>
-					<input type="password" name="Password" onChange={this.handleUserInput} onBlur={this.EmptyHandler} />
+					<TextField model={this.registrationModel} modelProperty={"Password"} type="password" />
 					<span>Confirm Password</span>
-					<input type="password" name="Confirm Password" onChange={this.handleUserInput} onBlur={this.EmptyHandler} />
+					<TextField model={this.registrationModel} modelProperty={"ConfirmPassword"} type="password" />
 					<button type="submit">Register</button>
 				</form>
 			</>

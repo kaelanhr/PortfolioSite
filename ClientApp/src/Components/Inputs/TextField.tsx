@@ -1,23 +1,19 @@
 import React, { Component } from 'react'
-import { observer } from 'mobx-react';
 
-interface IProps {
-	onChange: Function
+export interface TextFieldProps<T> {
+	model: T
+	modelProperty: string //keyof T
+	type: 'text' | 'email' | 'password'
 }
 
-@observer
-export default class TextField extends Component<IProps> {
-	constructor(props: any) {
-		super(props);
-	}
-
-	onChange(event: any) {
-		this.props.onChange(event.target.name, event.target.value)
-	}
+export default class TextField<T> extends Component<TextFieldProps<T>> {
 
 	render() {
 		return (
-			<input type="text" onChange={this.onChange} />
+			<input type="text" name={this.props.modelProperty as string} onChange={this.handleUserInput} />
 		)
+	}
+	private handleUserInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+		this.props.model[this.props.modelProperty] = e.target.value as any
 	}
 }
