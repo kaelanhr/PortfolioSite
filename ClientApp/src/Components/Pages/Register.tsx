@@ -1,19 +1,22 @@
 import React, { Component } from 'react'
-import ErrorMessage from '../error';
 import { observable, computed } from 'mobx';
 import { observer } from 'mobx-react';
 import TextField from '../Inputs/TextField';
+import ErrorMessage from '../error';
 
-interface LoginState {
+interface FormState {
 	errorMessage: string
-	Email: string
-	Password: string
-	ConfirmPassword: string
-	Username: string
 }
 
 @observer
-export default class Register extends Component<LoginState> {
+export default class Register extends Component<{}, FormState> {
+	constructor(props: any) {
+		super(props);
+		this.state = {
+			errorMessage: ""
+		}
+	}
+
 
 	@observable
 	private registrationModel = {
@@ -23,58 +26,69 @@ export default class Register extends Component<LoginState> {
 		Username: '',
 	};
 
-	constructor(props: LoginState) {
-		super(props);
-	}
+	@observable validationMessage = '';
 
 	render() {
 		return (
 			<>
 				<h1>Register</h1>
-				{/* <ErrorMessage>{this.state.errorMessage}</ErrorMessage> */}
-				{/* <ErrorMessage>{this.validationMessage}</ErrorMessage> */}
-				<p>{this.registrationModel["Email"]}</p>
-				<p>{this.registrationModel["Password"]}</p>
-				<p>{this.registrationModel["ConfirmPassword"]}</p>
-				<p>{this.registrationModel["Username"]}</p>
-				<form>
-					<span>Email</span>
-					<TextField model={this.registrationModel} modelProperty={"Email"} type="email" />
-					<span>Username</span>
-					<TextField model={this.registrationModel} modelProperty={"Username"} type="text" />
-					<span>Password</span>
-					<TextField model={this.registrationModel} modelProperty={"Password"} type="password" />
-					<span>Confirm Password</span>
-					<TextField model={this.registrationModel} modelProperty={"ConfirmPassword"} type="password" />
+				<ErrorMessage>{this.state.errorMessage}</ErrorMessage>
+				<form onSubmit={this.SubmitHandler}>
+					<TextField
+						model={this.registrationModel}
+						modelProperty={"Email"}
+						type="email"
+						label="Email"
+					/>
+					<TextField model={this.registrationModel}
+						modelProperty={"Username"}
+						type="text"
+						label="Username"
+					/>
+					<TextField model={this.registrationModel}
+						modelProperty={"Password"}
+						type="password"
+						label="Password"
+					/>
+					<TextField model={this.registrationModel}
+						modelProperty={"ConfirmPassword"}
+						type="password"
+						label="Confirm Password"
+						onBlur={this.CheckPasswordMatch}
+					/>
 					<button type="submit">Register</button>
 				</form>
 			</>
 		)
 	}
 	// Validate the form on the clientside.
-	// ValidateForm = (): boolean => {
-	// 	if (this.state.Email == '' || this.state.Username == '' || this.state.ConfirmPassword == '' || this.state.Password == '') {
-	// 		this.setState({ errorMessage: "Email, Password and Username are Required" })
-	// 		return false
-	// 	}
-	// 	this.setState({ errorMessage: '' })
-	// 	return true;
-	// }
-	// SubmitHandler = (event: any) => {
-	// 	event.preventDefault();
-	// 	if (!this.ValidateForm()) { return; }
-	// }
-	handleUserInput(e: any) {
-		//this.setState(prevState => ({ ...prevState, [e.target.name]: e.target.value }));
-		//  this.setState(newState as { [P in T]: IState[P]; });
+	ValidateForm = (): boolean => {
+		let error = '';
+		let items = Object.keys(this.registrationModel);
+
+		// get all the keys which are empty
+		items = items.filter(v => {
+			return this.registrationModel[v] == ''
+		})
+
+		if (items.length > 0) {
+			error = `${items.join(",")} fields are required`
+			this.setState({ errorMessage: error })
+			return false;
+		}
+		return true;
 	}
-	EmptyHandler = (event: any) => {
-		if (event.target.value == '') {
-			this.setState({ errorMessage: `${event.target.name} field is required` })
+
+	SubmitHandler = (event: any) => {
+		event.preventDefault();
+		if (!this.ValidateForm()) { return; }
+		this.CheckPasswordMatch(null)
+	}
+	CheckPasswordMatch = (event: any) => {
+		if (this.registrationModel.ConfirmPassword != this.registrationModel.Password) {
+			this.setState({ errorMessage: "Passwords do not match" })
 			return;
 		}
-		// if (this.state.errorMessage != '') {
-		// 	this.setState({ errorMessage: '' })
-		// }
+		this.setState({ errorMessage: "" })
 	}
 }

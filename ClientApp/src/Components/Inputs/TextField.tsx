@@ -4,13 +4,20 @@ export interface TextFieldProps<T> {
 	model: T
 	modelProperty: string //keyof T
 	type: 'text' | 'email' | 'password'
+	label?: string
+	onBlur?: ((event: React.FocusEvent<HTMLInputElement>) => void) | undefined
 }
 
 export default class TextField<T> extends Component<TextFieldProps<T>> {
 
 	render() {
 		return (
-			<input type="text" name={this.props.modelProperty as string} onChange={this.handleUserInput} />
+			<>
+				<span>{this.props.label}</span>
+				{/* temp add in br */}
+				<br />
+				<input type={this.props.type} name={this.props.modelProperty as string} onChange={this.handleUserInput} onBlur={this.props.onBlur} />
+			</>
 		)
 	}
 	private handleUserInput = (e: React.ChangeEvent<HTMLInputElement>) => {
