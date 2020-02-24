@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ErrorMessage from '../error';
-import TextField from '../Inputs/TextField';
+import CustomTextField from '../TextField';
 import { observable, computed } from 'mobx';
 import { observer } from 'mobx-react';
 
@@ -13,42 +13,51 @@ interface LoginState {
 }
 
 @observer
-export default class Register extends Component<{}, LoginState> {
+export default class Register extends Component<LoginState> {
 
-	@observable Password = "";
-	@observable ConfirmPassword = "";
-	@observable Email = "";
-	@observable Username = "";
+	@observable
+	private registrationModel = {
+		Email: 'hello',
+		Password: '',
+		ConfirmPassword: '',
+		Username: '',
+	};
+	// @observable Password = "";
+	// @observable ConfirmPassword = "";
+	// @observable Email = "";
+	// @observable Username = "";
 
 	constructor(props: LoginState) {
 		super(props);
-		this.state = {
-			errorMessage: '',
-			Email: '',
-			Password: '',
-			ConfirmPassword: '',
-			Username: '',
-		}
+		// this.state = {
+		// 	errorMessage: '',
+		// 	Email: '',
+		// 	Password: '',
+		// 	ConfirmPassword: '',
+		// 	Username: '',
+		// }
 	}
 
-	@computed get pwsEqual() {
-		return this.Password === this.ConfirmPassword
-	}
+	// @computed get pwsEqual() {
+	// 	return this.Password === this.ConfirmPassword
+	// }
 
-	@computed
-	get validationMessage() {
-		if (!this.pwsEqual) {
-			return "Passwords are not equal"
-		}
-		return null
-	}
+	// @computed
+	// get validationMessage() {
+	// 	if (!this.pwsEqual) {
+	// 		return "Passwords are not equal"
+	// 	}
+	// 	return null
+	// }
 	render() {
 		return (
 			<>
 				<h1>Register</h1>
-				<ErrorMessage>{this.state.errorMessage}</ErrorMessage>
-				<ErrorMessage>{this.validationMessage}</ErrorMessage>
-				<form onSubmit={this.SubmitHandler}>
+				{/* <ErrorMessage>{this.state.errorMessage}</ErrorMessage> */}
+				{/* <ErrorMessage>{this.validationMessage}</ErrorMessage> */}
+				<p>{this.registrationModel["Email"]}</p>
+				<form>
+					<CustomTextField model={this.registrationModel} modelProperty={"Email"} />
 					<span>Email</span>
 					<input type="text" name="Email" onChange={this.handleUserInput} onBlur={this.EmptyHandler} />
 					<span>Username</span>
@@ -63,18 +72,18 @@ export default class Register extends Component<{}, LoginState> {
 		)
 	}
 	// Validate the form on the clientside.
-	ValidateForm = (): boolean => {
-		if (this.Email == '' || this.state.Username == '' || this.state.ConfirmPassword == '' || this.state.Password == '') {
-			this.setState({ errorMessage: "Email, Password and Username are Required" })
-			return false
-		}
-		this.setState({ errorMessage: '' })
-		return true;
-	}
-	SubmitHandler = (event: any) => {
-		event.preventDefault();
-		if (!this.ValidateForm()) { return; }
-	}
+	// ValidateForm = (): boolean => {
+	// 	if (this.state.Email == '' || this.state.Username == '' || this.state.ConfirmPassword == '' || this.state.Password == '') {
+	// 		this.setState({ errorMessage: "Email, Password and Username are Required" })
+	// 		return false
+	// 	}
+	// 	this.setState({ errorMessage: '' })
+	// 	return true;
+	// }
+	// SubmitHandler = (event: any) => {
+	// 	event.preventDefault();
+	// 	if (!this.ValidateForm()) { return; }
+	// }
 	handleUserInput(e: any) {
 		//this.setState(prevState => ({ ...prevState, [e.target.name]: e.target.value }));
 		//  this.setState(newState as { [P in T]: IState[P]; });
@@ -84,8 +93,8 @@ export default class Register extends Component<{}, LoginState> {
 			this.setState({ errorMessage: `${event.target.name} field is required` })
 			return;
 		}
-		if (this.state.errorMessage != '') {
-			this.setState({ errorMessage: '' })
-		}
+		// if (this.state.errorMessage != '') {
+		// 	this.setState({ errorMessage: '' })
+		// }
 	}
 }
