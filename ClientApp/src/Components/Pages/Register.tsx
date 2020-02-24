@@ -17,7 +17,6 @@ export default class Register extends Component<{}, FormState> {
 		}
 	}
 
-
 	@observable
 	private registrationModel = {
 		Email: '',
@@ -25,8 +24,6 @@ export default class Register extends Component<{}, FormState> {
 		ConfirmPassword: '',
 		Username: '',
 	};
-
-	@observable validationMessage = '';
 
 	render() {
 		return (
@@ -72,7 +69,7 @@ export default class Register extends Component<{}, FormState> {
 		})
 
 		if (items.length > 0) {
-			error = `${items.join(",")} fields are required`
+			error = `${items.join(", ")} are required`
 			this.setState({ errorMessage: error })
 			return false;
 		}

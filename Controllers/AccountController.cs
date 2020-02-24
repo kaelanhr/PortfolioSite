@@ -32,7 +32,7 @@ namespace PersonalSite.Controllers
 		/// <param name="signInManager">Identity sign in manager.</param>
 		/// /// <param name="roleManager">Identity role manager.</param>
 		/// <param name="loggerFactory">Log controller actions.</param>
-		public AccountController(
+		public AccountController (
 			UserManager<SiteUser> userManager,
 			SignInManager<SiteUser> signInManager,
 			RoleManager<IdentityRole> roleManager,
@@ -41,7 +41,7 @@ namespace PersonalSite.Controllers
 			_userManager = userManager;
 			_signInManager = signInManager;
 			_roleManager = roleManager;
-			_logger = loggerFactory.CreateLogger<AccountController>();
+			_logger = loggerFactory.CreateLogger<AccountController> ();
 		}
 
 		/// <summary>
@@ -51,39 +51,39 @@ namespace PersonalSite.Controllers
 		/// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
 		[HttpPost]
 		[AllowAnonymous]
-		[Route("/Identity/Account/Login")]
+		[Route ("/Identity/Account/Login")]
 		// [ValidateAntiForgeryToken]
-		public async Task<IActionResult> LoginAsync([FromBody] UserModel userModel)
+		public async Task<IActionResult> LoginAsync ([FromBody] UserModel userModel)
 		{
 			if (ModelState.IsValid)
 			{
 				// get the user, if the password matches then we can continue on.
-				var user = _userManager.Users.SingleOrDefault(u => u.Email == userModel.Email);
-				if (await _userManager.CheckPasswordAsync(user, userModel.Password))
+				var user = _userManager.Users.SingleOrDefault (u => u.Email == userModel.Email);
+				if (await _userManager.CheckPasswordAsync (user, userModel.Password))
 				{
-					var userRolesClaim = (await _userManager.GetRolesAsync(user)).Select(r => new Claim(ClaimTypes.Role, r));
+					var userRolesClaim = (await _userManager.GetRolesAsync (user)).Select (r => new Claim (ClaimTypes.Role, r));
 
-					var claimsIdentity = new ClaimsIdentity(
+					var claimsIdentity = new ClaimsIdentity (
 						CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name, ClaimTypes.Role);
 
-					claimsIdentity.AddClaim(new Claim("UserId", user.Id.ToString()));
-					claimsIdentity.AddClaim(new Claim(ClaimTypes.Name, user.UserName));
-					claimsIdentity.AddClaims(userRolesClaim);
+					claimsIdentity.AddClaim (new Claim ("UserId", user.Id.ToString ()));
+					claimsIdentity.AddClaim (new Claim (ClaimTypes.Name, user.UserName));
+					claimsIdentity.AddClaims (userRolesClaim);
 
-					var authProperties = new AuthenticationProperties();
+					var authProperties = new AuthenticationProperties ();
 
-					await HttpContext.SignInAsync(
+					await HttpContext.SignInAsync (
 						CookieAuthenticationDefaults.AuthenticationScheme,
-						new ClaimsPrincipal(claimsIdentity),
+						new ClaimsPrincipal (claimsIdentity),
 						authProperties);
 
-					_logger.LogInformation(1, "User logged in.");
-					return Ok();
+					_logger.LogInformation (1, "User logged in.");
+					return Ok ();
 				}
 			}
 
 			// If we got this far, something failed
-			return BadRequest();
+			return BadRequest ();
 		}
 
 		/// <summary>
@@ -94,12 +94,12 @@ namespace PersonalSite.Controllers
 		[HttpPost]
 		[Authorize]
 		// [ValidateAntiForgeryToken]
-		[Route("/Identity/Account/Logout")]
-		public async Task<IActionResult> LogOutAsync()
+		[Route ("/Identity/Account/Logout")]
+		public async Task<IActionResult> LogOutAsync ()
 		{
-			await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-			_logger.LogInformation(4, "User logged out.");
-			return Ok();
+			await HttpContext.SignOutAsync (CookieAuthenticationDefaults.AuthenticationScheme);
+			_logger.LogInformation (4, "User logged out.");
+			return Ok ();
 		}
 
 		/// <summary>
@@ -109,25 +109,25 @@ namespace PersonalSite.Controllers
 		[HttpGet]
 		[Authorize]
 		// [ValidateAntiForgeryToken]
-		[Route("/Identity/Account/me")]
-		public async Task<UserResult> CheckLoginAsync()
+		[Route ("/Identity/Account/me")]
+		public async Task<UserResult> CheckLoginAsync ()
 		{
 			if (User.Identity.IsAuthenticated)
 			{
-				var user = _userManager.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
+				var user = _userManager.Users.FirstOrDefault (u => u.UserName == User.Identity.Name);
 
-				var userRoleNames = (await _userManager.GetRolesAsync(user)).ToList();
-				var userRoles = await _roleManager.Roles.Where(r => userRoleNames.Contains(r.Name)).ToListAsync();
-				_logger.LogInformation(4, "Check whether this user is logged in");
+				var userRoleNames = (await _userManager.GetRolesAsync (user)).ToList ();
+				var userRoles = await _roleManager.Roles.Where (r => userRoleNames.Contains (r.Name)).ToListAsync ();
+				_logger.LogInformation (4, "Check whether this user is logged in");
 				return new UserResult
 				{
 					Email = user.Email,
-					UserName = user.UserName,
-					userGroups = userRoles.Select(ur => new UserGroupResult { Name = ur.Name }),
+						UserName = user.UserName,
+						userGroups = userRoles.Select (ur => new UserGroupResult { Name = ur.Name }),
 				};
 			}
 
-			_logger.LogInformation(4, "User is not authenticated");
+			_logger.LogInformation (4, "User is not authenticated");
 			return null;
 		}
 
@@ -139,23 +139,23 @@ namespace PersonalSite.Controllers
 		[HttpPost]
 		[AllowAnonymous]
 		// [ValidateAntiForgeryToken]
-		[Route("/Register")]
-		public async Task<IActionResult> RegisterUserAsync([FromBody] UserRegistrationModel userModel)
+		[Route ("/Identity/Account/Register")]
+		public async Task<IActionResult> RegisterUserAsync ([FromBody] UserRegistrationModel userModel)
 		{
 			if (ModelState.IsValid)
 			{
 				var user = new SiteUser
 				{
 					UserName = userModel.Username,
-					Email = userModel.Email,
+						Email = userModel.Email,
 				};
 
-				var result = await _userManager.CreateAsync(user, userModel.Password);
+				var result = await _userManager.CreateAsync (user, userModel.Password);
 				if (result.Succeeded)
 				{
-					await _userManager.AddToRoleAsync(user, "Member");
-					_logger.LogInformation(3, "User created a new account with password.");
-					return Ok();
+					await _userManager.AddToRoleAsync (user, "Member");
+					_logger.LogInformation (3, "User created a new account with password.");
+					return Ok ();
 				}
 
 				foreach (var error in result.Errors)
@@ -164,13 +164,13 @@ namespace PersonalSite.Controllers
 					// TODO: find a better way to do this, i do not like relying on a 'string' to check this.
 					if (error.Code != "DuplicateEmail")
 					{
-						ModelState.AddModelError("Errors", error.Description);
+						ModelState.AddModelError ("Errors", error.Description);
 					}
 				}
 			}
 
 			// If we got this far, something failed, return the error
-			return new BadRequestObjectResult(ModelState);
+			return new BadRequestObjectResult (ModelState);
 		}
 	}
 
@@ -208,12 +208,11 @@ namespace PersonalSite.Controllers
 	public class UserRegistrationModel : UserModel
 	{
 
-
 		/// <summary>
 		/// Gets or sets required username.
 		/// </summary>
 		[Required]
-		[Display(Name = "Username")]
+		[Display (Name = "Username")]
 		public string Username { get; set; }
 
 	}
@@ -224,7 +223,7 @@ namespace PersonalSite.Controllers
 		/// Gets or sets the name of the user group.
 		/// </summary>
 		[Required]
-		[Display(Name = "Name")]
+		[Display (Name = "Name")]
 		public string Name { get; set; }
 	}
 
@@ -237,8 +236,8 @@ namespace PersonalSite.Controllers
 		/// Gets or sets password is required.
 		/// </summary>
 		[Required]
-		[DataType(DataType.Password)]
-		[Display(Name = "Password")]
+		[DataType (DataType.Password)]
+		[Display (Name = "Password")]
 		public string Password { get; set; }
 
 		/// <summary>
@@ -246,7 +245,7 @@ namespace PersonalSite.Controllers
 		/// </summary>
 		[Required]
 		[EmailAddress]
-		[Display(Name = "Email")]
+		[Display (Name = "Email")]
 		public string Email { get; set; }
 	}
 }
