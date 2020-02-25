@@ -2,51 +2,49 @@ import React, { Component, EventHandler } from 'react'
 import axios from 'axios';
 import { store } from '../store';
 import ErrorMessage from '../error';
+import { observer } from 'mobx-react';
+import { observable } from 'mobx';
+import TextField from '../Inputs/TextField';
 
 interface LoginState {
-	Email: string
-	Password: string
 	errorMessage: string
 }
 
 const loginError = "Username/Password Combination is incorrect.";
 
+@observer
 export default class Login extends Component<{}, LoginState> {
 	constructor(props: any) {
 		super(props);
 		this.state = {
-			Password: '',
-			Email: '',
 			errorMessage: '',
 		};
 	}
+
+	@observable
+	private LoginModel = {
+		Password: '',
+		Email: '',
+	};
 
 	render() {
 		return (
 			<>
 				<form onSubmit={this.SubmitHandler}>
-					<h1>Login</h1>
 					<ErrorMessage>{this.state.errorMessage}</ErrorMessage>
+					<h1>Login</h1>
 					<br />
-					<input type="Email" onChange={
-						(e) => {
-							this.setState({
-								Email: e.target.value
-							})
-							if (this.state.errorMessage != '') {
-								this.ValidateForm();
-							}
-						}}
+					<TextField
+						model={this.LoginModel}
+						modelProperty={"Email"}
+						type="email"
+						label="Email"
 					/>
-					<input type="Password" onChange={
-						(e) => {
-							this.setState({
-								Password: e.target.value
-							})
-							if (this.state.errorMessage != '') {
-								this.ValidateForm();
-							}
-						}}
+					<TextField
+						model={this.LoginModel}
+						modelProperty={"Password"}
+						type="password"
+						label="Password"
 					/>
 					<input type="submit" value="Login" />
 				</form>
@@ -56,7 +54,7 @@ export default class Login extends Component<{}, LoginState> {
 
 	// Validate the form on the clientside.
 	ValidateForm = (): boolean => {
-		if (this.state.Email == '' || this.state.Password == '') {
+		if (this.LoginModel.Email == '' || this.LoginModel.Password == '') {
 			this.setState({ errorMessage: "Email/Password is Required" })
 			return false
 		}
@@ -67,7 +65,7 @@ export default class Login extends Component<{}, LoginState> {
 		event.preventDefault();
 		if (!this.ValidateForm()) { return; }
 
-		axios.post('/Identity/Account/Login', { "Email": this.state.Email, "Password": this.state.Password })
+		axios.post('/Identity/Account/Login', { "Email": this.LoginModel.Email, "Password": this.LoginModel.Password })
 			.then(function (response) {
 				console.log(response);
 				if (response.status == 200) {
