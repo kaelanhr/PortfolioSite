@@ -59,6 +59,7 @@ namespace PersonalSite
 				options.Password.RequiredLength = 12;
 				options.Password.RequiredUniqueChars = 0;
 
+
 				// Lockout settings.
 				options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
 				options.Lockout.MaxFailedAccessAttempts = 5;
@@ -150,6 +151,7 @@ namespace PersonalSite
 			if (env.IsDevelopment())
 			{
 				SeedRolesAsync(serviceProvider).Wait();
+				SeedUsersAsync(serviceProvider).Wait();
 			}
 		}
 
@@ -168,6 +170,40 @@ namespace PersonalSite
 					// create the roles and seed them to the database: Question 1
 					await roleManager.CreateAsync(new IdentityRole(roleName));
 				}
+			}
+		}
+
+		private static async Task SeedUsersAsync(IServiceProvider serviceProvider)
+		{
+			// initializing custom roles
+			var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+			var userManager = serviceProvider.GetRequiredService<UserManager<SiteUser>>();
+			string[] roleNames = { "Admin", "Member" };
+
+
+
+			foreach (var roleName in roleNames)
+			{
+				var user = new SiteUser
+				{
+					Email = $"{roleName}@example.com",
+					UserName = roleName,
+				};
+
+				var existingUser = await userManager.FindByEmailAsync($"{roleName}@example.com");
+
+				if (existingUser == null)
+				{
+					await userManager.CreateAsync(user, "password");
+				//	await userManager.AddToRoleAsync(user, roleName);
+				}
+
+				//var roleExist = await roleManager.RoleExistsAsync(roleName);
+				//if (!roleExist)
+				//{
+				//	// create the roles and seed them to the database: Question 1
+				//	await roleManager.CreateAsync(new IdentityRole(roleName));
+				//}
 			}
 		}
 	}
