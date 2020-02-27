@@ -147,63 +147,51 @@ namespace PersonalSite
 				}
 			});
 
+			string[] roleList = { "Admin", "Member" };
+
+			SeedRolesAsync(serviceProvider, roleList).Wait();
 
 			if (env.IsDevelopment())
 			{
-				SeedRolesAsync(serviceProvider).Wait();
-				SeedUsersAsync(serviceProvider).Wait();
+				SeedUsersAsync(serviceProvider, roleList).Wait();
 			}
 		}
 
-		private static async Task SeedRolesAsync(IServiceProvider serviceProvider)
+		private static async Task SeedRolesAsync(IServiceProvider serviceProvider, string[] roleList)
 		{
-			// initializing custom roles
+			// initializing  roles
 			var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-			var userManager = serviceProvider.GetRequiredService<UserManager<SiteUser>>();
-			string[] roleNames = { "Admin", "Member" };
 
-			foreach (var roleName in roleNames)
+			foreach (var role in roleList)
 			{
-				var roleExist = await roleManager.RoleExistsAsync(roleName);
+				var roleExist = await roleManager.RoleExistsAsync(role);
 				if (!roleExist)
 				{
 					// create the roles and seed them to the database: Question 1
-					await roleManager.CreateAsync(new IdentityRole(roleName));
+					await roleManager.CreateAsync(new IdentityRole(role));
 				}
 			}
 		}
 
-		private static async Task SeedUsersAsync(IServiceProvider serviceProvider)
+		private static async Task SeedUsersAsync(IServiceProvider serviceProvider, string[] roleList)
 		{
-			// initializing custom roles
-			var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 			var userManager = serviceProvider.GetRequiredService<UserManager<SiteUser>>();
-			string[] roleNames = { "Admin", "Member" };
 
-
-
-			foreach (var roleName in roleNames)
+			// create a default user for each role
+			foreach (var role in roleList)
 			{
 				var user = new SiteUser
 				{
-					Email = $"{roleName}@example.com",
-					UserName = roleName,
+					Email = $"{role}@example.com",
+					UserName = role,
 				};
 
-				var existingUser = await userManager.FindByEmailAsync($"{roleName}@example.com");
+				var existingUser = await userManager.FindByEmailAsync($"{role}@example.com");
 
 				if (existingUser == null)
 				{
-					await userManager.CreateAsync(user, "password");
-				//	await userManager.AddToRoleAsync(user, roleName);
+					await userManager.CreateAsync(user, "password1234");
 				}
-
-				//var roleExist = await roleManager.RoleExistsAsync(roleName);
-				//if (!roleExist)
-				//{
-				//	// create the roles and seed them to the database: Question 1
-				//	await roleManager.CreateAsync(new IdentityRole(roleName));
-				//}
 			}
 		}
 	}
