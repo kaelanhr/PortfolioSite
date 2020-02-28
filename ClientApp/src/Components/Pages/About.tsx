@@ -2,7 +2,7 @@ import React, { Component, PureComponent } from 'react'
 import SocialMediaLinks from '../Links/SocialMediaLinks';
 
 export default class About extends PureComponent {
-	constructor(props) {
+	constructor(props: any) {
 		super(props);
 	}
 	render() {
