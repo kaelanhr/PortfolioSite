@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PersonalSite.Services;
 
 namespace PersonalSite
 {
@@ -102,6 +103,9 @@ namespace PersonalSite
 				options.AddPolicy("AdminRoleRequired", policy => policy.RequireRole("Administrator"));
 			});
 
+
+			services.AddScoped<DataSeedService, DataSeedService>();
+
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -147,51 +151,12 @@ namespace PersonalSite
 				}
 			});
 
-			string[] roleList = { "Admin", "Member" };
-
-			SeedRolesAsync(serviceProvider, roleList).Wait();
+			var dataSeed = serviceProvider.GetRequiredService<DataSeedService>();
+			dataSeed.SeedRolesAsync().Wait();
 
 			if (env.IsDevelopment())
 			{
-				SeedUsersAsync(serviceProvider, roleList).Wait();
-			}
-		}
-
-		private static async Task SeedRolesAsync(IServiceProvider serviceProvider, string[] roleList)
-		{
-			// initializing  roles
-			var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-
-			foreach (var role in roleList)
-			{
-				var roleExist = await roleManager.RoleExistsAsync(role);
-				if (!roleExist)
-				{
-					// create the roles and seed them to the database: Question 1
-					await roleManager.CreateAsync(new IdentityRole(role));
-				}
-			}
-		}
-
-		private static async Task SeedUsersAsync(IServiceProvider serviceProvider, string[] roleList)
-		{
-			var userManager = serviceProvider.GetRequiredService<UserManager<SiteUser>>();
-
-			// create a default user for each role
-			foreach (var role in roleList)
-			{
-				var user = new SiteUser
-				{
-					Email = $"{role}@example.com",
-					UserName = role,
-				};
-
-				var existingUser = await userManager.FindByEmailAsync($"{role}@example.com");
-
-				if (existingUser == null)
-				{
-					await userManager.CreateAsync(user, "password1234");
-				}
+				dataSeed.SeedUsersAsync().Wait();
 			}
 		}
 	}
