@@ -129,6 +129,17 @@ h1 {
   color: white;
 }
 
+.page-content {
+  background-color: ghostwhite;
+  padding-left: 20px;
+  padding-bottom: 20px;
+  padding-top: 5px;
+}
+
+.page-content h1 {
+  color: black;
+}
+
 /* Style page content */
 .main {
   margin-left: 160px; /* Same as the width of the sidebar */
@@ -136,5 +147,5 @@ h1 {
 }
 
 p {
-  color: white;
+  color: black;
 }

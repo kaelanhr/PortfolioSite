@@ -18,30 +18,33 @@ export default class RoutPages extends Component {
 				<Route exact path="/">
 					<Home />
 				</Route>
-				<Route exact path="/about">
-					<About />
-				</Route>
-				<Route path="/blog">
-					<Route component={Blog} />
-				</Route>
-				<Route exact path="/admin">
-					<Admin />
-				</Route>
-				<Route exact path="/login">
-					<Login />
-				</Route>
-				<Route exact path="/logout">
-					<Logout />
-				</Route>
-				<Route exact path="/register">
-					<Register />
-				</Route>				
-				<Route exact path="/portfolio">
-					<Portfolio />
-				</Route>
-				<Route exact path="/contact-me">
-					<Contact />
-				</Route>
+
+				<div className="page-content">
+					<Route exact path="/about">
+						<About />
+					</Route>
+					<Route path="/blog">
+						<Route component={Blog} />
+					</Route>
+					<Route exact path="/admin">
+						<Admin />
+					</Route>
+					<Route exact path="/login">
+						<Login />
+					</Route>
+					<Route exact path="/logout">
+						<Logout />
+					</Route>
+					<Route exact path="/register">
+						<Register />
+					</Route>
+					<Route exact path="/portfolio">
+						<Portfolio />
+					</Route>
+					<Route exact path="/contact-me">
+						<Contact />
+					</Route>
+				</div>
 				<Route component={NotFound} />
 			</Switch>
 		)
