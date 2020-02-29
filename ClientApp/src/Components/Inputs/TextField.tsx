@@ -13,7 +13,7 @@ export default class TextField<T> extends Component<TextFieldProps<T>> {
 	render() {
 		return (
 			<>
-				<span>{this.props.label}</span>
+				<label>{this.props.label}</label>
 				{/* temp add in br */}
 				<br />
 				<input type={this.props.type} name={this.props.modelProperty as string} onChange={this.handleUserInput} onBlur={this.props.onBlur} />

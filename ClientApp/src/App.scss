@@ -137,6 +137,17 @@ h1 {
   border-radius: 15px;
 }
 
+label,
+input,
+form {
+  display: table;
+}
+
+label::before {
+  content: "\A";
+  white-space: pre;
+}
+
 .page-content h1 {
   color: black;
 }
