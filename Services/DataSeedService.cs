@@ -12,7 +12,7 @@ namespace PersonalSite.Services
 	{
 		private readonly ILogger _logger;
 		private readonly string[] _roleList = { "Admin", "Member" };
-		private readonly RoleManager<IdentityRole> _roleManager;
+		private readonly RoleManager<SiteRole> _roleManager;
 		private readonly SignInManager<SiteUser> _signInManager;
 		private readonly UserManager<SiteUser> _userManager;
 
@@ -26,7 +26,7 @@ namespace PersonalSite.Services
 		public DataSeedService(
 			UserManager<SiteUser> userManager,
 			SignInManager<SiteUser> signInManager,
-			RoleManager<IdentityRole> roleManager,
+			RoleManager<SiteRole> roleManager,
 			ILoggerFactory loggerFactory)
 		{
 			_userManager = userManager;
@@ -47,7 +47,7 @@ namespace PersonalSite.Services
 				if (!roleExist)
 				{
 					// create the roles and seed them to the database: Question 1
-					await _roleManager.CreateAsync(new IdentityRole(role));
+					await _roleManager.CreateAsync(new SiteRole(role));
 				}
 			}
 		}

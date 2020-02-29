@@ -43,7 +43,7 @@ namespace PersonalSite
 			services.AddDbContext<SiteDbContext>(options =>
 				options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
-			services.AddIdentity<SiteUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+			services.AddIdentity<SiteUser, SiteRole>(options => options.SignIn.RequireConfirmedAccount = true)
 				.AddDefaultTokenProviders()
 				.AddEntityFrameworkStores<SiteDbContext>();
 

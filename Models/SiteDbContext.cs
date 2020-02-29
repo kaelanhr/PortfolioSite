@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,7 +7,7 @@ namespace PersonalSite.Models
 	/// <summary>
 	/// The database context used for the site.
 	/// </summary>
-	public class SiteDbContext : IdentityDbContext<SiteUser>
+	public class SiteDbContext : IdentityDbContext<SiteUser, SiteRole, Guid>
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="SiteDbContext"/> class.
@@ -34,6 +35,8 @@ namespace PersonalSite.Models
 		/// </summary>
 		public DbSet<SiteContent> SiteContent { get; set; }
 
+		public DbSet<SiteUser> SiteUser { get; set; }
+
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
 			base.OnModelCreating(builder);
@@ -42,7 +45,5 @@ namespace PersonalSite.Models
 				.HasIndex(u => u.UserName)
 				.IsUnique();
 		}
-
-		public DbSet<SiteUser> SiteUser { get; set; }
 	}
 }
