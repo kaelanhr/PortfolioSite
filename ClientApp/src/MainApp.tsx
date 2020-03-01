@@ -9,7 +9,7 @@ interface IState {
 }
 
 export default class MainApp extends Component<{}, IState> {
-	constructor(props) {
+	constructor(props: any) {
 		super(props);
 		this.state = {
 			displayNavBar: true,

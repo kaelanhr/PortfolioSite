@@ -8,7 +8,7 @@ interface IState {
 }
 
 export default class Game extends Component<{}, IState> {
-	constructor(props) {
+	constructor(props: any) {
 		super(props);
 		this.state = {
 			history: [{ squares: Array(9).fill(null) }],
@@ -17,7 +17,7 @@ export default class Game extends Component<{}, IState> {
 		};
 	}
 
-	handleClick(i) {
+	handleClick(i: any) {
 		const history = this.state.history.slice(0, this.state.stepNumber + 1);
 		const current = history[history.length - 1];
 		const squares = current.squares.slice();
@@ -36,14 +36,14 @@ export default class Game extends Component<{}, IState> {
 		return this.state.xIsNext ? 'X' : 'O';
 	}
 
-	jumpTo(step) {
+	jumpTo(step: any) {
 		this.setState({
 			stepNumber: step,
 			xIsNext: (step % 2) === 0,
 		})
 	}
 
-	calculateWinner(squares) {
+	calculateWinner(squares: any) {
 		const lines = [
 			[0, 1, 2],
 			[3, 4, 5],
@@ -90,7 +90,7 @@ export default class Game extends Component<{}, IState> {
 				<div className="game-board">
 					<Board
 						squares={current.squares}
-						onClick={(i) => this.handleClick(i)}
+						onClick={(i: any) => this.handleClick(i)}
 					/>
 				</div>
 				<div className="game-info">

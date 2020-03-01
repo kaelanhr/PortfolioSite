@@ -7,7 +7,7 @@ interface IProps {
 export default class Board extends Component<IProps> {
 
 
-	renderSquare(i) {
+	renderSquare(i: any) {
 		return (
 			<Square
 				value={this.props.squares[i]}
