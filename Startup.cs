@@ -93,7 +93,7 @@ namespace PersonalSite
 
 				options.Cookie.SecurePolicy = _currentEnvironment.IsDevelopment() ? CookieSecurePolicy.None : CookieSecurePolicy.Always;
 				options.Cookie.SameSite = SameSiteMode.Strict;
-
+				options.Cookie.MaxAge = TimeSpan.FromHours(7 * 24);
 				options.LoginPath = "/Identity/Account/Login";
 				options.SlidingExpiration = true;
 			});

@@ -31,6 +31,8 @@ interface NavBarProps {
 
 
 	render() {
+		store.GetUserInformation()
+
 		let navClassName = "sidebar"
 		if (!this.props.displayNavBar) {
 			navClassName += " collapsed"

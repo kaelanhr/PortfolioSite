@@ -41,10 +41,10 @@ export class Store {
 
 	@action setUserLogin(status: boolean) {
 		this.isLoggedIn = status;
-		this.setUserInformation();
+		this.GetUserInformation();
 	}
 
-	@action setUserInformation(): IUserData {
+	@action GetUserInformation(): IUserData {
 		axios.get('/Identity/Account/me')
 			.then(response => {
 				console.log(response);
@@ -53,12 +53,14 @@ export class Store {
 					this.userData.email = data.email;
 					this.userData.userGroups = data.userGroups;
 					this.userData.userName = data.userName;
+					this.isLoggedIn = true;
 				}
 			})
 			.catch(error => {
 				console.log(error);
+				return null
 			});
-		return { email: "", userName: "", userGroups: [] }
+		return { email: this.userData.email, userName: this.userData.userName, userGroups: this.userData.userGroups }
 	}
 }
 
