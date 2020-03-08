@@ -23,7 +23,7 @@ export class Store {
 	isLoggedIn: boolean = false
 
 	@observable
-	userData: IUserData = { email: "", userName: "", userGroups: [] };
+	userData: IUserData | undefined = { email: "", userName: "", userGroups: [] };
 
 	@computed get checkUserData() {
 		return this.userData;
@@ -34,33 +34,33 @@ export class Store {
 	}
 
 	@computed get hasBackendAccess() {
-		return store.userData.userGroups.find(x => x.name == "Admin") != (null || undefined)
+		return store.userData?.userGroups.find(x => x.name == "Admin") != (null || undefined)
 	}
 
 	public history: History;
 
-	@action setUserLogin(status: boolean) {
-		this.isLoggedIn = status;
-		this.GetUserInformation();
-	}
-
-	@action GetUserInformation(): IUserData {
+	@action CheckUserSession() {
+		/*
+		 * check if they are logged in, if they are assign
+		 * all user information to the store, otherwise clear their
+		 * information
+		 */
 		axios.get('/Identity/Account/me')
 			.then(response => {
 				console.log(response);
-				if (response.status == 200) {
-					const data: IUserData = response.data;
+				const data: IUserData = response.data;
+				if (this.userData) {
 					this.userData.email = data.email;
 					this.userData.userGroups = data.userGroups;
 					this.userData.userName = data.userName;
-					this.isLoggedIn = true;
 				}
+				this.isLoggedIn = true;
 			})
 			.catch(error => {
 				console.log(error);
-				return null
+				this.userData = undefined
+				this.isLoggedIn = false;
 			});
-		return { email: this.userData.email, userName: this.userData.userName, userGroups: this.userData.userGroups }
 	}
 }
 

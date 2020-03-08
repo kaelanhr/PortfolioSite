@@ -68,10 +68,8 @@ export default class Login extends Component<{}, LoginState> {
 		axios.post('/Identity/Account/Login', { "Email": this.LoginModel.Email, "Password": this.LoginModel.Password })
 			.then(function (response) {
 				console.log(response);
-				if (response.status == 200) {
-					store.setUserLogin(true);
-					store.history.push("/");
-				}
+				store.CheckUserSession();
+				store.history.push("/");
 			})
 			.catch(error => {
 				console.log(error);

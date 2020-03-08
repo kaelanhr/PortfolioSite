@@ -3,8 +3,8 @@ import { store } from '../store'
 export default class Contact extends PureComponent {
 	render() {
 		let defaultEmail = '';
-		if (store.checkUserData.email) {
-			defaultEmail = store.checkUserData.email
+		if (store.userData) {
+			defaultEmail = store.userData.email
 		}
 		return (
 			<form>

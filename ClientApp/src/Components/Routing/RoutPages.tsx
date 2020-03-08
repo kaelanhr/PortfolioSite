@@ -10,11 +10,14 @@ import Logout from '../Pages/Logout'
 import Portfolio from '../Pages/Portfolio'
 import Contact from '../Pages/Contact'
 import Register from '../Pages/Register'
+import { store } from '../store';
 
 export default class RoutPages extends Component {
 	render() {
+		store.CheckUserSession();
 		return (
 			<Switch>
+
 				<Route exact path="/">
 					<Home />
 				</Route>

@@ -13,10 +13,8 @@ export default class Logout extends Component {
 			.post("/Identity/Account/Logout")
 			.then(function (response) {
 				console.log(response);
-				if (response.status == 200) {
-					store.setUserLogin(false);
-					store.history.push("/");
-				}
+				store.CheckUserSession()
+				store.history.push("/");
 			})
 			.catch(function (error) {
 				console.log(error);
