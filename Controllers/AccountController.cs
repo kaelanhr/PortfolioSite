@@ -58,7 +58,7 @@ namespace PersonalSite.Controllers
 			if (ModelState.IsValid)
 			{
 				// get the user, if the password matches then we can continue on.
-				var user = _userManager.Users.SingleOrDefault(u => u.Email == userModel.Email);
+				var user = _userManager.Users.SingleOrDefault(u => u.NormalizedEmail == userModel.Email.ToUpper());
 				if (await _userManager.CheckPasswordAsync(user, userModel.Password))
 				{
 					var userRolesClaim = (await _userManager.GetRolesAsync(user)).Select(r => new Claim(ClaimTypes.Role, r));
