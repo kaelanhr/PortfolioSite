@@ -33,7 +33,7 @@ export default class Admin extends Component<{}, IState> {
 			<>
 				<div>
 
-					<p>Hello {store.checkUserData.userName}</p>
+					<p>Hello {store.userData.userName}</p>
 
 					<Form submitHandler={this.SubmitHandler}>
 						<ErrorMessage>{this.state.errorState}</ErrorMessage>

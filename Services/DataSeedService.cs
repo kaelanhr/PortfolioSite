@@ -67,11 +67,13 @@ namespace PersonalSite.Services
 					UserName = role,
 				};
 
-				var existingUser = await _userManager.FindByEmailAsync($"{role}@example.com");
+				var userExists = await _userManager.FindByEmailAsync($"{role}@example.com");
 
-				if (existingUser == null)
+				// if the user does not exist create them and assign them to role.
+				if (userExists is null)
 				{
 					await _userManager.CreateAsync(user, "password1234");
+					await _userManager.AddToRoleAsync(user, role);
 					_logger.LogInformation($"Registering {role} user");
 				}
 				else
