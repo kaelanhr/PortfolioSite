@@ -147,7 +147,16 @@ namespace PersonalSite
 
 				if (env.IsDevelopment())
 				{
-					spa.UseReactDevelopmentServer(npmScript: "start");
+					var isProxyEnabled = Configuration.GetValue<bool>("ClientProxy:enabled");
+					if (isProxyEnabled)
+					{
+						var proxyUrl = Configuration.GetValue<string>("ClientProxy:ProxyUrl");
+						spa.UseProxyToSpaDevelopmentServer(proxyUrl);
+					}
+					else
+					{
+						spa.UseReactDevelopmentServer(npmScript: "start");
+					}
 				}
 			});
 
