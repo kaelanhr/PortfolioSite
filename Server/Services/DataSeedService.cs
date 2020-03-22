@@ -11,7 +11,7 @@ namespace PersonalSite.Services
 	public class DataSeedService
 	{
 		private readonly ILogger _logger;
-		private readonly string[] _roleList = { "Admin", "Member" };
+		private readonly string[] _roleList = { "Admin" };
 		private readonly RoleManager<SiteRole> _roleManager;
 		private readonly SignInManager<SiteUser> _signInManager;
 		private readonly UserManager<SiteUser> _userManager;
