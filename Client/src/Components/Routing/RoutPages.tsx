@@ -8,8 +8,6 @@ import Admin from '../Pages/Admin'
 import Login from '../Pages/Login'
 import Logout from '../Pages/Logout'
 import Projects from '../Pages/Projects'
-import Contact from '../Pages/Contact'
-import Register from '../Pages/Register'
 import { store } from '../store';
 
 export default class RoutPages extends Component {
@@ -38,14 +36,8 @@ export default class RoutPages extends Component {
 					<Route exact path="/logout">
 						<Logout />
 					</Route>
-					<Route exact path="/register">
-						<Register />
-					</Route>
 					<Route exact path="/projects">
 						<Projects />
-					</Route>
-					<Route exact path="/contact-me">
-						<Contact />
 					</Route>
 				</div>
 				<Route component={NotFound} />
