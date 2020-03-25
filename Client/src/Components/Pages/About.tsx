@@ -9,15 +9,27 @@ export default class About extends PureComponent {
 	render() {
 		return (
 			<>
-				<h2>Currently Working</h2>
+
+				<h2>- Info</h2>
+				<p>
+					Kaelan specializes in project management of technical teams, developing web applications using agile methodologies, architecting backend systems and optimising business processes through technology.
+				</p>
+				<p>
+					He is available for management and development of freelance or open source projects.
+				</p>
+				<p>
+					Aside from his independent projects and collaboration with developers, he works in a senior position as the Bot Squad Lead of Codebots
+				</p>
+
+				<h2>- Currently Working</h2>
 				<p>Bot Squad Lead at Codebots</p>
 
-				<h2>Side Interests</h2>
+				<h2>- Side Interests</h2>
 				<p>Video Game Modding</p>
 				<p>Reading/Writing Science Fiction</p>
 				<p>Experimental Software</p>
 
-				<h2>With Experience In</h2>
+				<h2>- With Experience In</h2>
 				<p>Software Architecture</p>
 				<p>Project Management</p>
 				<p>Agile Management and Development</p>
@@ -28,13 +40,10 @@ export default class About extends PureComponent {
 				<p>Technical Writing</p>
 				<p>CI/CD Technology</p>
 
-
-				<h2>Education</h2>
+				<h2>- Qualifications</h2>
 				<p>QUT Bachelor of Business (Marketing)</p>
 				<p>QUT Bachelor of Information Technology (Computer Science)</p>
-
-				{/* TODO: Add in download link for resume */}
-				<Link to="">CV</Link>
+				<SocialMediaLinks />
 			</>
 		)
 	}

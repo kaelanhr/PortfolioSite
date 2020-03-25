@@ -18,12 +18,12 @@ export default class RoutPages extends Component {
 
 				<Route exact path="/">
 					<Home />
+					<div className="page-content">
+						<About />
+					</div>
 				</Route>
 
 				<div className="page-content">
-					<Route exact path="/about">
-						<About />
-					</Route>
 					<Route path="/blog">
 						<Route component={Blog} />
 					</Route>
