@@ -4,7 +4,7 @@ export default class Projects extends Component {
 	render() {
 		return (
 			<div>
-				<p>TODO: Projects Page</p>
+				<p>WIP: This page is not complete, please move along</p>
 			</div>
 		)
 	}

@@ -10,17 +10,17 @@ export default class Blog extends Component {
 				<Switch>
 					<Route exact path="/blog">
 						<div>
-							<p>TODO: Blog Page Component</p>
+							<p>WIP: This Is Not Complete, please move along</p>
 							<ul>
-								<li>Search Blog</li>
 								<IfAdmin >
 									<Link to="/blog/create">Create Blog</Link>
 									<Link to="/blog/update">Update Blog</Link>
+									<li>Search Blog</li>
+									<li>Create Blog</li>
+									<li>Read Blog</li>
+									<li>Update Blog</li>
+									<li>Delete Blog</li>
 								</IfAdmin>
-								<li>Create Blog</li>
-								<li>Read Blog</li>
-								<li>Update Blog</li>
-								<li>Delete Blog</li>
 							</ul>
 						</div>
 					</Route>

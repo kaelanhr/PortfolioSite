@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import NavigationBar from './Components/Navigation/NavigationBar'
 import RoutPages from './Components/Routing/RoutPages'
+import SocialMediaLinks from './Components/Links/SocialMediaLinks';
 
 
 interface IState {
@@ -29,6 +30,9 @@ export default class MainApp extends Component<{}, IState> {
 				<button className="main" onClick={() => this.setState({ displayNavBar: !this.state.displayNavBar })}> Toggle Nav bar</button>
 				<div className={mainClassName}>
 					{this.props.children}
+				</div>
+				<div>
+					<SocialMediaLinks />
 				</div>
 			</>
 		)

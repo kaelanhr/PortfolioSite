@@ -39,7 +39,7 @@ interface NavBarProps {
 			{ linkUrl: "", displayName: "Home", isDisplayed: true },
 			{ linkUrl: "about", displayName: "About", isDisplayed: true },
 			{ linkUrl: "blog", displayName: "Blog", isDisplayed: true },
-			{ linkUrl: "portfolio", displayName: "Portfolio", isDisplayed: true },
+			{ linkUrl: "projects", displayName: "Projects", isDisplayed: true },
 			{ linkUrl: "admin", displayName: "Admin", isDisplayed: store.hasBackendAccess },
 			{ linkUrl: "logout", displayName: "Logout", isDisplayed: store.isLoggedIn },
 		]
