@@ -32,8 +32,6 @@ export default class Login extends Component<{}, LoginState> {
 			<>
 				<form onSubmit={this.SubmitHandler}>
 					<ErrorMessage>{this.state.errorMessage}</ErrorMessage>
-					<h1>Login</h1>
-					<br />
 					<TextField
 						model={this.LoginModel}
 						modelProperty={"Email"}
