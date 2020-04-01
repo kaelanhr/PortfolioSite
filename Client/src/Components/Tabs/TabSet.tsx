@@ -3,6 +3,7 @@ import { observer } from 'mobx-react';
 import { observable, action } from 'mobx';
 
 interface TabSetProps {
+	displayTop: boolean,
 	children?: React.ReactElement<TabProps>[]
 }
 @observer
@@ -22,12 +23,30 @@ export class TabSet extends Component<TabSetProps> {
 
 	render() {
 		const tabTitles = this.props.children ? this.props.children?.map(child => {
-			return <button onClick={() => this.switchTab(child.props.name)}>{child.props.name}</button>;
+			return (<button onClick={() => this.switchTab(child.props.name)}>{child.props.name}</button>);
 		}) : null;
+		
+		let tabDisplay = this.props.displayTop ?
+			(<>
+				<div className="tab-titles" >
+					{tabTitles}
+				</div>
+				<div className="tab-content" >
+					{this.tabs}
+				</div>
+			</>) : 
+			(<>
+				<div className="tab-content" >
+					{this.tabs}
+				</div>
+				<div className="tab-titles" >
+					{tabTitles}
+				</div>
+			</>)
+
 		return (
 			<div className="tab-set">
-				{tabTitles}
-				{this.tabs}
+				{tabDisplay}
 			</div>
 		)
 	}

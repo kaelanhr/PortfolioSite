@@ -17,27 +17,25 @@ export default class About extends PureComponent<{}, SlideState> {
 		super(props);
 	}
 
-	onActive = () => {
-
-	}
-
 	render() {
 		return (
 			<>
-				<TabSet>
-					<Tab name="Info">
-						<Info />
-					</Tab>
-					<Tab name="Interests" >
-						<Interests />
-					</Tab>
-					<Tab name="Experience" >
-						<Experience />
-					</Tab>
-					<Tab name="Education" >
-						<Education />
-					</Tab>
-				</TabSet>
+				<div className="about-content">
+					<TabSet displayTop={false}>
+						<Tab name="Info">
+							<Info />
+						</Tab>
+						<Tab name="Interests" >
+							<Interests />
+						</Tab>
+						<Tab name="Experience" >
+							<Experience />
+						</Tab>
+						<Tab name="Education" >
+							<Education />
+						</Tab>
+					</TabSet>
+				</div>
 				<SocialMediaLinks />
 			</>
 		)

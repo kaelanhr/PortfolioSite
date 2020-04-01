@@ -17,9 +17,8 @@ export default class RoutPages extends Component {
 			<Switch>
 
 				<Route exact path="/">
+					<div className="home-page-content">
 					<Home />
-					<div className="page-content">
-						<About />
 					</div>
 				</Route>
 
