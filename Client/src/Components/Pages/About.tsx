@@ -1,26 +1,37 @@
 import React, { Component, PureComponent } from 'react'
 import SocialMediaLinks from '../Links/SocialMediaLinks';
-import { observer } from 'mobx-react';
-import { observable, action } from 'mobx';
 import { TabSet, Tab } from '../Tabs/TabSet';
+import { observable } from 'mobx';
+import { observer } from 'mobx-react';
 
 interface SlideState {
 	value?: any
 }
+const proImage = "/Images/Personal/profile.jpg"
+const personaImage = "/Images/Personal/profile-dwv.png"
 
-interface IProps {
-	value: any
-}
-
+@observer
 export default class About extends PureComponent<{}, SlideState> {
 	constructor(props: any) {
 		super(props);
+	}
+
+	@observable
+	profileImage: string = proImage
+
+	ToggleProfileImage = () => {
+		if (this.profileImage == proImage) {
+			this.profileImage = personaImage
+		} else {
+			this.profileImage = proImage
+		}
 	}
 
 	render() {
 		return (
 			<>
 				<div className="about-content">
+					<img src={this.profileImage} className="about-profile-image" onClick={this.ToggleProfileImage} />
 					<TabSet displayTop={false}>
 						<Tab name="Info">
 							<Info />
@@ -35,8 +46,8 @@ export default class About extends PureComponent<{}, SlideState> {
 							<Education />
 						</Tab>
 					</TabSet>
+					<SocialMediaLinks />
 				</div>
-				<SocialMediaLinks />
 			</>
 		)
 	}
@@ -46,7 +57,7 @@ class Education extends Component {
 	render() {
 		return (
 			<>
-				<h2>- Qualifications</h2>
+				<h2>Qualifications</h2>
 				<p>QUT Bachelor of Business (Marketing)</p>
 				<p>QUT Bachelor of Information Technology (Computer Science)</p>
 			</>
@@ -58,7 +69,7 @@ class Interests extends Component {
 	render() {
 		return (
 			<>
-				<h2>- Side Interests</h2>
+				<h2>Interests</h2>
 				<p>Video Game Modding</p>
 				<p>Reading/Writing Science Fiction</p>
 			</>
@@ -70,7 +81,7 @@ class Info extends Component {
 	render() {
 		return (
 			<>
-				<h2>- Info</h2>
+				<h2>Info</h2>
 				<p>
 					Kaelan specializes in project management of technical teams, developing web applications using agile methodologies, architecting backend systems and optimising business processes through technology.
 				</p>
@@ -90,7 +101,7 @@ class Experience extends Component {
 	render() {
 		return (
 			<>
-				<h2>- With Experience In</h2>
+				<h2>Experience In</h2>
 				<p>Software Architecture</p>
 				<p>Project Management</p>
 				<p>Agile Management and Development</p>

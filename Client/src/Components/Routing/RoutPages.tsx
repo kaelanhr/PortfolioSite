@@ -9,6 +9,7 @@ import Login from '../Pages/Login'
 import Logout from '../Pages/Logout'
 import Projects from '../Pages/Projects'
 import { store } from '../store';
+import SocialMediaLinks from '../Links/SocialMediaLinks'
 
 export default class RoutPages extends Component {
 	render() {
@@ -17,8 +18,8 @@ export default class RoutPages extends Component {
 			<Switch>
 
 				<Route exact path="/">
-					<div className="home-page-content">
-					<Home />
+					<div id="home-tile">
+						<Home />
 					</div>
 				</Route>
 
@@ -40,6 +41,7 @@ export default class RoutPages extends Component {
 					</Route>
 				</div>
 				<Route component={NotFound} />
+
 			</Switch>
 		)
 	}

@@ -1,8 +1,19 @@
-.about-content{
-    .tab-content {
-        height: 25em
-    }
-    .tab-titles {
-        padding-bottom: 2em;
-    }
+.about-content {
+  .tab-content {
+    height: 25em;
+  }
+  .tab-titles {
+    padding-bottom: 2em;
+  }
+  h2 {
+    color: white;
+  }
+}
+
+.about-profile-image {
+  height: 20em;
+  border-radius: 2em;
+  border: 1px solid #707070;
+  margin-top: 2em;
+  margin-left: 2em;
 }

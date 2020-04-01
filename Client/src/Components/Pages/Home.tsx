@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import About from './About'
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
+import SocialMediaLinks from '../Links/SocialMediaLinks';
 
 @observer
 export default class Home extends Component {
@@ -12,14 +13,18 @@ export default class Home extends Component {
 	showInfo: boolean = false
 
 	render() {
-		let moreInfo = this.showInfo ? <><About/></> : null
+		let moreInfo = this.showInfo ? <><About /></> : null
 		return (
-			<div className="Home">
-				<h1>Kaelan Reece,</h1>
+			<>
+				<h1>Hey, I'm Kaelan Reece,</h1>
 				<span>Software Development Manager</span>
+				<br />
 				<button onClick={() => this.showInfo = !this.showInfo}>More</button>
-				{moreInfo}
-			</div>
+				<div className="home-page-content">
+					{moreInfo}
+
+				</div>
+			</>
 		)
 	}
 }
