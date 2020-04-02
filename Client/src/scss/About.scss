@@ -1,9 +1,14 @@
+$leftContent: 30em;
+
 .about-content {
   .tab-content {
     height: 25em;
+    margin-left: $leftContent;
+    padding-top: 2em;
   }
   .tab-titles {
     padding-bottom: 2em;
+    margin-left: $leftContent;
   }
   h2 {
     color: white;
@@ -16,4 +21,5 @@
   border: 1px solid #707070;
   margin-top: 2em;
   margin-left: 2em;
+  position: absolute;
 }
