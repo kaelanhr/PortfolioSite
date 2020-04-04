@@ -130,48 +130,6 @@ namespace PersonalSite.Controllers
 			_logger.LogInformation(4, "User is not authenticated");
 			return null;
 		}
-
-		/// <summary>
-		/// Register a User.
-		/// </summary>
-		/// <param name="userModel">Required registration model.</param>
-		/// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
-		[HttpPost]
-		[AllowAnonymous]
-		// [ValidateAntiForgeryToken]
-		[Route("/Identity/Account/Register")]
-		public async Task<IActionResult> RegisterUserAsync([FromBody] UserRegistrationModel userModel)
-		{
-			if (ModelState.IsValid)
-			{
-				var user = new SiteUser
-				{
-					UserName = userModel.Username,
-					Email = userModel.Email,
-				};
-
-				var result = await _userManager.CreateAsync(user, userModel.Password);
-				if (result.Succeeded)
-				{
-					await _userManager.AddToRoleAsync(user, "Member");
-					_logger.LogInformation(3, "User created a new account with password.");
-					return Ok();
-				}
-
-				foreach (var error in result.Errors)
-				{
-					// we do not reveal whether an email account exists in the system.
-					// TODO: find a better way to do this, i do not like relying on a 'string' to check this.
-					if (error.Code != "DuplicateEmail")
-					{
-						ModelState.AddModelError("Errors", error.Description);
-					}
-				}
-			}
-
-			// If we got this far, something failed, return the error
-			return new BadRequestObjectResult(ModelState);
-		}
 	}
 
 	/// <summary>

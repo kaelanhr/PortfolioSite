@@ -1,58 +1,59 @@
 {
-  "version": "2.0.0",
-  "tasks": [
-    {
-      "label": "build",
-      "command": "dotnet",
-      "type": "process",
-      "args": [
-        "build",
-        "${workspaceFolder}/Server/PersonalSite.csproj",
-        "/property:GenerateFullPaths=true",
-        "/consoleloggerparameters:NoSummary"
-      ],
-      "problemMatcher": "$msCompile"
-    },
-    {
-      "label": "publish",
-      "command": "dotnet",
-      "type": "process",
-      "args": [
-        "publish",
-        "${workspaceFolder}/Server/PersonalSite.csproj",
-        "/property:GenerateFullPaths=true",
-        "/consoleloggerparameters:NoSummary"
-      ],
-      "problemMatcher": "$msCompile"
-    },
-    {
-      "label": "watch",
-      "command": "dotnet",
-      "type": "process",
-      "args": [
-        "watch",
-        "run",
-        "${workspaceFolder}/Server/PersonalSite.csproj",
-        "/property:GenerateFullPaths=true",
-        "/consoleloggerparameters:NoSummary"
-      ],
-      "problemMatcher": "$msCompile"
-    },
-    {
-      "label": "Client Start",
-      "command": "yarn run start",
-      "type": "shell",
-      "options": {
-        "cwd": "${workspaceFolder}/Client"
-      }
-    },
-    {
-      "label": "Client Install",
-      "command": "yarn install",
-      "type": "shell",
-      "options": {
-        "cwd": "${workspaceFolder}/Client"
-      }
-    }
-  ]
+	"version": "2.0.0",
+	"tasks": [
+	{
+		"label": "build",
+		"command": "dotnet",
+		"type": "process",
+		"args": [
+			"build",
+			"${workspaceFolder}/Server/PersonalSite.csproj",
+			"/property:GenerateFullPaths=true",
+			"/consoleloggerparameters:NoSummary"
+		],
+		"problemMatcher": "$msCompile"
+	},
+	{
+		"label": "publish",
+		"command": "dotnet",
+		"type": "process",
+		"args": [
+			"publish",
+			"${workspaceFolder}/Server/PersonalSite.csproj",
+			"/property:GenerateFullPaths=true",
+			"/consoleloggerparameters:NoSummary"
+		],
+		"problemMatcher": "$msCompile"
+	},
+	{
+		"label": "watch",
+		"command": "dotnet",
+		"type": "process",
+		"args": [
+			"watch",
+			"run",
+			"${workspaceFolder}/Server/PersonalSite.csproj",
+			"/property:GenerateFullPaths=true",
+			"/consoleloggerparameters:NoSummary"
+		],
+		"problemMatcher": "$msCompile"
+	},
+	{
+		"label": "Client Start",
+		"command": "yarn run start",
+		"type": "shell",
+		"options": {
+			"cwd": "${workspaceFolder}/Client"
+		},
+		"problemMatcher": []
+	},
+	{
+		"label": "Client Install",
+		"command": "yarn install",
+		"type": "shell",
+		"options": {
+			"cwd": "${workspaceFolder}/Client"
+		}
+	}
+]
 }
