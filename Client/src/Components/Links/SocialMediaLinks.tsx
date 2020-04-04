@@ -24,7 +24,7 @@ export default function SocialMediaLinks() {
 function SocialMediaLink(props: ImageLinkProps) {
 	return (
 		<ExternalLink link={props.link}>
-			<img src={`/Images/SocialMedia/${props.iconPath}`} alt={props.altText} className="social-media-link" />
+			<img src={`/Icons/SocialMedia/${props.iconPath}`} alt={props.altText} className="social-media-link" />
 		</ExternalLink>
 	)
 }
