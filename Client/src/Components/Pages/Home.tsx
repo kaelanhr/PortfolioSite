@@ -19,7 +19,7 @@ export default class Home extends Component {
 				<h1>Hey, I'm Kaelan Reece,</h1>
 				<span>Software Development Manager</span>
 				<br />
-				<button onClick={() => this.showInfo = !this.showInfo}>More</button>
+				<img className="expand-icon" src="/Icons/Expand.svg" onClick={() => this.showInfo = !this.showInfo} />
 				<div className="home-page-content">
 					{moreInfo}
 
