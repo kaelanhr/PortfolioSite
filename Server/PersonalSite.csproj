@@ -42,7 +42,7 @@
 		<Exec WorkingDirectory="$(SpaRoot)" Command="yarn install" />
 	</Target>
 
-	<Target Name="PublishClient" AfterTargets="ComputeFilesToPublish">
+	<Target Name="PublishClient" AfterTargets="ComputeFilesToPublish" Condition=" '$(Configuration)' == 'Release' ">
 		<!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
 		<Exec WorkingDirectory="$(SpaRoot)" Command="yarn install" />
 		<Exec WorkingDirectory="$(SpaRoot)" Command="yarn run build" />

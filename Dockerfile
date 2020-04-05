@@ -33,12 +33,12 @@ RUN yarn run build
 
 #serverside build
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build-server
-WORKDIR /аpp
+WORKDIR /app
 
 # copy csproj and restore as distinct layers
 COPY Server/*.csproj ./Server/
 COPY Server/*.sln ./Server/
-WORKDIR /аpp/Server
+WORKDIR /app/Server
 RUN dotnet restore
 #COPY . .
 COPY Server/. .
@@ -48,6 +48,6 @@ RUN dotnet publish -c Docker-Release
 #serverside run
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS runtime
 WORKDIR /app
-COPY --from=build-server /app/Server/bin/Release/netcoreapp3.1/publish ./
+COPY --from=build-server /app/Server/bin/Docker-Release/netcoreapp3.1/publish .
 #COPY --from=build-nоde /Client/build ./Clientаpp/build
 ENTRYPOINT [ "dоtnet","PersonalSite.dll" ]
