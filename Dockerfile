@@ -26,5 +26,9 @@ RUN dotnet publish -c Docker-Release
 # run time
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS runtime
 WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+EXPOSE 5000/tcp
+ENV ASPNETCORE_URLS http://*:5000
 COPY --from=build-server /app/Server/bin/Docker-Release/netcoreapp3.1/publish .
 ENTRYPOINT [ "dotnet", "PersonalSite.dll" ]

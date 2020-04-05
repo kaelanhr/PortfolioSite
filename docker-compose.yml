@@ -10,6 +10,10 @@ services:
             - postgres
         networks:
             - bridge
+        environment: 
+#            ENV ASPNETCORE_URLS: "https://+"
+            # ENV ASPNETCORE_URLS: https://*:5001
+            ENV ASPNETCORE_Kestrel__Certificates__Default__Path: "./webserver.pfx"
     postgres:
         image: postgres:11
         ports:
