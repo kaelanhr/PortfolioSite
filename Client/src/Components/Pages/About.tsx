@@ -30,7 +30,7 @@ export default class About extends PureComponent<{}, SlideState> {
 	render() {
 		return (
 			<>
-				<div className="about-content">
+				<div id="about-content">
 					<img src={this.profileImage} className="about-profile-image" onClick={this.ToggleProfileImage} />
 					<TabSet displayTop={false}>
 						<Tab name="Info">

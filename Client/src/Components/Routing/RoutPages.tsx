@@ -10,6 +10,7 @@ import Logout from '../Pages/Logout'
 import Projects from '../Pages/Projects'
 import { store } from '../store';
 import SocialMediaLinks from '../Links/SocialMediaLinks'
+import { HashLink as Link } from 'react-router-hash-link';
 
 export default class RoutPages extends Component {
 	render() {
@@ -18,8 +19,14 @@ export default class RoutPages extends Component {
 			<Switch>
 
 				<Route exact path="/">
-					<div id="home-tile">
+					<div id="home-slide">
 						<Home />
+						<Link to="/#about-content"><img className="expand-icon" src="/Icons/Expand.svg" /></Link>
+					</div>
+					<div id="about-slide">
+						<div className="home-page-content">
+							<About />
+						</div>
 					</div>
 				</Route>
 

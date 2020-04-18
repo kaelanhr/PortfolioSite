@@ -27,10 +27,10 @@ body {
   margin: 0px;
 }
 
-#home-tile {
+#home-slide {
   background-image: url("/Images/Backgrounds/gc_2.jpg");
   width: 100%;
-  height: 70em;
+  height: 47em;
   span {
     color: rgb(202, 202, 202);
     text-align: center;
@@ -42,6 +42,11 @@ body {
     padding-left: 52em;
     padding-bottom: 0.5em;
   }
+}
+
+#about-slide {
+  padding-top: 7em;
+  height: 37em;
 }
 
 .social-media-link {

@@ -9,21 +9,13 @@ export default class Home extends Component {
 	constructor(props: any) {
 		super(props);
 	}
-	@observable
-	showInfo: boolean = false
 
 	render() {
-		let moreInfo = this.showInfo ? <><About /></> : null
 		return (
 			<>
 				<h1>Hey, I'm Kaelan Reece,</h1>
 				<span>Software Development Manager</span>
 				<br />
-				<img className="expand-icon" src="/Icons/Expand.svg" onClick={() => this.showInfo = !this.showInfo} />
-				<div className="home-page-content">
-					{moreInfo}
-
-				</div>
 			</>
 		)
 	}
