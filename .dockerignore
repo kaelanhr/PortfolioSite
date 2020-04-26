@@ -1,0 +1,7 @@
+# directories
+Server/bin/
+Server/obj/
+
+# files
+Dockerfile*
+**/*.md

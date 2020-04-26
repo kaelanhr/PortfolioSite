@@ -18,9 +18,19 @@ namespace PersonalSite
 
 		public static IHostBuilder CreateHostBuilder(string[] args) =>
 			Host.CreateDefaultBuilder(args)
+				.ConfigureAppConfiguration((builderContext, config) =>
+				{
+					var env = builderContext.HostingEnvironment;
+					config.SetBasePath(env.ContentRootPath);
+					config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+					config.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
+					config.AddEnvironmentVariables();
+					config.AddCommandLine(args);
+				})			
 				.ConfigureWebHostDefaults(webBuilder =>
 				{
 					webBuilder.UseStartup<Startup>();
+					webBuilder.UseSetting("https_port","443");
 				});
 	}
 }

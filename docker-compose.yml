@@ -1,0 +1,42 @@
+version: '3.3'
+services:
+    server:
+    #     # restart: always
+        build: .
+        ports:
+            - "5000:5000"
+            - "5001:5001"
+        depends_on:
+            - postgres
+        networks:
+            - bridge
+        environment: 
+#            ENV ASPNETCORE_URLS: "https://+"
+            # ENV ASPNETCORE_URLS: https://*:5001
+            ENV ASPNETCORE_Kestrel__Certificates__Default__Path: "./webserver.pfx"
+    postgres:
+        image: postgres:11
+        ports:
+            - "5433:5432"
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: pass
+            POSTGRES_DB: my_db
+        networks:
+            - bridge
+        volumes:
+            - postgresData:/var/lib/postgresql/data
+    pgAdmin:
+        image: dpage/pgadmin4
+        environment:
+            PGADMIN_DEFAULT_EMAIL: test@example.com
+            PGADMIN_DEFAULT_PASSWORD: test
+            PGADMIN_LISTEN_PORT: 9090
+        networks:
+            - bridge
+        ports:
+            - 9091:9090
+networks:
+    bridge:
+volumes:
+    postgresData:
