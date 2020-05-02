@@ -4,11 +4,13 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Hosting;
 using PersonalSite.Models;
 using PersonalSite.Services;
@@ -106,8 +108,13 @@ namespace PersonalSite
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-		public void Configure (IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
+		public void Configure (IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider, ILogger<Startup> logger)
 		{
+			app.UseForwardedHeaders(new ForwardedHeadersOptions
+			{
+				ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+			});
+
 			if (env.IsDevelopment ())
 			{
 				app.UseDeveloperExceptionPage ();
@@ -122,9 +129,7 @@ namespace PersonalSite
 
 			app.UseStaticFiles ();
 			app.UseSpaStaticFiles ();
-
 			app.UseRouting ();
-
 			app.UseCookiePolicy ();
 			app.UseAuthentication ();
 			app.UseAuthorization ();
@@ -157,7 +162,13 @@ namespace PersonalSite
 			});
 
 			var dataSeed = serviceProvider.GetRequiredService<DataSeedService> ();
-			dataSeed.SeedRolesAsync ().Wait ();
+			try 
+			{
+				dataSeed.SeedRolesAsync ().Wait ();
+			} catch (Exception e) {
+				logger.LogInformation($"Failed to seed users, perhaps the database is not instantiated?");
+			}
+			
 
 			if (env.IsDevelopment ())
 			{
