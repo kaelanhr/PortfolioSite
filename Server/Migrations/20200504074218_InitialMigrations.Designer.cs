@@ -10,8 +10,8 @@ using PersonalSite.Models;
 namespace PersonalSite.Migrations
 {
     [DbContext(typeof(SiteDbContext))]
-    [Migration("20200322101843_new")]
-    partial class @new
+    [Migration("20200504074218_InitialMigrations")]
+    partial class InitialMigrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
