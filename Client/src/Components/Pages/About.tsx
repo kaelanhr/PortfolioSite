@@ -1,14 +1,14 @@
-import React, { Component, PureComponent } from 'react'
-import SocialMediaLinks from '../Links/SocialMediaLinks';
-import { TabSet, Tab } from '../Tabs/TabSet';
-import { observable } from 'mobx';
-import { observer } from 'mobx-react';
+import { observable } from "mobx";
+import { observer } from "mobx-react";
+import React, { Component, PureComponent } from "react";
+import SocialMediaLinks from "../Links/SocialMediaLinks";
+import { Tab, TabSet } from "../Tabs/TabSet";
 
 interface SlideState {
-	value?: any
+	value?: any;
 }
-const proImage = "/Images/Personal/profile.jpg"
-const personaImage = "/Images/Personal/profile-dwv.png"
+const proImage = "/Images/Personal/profile.jpg";
+const personaImage = "/Images/Personal/profile-dwv.png";
 
 @observer
 export default class About extends PureComponent<{}, SlideState> {
@@ -17,39 +17,43 @@ export default class About extends PureComponent<{}, SlideState> {
 	}
 
 	@observable
-	profileImage: string = proImage
+	profileImage: string = proImage;
 
 	ToggleProfileImage = () => {
 		if (this.profileImage == proImage) {
-			this.profileImage = personaImage
+			this.profileImage = personaImage;
 		} else {
-			this.profileImage = proImage
+			this.profileImage = proImage;
 		}
-	}
+	};
 
 	render() {
 		return (
 			<>
 				<div id="about-content">
-					<img src={this.profileImage} className="about-profile-image" onClick={this.ToggleProfileImage} />
+					<img
+						src={this.profileImage}
+						className="about-profile-image"
+						onClick={this.ToggleProfileImage}
+					/>
 					<TabSet displayTop={false}>
 						<Tab name="Info">
 							<Info />
 						</Tab>
-						<Tab name="Interests" >
+						<Tab name="Interests">
 							<Interests />
 						</Tab>
-						<Tab name="Experience" >
+						<Tab name="Experience">
 							<Experience />
 						</Tab>
-						<Tab name="Education" >
+						<Tab name="Education">
 							<Education />
 						</Tab>
 					</TabSet>
 					<SocialMediaLinks />
 				</div>
 			</>
-		)
+		);
 	}
 }
 
@@ -71,9 +75,12 @@ class Interests extends Component {
 			<>
 				<h2>Interests</h2>
 				<p>Video Game Modding</p>
-				<p>Reading/Writing Science Fiction</p>
+				<p>Reading</p>
+				<p>Writing Science Fiction</p>
+				<p>Soccer</p>
+				<p>Card Games</p>
 			</>
-		)
+		);
 	}
 }
 
@@ -83,19 +90,22 @@ class Info extends Component {
 			<>
 				<h2>Info</h2>
 				<p>
-					Kaelan specializes in project management of technical teams, developing web applications using agile methodologies, architecting backend systems and optimising business processes through technology.
+					Kaelan specializes in project management of technical teams,
+					developing web applications using agile methodologies, architecting
+					backend systems and optimising business processes through technology.
 				</p>
 				<p>
-					He is available for management and development of freelance or open source projects.
+					He is available for management and development of freelance or open
+					source projects.
 				</p>
 				<p>
-					Aside from his independent projects and collaboration with developers, he works in a senior position as the Bot Squad Lead of Codebots
+					Aside from his independent projects and collaboration with developers,
+					he works in a senior position as the Bot Squad Lead of Codebots
 				</p>
 			</>
-		)
+		);
 	}
 }
-
 
 class Experience extends Component {
 	render() {

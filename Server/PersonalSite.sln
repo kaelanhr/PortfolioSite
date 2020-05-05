@@ -15,8 +15,10 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
-		Release|Any CPU = Release|Any CPU
 		Docker-Release|Any CPU = Docker-Release|Any CPU
+		Docker-Release|x64 = Docker-Release|x64
+		Docker-Release|x86 = Docker-Release|x86
+		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
@@ -27,10 +29,14 @@ Global
 		{873AE80F-A90A-4560-9721-B85B950BBA00}.Debug|x64.Build.0 = Debug|Any CPU
 		{873AE80F-A90A-4560-9721-B85B950BBA00}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{873AE80F-A90A-4560-9721-B85B950BBA00}.Debug|x86.Build.0 = Debug|Any CPU
+		{873AE80F-A90A-4560-9721-B85B950BBA00}.Docker-Release|Any CPU.ActiveCfg = Release|Any CPU
+		{873AE80F-A90A-4560-9721-B85B950BBA00}.Docker-Release|Any CPU.Build.0 = Release|Any CPU
+		{873AE80F-A90A-4560-9721-B85B950BBA00}.Docker-Release|x64.ActiveCfg = Release|Any CPU
+		{873AE80F-A90A-4560-9721-B85B950BBA00}.Docker-Release|x64.Build.0 = Release|Any CPU
+		{873AE80F-A90A-4560-9721-B85B950BBA00}.Docker-Release|x86.ActiveCfg = Release|Any CPU
+		{873AE80F-A90A-4560-9721-B85B950BBA00}.Docker-Release|x86.Build.0 = Release|Any CPU
 		{873AE80F-A90A-4560-9721-B85B950BBA00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{873AE80F-A90A-4560-9721-B85B950BBA00}.Release|Any CPU.Build.0 = Release|Any CPU
-		{873AE80F-A90A-4560-9721-B85B950BBA00}.Docker-Release|Any CPU.ActiveCfg = Docker-Release|Any CPU
-		{873AE80F-A90A-4560-9721-B85B950BBA00}.Docker-Release|Any CPU.Build.0 = Docker-Release|Any CPU		
 		{873AE80F-A90A-4560-9721-B85B950BBA00}.Release|x64.ActiveCfg = Release|Any CPU
 		{873AE80F-A90A-4560-9721-B85B950BBA00}.Release|x64.Build.0 = Release|Any CPU
 		{873AE80F-A90A-4560-9721-B85B950BBA00}.Release|x86.ActiveCfg = Release|Any CPU
