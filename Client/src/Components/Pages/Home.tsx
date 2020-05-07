@@ -1,8 +1,5 @@
-import React, { Component } from 'react'
-import About from './About'
-import { observer } from 'mobx-react';
-import { observable } from 'mobx';
-import SocialMediaLinks from '../Links/SocialMediaLinks';
+import { observer } from "mobx-react";
+import React, { Component } from "react";
 
 @observer
 export default class Home extends Component {
@@ -14,9 +11,12 @@ export default class Home extends Component {
 		return (
 			<>
 				<h1>Hey, I'm Kaelan Reece,</h1>
-				<span>Software Development Manager</span>
-				<br />
+				<div>
+					<span>Software Developer</span>
+					<br />
+					<span>& Project Manager</span>
+				</div>
 			</>
-		)
+		);
 	}
 }

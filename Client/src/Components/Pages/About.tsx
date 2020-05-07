@@ -36,21 +36,24 @@ export default class About extends PureComponent<{}, SlideState> {
 						className="about-profile-image"
 						onClick={this.ToggleProfileImage}
 					/>
+
 					<TabSet displayTop={false}>
-						<Tab name="Info">
+						<Tab name="Info" index={0}>
 							<Info />
 						</Tab>
-						<Tab name="Interests">
+						<Tab name="Interests" index={1}>
 							<Interests />
 						</Tab>
-						<Tab name="Experience">
+						<Tab name="Experience" index={2}>
 							<Experience />
 						</Tab>
-						<Tab name="Education">
+						<Tab name="Education" index={3}>
 							<Education />
 						</Tab>
 					</TabSet>
-					<SocialMediaLinks />
+					<div className="about-social-links">
+						<SocialMediaLinks />
+					</div>
 				</div>
 			</>
 		);
