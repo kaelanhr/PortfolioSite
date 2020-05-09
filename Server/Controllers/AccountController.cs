@@ -47,12 +47,11 @@ namespace PersonalSite.Controllers
 		/// <summary>
 		/// Logs a user in.
 		/// </summary>
-		/// <param name="userModel">Object needed to login a user</param>
+		/// <param name="userModel">Object needed to login a user.</param>
 		/// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
 		[HttpPost]
 		[AllowAnonymous]
 		[Route("/Identity/Account/Login")]
-		// [ValidateAntiForgeryToken]
 		public async Task<IActionResult> LoginAsync([FromBody] UserModel userModel)
 		{
 			if (ModelState.IsValid)
@@ -93,7 +92,6 @@ namespace PersonalSite.Controllers
 		[HttpGet]
 		[HttpPost]
 		[Authorize]
-		// [ValidateAntiForgeryToken]
 		[Route("/Identity/Account/Logout")]
 		public async Task<IActionResult> LogOutAsync()
 		{
@@ -103,12 +101,11 @@ namespace PersonalSite.Controllers
 		}
 
 		/// <summary>
-		/// Check a user is logged in
+		/// Check a user is logged in.
 		/// </summary>
 		/// <returns>A <see cref="Task{TResult}"/>Determine whether a user is logged in.</returns>
 		[HttpGet]
 		[Authorize]
-		// [ValidateAntiForgeryToken]
 		[Route("/Identity/Account/me")]
 		public async Task<UserResult> CheckLoginAsync()
 		{
@@ -123,7 +120,7 @@ namespace PersonalSite.Controllers
 				{
 					Email = user.Email,
 					UserName = user.UserName,
-					userGroups = userRoles.Select(ur => new UserGroupResult { Name = ur.Name }),
+					UserGroups = userRoles.Select(ur => new UserGroupResult { Name = ur.Name }),
 				};
 			}
 
@@ -157,7 +154,10 @@ namespace PersonalSite.Controllers
 		/// </summary>
 		public string LastName { get; set; }
 
-		public IEnumerable<UserGroupResult> userGroups { get; set; }
+		/// <summary>
+		/// Gets or sets an enumerable object of the users groups.
+		/// </summary>
+		public IEnumerable<UserGroupResult> UserGroups { get; set; }
 	}
 
 	/// <summary>
@@ -173,6 +173,9 @@ namespace PersonalSite.Controllers
 		public string Username { get; set; }
 	}
 
+	/// <summary>
+	/// user group attributes for a user.
+	/// </summary>
 	public class UserGroupResult
 	{
 		/// <summary>
