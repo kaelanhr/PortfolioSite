@@ -1,17 +1,28 @@
-$leftContent: 30em;
+$leftContent: 5em;
 
 #about-content {
+	display: flex;
 	.tab-content {
 		height: 25em;
-		margin-left: $leftContent;
+		left: $leftContent;
+		position: relative;
 		padding-top: 2em;
+		margin-right: 5em;
+		width: 70em;
 	}
 	.tab-titles {
 		padding-bottom: 2em;
 		margin-left: $leftContent;
 	}
+	.tab-full {
+		display: flex;
+	}
 	h2 {
 		color: white;
+	}
+	.next-tab {
+		float: right;
+		margin: auto;
 	}
 }
 
@@ -21,10 +32,13 @@ $leftContent: 30em;
 	border: 1px solid #707070;
 	margin-top: 2em;
 	margin-left: 2em;
-	position: absolute;
+}
+.about-social-links {
+	left: 10em;
+	position: relative;
 }
 
 #about-slide {
 	padding-top: 7em;
-	height: 57em;
+	height: 47em;
 }

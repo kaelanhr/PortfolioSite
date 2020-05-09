@@ -68,9 +68,17 @@ export class TabSet extends Component<TabSetProps> {
 		);
 
 		return (
-			<div className="tab-set">
-				{tabDisplay}
-				<button onClick={() => this.nextTabIndex()}>Next Tab</button>
+			<div className="tab-full">
+				<div className="tab-set">{tabDisplay}</div>
+				<div className="next-tab">
+					<button>
+						<img
+							className="next-button"
+							onClick={() => this.nextTabIndex()}
+							src="/Icons/Right-Icon.svg"
+						/>
+					</button>
+				</div>
 			</div>
 		);
 	}

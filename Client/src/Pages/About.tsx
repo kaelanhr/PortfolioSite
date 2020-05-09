@@ -31,11 +31,16 @@ export default class About extends PureComponent<{}, SlideState> {
 		return (
 			<>
 				<div id="about-content">
-					<img
-						src={this.profileImage}
-						className="about-profile-image"
-						onClick={this.ToggleProfileImage}
-					/>
+					<div className="personal-social">
+						<img
+							src={this.profileImage}
+							className="about-profile-image"
+							onClick={this.ToggleProfileImage}
+						/>
+						<div className="about-social-links">
+							<SocialMediaLinks />
+						</div>
+					</div>
 
 					<TabSet displayTop={false}>
 						<Tab name="Info" index={0}>
@@ -51,9 +56,6 @@ export default class About extends PureComponent<{}, SlideState> {
 							<Education />
 						</Tab>
 					</TabSet>
-					<div className="about-social-links">
-						<SocialMediaLinks />
-					</div>
 				</div>
 			</>
 		);

@@ -1,17 +1,15 @@
-import React, { Component } from 'react'
-import { action, observable, computed } from 'mobx';
-import axios from 'axios';
-import { observer } from 'mobx-react';
-import { History } from 'history';
+import axios from "axios";
+import { History } from "history";
+import { action, computed, observable } from "mobx";
 
 export interface IUserState {
 	isLoggedIn: boolean;
 }
 
 interface IUserData {
-	email: string
-	userName: string
-	userGroups: IGroupData[]
+	email: string;
+	userName: string;
+	userGroups: IGroupData[];
 }
 
 interface IGroupData {
@@ -20,10 +18,10 @@ interface IGroupData {
 
 export class Store {
 	@observable
-	isLoggedIn: boolean = false
+	isLoggedIn: boolean = false;
 
 	@observable
-	hasBackendAccess: boolean = false
+	hasBackendAccess: boolean = false;
 
 	@observable
 	userData: IUserData = { email: "", userName: "", userGroups: [] };
@@ -44,16 +42,19 @@ export class Store {
 		 * all user information to the store, otherwise clear their
 		 * information
 		 */
-		axios.get<IUserData>('/Identity/Account/me')
-			.then(response => {
+		axios
+			.get<IUserData>("/Identity/Account/me")
+			.then((response) => {
 				console.log(response);
 				this.userData.email = response.data.email;
 				this.userData.userGroups = response.data.userGroups;
 				this.userData.userName = response.data.userName;
-				this.hasBackendAccess = this.userData.userGroups?.find(x => x.name == "Admin") != (null || undefined)
+				this.hasBackendAccess =
+					this.userData.userGroups?.find((x) => x.name == "Admin") !=
+					(null || undefined);
 				this.isLoggedIn = true;
 			})
-			.catch(error => {
+			.catch((error) => {
 				console.log(error);
 				this.userData.email = "";
 				this.userData.userGroups = [];
