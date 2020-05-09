@@ -12,7 +12,7 @@ export default class Home extends Component {
 			<>
 				<h1>Hey, I'm Kaelan Reece,</h1>
 				<div>
-					<span>Software Developer</span>
+					<span>Software Engineer</span>
 					<br />
 					<span>& Project Manager</span>
 				</div>
