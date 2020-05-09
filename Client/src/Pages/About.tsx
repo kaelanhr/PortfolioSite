@@ -1,8 +1,8 @@
 import { observable } from "mobx";
 import { observer } from "mobx-react";
 import React, { Component, PureComponent } from "react";
-import SocialMediaLinks from "../Links/SocialMediaLinks";
-import { Tab, TabSet } from "../Tabs/TabSet";
+import SocialMediaLinks from "../Components/Links/SocialMediaLinks";
+import { Tab, TabSet } from "../Components/Tabs/TabSet";
 
 interface SlideState {
 	value?: any;

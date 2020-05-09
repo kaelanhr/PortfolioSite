@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router";
 import { HashLink as Link } from "react-router-hash-link";
-import About from "../Pages/About";
-import Admin from "../Pages/Admin";
-import Blog from "../Pages/Blog";
-import Home from "../Pages/Home";
-import Login from "../Pages/Login";
-import Logout from "../Pages/Logout";
-import Projects from "../Pages/Projects";
-import { store } from "../store";
+import About from "../../Pages/About";
+import Admin from "../../Pages/Admin";
+import Blog from "../../Pages/Blog/Blog";
+import Home from "../../Pages/Home";
+import Login from "../../Pages/Login";
+import Logout from "../../Pages/Logout";
+import Projects from "../../Pages/Projects";
+import { store } from "../../store";
 
 export default class RoutPages extends Component {
 	render() {
