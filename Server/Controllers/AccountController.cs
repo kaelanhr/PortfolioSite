@@ -21,7 +21,6 @@ namespace PersonalSite.Controllers
 	public class AccountController : Controller
 	{
 		private readonly UserManager<SiteUser> _userManager;
-		private readonly SignInManager<SiteUser> _signInManager;
 		private readonly RoleManager<SiteRole> _roleManager;
 		private readonly ILogger _logger;
 
@@ -29,17 +28,14 @@ namespace PersonalSite.Controllers
 		/// Initializes a new instance of the <see cref="AccountController"/> class.
 		/// </summary>
 		/// <param name="userManager">Identity user manager.</param>
-		/// <param name="signInManager">Identity sign in manager.</param>
 		/// <param name="roleManager">Identity role manager.</param>
 		/// <param name="loggerFactory">Log controller actions.</param>
 		public AccountController(
 			UserManager<SiteUser> userManager,
-			SignInManager<SiteUser> signInManager,
 			RoleManager<SiteRole> roleManager,
 			ILoggerFactory loggerFactory)
 		{
 			_userManager = userManager;
-			_signInManager = signInManager;
 			_roleManager = roleManager;
 			_logger = loggerFactory.CreateLogger<AccountController>();
 		}
@@ -130,7 +126,7 @@ namespace PersonalSite.Controllers
 	}
 
 	/// <summary>
-	/// type returned to the clientside as a user result.
+	/// type returned to the client as a user result.
 	/// </summary>
 	public class UserResult
 	{

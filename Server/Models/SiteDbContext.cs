@@ -35,8 +35,12 @@ namespace PersonalSite.Models
 		/// </summary>
 		public DbSet<SiteContent> SiteContent { get; set; }
 
+		/// <summary>
+		/// Gets or sets the site user so they can be created with EF.
+		/// </summary>
 		public DbSet<SiteUser> SiteUser { get; set; }
 
+		/// <inheritdoc/>
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
 			base.OnModelCreating(builder);
