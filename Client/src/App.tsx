@@ -1,12 +1,10 @@
-import React, { Component } from 'react';
-import './App.scss';
-import {
-	Router,
-} from "react-router";
-import RoutPages from './Components/Routing/RoutPages';
-import { createBrowserHistory } from 'history';
-import MainApp from './MainApp';
-import { store } from './Components/store';
+import { createBrowserHistory } from "history";
+import React, { Component } from "react";
+import { Router } from "react-router";
+import "./App.scss";
+import MainApp from "./MainApp";
+import RoutPages from "./Pages/Routing/RoutPages";
+import { store } from "./store";
 
 export default class App extends Component {
 	constructor(props: any) {
@@ -17,11 +15,11 @@ export default class App extends Component {
 		return (
 			<>
 				<Router history={store.history}>
-					<MainApp >
+					<MainApp>
 						<RoutPages />
 					</MainApp>
 				</Router>
 			</>
-		)
+		);
 	}
 }

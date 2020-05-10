@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import { Link, Route, Switch } from 'react-router-dom'
-import BlogEntity from '../Blog/BlogEntity'
-import { IfAdmin } from '../If'
+import React, { Component } from "react";
+import { Link, Route, Switch } from "react-router-dom";
+import { IfAdmin } from "../../Components/Conditional/If";
+import BlogEntity from "./CreateBlog";
 
 export default class Blog extends Component {
 	render() {
@@ -12,7 +12,7 @@ export default class Blog extends Component {
 						<div>
 							<p>WIP: This Is Not Complete, please move along</p>
 							<ul>
-								<IfAdmin >
+								<IfAdmin>
 									<Link to="/blog/create">Create Blog</Link>
 									<Link to="/blog/update">Update Blog</Link>
 									<li>Search Blog</li>
@@ -32,6 +32,6 @@ export default class Blog extends Component {
 					</Route>
 				</Switch>
 			</>
-		)
+		);
 	}
 }

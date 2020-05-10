@@ -1,5 +1,5 @@
-import React, { Component } from "react";
 import axios from "axios";
+import React, { Component } from "react";
 import { Redirect } from "react-router";
 import { store } from "../store";
 
@@ -13,7 +13,7 @@ export default class Logout extends Component {
 			.post("/Identity/Account/Logout")
 			.then(function (response) {
 				console.log(response);
-				store.CheckUserSession()
+				store.CheckUserSession();
 				store.history.push("/");
 			})
 			.catch(function (error) {

@@ -1,215 +1,214 @@
 @import "scss/About.scss";
 
-$HomeLeftPadding: 35em;
+$HomeLeftPadding: 48em;
 
 .App {
-  text-align: center;
+	text-align: center;
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+	height: 40vmin;
+	pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+	.App-logo {
+		animation: App-logo-spin infinite 20s linear;
+	}
 }
 
 .error {
-  color: red;
+	color: red;
 }
 
 body {
-  //background-position: center;
-  background-color: #1d1f26;
-  margin: 0px;
+	//background-position: center;
+	background-color: #1d1f26;
+	margin: 0px;
 }
 
 #home-slide {
-  background-image: url("/Images/Backgrounds/gc_2.jpg");
-  width: 100%;
-  height: 47em;
-  span {
-    color: rgb(202, 202, 202);
-    text-align: center;
-    font-weight: bold;
-    padding-left: $HomeLeftPadding;
-  }
-  .expand-icon {
-    height: 1.5em;
-    padding-left: 52em;
-    padding-bottom: 0.5em;
-  }
-}
+	background-image: url("/Images/Backgrounds/gc_2.jpg");
+	width: 100%;
+	height: 67em;
 
-#about-slide {
-  padding-top: 7em;
-  height: 37em;
-}
-
-.social-media-link {
+	h1 {
+		font-size: xx-large;
+	}
+	span {
+		color: rgb(202, 202, 202);
+		text-align: center;
+		font-weight: bold;
+		font-size: medium;
+		padding-left: $HomeLeftPadding;
+	}
+	.expand-icon {
+		height: 2.5em;
+		padding-top: 45em;
+	}
+	.centered-icon {
+		text-align: center;
+	}
 }
 
 h2 {
-  color: #16398b;
+	color: #16398b;
 }
 
 h1 {
-  color: white;
-  text-align: center;
-  margin: 0px;
-  padding-top: 5em;
-  font-size: 2em;
+	color: white;
+	text-align: center;
+	margin: 0px;
+	padding-top: 5em;
+	font-size: 2em;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+	background-color: #282c34;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(10px + 2vmin);
+	color: white;
 }
 
 .App-link {
-  color: #61dafb;
+	color: #61dafb;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
 }
 
 .social-media-link {
-  height: 28px;
-  padding-right: 15px;
+	height: 28px;
+	padding-right: 15px;
 }
 
 .nav-item {
-  font-size: 0.9rem;
-  padding-bottom: 0.5rem;
-  list-style: none;
+	font-size: 0.9rem;
+	padding-bottom: 0.5rem;
+	list-style: none;
 }
 
 .nav-item:first-of-type {
-  padding-top: 1rem;
+	padding-top: 1rem;
 }
 
 .nav-item:last-of-type {
-  padding-bottom: 1rem;
+	padding-bottom: 1rem;
 }
 
 .nav-item a {
-  color: #d7d7d7;
-  border-radius: 4px;
-  height: 3rem;
-  display: flex;
-  align-items: center;
-  line-height: 3rem;
-  text-decoration: none;
-  display: block;
-  padding-left: 15px;
+	color: #d7d7d7;
+	border-radius: 4px;
+	height: 3rem;
+	display: flex;
+	align-items: center;
+	line-height: 3rem;
+	text-decoration: none;
+	display: block;
+	padding-left: 15px;
 }
 
 .nav-item a.active {
-  background-color: rgba(255, 255, 255, 0.25);
-  color: white;
+	background-color: rgba(255, 255, 255, 0.25);
+	color: white;
 }
 
 .nav-item a:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  color: white;
+	background-color: rgba(255, 255, 255, 0.1);
+	color: white;
 }
 
 .sidebar {
-  //   height: 100%; /* Full-height: remove this if you want "auto" height */
-  //   width: 160px; /* Set the width of the sidebar */
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-  z-index: 1; /* Stay on top */
-  //   top: 0; /* Stay at the top */
-  //   left: 0;
+	//   height: 100%; /* Full-height: remove this if you want "auto" height */
+	//   width: 160px; /* Set the width of the sidebar */
+	position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+	z-index: 1; /* Stay on top */
+	//   top: 0; /* Stay at the top */
+	//   left: 0;
 
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 20px;
-  /* width: 250px;
+	overflow-x: hidden; /* Disable horizontal scroll */
+	padding-top: 20px;
+	/* width: 250px;
 	height: 100vh;
 	position: sticky;
 	top: 0; */
-  //   background-color: rgb(9, 17, 34);
-  background-color: rgba(255, 255, 255, 0.15);
-  padding-bottom: 20px;
-  border-radius: 100px;
+	//   background-color: rgb(9, 17, 34);
+	background-color: rgba(255, 255, 255, 0.15);
+	padding-bottom: 20px;
+	border-radius: 100px;
 
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+	top: 50%;
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
 }
 
 .collapsed {
-  display: none;
+	display: none;
 }
 
 .sidebar ul {
-  margin-block-start: 0em;
-  margin-block-end: 0em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  padding-inline-start: 20px;
-  padding-inline-end: 10px;
-  color: white;
+	margin-block-start: 0em;
+	margin-block-end: 0em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+	padding-inline-start: 20px;
+	padding-inline-end: 10px;
+	color: white;
 }
 
 .home-page-content {
-  background-color: rgba(0, 0, 0, 0.4);
-  //   padding-left: 20px;
-  //   padding-bottom: 20px;
-  //   padding-right: 20px;
-  //   padding-top: 5px;
-  border-radius: 15px;
+	background-color: rgba(0, 0, 0, 0.4);
+	//   padding-left: 20px;
+	//   padding-bottom: 20px;
+	//   padding-right: 20px;
+	//   padding-top: 5px;
+	border-radius: 15px;
 
-  margin-left: 160px; /* Same as the width of the sidebar */
-  margin-right: 160px; /* Same as the width of the sidebar */
-  padding: 0px 10px;
+	margin-left: 160px; /* Same as the width of the sidebar */
+	margin-right: 160px; /* Same as the width of the sidebar */
+	padding: 0px 10px;
 
-  p {
-    color: white;
-  }
+	p {
+		color: white;
+	}
 
-  span {
-    color: gray;
-  }
+	span {
+		color: gray;
+	}
 }
 
 label,
 input,
 form {
-  display: table;
+	display: table;
 }
 
 label::before {
-  content: "\A";
-  white-space: pre;
+	content: "\A";
+	white-space: pre;
 }
 
 .page-content h1 {
-  color: black;
+	color: black;
 }
 
 /* Style page content */
 .main-content {
-  margin-left: 160px; /* Same as the width of the sidebar */
-  margin-right: 160px; /* Same as the width of the sidebar */
-  padding: 0px 10px;
+	margin-left: 160px; /* Same as the width of the sidebar */
+	margin-right: 160px; /* Same as the width of the sidebar */
+	padding: 0px 10px;
 }
 
 p {
-  color: black;
+	color: black;
 }

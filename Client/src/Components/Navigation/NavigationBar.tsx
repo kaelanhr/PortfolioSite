@@ -1,25 +1,25 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import { store } from '../store';
-import { observer } from 'mobx-react';
+import { observer } from "mobx-react";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { store } from "../../store";
 
 interface NavItemProps {
-	linkUrl: string
-	displayName: string
-	isDisplayed: boolean
+	linkUrl: string;
+	displayName: string;
+	isDisplayed: boolean;
 }
 
 interface IState {
-	isAuthenticated: boolean
-	isLoading: boolean
+	isAuthenticated: boolean;
+	isLoading: boolean;
 }
 
 interface NavBarProps {
-	displayNavBar: boolean
+	displayNavBar: boolean;
 }
 
-@observer export default class NavigationBar extends Component<NavBarProps, IState> {
+@observer
+export default class NavigationBar extends Component<NavBarProps, IState> {
 	constructor(props: any) {
 		super(props);
 		this.state = {
@@ -29,35 +29,41 @@ interface NavBarProps {
 		};
 	}
 
-
 	render() {
-		let navClassName = "sidebar"
+		let navClassName = "sidebar";
 		if (!this.props.displayNavBar) {
-			navClassName += " collapsed"
+			navClassName += " collapsed";
 		}
 		let navItems: NavItemProps[] = [
 			{ linkUrl: "", displayName: "Home", isDisplayed: true },
 			{ linkUrl: "about", displayName: "About", isDisplayed: true },
 			{ linkUrl: "blog", displayName: "Blog", isDisplayed: true },
 			{ linkUrl: "projects", displayName: "Projects", isDisplayed: true },
-			{ linkUrl: "admin", displayName: "Admin", isDisplayed: store.hasBackendAccess },
-			{ linkUrl: "logout", displayName: "Logout", isDisplayed: store.isLoggedIn },
-		]
+			{
+				linkUrl: "admin",
+				displayName: "Admin",
+				isDisplayed: store.hasBackendAccess,
+			},
+			{
+				linkUrl: "logout",
+				displayName: "Logout",
+				isDisplayed: store.isLoggedIn,
+			},
+		];
 		const htmlLinks = navItems
-			.filter(link => link.isDisplayed)
-			.map((link) => <NavigationItem
-				displayName={link.displayName}
-				linkUrl={link.linkUrl}
-				isDisplayed={link.isDisplayed}
-			/>
-			);
+			.filter((link) => link.isDisplayed)
+			.map((link) => (
+				<NavigationItem
+					displayName={link.displayName}
+					linkUrl={link.linkUrl}
+					isDisplayed={link.isDisplayed}
+				/>
+			));
 
 		return (
 			<>
 				<div className={navClassName}>
-					<ul>
-						{htmlLinks}
-					</ul>
+					<ul>{htmlLinks}</ul>
 				</div>
 			</>
 		);
@@ -69,5 +75,5 @@ function NavigationItem(props: NavItemProps) {
 		<li className="nav-item">
 			<Link to={"/" + props.linkUrl}>{props.displayName}</Link>
 		</li>
-	)
+	);
 }

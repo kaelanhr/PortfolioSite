@@ -1,21 +1,28 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace PersonalSite
 {
+	/// <summary>
+	/// The application starts here.
+	/// </summary>
 	public class Program
 	{
+		/// <summary>
+		/// Entry point of the web application.
+		/// </summary>
+		/// <param name="args">Additional arguments passed in when the program runs.</param>
 		public static void Main(string[] args)
 		{
 			CreateHostBuilder(args).Build().Run();
 		}
 
+		/// <summary>
+		/// Create the web host and load configuration.
+		/// </summary>
+		/// <param name="args">Arguments passed from main function.</param>
+		/// <returns>The Web Host builder.</returns>
 		public static IHostBuilder CreateHostBuilder(string[] args) =>
 			Host.CreateDefaultBuilder(args)
 				.ConfigureAppConfiguration((builderContext, config) =>
@@ -26,11 +33,11 @@ namespace PersonalSite
 					config.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
 					config.AddEnvironmentVariables();
 					config.AddCommandLine(args);
-				})			
+				})
 				.ConfigureWebHostDefaults(webBuilder =>
 				{
 					webBuilder.UseStartup<Startup>();
-					webBuilder.UseSetting("https_port","443");
+					webBuilder.UseSetting("https_port", "443");
 				});
 	}
 }
