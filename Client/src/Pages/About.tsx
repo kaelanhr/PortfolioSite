@@ -96,8 +96,13 @@ class Info extends Component {
 				<h2>Info</h2>
 				<p>
 					Kaelan specializes in project management of technical teams,
-					developing web applications using agile methodologies, architecting
-					backend systems and optimising business processes through technology.
+					developing web applications using agile methodologies, backend systems
+					architecture and optimizing business processes through technology.
+				</p>
+				<p>
+					Kaelan enjoys problem solving, challenging himself and expanding his
+					skillset. Whilst he has lived his whole life in Australia, he is eager
+					to travel the world.
 				</p>
 				<p>
 					He is available for management and development of freelance or open
