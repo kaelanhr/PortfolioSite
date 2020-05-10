@@ -1,6 +1,7 @@
 import { observable } from "mobx";
 import { observer } from "mobx-react";
 import React, { Component, PureComponent } from "react";
+import { ExternalLink } from '../Components/Links/ExternalLinks';
 import SocialMediaLinks from "../Components/Links/SocialMediaLinks";
 import { Tab, TabSet } from "../Components/Tabs/TabSet";
 
@@ -67,8 +68,16 @@ class Education extends Component {
 		return (
 			<>
 				<h2>Qualifications</h2>
-				<p>QUT Bachelor of Business (Marketing)</p>
-				<p>QUT Bachelor of Information Technology (Computer Science)</p>
+				<ul>
+					<li>
+						<ExternalLink link="https://www.qut.edu.au/">QUT</ExternalLink>{" "}
+						Bachelor of Business (Marketing)
+					</li>
+					<li>
+						<ExternalLink link="https://www.qut.edu.au/">QUT</ExternalLink>{" "}
+						Bachelor of Information Technology (Computer Science)
+					</li>
+				</ul>
 			</>
 		);
 	}
@@ -79,11 +88,13 @@ class Interests extends Component {
 		return (
 			<>
 				<h2>Interests</h2>
-				<p>Video Game Modding</p>
-				<p>Reading</p>
-				<p>Writing Science Fiction</p>
-				<p>Soccer</p>
-				<p>Card Games</p>
+				<ul>
+					<li>Video Game Modding</li>
+					<li>Reading</li>
+					<li>Writing Science Fiction</li>
+					<li>Soccer</li>
+					<li>Card Games</li>
+				</ul>
 			</>
 		);
 	}
@@ -100,7 +111,7 @@ class Info extends Component {
 					architecture and optimizing business processes through technology.
 				</p>
 				<p>
-					Kaelan enjoys problem solving, challenging himself and expanding his
+					He enjoys problem solving, challenging himself and expanding his
 					skillset. Whilst he has lived his whole life in Australia, he is eager
 					to travel the world.
 				</p>
@@ -122,15 +133,17 @@ class Experience extends Component {
 		return (
 			<>
 				<h2>Experience In</h2>
-				<p>Software Architecture</p>
-				<p>Project Management</p>
-				<p>Agile Management and Development</p>
-				<p>Onboarding and Training Developers</p>
-				<p>Front End Development</p>
-				<p>Back End Development</p>
-				<p>Mobile Application Development</p>
-				<p>Technical Writing</p>
-				<p>CI/CD Technology</p>
+				<ul>
+					<li>Software Architecture</li>
+					<li>Project Management</li>
+					<li>Agile Management and Development</li>
+					<li>Onboarding and Training Developers</li>
+					<li>Front End Development</li>
+					<li>Back End Development</li>
+					<li>Mobile Application Development</li>
+					<li>Technical Writing</li>
+					<li>CI/CD Technology</li>
+				</ul>
 			</>
 		);
 	}
