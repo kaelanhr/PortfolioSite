@@ -44,8 +44,8 @@ export default class RoutPages extends Component {
 								<Projects />
 							</Route>
 						</div>
-						<Route component={NotFound} />
 					</Switch>
+					<Route component={NotFound} />
 				</Route>
 			</Switch>
 		);
