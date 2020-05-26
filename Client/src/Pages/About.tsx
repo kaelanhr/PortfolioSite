@@ -1,7 +1,7 @@
 import { observable } from "mobx";
 import { observer } from "mobx-react";
 import React, { Component, PureComponent } from "react";
-import { ExternalLink } from '../Components/Links/ExternalLinks';
+import { ExternalLink } from "../Components/Links/ExternalLinks";
 import SocialMediaLinks from "../Components/Links/SocialMediaLinks";
 import { Tab, TabSet } from "../Components/Tabs/TabSet";
 

@@ -16,6 +16,7 @@ interface IState {
 
 interface NavBarProps {
 	displayNavBar: boolean;
+	displayHeader: boolean;
 }
 
 @observer
@@ -30,15 +31,15 @@ export default class NavigationBar extends Component<NavBarProps, IState> {
 	}
 
 	render() {
-		let navClassName = "sidebar";
+		let navClassName = "nav-bar";
 		if (!this.props.displayNavBar) {
 			navClassName += " collapsed";
 		}
 		let navItems: NavItemProps[] = [
-			{ linkUrl: "", displayName: "Home", isDisplayed: true },
-			{ linkUrl: "about", displayName: "About", isDisplayed: true },
-			{ linkUrl: "blog", displayName: "Blog", isDisplayed: true },
 			{ linkUrl: "projects", displayName: "Projects", isDisplayed: true },
+			{ linkUrl: "blog", displayName: "Blog", isDisplayed: true },
+			{ linkUrl: "about", displayName: "About", isDisplayed: true },
+			{ linkUrl: "", displayName: "Home", isDisplayed: true },
 			{
 				linkUrl: "admin",
 				displayName: "Admin",
@@ -59,10 +60,10 @@ export default class NavigationBar extends Component<NavBarProps, IState> {
 					isDisplayed={link.isDisplayed}
 				/>
 			));
-
 		return (
 			<>
 				<div className={navClassName}>
+					<h1>{this.props.displayHeader ? "Kaelan Reece" : ""}</h1>
 					<ul>{htmlLinks}</ul>
 				</div>
 			</>

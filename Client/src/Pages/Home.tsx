@@ -1,5 +1,6 @@
 import { observer } from "mobx-react";
 import React, { Component } from "react";
+import SocialMediaLinks from "../Components/Links/SocialMediaLinks";
 
 @observer
 export default class Home extends Component {
@@ -10,11 +11,15 @@ export default class Home extends Component {
 	render() {
 		return (
 			<>
-				<h1>Hey, I'm Kaelan Reece,</h1>
-				<div>
-					<span>Software Engineer</span>
+				<h1>
+					<i>Kaelan Reece</i>
+				</h1>
+				<div className="subtitle">
+					<span>
+						I am a Software Developer & Project Manager from Australia
+					</span>
 					<br />
-					<span>& Project Manager</span>
+					<SocialMediaLinks />
 				</div>
 			</>
 		);

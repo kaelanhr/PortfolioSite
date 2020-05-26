@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router";
-import { HashLink as Link } from "react-router-hash-link";
+import NavigationBar from "../../Components/Navigation/NavigationBar";
 import About from "../../Pages/About";
 import Admin from "../../Pages/Admin";
 import Blog from "../../Pages/Blog/Blog";
@@ -16,39 +16,37 @@ export default class RoutPages extends Component {
 		return (
 			<Switch>
 				<Route exact path="/">
+					<NavigationBar displayNavBar={true} displayHeader={false} />
 					<div id="home-slide">
 						<Home />
-						<div className="centered-icon">
-							<Link to="/#about-content">
-								<img className="expand-icon" src="/Icons/Down-Icon.svg" />
-							</Link>
-						</div>
-					</div>
-					<div id="about-slide">
-						<div className="home-page-content">
-							<About />
-						</div>
 					</div>
 				</Route>
-
-				<div className="page-content">
-					<Route path="/blog">
-						<Route component={Blog} />
-					</Route>
-					<Route exact path="/admin">
-						<Admin />
-					</Route>
-					<Route exact path="/login">
-						<Login />
-					</Route>
-					<Route exact path="/logout">
-						<Logout />
-					</Route>
-					<Route exact path="/projects">
-						<Projects />
-					</Route>
-				</div>
-				<Route component={NotFound} />
+				<Route>
+					<NavigationBar displayNavBar={true} displayHeader={true} />
+					<Switch>
+						<div className="page-content">
+							<Route path="/about">
+								<Route component={About} />
+							</Route>
+							<Route path="/blog">
+								<Route component={Blog} />
+							</Route>
+							<Route exact path="/admin">
+								<Admin />
+							</Route>
+							<Route exact path="/login">
+								<Login />
+							</Route>
+							<Route exact path="/logout">
+								<Logout />
+							</Route>
+							<Route exact path="/projects">
+								<Projects />
+							</Route>
+						</div>
+						<Route component={NotFound} />
+					</Switch>
+				</Route>
 			</Switch>
 		);
 	}
