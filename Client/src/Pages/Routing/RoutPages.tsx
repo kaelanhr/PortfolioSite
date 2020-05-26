@@ -23,29 +23,17 @@ export default class RoutPages extends Component {
 				</Route>
 				<Route>
 					<NavigationBar displayNavBar={true} displayHeader={true} />
-					<Switch>
-						<div className="page-content">
-							<Route path="/about">
-								<Route component={About} />
-							</Route>
-							<Route path="/blog">
-								<Route component={Blog} />
-							</Route>
-							<Route exact path="/admin">
-								<Admin />
-							</Route>
-							<Route exact path="/login">
-								<Login />
-							</Route>
-							<Route exact path="/logout">
-								<Logout />
-							</Route>
-							<Route exact path="/projects">
-								<Projects />
-							</Route>
-						</div>
-					</Switch>
-					<Route component={NotFound} />
+					<div className="page-content">
+						<Switch>
+							<Route path="/about" component={About} />
+							<Route path="/blog" component={Blog} />
+							<Route exact path="/admin" component={Admin} />
+							<Route exact path="/login" component={Login} />
+							<Route exact path="/logout" component={Logout} />
+							<Route exact path="/projects" component={Projects} />
+							<Route component={NotFound} />
+						</Switch>
+					</div>
 				</Route>
 			</Switch>
 		);
