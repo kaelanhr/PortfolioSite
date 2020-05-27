@@ -1,9 +1,7 @@
 import { observer } from "mobx-react";
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { store } from "../../store";
-import { observable, action } from "mobx";
 import { NavLink } from "react-router-dom";
+import { store } from "../../store";
 
 interface NavItemProps {
 	linkUrl: string;
