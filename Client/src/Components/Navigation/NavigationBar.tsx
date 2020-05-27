@@ -2,6 +2,8 @@ import { observer } from "mobx-react";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { store } from "../../store";
+import { observable, action } from "mobx";
+import { NavLink } from "react-router-dom";
 
 interface NavItemProps {
 	linkUrl: string;
@@ -74,7 +76,9 @@ export default class NavigationBar extends Component<NavBarProps, IState> {
 function NavigationItem(props: NavItemProps) {
 	return (
 		<li className="nav-item">
-			<Link to={"/" + props.linkUrl}>{props.displayName}</Link>
+			<NavLink exact to={"/" + props.linkUrl} activeClassName="active">
+				{props.displayName}
+			</NavLink>
 		</li>
 	);
 }
