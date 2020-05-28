@@ -10,6 +10,7 @@ export default class Blog extends Component {
 				<Switch>
 					<Route exact path="/blog">
 						<div>
+							<h1>Blog</h1>
 							<p>WIP: This Is Not Complete, please move along</p>
 							<ul>
 								<IfAdmin>

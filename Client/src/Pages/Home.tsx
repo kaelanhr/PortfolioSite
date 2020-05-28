@@ -1,6 +1,7 @@
 import { observer } from "mobx-react";
 import React, { Component } from "react";
 import SocialMediaLinks from "../Components/Links/SocialMediaLinks";
+import { NavLink } from "react-router-dom";
 
 @observer
 export default class Home extends Component {
@@ -12,7 +13,9 @@ export default class Home extends Component {
 		return (
 			<>
 				<h1>
-					<i>Kaelan Reece</i>
+					<NavLink to="/about">
+						<i>Kaelan Reece</i>
+					</NavLink>
 				</h1>
 				<div className="subtitle">
 					<span>

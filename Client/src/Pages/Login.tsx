@@ -36,13 +36,13 @@ export default class Login extends Component<{}, LoginState> {
 						model={this.LoginModel}
 						modelProperty={"Email"}
 						type="email"
-						label="Email"
+						placeholder="Email"
 					/>
 					<TextField
 						model={this.LoginModel}
 						modelProperty={"Password"}
 						type="password"
-						label="Password"
+						placeholder="Password"
 					/>
 					<input type="submit" value="Login" />
 				</form>

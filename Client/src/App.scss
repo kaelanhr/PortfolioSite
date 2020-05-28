@@ -4,7 +4,8 @@
 
 $HomeLeftPadding: 48em;
 
-p {
+p,
+h1 {
 	margin: 0;
 }
 
@@ -22,7 +23,6 @@ p {
 }
 
 body {
-	//background-position: center;
 	background-color: #1d1f26;
 	margin: 0px;
 }
@@ -47,10 +47,6 @@ label::before {
 	white-space: pre;
 }
 
-.page-content h1 {
-	color: black;
-}
-
 .page-content {
 	top: 10em;
 	display: block;
@@ -58,6 +54,12 @@ label::before {
 	background-color: rgba(0, 0, 0, 0.4);
 	margin-left: 8em;
 	margin-right: 8em;
+	border-radius: 15px;
+
+	h1 {
+		margin-left: 1em;
+		padding-top: 0.5em;
+	}
 }
 
 /* Style page content */

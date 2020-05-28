@@ -26,15 +26,10 @@ export default class NavigationBar extends Component<NavBarProps, IState> {
 		this.state = {
 			isAuthenticated: false,
 			isLoading: true,
-			//	displayNavBar: true
 		};
 	}
 
 	render() {
-		let navClassName = "nav-bar";
-		if (!this.props.displayNavBar) {
-			navClassName += " collapsed";
-		}
 		let navItems: NavItemProps[] = [
 			{ linkUrl: "projects", displayName: "Projects", isDisplayed: true },
 			{ linkUrl: "blog", displayName: "Blog", isDisplayed: true },
@@ -62,7 +57,7 @@ export default class NavigationBar extends Component<NavBarProps, IState> {
 			));
 		return (
 			<>
-				<div className={navClassName}>
+				<div className="nav-bar">
 					<h1>{this.props.displayHeader ? "Kaelan Reece" : ""}</h1>
 					<ul>{htmlLinks}</ul>
 				</div>

@@ -31,6 +31,7 @@ export default class About extends PureComponent<{}, SlideState> {
 	render() {
 		return (
 			<>
+				<h1>Learn About Me</h1>
 				<div id="about-content">
 					<div className="personal-social">
 						<img
@@ -63,88 +64,80 @@ export default class About extends PureComponent<{}, SlideState> {
 	}
 }
 
-class Education extends Component {
-	render() {
-		return (
-			<>
-				<h2>Qualifications</h2>
-				<ul>
-					<li>
-						<ExternalLink link="https://www.qut.edu.au/">QUT</ExternalLink>{" "}
-						Bachelor of Business (Marketing)
-					</li>
-					<li>
-						<ExternalLink link="https://www.qut.edu.au/">QUT</ExternalLink>{" "}
-						Bachelor of Information Technology (Computer Science)
-					</li>
-				</ul>
-			</>
-		);
-	}
+function Education() {
+	return (
+		<>
+			<h2>Qualifications</h2>
+			<ul>
+				<li>
+					<ExternalLink link="https://www.qut.edu.au/">QUT</ExternalLink>{" "}
+					Bachelor of Business (Marketing)
+				</li>
+				<li>
+					<ExternalLink link="https://www.qut.edu.au/">QUT</ExternalLink>{" "}
+					Bachelor of Information Technology (Computer Science)
+				</li>
+			</ul>
+		</>
+	);
 }
 
-class Interests extends Component {
-	render() {
-		return (
-			<>
-				<h2>Interests</h2>
-				<ul>
-					<li>Video Game Modding</li>
-					<li>Reading</li>
-					<li>Writing Science Fiction</li>
-					<li>Soccer</li>
-					<li>Card Games</li>
-				</ul>
-			</>
-		);
-	}
+function Interests() {
+	return (
+		<>
+			<h2>Interests</h2>
+			<ul>
+				<li>Video Game Modding</li>
+				<li>Reading</li>
+				<li>Writing Science Fiction</li>
+				<li>Soccer</li>
+				<li>Card Games</li>
+			</ul>
+		</>
+	);
 }
 
-class Info extends Component {
-	render() {
-		return (
-			<>
-				<h2>Info</h2>
-				<p>
-					Kaelan specializes in project management of technical teams,
-					developing web applications using agile methodologies, backend systems
-					architecture and optimizing business processes through technology.
-				</p>
-				<p>
-					He enjoys problem solving, challenging himself and expanding his
-					skillset. Whilst he has lived his whole life in Australia, he is eager
-					to travel the world.
-				</p>
-				<p>
-					He is available for management and development of freelance or open
-					source projects.
-				</p>
-				<p>
-					Aside from his independent projects and collaboration with developers,
-					he works in a senior position as the Bot Squad Lead of Codebots
-				</p>
-			</>
-		);
-	}
+function Info() {
+	return (
+		<>
+			<h2>Info</h2>
+			<p>
+				Kaelan specializes in project management of technical teams, developing
+				web applications using agile methodologies, backend systems architecture
+				and optimizing business processes through technology.
+			</p>
+			<p>
+				He enjoys problem solving, challenging himself and expanding his
+				skillset. Whilst he has lived his whole life in Australia, he is eager
+				to travel the world.
+			</p>
+			<p>
+				He is available for management and development of freelance or open
+				source projects.
+			</p>
+			<p>
+				Aside from his independent projects and collaboration with developers,
+				he works in a senior position as the Bot Squad Lead of Codebots
+			</p>
+		</>
+	);
 }
 
-class Experience extends Component {
-	render() {
-		return (
-			<>
-				<h2>Experience In</h2>
-				<ul>
-					<li>Software Architecture</li>
-					<li>Project Management</li>
-					<li>Agile Management and Development</li>
-					<li>Onboarding and Training Developers</li>
-					<li>Front End Development</li>
-					<li>Back End Development</li>
-					<li>Mobile Application Development</li>
-					<li>Technical Writing</li>
-					<li>CI/CD Technology</li>
-				</ul>
-			</>
-		);
-	}
+function Experience() {
+	return (
+		<>
+			<h2>Experience In</h2>
+			<ul>
+				<li>Software Architecture</li>
+				<li>Project Management</li>
+				<li>Agile Management and Development</li>
+				<li>Onboarding and Training Developers</li>
+				<li>Front End Development</li>
+				<li>Back End Development</li>
+				<li>Mobile Application Development</li>
+				<li>Technical Writing</li>
+				<li>CI/CD Technology</li>
+			</ul>
+		</>
+	);
 }
