@@ -5,6 +5,7 @@ import MarkdownIt from "markdown-it";
 import MdEditor from "react-markdown-editor-lite";
 // import style manually
 import "react-markdown-editor-lite/lib/index.css";
+import { observable } from "mobx";
 
 // Register plugins if required
 // MdEditor.use(YOUR_PLUGINS_HERE);
@@ -26,21 +27,27 @@ export default class BlogEntity extends Component<IProps> {
 	}
 	mdParser = new MarkdownIt(/* Markdown-it options */);
 
-	// Initialize a markdown parser
-	// Finish!
+	@observable
+	EditorContent = "";
+
 	handleEditorChange = (markdownInput: MarkdownProps) => {
-		console.log("handleEditorChange", markdownInput.html, markdownInput.text);
+		this.EditorContent = markdownInput.text;
+	};
+
+	SubmitHandler = (event: any) => {
+		console.log(this.EditorContent);
 	};
 
 	render() {
 		return (
 			<>
 				<h1>{this.props.entityAction} A blog</h1>
-				<form>
-					<h2>Title</h2>
-					<input type="text" />
-					<h2>Content</h2>
-					<input type="text" />
+				<form onSubmit={this.SubmitHandler}>
+					<MdEditor
+						value=""
+						renderHTML={(text) => this.mdParser.render(text)}
+						onChange={this.handleEditorChange}
+					/>
 					<input
 						type="submit"
 						value={
@@ -50,12 +57,6 @@ export default class BlogEntity extends Component<IProps> {
 						}
 					/>
 				</form>
-				<MdEditor
-					value=""
-					style={{ height: "500px" }}
-					renderHTML={(text) => this.mdParser.render(text)}
-					onChange={this.handleEditorChange}
-				/>
 				<Back />
 			</>
 		);
