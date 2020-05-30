@@ -67,9 +67,17 @@ export default class NavigationBar extends Component<NavBarProps, IState> {
 }
 
 function NavigationItem(props: NavItemProps) {
+	let useExactPath = false;
+	if (props.linkUrl == "") {
+		useExactPath = true;
+	}
 	return (
 		<li className="nav-item">
-			<NavLink exact to={"/" + props.linkUrl} activeClassName="active">
+			<NavLink
+				exact={useExactPath}
+				to={"/" + props.linkUrl}
+				activeClassName="active"
+			>
 				{props.displayName}
 			</NavLink>
 		</li>
