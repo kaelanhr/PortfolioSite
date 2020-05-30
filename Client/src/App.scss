@@ -60,6 +60,17 @@ label::before {
 		margin-left: 1em;
 		padding-top: 0.5em;
 	}
+	h1::after {
+		height: 2px;
+		width: 15rem;
+		margin-left: 1rem;
+		background-color: rgb(9, 239, 247);
+		font-weight: bold;
+		box-sizing: border-box;
+		content: "";
+		position: absolute;
+		top: 2rem;
+	}
 }
 
 /* Style page content */
