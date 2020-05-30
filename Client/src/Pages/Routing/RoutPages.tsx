@@ -41,5 +41,9 @@ export default class RoutPages extends Component {
 }
 
 function NotFound() {
-	return <p>The Page you were looking for was not found</p>;
+	return (
+		<div id="not-found">
+			<h1>The Page you were looking for was not found</h1>
+		</div>
+	);
 }
