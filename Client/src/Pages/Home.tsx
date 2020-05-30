@@ -21,9 +21,8 @@ export default class Home extends Component {
 					<span>
 						I am a Software Developer & Project Manager from Australia
 					</span>
-					<br />
-					<SocialMediaLinks />
 				</div>
+				<SocialMediaLinks />
 			</>
 		);
 	}

@@ -1,5 +1,6 @@
 @import "scss/Pages/About.scss";
 @import "scss/Components/Navigation/NavigationBar.scss";
+@import "scss/Components/Links/SocialMediaLinks.scss";
 @import "scss/Pages/Home.scss";
 
 $HomeLeftPadding: 48em;
@@ -29,11 +30,6 @@ body {
 
 h2 {
 	color: #16398b;
-}
-
-.social-media-link {
-	height: 28px;
-	padding-right: 15px;
 }
 
 label,
