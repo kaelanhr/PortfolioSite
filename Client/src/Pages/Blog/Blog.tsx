@@ -1,9 +1,33 @@
+import axios from "axios";
+import { observable } from "mobx";
+import { observer } from "mobx-react";
 import React, { Component } from "react";
 import { Link, Route, Switch } from "react-router-dom";
 import { IfAdmin } from "../../Components/Conditional/If";
 import BlogEntity from "./CreateBlog";
 
+interface BlogMode {
+	title: String;
+	id: String;
+	headerImagePath: String;
+}
+
+@observer
 export default class Blog extends Component {
+	componentDidMount() {
+		axios
+			.get("/Api/Blog")
+			.then((response) => {
+				this.Blogcontent = response.data;
+			})
+			.catch((error) => {
+				//this.Blogcontent = "Blogs could not be found";
+			});
+	}
+
+	@observable
+	Blogcontent: BlogMode[] = [];
+
 	render() {
 		return (
 			<>
@@ -12,6 +36,7 @@ export default class Blog extends Component {
 						<div>
 							<h1>Blog</h1>
 							<p>WIP: This Is Not Complete, please move along</p>
+							{this.Blogcontent.toString()}
 							<ul>
 								<IfAdmin>
 									<Link to="/blog/create">Create Blog</Link>

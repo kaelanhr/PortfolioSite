@@ -1,6 +1,6 @@
 import { observable } from "mobx";
 import { observer } from "mobx-react";
-import React, { Component, PureComponent } from "react";
+import React, { PureComponent } from "react";
 import { ExternalLink } from "../Components/Links/ExternalLinks";
 import SocialMediaLinks from "../Components/Links/SocialMediaLinks";
 import { Tab, TabSet } from "../Components/Tabs/TabSet";
@@ -31,7 +31,7 @@ export default class About extends PureComponent<{}, SlideState> {
 	render() {
 		return (
 			<>
-				<h1>Learn About Me</h1>
+				<h1>About</h1>
 				<div id="about-content">
 					<div className="personal-social">
 						<img
