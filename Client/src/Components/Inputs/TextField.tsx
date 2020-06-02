@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 export interface TextFieldProps<T> {
 	model: T;
-	modelProperty: string; //keyof T
+	modelProperty: string;
 	type: "text" | "email" | "password";
 	label?: string;
 	onBlur?: ((event: React.FocusEvent<HTMLInputElement>) => void) | undefined;

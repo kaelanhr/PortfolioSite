@@ -31,21 +31,22 @@ export default class NavigationBar extends Component<NavBarProps, IState> {
 
 	render() {
 		let navItems: NavItemProps[] = [
-			{ linkUrl: "projects", displayName: "Projects", isDisplayed: true },
-			{ linkUrl: "blog", displayName: "Blog", isDisplayed: true },
-			{ linkUrl: "about", displayName: "About", isDisplayed: true },
-			{ linkUrl: "", displayName: "Home", isDisplayed: true },
-			{
-				linkUrl: "admin",
-				displayName: "Admin",
-				isDisplayed: store.hasBackendAccess,
-			},
 			{
 				linkUrl: "logout",
 				displayName: "Logout",
 				isDisplayed: store.isLoggedIn,
 			},
+			{
+				linkUrl: "admin",
+				displayName: "Admin",
+				isDisplayed: store.hasBackendAccess,
+			},
+			{ linkUrl: "projects", displayName: "Projects", isDisplayed: true },
+			{ linkUrl: "blog", displayName: "Blog", isDisplayed: true },
+			{ linkUrl: "about", displayName: "About", isDisplayed: true },
+			{ linkUrl: "", displayName: "Home", isDisplayed: true },
 		];
+
 		const htmlLinks = navItems
 			.filter((link) => link.isDisplayed)
 			.map((link) => (
@@ -53,8 +54,10 @@ export default class NavigationBar extends Component<NavBarProps, IState> {
 					displayName={link.displayName}
 					linkUrl={link.linkUrl}
 					isDisplayed={link.isDisplayed}
+					key={link.displayName}
 				/>
 			));
+
 		return (
 			<>
 				<div className="nav-bar">
@@ -68,7 +71,7 @@ export default class NavigationBar extends Component<NavBarProps, IState> {
 
 function NavigationItem(props: NavItemProps) {
 	let useExactPath = false;
-	if (props.linkUrl == "") {
+	if (props.linkUrl === "") {
 		useExactPath = true;
 	}
 	return (

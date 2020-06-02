@@ -1,10 +1,10 @@
-import React, { Component, FormEvent } from 'react';
+import React, { Component } from "react";
 
 interface FormProps {
-	submitHandler: any
+	submitHandler: any;
 }
 
-class Form extends Component<FormProps>{
+class Form extends Component<FormProps> {
 	render() {
 		return (
 			<form onSubmit={this.props.submitHandler}>
