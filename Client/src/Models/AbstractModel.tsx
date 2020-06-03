@@ -1,5 +1,5 @@
-export default class AbstractModel {
-	constructor(attributes?: any) {
+export default class AbstractModel implements IAbstractAttributes {
+	constructor(attributes?: Partial<IAbstractAttributes>) {
 		if (attributes) {
 			if (attributes.id) {
 				this.id = attributes.id;
@@ -10,6 +10,9 @@ export default class AbstractModel {
 	public id: string;
 }
 
+/**
+ * All entities have this common attribute.
+ */
 export interface IAbstractAttributes {
 	id: string;
 }

@@ -1,9 +1,7 @@
 import AbstractModel, { IAbstractAttributes } from "./AbstractModel";
 
-export default class Blog extends AbstractModel {
-	// partial attributes
+export default class Blog extends AbstractModel implements IBlogAttributes {
 	constructor(attributes?: Partial<IBlogAttributes>) {
-		// todo call a super constructor
 		super(attributes);
 
 		if (attributes) {

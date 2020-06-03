@@ -7,9 +7,6 @@ import MdEditor from "react-markdown-editor-lite";
 import "react-markdown-editor-lite/lib/index.css";
 import Back from "../../Components/Button/Back";
 
-// Register plugins if required
-// MdEditor.use(YOUR_PLUGINS_HERE);
-
 interface IProps {
 	entityAction: EntityAdminAction;
 }
@@ -25,7 +22,7 @@ export default class BlogEntity extends Component<IProps> {
 	constructor(props: any) {
 		super(props);
 	}
-	mdParser = new MarkdownIt(/* Markdown-it options */);
+	mdParser = new MarkdownIt();
 
 	@observable
 	EditorContent = "";
@@ -48,14 +45,7 @@ export default class BlogEntity extends Component<IProps> {
 						renderHTML={(text) => this.mdParser.render(text)}
 						onChange={this.handleEditorChange}
 					/>
-					<input
-						type="submit"
-						value={
-							(this.props.entityAction == "Create"
-								? this.props.entityAction
-								: "Update") + " Blog"
-						}
-					/>
+					<input type="submit" value={this.props.entityAction + " Blog"} />
 				</form>
 				<Back />
 			</>
