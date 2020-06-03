@@ -3,7 +3,7 @@ import { observable } from "mobx";
 import { observer } from "mobx-react";
 import React, { Component } from "react";
 import TextField from "../Components/Inputs/TextField";
-import ErrorMessage from "../Components/Text/error";
+import ErrorMessage from "../Components/Text/ErrorMessage";
 import { store } from "../store";
 
 interface LoginState {

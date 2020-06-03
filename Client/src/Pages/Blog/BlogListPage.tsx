@@ -1,17 +1,12 @@
 import axios from "axios";
 import { action, observable } from "mobx";
 import { observer } from "mobx-react";
-import React, { Component } from "react";
+import { Component, default as React } from "react";
 import { Link, Route, Switch } from "react-router-dom";
 import { IfAdmin } from "../../Components/Conditional/If";
+import { LoadData, loadingState } from "../../Components/LoadData/LoadData";
 import Blog from "../../Models/Blog";
 import BlogEntity from "./BlogCreatePage";
-
-interface BlogMode {
-	title: String;
-	id: String;
-	headerImagePath: String;
-}
 
 @observer
 export default class BlogPage extends Component {
@@ -22,27 +17,22 @@ export default class BlogPage extends Component {
 	@action
 	onFetched = (response: any) => {
 		let a: Blog[] = response.data.map((x: any) => new Blog(x));
-
-		this.Blogcontent = a.map((x: Blog) => <p>{x.title}</p>);
-		//this.Blogcontent = "get good hey";
-		console.log("it worked");
-		this.isLoading = false;
+		this.BlogList = a.map((x: Blog) => <p>{x.title}</p>);
+		this.requestState = "done";
 	};
 
 	@action
 	onError = (error: any) => {
-		console.error(error);
-		this.Blogcontent = [<p>"hello there"</p>];
+		this.requestState = "error";
 	};
 
 	@observable
-	private Blogcontent = [<p>hello</p>];
+	private BlogList: JSX.Element[];
 
 	@observable
-	private isLoading = true;
+	private requestState: loadingState = "loading";
 
 	render() {
-		console.log("initial render");
 		return (
 			<>
 				<Switch>
@@ -50,7 +40,9 @@ export default class BlogPage extends Component {
 						<div>
 							<h1>Blog</h1>
 							<p>WIP: This Is Not Complete, please move along</p>
-							{this.isLoading ? <p>Page is loading</p> : this.Blogcontent}
+							<LoadData requestState={this.requestState}>
+								{this.BlogList}
+							</LoadData>
 							<ul>
 								<IfAdmin>
 									<Link to="/blog/create">Create Blog</Link>

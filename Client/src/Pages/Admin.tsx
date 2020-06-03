@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router";
 import Form from "../Components/Form/Form";
 import TextArea from "../Components/Inputs/TextArea";
-import ErrorMessage from "../Components/Text/error";
+import ErrorMessage from "../Components/Text/ErrorMessage";
 import { store } from "../store";
 
 interface IState {
