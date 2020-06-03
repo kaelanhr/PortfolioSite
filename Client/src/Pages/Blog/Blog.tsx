@@ -1,5 +1,5 @@
 import axios from "axios";
-import { observable } from "mobx";
+import { action, observable } from "mobx";
 import { observer } from "mobx-react";
 import React, { Component } from "react";
 import { Link, Route, Switch } from "react-router-dom";
@@ -15,6 +15,7 @@ interface BlogMode {
 
 @observer
 export default class BlogPage extends Component {
+	@action
 	componentDidMount() {
 		let theThing = [];
 		let display: Blog[];
@@ -26,14 +27,18 @@ export default class BlogPage extends Component {
 				//this.Blogcontent = a.map((x: Blog) => <p>{x.title}</p>);
 				//	this.Blogcontent = [<p>hello there</p>];
 				this.Blogcontent = response.data;
+				this.isLoading = false;
 			})
 			.catch((error) => {
-				//this.Blogcontent = "Blogs could not be found";
+				this.Blogcontent = "Blogs could not be found";
 			});
 	}
 
 	@observable
 	private Blogcontent = "hi there";
+
+	@observable
+	private isLoading = true;
 
 	render() {
 		return (
@@ -43,7 +48,7 @@ export default class BlogPage extends Component {
 						<div>
 							<h1>Blog</h1>
 							<p>WIP: This Is Not Complete, please move along</p>
-							{this.Blogcontent.toString()}
+							{this.isLoading ? <p>Page is loading</p> : this.Blogcontent}
 							<ul>
 								<IfAdmin>
 									<Link to="/blog/create">Create Blog</Link>
