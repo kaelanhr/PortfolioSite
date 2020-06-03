@@ -15,32 +15,34 @@ interface BlogMode {
 
 @observer
 export default class BlogPage extends Component {
-	@action
 	componentDidMount() {
-		let theThing = [];
-		let display: Blog[];
-		axios
-			.get("/Api/Blog")
-			.then((response) => {
-				let a: Blog[] = response.data.results.map((x: any) => new Blog(x));
-
-				//this.Blogcontent = a.map((x: Blog) => <p>{x.title}</p>);
-				//	this.Blogcontent = [<p>hello there</p>];
-				this.Blogcontent = response.data;
-				this.isLoading = false;
-			})
-			.catch((error) => {
-				this.Blogcontent = "Blogs could not be found";
-			});
+		axios.get("/Api/Blog").then(this.onFetched).catch(this.onError);
 	}
 
+	@action
+	onFetched = (response: any) => {
+		let a: Blog[] = response.data.map((x: any) => new Blog(x));
+
+		this.Blogcontent = a.map((x: Blog) => <p>{x.title}</p>);
+		//this.Blogcontent = "get good hey";
+		console.log("it worked");
+		this.isLoading = false;
+	};
+
+	@action
+	onError = (error: any) => {
+		console.error(error);
+		this.Blogcontent = [<p>"hello there"</p>];
+	};
+
 	@observable
-	private Blogcontent = "hi there";
+	private Blogcontent = [<p>hello</p>];
 
 	@observable
 	private isLoading = true;
 
 	render() {
+		console.log("initial render");
 		return (
 			<>
 				<Switch>
