@@ -4,6 +4,7 @@ import { observer } from "mobx-react";
 import React, { Component } from "react";
 import { Link, Route, Switch } from "react-router-dom";
 import { IfAdmin } from "../../Components/Conditional/If";
+import Blog from "../../Models/Blog";
 import BlogEntity from "./CreateBlog";
 
 interface BlogMode {
@@ -13,11 +14,17 @@ interface BlogMode {
 }
 
 @observer
-export default class Blog extends Component {
+export default class BlogPage extends Component {
 	componentDidMount() {
+		let theThing = [];
+		let display: Blog[];
 		axios
 			.get("/Api/Blog")
 			.then((response) => {
+				let a: Blog[] = response.data.results.map((x: any) => new Blog(x));
+
+				//this.Blogcontent = a.map((x: Blog) => <p>{x.title}</p>);
+				//	this.Blogcontent = [<p>hello there</p>];
 				this.Blogcontent = response.data;
 			})
 			.catch((error) => {
@@ -26,7 +33,7 @@ export default class Blog extends Component {
 	}
 
 	@observable
-	Blogcontent: BlogMode[] = [];
+	private Blogcontent = "hi there";
 
 	render() {
 		return (

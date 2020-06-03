@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router";
 import NavigationBar from "../../Components/Navigation/NavigationBar";
 import About from "../../Pages/About";
 import Admin from "../../Pages/Admin";
-import Blog from "../../Pages/Blog/Blog";
+import BlogPage from "../../Pages/Blog/Blog";
 import Home from "../../Pages/Home";
 import Login from "../../Pages/Login";
 import Logout from "../../Pages/Logout";
@@ -26,7 +26,7 @@ export default class RoutPages extends Component {
 					<div className="page-content">
 						<Switch>
 							<Route path="/about" component={About} />
-							<Route path="/blog" component={Blog} />
+							<Route path="/blog" component={BlogPage} />
 							<Route exact path="/admin" component={Admin} />
 							<Route exact path="/login" component={Login} />
 							<Route exact path="/logout" component={Logout} />
