@@ -1,8 +1,10 @@
-export default class Blog {
+import AbstractModel, { IAbstractAttributes } from "./AbstractModel";
+
+export default class Blog extends AbstractModel {
 	// partial attributes
 	constructor(attributes?: Partial<IBlogAttributes>) {
 		// todo call a super constructor
-		//super(attributes);
+		super(attributes);
 
 		if (attributes) {
 			if (attributes.title) {
@@ -18,7 +20,7 @@ export default class Blog {
 	public title: string;
 }
 
-export interface IBlogAttributes {
+export interface IBlogAttributes extends IAbstractAttributes {
 	title: string;
 	headerImagePath: string;
 }

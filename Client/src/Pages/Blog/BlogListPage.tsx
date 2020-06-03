@@ -5,7 +5,7 @@ import { Component, default as React } from "react";
 import { Link, Route, Switch } from "react-router-dom";
 import { IfAdmin } from "../../Components/Conditional/If";
 import { LoadData, loadingState } from "../../Components/LoadData/LoadData";
-import Blog from "../../Models/Blog";
+import Blog, { IBlogAttributes } from "../../Models/Blog";
 import BlogEntity from "./BlogCreatePage";
 
 @observer
@@ -17,7 +17,7 @@ export default class BlogPage extends Component {
 	@action
 	onFetched = (response: any) => {
 		let a: Blog[] = response.data.map((x: any) => new Blog(x));
-		this.BlogList = a.map((x: Blog) => <p>{x.title}</p>);
+		this.BlogList = a.map((x: Blog) => <BlogListItem {...x} />);
 		this.requestState = "done";
 	};
 
@@ -66,4 +66,12 @@ export default class BlogPage extends Component {
 			</>
 		);
 	}
+}
+
+function BlogListItem(props: IBlogAttributes) {
+	return (
+		<div className="blog-item">
+			<a href={`/blog/${props.id}`}>{props.title}</a>
+		</div>
+	);
 }
