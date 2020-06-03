@@ -5,7 +5,7 @@ import React, { Component } from "react";
 import { Link, Route, Switch } from "react-router-dom";
 import { IfAdmin } from "../../Components/Conditional/If";
 import Blog from "../../Models/Blog";
-import BlogEntity from "./CreateBlog";
+import BlogEntity from "./BlogCreatePage";
 
 interface BlogMode {
 	title: String;

@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import Back from "../../Components/Button/Back";
 // import react, react-markdown-editor-lite, and a markdown parser you like
 import MarkdownIt from "markdown-it";
+import { observable } from "mobx";
+import React, { Component } from "react";
 import MdEditor from "react-markdown-editor-lite";
 // import style manually
 import "react-markdown-editor-lite/lib/index.css";
-import { observable } from "mobx";
+import Back from "../../Components/Button/Back";
 
 // Register plugins if required
 // MdEditor.use(YOUR_PLUGINS_HERE);

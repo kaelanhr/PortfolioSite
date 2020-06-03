@@ -3,12 +3,12 @@ import { Route, Switch } from "react-router";
 import NavigationBar from "../../Components/Navigation/NavigationBar";
 import About from "../../Pages/About";
 import Admin from "../../Pages/Admin";
-import BlogPage from "../../Pages/Blog/Blog";
 import Home from "../../Pages/Home";
 import Login from "../../Pages/Login";
 import Logout from "../../Pages/Logout";
 import Projects from "../../Pages/Projects";
 import { store } from "../../store";
+import BlogPage from "../Blog/BlogListPage";
 
 export default class RoutPages extends Component {
 	render() {
