@@ -1,29 +1,57 @@
 import { observer } from "mobx-react";
 import React, { Component } from "react";
 import ErrorMessage from "../Text/ErrorMessage";
-interface LoadingProps {
-	loadElement?: JSX.Element;
-	errorElement?: JSX.Element;
-	requestState: loadingState;
+import { observable, action } from "mobx";
+interface LoadingProps<T> {
+	promise: Promise<T>;
+	loadElement?: React.ReactNode;
+	errorElement?: (error: any) => React.ReactNode;
+	done: (data: T) => React.ReactNode;
 }
 
-export type loadingState = "error" | "loading" | "done";
-
 @observer
-export class LoadData extends Component<LoadingProps> {
+export class LoadData<T> extends React.Component<LoadingProps<T>> {
+	@observable
+	private requestState: "error" | "loading" | "done" = "loading";
+
+	@observable
+	private data: T;
+
+	@observable
+	private error: any;
+
+	@action
+	private onDone = (data: T) => {
+		this.requestState = "done";
+		this.data = data;
+		return data;
+	};
+
+	@action
+	private onError = (error: any) => {
+		this.requestState = "error";
+		this.error = error;
+		return error;
+	};
+
+	componentDidMount() {
+		this.props.promise.then(this.onDone).catch(this.onError);
+	}
+
 	render() {
-		let blogContent = () => {
-			switch (this.props.requestState) {
-				case "error":
-					return this.props.loadElement ? this.props.errorElement : <Error />;
-				case "done":
-					return this.props.children;
-				case "loading":
-				default:
-					return this.props.loadElement ? this.props.loadElement : <Loading />;
-			}
-		};
-		return blogContent();
+		switch (this.requestState) {
+			case "error":
+				return this.props.errorElement ? (
+					this.props.errorElement(this.error)
+				) : (
+					<Error />
+				);
+			case "done":
+				return this.props.done(this.data);
+			case "loading":
+			default:
+				return this.props.loadElement ? this.props.loadElement : <Loading />;
+		}
 	}
 }
 
