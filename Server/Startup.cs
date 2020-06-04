@@ -117,6 +117,8 @@ namespace PersonalSite
 			});
 
 			services.AddScoped<DataSeedService, DataSeedService>();
+			services.AddScoped<CrudService, CrudService>();
+
 		}
 
 		/// <summary>

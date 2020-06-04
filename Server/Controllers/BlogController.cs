@@ -3,8 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using PersonalSite.Models;
+using PersonalSite.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+
+
 
 namespace PersonalSite.Controllers
 {
@@ -19,15 +22,19 @@ namespace PersonalSite.Controllers
 		private readonly SiteDbContext _dbContext;
 		private readonly ILogger _logger;
 
+		private readonly CrudService _crudService;
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="BlogController"/> class.
 		/// </summary>
 		/// <param name="loggerFactory">Log controller actions.</param>
 		public BlogController(
 			ILoggerFactory loggerFactory,
-			SiteDbContext siteDbContext
+			SiteDbContext siteDbContext,
+			CrudService crudService
 			)
 		{
+			_crudService = crudService;
 			_logger = loggerFactory.CreateLogger<AccountController>();
 			_dbContext = siteDbContext;
 		}
@@ -58,7 +65,7 @@ namespace PersonalSite.Controllers
 		[Route("")]
 		public async Task<IEnumerable<Blog>> GetBlogAsync()
 		{
-			return await _dbContext.Blog.ToListAsync();
+			return await _crudService.Get<Blog>().ToListAsync();
 		}
 	}
 }

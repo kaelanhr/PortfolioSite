@@ -1,9 +1,12 @@
+using System;
+using System.ComponentModel.DataAnnotations;
+
 namespace PersonalSite.Models
 {
 	/// <summary>
 	/// Everything contained within a single blog post.
 	/// </summary>
-	public class BlogPost : AbstractModel
+	public class BlogPost : IAbstractModel
 	{
 		/// <summary>
 		/// Gets or sets blog content.
@@ -19,5 +22,8 @@ namespace PersonalSite.Models
 		/// Gets or sets the title of the blog.
 		/// </summary>
 		public string Title { get; set; }
+
+		[Key]
+		public Guid Id { get; set; }
 	}
 }

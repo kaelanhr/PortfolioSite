@@ -6,12 +6,11 @@ namespace PersonalSite.Models
 	/// <summary>
 	/// All shared model attributes.
 	/// </summary>
-	public abstract class AbstractModel
+	public interface IAbstractModel
 	{
 		/// <summary>
 		/// Gets or sets the primary key of the entity.
 		/// </summary>
-		[Key]
-		public Guid Id { get; set; }
+		Guid Id { get; set; }
 	}
 }

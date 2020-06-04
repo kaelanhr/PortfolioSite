@@ -1,9 +1,12 @@
+using System;
+using System.ComponentModel.DataAnnotations;
+
 namespace PersonalSite.Models
 {
 	/// <summary>
 	/// Any general site content which can be updated by site admins.
 	/// </summary>
-	public class SiteContent : AbstractModel
+	public class SiteContent : IAbstractModel
 	{
 		/// <summary>
 		/// Gets or sets title of the content.
@@ -14,5 +17,8 @@ namespace PersonalSite.Models
 		/// Gets or sets the content.
 		/// </summary>
 		public string Content { get; set; }
+
+		[Key]
+		public Guid Id { get; set; }
 	}
 }
