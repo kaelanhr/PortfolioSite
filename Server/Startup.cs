@@ -118,7 +118,6 @@ namespace PersonalSite
 
 			services.AddScoped<DataSeedService, DataSeedService>();
 			services.AddScoped<CrudService, CrudService>();
-
 		}
 
 		/// <summary>
@@ -157,8 +156,8 @@ namespace PersonalSite
 			app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapControllerRoute(
-	name: "default",
-	pattern: "{controller}/{action=Index}/{id?}");
+					name: "default",
+					pattern: "{controller}/{action=Index}/{id?}");
 			});
 
 			app.UseSpa(spa =>

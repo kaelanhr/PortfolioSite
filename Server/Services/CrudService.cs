@@ -6,32 +6,57 @@ using PersonalSite.Models;
 
 namespace PersonalSite.Services
 {
+	/// <summary>
+	/// Crud service is used for performing all crud
+	/// operations on entities.
+	/// </summary>
 	public class CrudService
 	{
 		private readonly ILogger _logger;
 		private readonly SiteDbContext _dbContext;
-		private readonly RoleManager<SiteRole> _roleManager;
-		private readonly SignInManager<SiteUser> _signInManager;
 		private readonly UserManager<SiteUser> _userManager;
 
-
+		/// <summary>
+		/// Initializes a new instance of the <see cref="CrudService"/> class.
+		/// </summary>
+		/// <param name="userManager">The User Manager used.</param>
+		/// <param name="dbContext">The dbContext used for this service.</param>
+		/// <param name="loggerFactory">The logger factory used.</param>
 		public CrudService(
 			UserManager<SiteUser> userManager,
-			SignInManager<SiteUser> signInManager,
 			SiteDbContext dbContext,
-			RoleManager<SiteRole> roleManager,
 			ILoggerFactory loggerFactory)
 		{
 			_dbContext = dbContext;
 			_userManager = userManager;
-			_signInManager = signInManager;
-			_roleManager = roleManager;
 			_logger = loggerFactory.CreateLogger<DataSeedService>();
 		}
 
-		public IQueryable<T> Get<T>() where T : class, IAbstractModel, new()
+		/// <summary>
+		/// Returns the db set of a given entity.
+		/// </summary>
+		/// <typeparam name="T">The entity being read.</typeparam>
+		/// <returns>An IQueryable dbSet of a particular entity.</returns>
+		public IQueryable<T> Get<T>()
+			where T : class, IAbstractModel, new()
 		{
-			return _dbContext.Blog as IQueryable<T>;
+			return _dbContext.Set<T>();
+		}
+
+		/// <summary>
+		/// Create an entity of the given type.
+		/// </summary>
+		/// <typeparam name="T">The type of entity being created.</typeparam>
+		/// <param name="entity">The entity being created.</param>
+		/// <returns>The entity which was saved.</returns>
+		public async Task<T> CreateAsync<T>(T entity)
+			where T : class, IAbstractModel, new()
+		{
+			var dbSet = _dbContext.Set<T>();
+			var entitySaved = dbSet.Add(entity).Entity;
+			await _dbContext.SaveChangesAsync();
+			_logger.LogInformation(4, $"Created a {entity.GetType()} with ID {entity.Id}");
+			return entitySaved;
 		}
 	}
 }

@@ -23,6 +23,7 @@ namespace PersonalSite.Models
 		/// </summary>
 		public string Title { get; set; }
 
+		/// <inheritdoc/>
 		[Key]
 		public Guid Id { get; set; }
 	}
