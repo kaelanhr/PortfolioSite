@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
@@ -57,6 +59,39 @@ namespace PersonalSite.Services
 			await _dbContext.SaveChangesAsync();
 			_logger.LogInformation(4, $"Created a {entity.GetType()} with ID {entity.Id}");
 			return entitySaved;
+		}
+
+		/// <summary>
+		/// update an entity of the given type.
+		/// </summary>
+		/// <typeparam name="T">The type of entity being created.</typeparam>
+		/// <param name="entity">The entity being created.</param>
+		/// <returns>The entity which was saved.</returns>
+		public async Task<T> UpdateAsync<T>(T entity)
+			where T : class, IAbstractModel, new()
+		{
+			var dbSet = _dbContext.Set<T>();
+			var entitySaved = dbSet.Update(entity).Entity;
+			await _dbContext.SaveChangesAsync();
+			_logger.LogInformation(4, $"Created a {entity.GetType()} with ID {entity.Id}");
+			return entitySaved;
+		}
+
+		/// <summary>
+		/// Delete an entity of the given type.
+		/// </summary>
+		/// <typeparam name="T">The generic type of the entity being deleted.</typeparam>
+		/// <param name="id">The id of the entity being deleted.</param>
+		/// <returns>The guid of the entity which has been deleted.</returns>
+		public async Task<Guid> Delete<T>(Guid id)
+			where T : class, IAbstractModel
+		{
+			var dbSet = _dbContext.Set<T>();
+			var entity = dbSet.Where(e => e.Id == id);
+			dbSet.Remove(entity.First());
+
+			await _dbContext.SaveChangesAsync();
+			return entity.First().Id;
 		}
 	}
 }
