@@ -1,12 +1,12 @@
 import axios from "axios";
-import { action, observable } from "mobx";
 import { observer } from "mobx-react";
 import { Component, default as React } from "react";
 import { Link, Route, Switch } from "react-router-dom";
 import { IfAdmin } from "../../Components/Conditional/If";
 import { LoadData } from "../../Components/LoadData/LoadData";
 import Blog, { IBlogAttributes } from "../../Models/Blog";
-import BlogEntity from "./BlogCreatePage";
+import BlogCreatePage from "./BlogCategoryCreatePage";
+import BlogEntity from "./BlogPostCreatePage";
 
 @observer
 export default class BlogPage extends Component {
@@ -27,7 +27,7 @@ export default class BlogPage extends Component {
 							/>
 							<ul>
 								<IfAdmin>
-									<Link to="/blog/create">Create Blog</Link>
+									<Link to="/blog/category/create">Create Blog</Link>
 									<Link to="/blog/update">Update Blog</Link>
 									<li>Search Blog</li>
 									<li>Create Blog</li>
@@ -38,8 +38,8 @@ export default class BlogPage extends Component {
 							</ul>
 						</div>
 					</Route>
-					<Route path="/blog/create">
-						<BlogEntity entityAction={"Create"} />
+					<Route path="/blog/category/create">
+						<BlogCreatePage entityAction={"Create"} />
 					</Route>
 					<Route path="/blog/update">
 						<BlogEntity entityAction={"Update"} />
