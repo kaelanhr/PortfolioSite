@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -58,6 +59,16 @@ namespace PersonalSite.Controllers
 		public async Task<IEnumerable<BlogCategory>> GetBlogAsync()
 		{
 			return await _crudService.Get<BlogCategory>().ToListAsync();
+		}
+
+		/// <summary>
+		/// deletes a particular blog.
+		/// </summary>
+		/// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
+		[HttpDelete]
+		[Route ("{id}")]
+		public async Task<Guid> DeleteBlogAsync(Guid id){
+			return await _crudService.DeleteAsync<BlogCategory> (id);
 		}
 	}
 }

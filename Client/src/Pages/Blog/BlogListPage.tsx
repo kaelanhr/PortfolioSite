@@ -5,6 +5,7 @@ import { Link, Route, Switch } from "react-router-dom";
 import { IfAdmin } from "../../Components/Conditional/If";
 import { LoadData } from "../../Components/LoadData/LoadData";
 import Blog, { IBlogAttributes } from "../../Models/Blog";
+import { store } from "../../store";
 import BlogCreatePage from "./BlogCategoryCreatePage";
 import BlogEntity from "./BlogPostCreatePage";
 
@@ -50,10 +51,30 @@ export default class BlogPage extends Component {
 	}
 }
 
-function BlogListItem(props: IBlogAttributes) {
-	return (
-		<div className="blog-item">
-			<a href={`/blog/${props.id}`}>{props.title}</a>
-		</div>
-	);
+class BlogListItem extends Component<IBlogAttributes> {
+	onDelete = () => {
+		let accepted = window.confirm(
+			`Are you sure you wish to delete: ${this.props.title}?`
+		);
+
+		if (accepted) {
+			axios
+				.delete(`/Api/Blog/${this.props.id}`)
+				.then(function (response) {
+					console.log(response);
+					store.history.push("/blog");
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		}
+	};
+	render() {
+		return (
+			<div className="blog-item">
+				<a href={`/blog/${this.props.id}`}>{this.props.title}</a>
+				<p onClick={this.onDelete}>Delete Blog</p>
+			</div>
+		);
+	}
 }

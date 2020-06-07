@@ -83,14 +83,14 @@ namespace PersonalSite.Services
 		/// <param name="id">The id of the entity being deleted.</param>
 		/// <returns>The guid of the entity which has been deleted.</returns>
 		public async Task<Guid> DeleteAsync<T>(Guid id)
-			where T : class, IAbstractModel
+		where T : class, IAbstractModel
 		{
 			var dbSet = _dbContext.Set<T>();
 			var entity = dbSet.Where(e => e.Id == id);
 			dbSet.Remove(entity.First());
 
 			await _dbContext.SaveChangesAsync();
-			return entity.First().Id;
+			return id;
 		}
 	}
 }
