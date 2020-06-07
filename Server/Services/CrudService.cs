@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
@@ -83,7 +82,7 @@ namespace PersonalSite.Services
 		/// <typeparam name="T">The generic type of the entity being deleted.</typeparam>
 		/// <param name="id">The id of the entity being deleted.</param>
 		/// <returns>The guid of the entity which has been deleted.</returns>
-		public async Task<Guid> Delete<T>(Guid id)
+		public async Task<Guid> DeleteAsync<T>(Guid id)
 			where T : class, IAbstractModel
 		{
 			var dbSet = _dbContext.Set<T>();
