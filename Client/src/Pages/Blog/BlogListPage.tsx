@@ -1,16 +1,20 @@
 import axios from "axios";
+import { action, observable } from 'mobx';
 import { observer } from "mobx-react";
 import { Component, default as React } from "react";
 import { Link, Route, Switch } from "react-router-dom";
 import { IfAdmin } from "../../Components/Conditional/If";
 import { LoadData } from "../../Components/LoadData/LoadData";
 import Blog, { IBlogAttributes } from "../../Models/Blog";
-import { store } from "../../store";
 import BlogCreatePage from "./BlogCategoryCreatePage";
 import BlogEntity from "./BlogPostCreatePage";
 
 @observer
 export default class BlogPage extends Component {
+
+	@observable
+	blogList: Blog[] = [];
+
 	render() {
 		return (
 			<>
@@ -22,8 +26,8 @@ export default class BlogPage extends Component {
 							<LoadData
 								promise={axios.get("/Api/Blog")}
 								done={(data) => {
-									let a: Blog[] = data.data.map((x: any) => new Blog(x));
-									return a.map((x: Blog) => <BlogListItem {...x} />);
+									this.blogList = data.data.map((x: any) => new Blog(x));
+									return <BlogList blogList={this.blogList} />;
 								}}
 							/>
 							<ul>
@@ -51,18 +55,28 @@ export default class BlogPage extends Component {
 	}
 }
 
-class BlogListItem extends Component<IBlogAttributes> {
-	onDelete = () => {
+interface IBlogListProps {
+	blogList: Blog[]
+}
+
+@observer
+class BlogList extends Component<IBlogListProps> {
+
+	@observable
+	blogList: Blog[] = this.props.blogList;
+
+	@action
+	onDelete = (title: string, id: string) => {
 		let accepted = window.confirm(
-			`Are you sure you wish to delete: ${this.props.title}?`
+			`Are you sure you wish to delete: ${title}?`
 		);
 
 		if (accepted) {
 			axios
-				.delete(`/Api/Blog/${this.props.id}`)
-				.then(function (response) {
+				.delete(`/Api/Blog/${id}`)
+				.then((response) => {
 					console.log(response);
-					store.history.push("/blog");
+					this.blogList = this.blogList.filter(b => b.id != id);
 				})
 				.catch((error) => {
 					console.log(error);
@@ -70,10 +84,22 @@ class BlogListItem extends Component<IBlogAttributes> {
 		}
 	};
 	render() {
+		return this.blogList.map(b => <BlogListItem {...b} onItemRemoved={this.onDelete} />)
+	}
+}
+
+interface IBlogItemProps extends IBlogAttributes {
+	onItemRemoved: Function
+}
+
+@observer
+class BlogListItem extends Component<IBlogItemProps> {
+
+	render() {
 		return (
 			<div className="blog-item">
 				<a href={`/blog/${this.props.id}`}>{this.props.title}</a>
-				<p onClick={this.onDelete}>Delete Blog</p>
+				<p onClick={() => this.props.onItemRemoved(this.props.title, this.props.id)}>Delete Blog</p>
 			</div>
 		);
 	}
