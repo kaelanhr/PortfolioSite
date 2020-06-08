@@ -84,7 +84,11 @@ class BlogList extends Component<IBlogListProps> {
 		}
 	};
 	render() {
-		return this.blogList.map(b => <BlogListItem {...b} onItemRemoved={this.onDelete} />)
+		return (
+			<div className="blog-items">
+				{this.blogList.map(b => <BlogListItem {...b} onItemRemoved={this.onDelete} />)}
+			</div>
+			)
 	}
 }
 
@@ -99,7 +103,7 @@ class BlogListItem extends Component<IBlogItemProps> {
 		return (
 			<div className="blog-item">
 				<a href={`/blog/${this.props.id}`}>{this.props.title}</a>
-				<p onClick={() => this.props.onItemRemoved(this.props.title, this.props.id)}>Delete Blog</p>
+				<img src="/Icons/bin-icon.svg" onClick={() => this.props.onItemRemoved(this.props.title, this.props.id)} />
 			</div>
 		);
 	}
