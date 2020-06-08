@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using PersonalSite.Models;
@@ -42,11 +44,17 @@ namespace PersonalSite.Controllers
 		[HttpPost]
 		[Authorize]
 		[Route("Create")]
-		public async Task<IActionResult> CreateBlogAsync([FromBody] BlogCategory blogCategory)
+		public async Task<BlogCategory> CreateBlogAsync([BindRequired, FromBody] BlogCategory blogCategory)
 		{
+			// cannot specify the guid.
+			if (blogCategory.Id != Guid.Empty)
+			{
+				Response.StatusCode = (int)HttpStatusCode.BadRequest;
+				return null;
+			}
+
 			_logger.LogInformation(4, "creating a blog.");
-			await _crudService.CreateAsync(blogCategory);
-			return Ok();
+			return await _crudService.CreateAsync(blogCategory);
 		}
 
 		/// <summary>
