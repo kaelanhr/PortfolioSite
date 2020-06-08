@@ -22,7 +22,6 @@ export default class BlogPage extends Component {
 					<Route exact path="/blog">
 						<div>
 							<h1>Blog</h1>
-							<p>WIP: This Is Not Complete, please move along</p>
 							<LoadData
 								promise={axios.get("/Api/Blog")}
 								done={(data) => {
@@ -34,11 +33,6 @@ export default class BlogPage extends Component {
 								<IfAdmin>
 									<Link to="/blog/category/create">Create Blog</Link>
 									<Link to="/blog/update">Update Blog</Link>
-									<li>Search Blog</li>
-									<li>Create Blog</li>
-									<li>Read Blog</li>
-									<li>Update Blog</li>
-									<li>Delete Blog</li>
 								</IfAdmin>
 							</ul>
 						</div>
@@ -103,7 +97,9 @@ class BlogListItem extends Component<IBlogItemProps> {
 		return (
 			<div className="blog-item">
 				<a href={`/blog/${this.props.id}`}>{this.props.title}</a>
-				<img src="/Icons/bin-icon.svg" onClick={() => this.props.onItemRemoved(this.props.title, this.props.id)} />
+				<IfAdmin>
+					<img src="/Icons/bin-icon.svg" onClick={() => this.props.onItemRemoved(this.props.title, this.props.id)} />
+				</IfAdmin>
 			</div>
 		);
 	}
