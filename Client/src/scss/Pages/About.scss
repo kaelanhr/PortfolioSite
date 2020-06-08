@@ -17,9 +17,10 @@ $leftContent: 5em;
 	.tab-full {
 		display: flex;
 	}
-	h2 {
+	h2,p,ol {
 		color: white;
 	}
+
 	.next-tab {
 		float: right;
 		margin: auto;
