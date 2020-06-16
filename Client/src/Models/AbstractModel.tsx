@@ -7,12 +7,12 @@ export default class AbstractModel implements IAbstractAttributes {
 		}
 	}
 
-	public id: string;
+	public id?: string;
 }
 
 /**
  * All entities have these common attribute.
  */
 export interface IAbstractAttributes {
-	id: string;
+	id?: string;
 }

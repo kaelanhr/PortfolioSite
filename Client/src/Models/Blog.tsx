@@ -1,4 +1,6 @@
 import AbstractModel, { IAbstractAttributes } from "./AbstractModel";
+import axios from "axios";
+import { store } from "../store";
 
 export default class Blog extends AbstractModel implements IBlogAttributes {
 	constructor(attributes?: Partial<IBlogAttributes>) {
@@ -14,11 +16,37 @@ export default class Blog extends AbstractModel implements IBlogAttributes {
 		}
 	}
 
-	public headerImagePath: string;
+	public headerImagePath?: string;
 	public title: string;
+
+	public createBlog = () => {
+		axios
+			.post("/Api/Blog/Create", {
+				Title: this.title,
+			})
+			.then(function (response) {
+				console.log(response);
+				store.history.push("/blog");
+			})
+			.catch((error) => {
+				console.log(error);
+				return "There was an error submitting your request";
+			});
+		return "";
+	};
+
+	public validate = () => {
+		let errorsArray:string[] = [];
+		console.log("the title is: ");
+		console.log(this.title);
+		if (!this.title) {
+			errorsArray.push("Blog Title is required");
+		}
+		return errorsArray;
+	};
 }
 
 export interface IBlogAttributes extends IAbstractAttributes {
 	title: string;
-	headerImagePath: string;
+	headerImagePath?: string;
 }
