@@ -37,8 +37,6 @@ export default class Blog extends AbstractModel implements IBlogAttributes {
 
 	public validate = () => {
 		let errorsArray:string[] = [];
-		console.log("the title is: ");
-		console.log(this.title);
 		if (!this.title) {
 			errorsArray.push("Blog Title is required");
 		}
