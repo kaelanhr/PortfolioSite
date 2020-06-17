@@ -23,7 +23,6 @@ export default class RoutPages extends Component {
 					</NavWrapper>
 				</Route>
 				<Route>
-					<NavigationBar displayHeader={true} />
 						<Switch>
 							<Route path="/about" component={About} />
 							<Route path="/blog" component={BlogPage} />
