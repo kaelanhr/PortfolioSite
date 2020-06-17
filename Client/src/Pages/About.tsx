@@ -1,74 +1,59 @@
-import { observable } from "mobx";
-import { observer } from "mobx-react";
-import React, { PureComponent } from "react";
+import React, { useState } from "react";
 import { ExternalLink } from "../Components/Links/ExternalLinks";
-import SocialMediaLinks from "../Components/Links/SocialMediaLinks";
-import { Tab, TabSet } from "../Components/Tabs/TabSet";
 import NavWrapper from "../Components/Navigation/NavWrapper";
 import HeaderContent from "../Components/Header/Header";
 
-interface SlideState {
-	value?: any;
-}
 const proImage = "/Images/Personal/profile.jpg";
-const personaImage = "/Images/Personal/profile-dwv.png";
+const personalImage = "/Images/Personal/profile-dwv.png";
 
-@observer
-export default class About extends PureComponent<{}, SlideState> {
-	constructor(props: any) {
-		super(props);
-	}
+export default function About() {
+	const [aboutImage, setImage] = useState(proImage);
 
-	@observable
-	profileImage: string = proImage;
-
-	ToggleProfileImage = () => {
-		if (this.profileImage == proImage) {
-			this.profileImage = personaImage;
+	let ToggleProfileImage = () => {
+		if (aboutImage == proImage) {
+			setImage(personalImage);
 		} else {
-			this.profileImage = proImage;
+			setImage(proImage);
 		}
 	};
 
-	render() {
-		return (
-			<>
-				<NavWrapper displayHeader={true}>
-					<HeaderContent name="about">
-						<div className="about-header-content">
-							<img
-								src={this.profileImage}
-								className="about-profile-image"
-								onClick={this.ToggleProfileImage}
-							/>
-							<br />
-							<h2>Hi,</h2>
-							<p>
-								I am Kaelan Reece, a Brisbane based Software Engineer who is
-								passionate about building high quality, user centred
-								applications. I enjoy problem solving, challenging myself and am
-								eager to meet new people and explore new places.
-							</p>
-							<br />
-							<p>
-								I am available for management and development of freelance or
-								open source projects.
-							</p>
-						</div>
-					</HeaderContent>
-				</NavWrapper>
-				<div className="page-wrapper">
-					<div className="page-content">
-						<Skills />
-						<TechnicalCompetencies />
-						<Qualifications />
-						<Experience />
-						<Interests />
+	return (
+		<>
+			<NavWrapper displayHeader={true}>
+				<HeaderContent name="about">
+					<div className="about-header-content">
+						<img
+							src={aboutImage}
+							className="about-profile-image"
+							onClick={ToggleProfileImage}
+						/>
+						<br />
+						<h2>Hi,</h2>
+						<p>
+							I am Kaelan Reece, a Brisbane based Software Engineer who is
+							passionate about building high quality, user centred applications.
+							I enjoy problem solving, challenging myself and am eager to meet
+							new people and explore new places.
+						</p>
+						<br />
+						<p>
+							I am available for management and development of freelance or open
+							source projects.
+						</p>
 					</div>
+				</HeaderContent>
+			</NavWrapper>
+			<div className="page-wrapper">
+				<div className="page-content">
+					<Skills />
+					<TechnicalCompetencies />
+					<Qualifications />
+					<Experience />
+					<Interests />
 				</div>
-			</>
-		);
-	}
+			</div>
+		</>
+	);
 }
 
 function Qualifications() {
