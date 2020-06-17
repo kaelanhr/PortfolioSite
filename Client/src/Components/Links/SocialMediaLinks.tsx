@@ -7,10 +7,10 @@ export default function SocialMediaLinks() {
 	return (
 		<>
 			<div className="social-links">
-				<SocialLink link="https://github.com/KaeIan/" iconPath="github.png" />
+				<SocialLink link="https://github.com/KaeIan/" iconPath="github.svg" />
 				<SocialLink
 					link="https://www.linkedin.com/in/kaelan-reece/"
-					iconPath="linkedin.png"
+					iconPath="linkedin.svg"
 				/>
 				<SocialLink
 					link="mailto:kaelanreece@gmail.com"

@@ -2,6 +2,8 @@ import { observer } from "mobx-react";
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { store } from "../../store";
+import SocialMediaLinks from '../Links/SocialMediaLinks';
+import HeaderContent from '../Header/Header';
 
 interface NavItemProps {
 	linkUrl: string;
@@ -15,7 +17,6 @@ interface IState {
 }
 
 interface NavBarProps {
-	displayNavBar: boolean;
 	displayHeader: boolean;
 }
 
@@ -41,7 +42,7 @@ export default class NavigationBar extends Component<NavBarProps, IState> {
 				displayName: "Admin",
 				isDisplayed: store.hasBackendAccess,
 			},
-			{ linkUrl: "projects", displayName: "Projects", isDisplayed: false },
+			{ linkUrl: "projects", displayName: "Projects", isDisplayed: true },
 			{ linkUrl: "blog", displayName: "Blog", isDisplayed: true },
 			{ linkUrl: "about", displayName: "About", isDisplayed: true },
 			{ linkUrl: "", displayName: "Home", isDisplayed: true },
@@ -60,7 +61,7 @@ export default class NavigationBar extends Component<NavBarProps, IState> {
 
 		return (
 			<>
-				<div className="nav-bar">
+				<div className="navigation">
 					<h1>{this.props.displayHeader ? "Kaelan Reece" : ""}</h1>
 					<ul>{htmlLinks}</ul>
 				</div>

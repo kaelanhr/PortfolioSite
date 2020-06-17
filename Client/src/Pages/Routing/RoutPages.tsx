@@ -9,6 +9,8 @@ import Logout from "../../Pages/Logout";
 import Projects from "../../Pages/Projects";
 import { store } from "../../store";
 import BlogPage from "../Blog/BlogListPage";
+import NewNavigationBar from '../../Components/Navigation/NavigationBar';
+import NavWrapper from '../../Components/Navigation/NavWrapper';
 
 export default class RoutPages extends Component {
 	render() {
@@ -16,14 +18,12 @@ export default class RoutPages extends Component {
 		return (
 			<Switch>
 				<Route exact path="/">
-					<NavigationBar displayNavBar={true} displayHeader={false} />
-					<div id="home-slide">
+					<NavWrapper>
 						<Home />
-					</div>
+					</NavWrapper>
 				</Route>
 				<Route>
-					<NavigationBar displayNavBar={true} displayHeader={true} />
-					<div className="page-content">
+					<NavigationBar displayHeader={true} />
 						<Switch>
 							<Route path="/about" component={About} />
 							<Route path="/blog" component={BlogPage} />
@@ -33,7 +33,6 @@ export default class RoutPages extends Component {
 							<Route exact path="/projects" component={Projects} />
 							<Route component={NotFound} />
 						</Switch>
-					</div>
 				</Route>
 			</Switch>
 		);

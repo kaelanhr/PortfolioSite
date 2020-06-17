@@ -4,6 +4,8 @@ import React, { PureComponent } from "react";
 import { ExternalLink } from "../Components/Links/ExternalLinks";
 import SocialMediaLinks from "../Components/Links/SocialMediaLinks";
 import { Tab, TabSet } from "../Components/Tabs/TabSet";
+import NavWrapper from "../Components/Navigation/NavWrapper";
+import HeaderContent from "../Components/Header/Header";
 
 interface SlideState {
 	value?: any;
@@ -31,49 +33,55 @@ export default class About extends PureComponent<{}, SlideState> {
 	render() {
 		return (
 			<>
-				<h1>About</h1>
-				<div id="about-content">
-					<div className="personal-social">
+				<NavWrapper>
+					<HeaderContent name="about">
 						<img
 							src={this.profileImage}
 							className="about-profile-image"
 							onClick={this.ToggleProfileImage}
 						/>
-						<SocialMediaLinks />
-					</div>
-
-					<TabSet displayTop={false}>
-						<Tab name="Info" index={0}>
-							<Info />
-						</Tab>
-						<Tab name="Interests" index={1}>
-							<Interests />
-						</Tab>
-						<Tab name="Experience" index={2}>
-							<Experience />
-						</Tab>
-						<Tab name="Education" index={3}>
-							<Education />
-						</Tab>
-					</TabSet>
+						<p>
+							Hi, I am Kaelan Reece, a Brisbane based Software Engineer who is
+							passionate about building high quality, user centred applications.
+							I enjoy problem solving, challenging myself and am eager to meet
+							new people and explore new places. I am available for management
+							and development of freelance or open source projects.
+						</p>
+					</HeaderContent>
+				</NavWrapper>
+				<div className="page-content">
+					<Info />
+					<Skills />
+					<TechnicalCompetencies />
+					<Qualifications />
+					<Experience />
+					<Interests />
 				</div>
 			</>
 		);
 	}
 }
 
-function Education() {
+function Qualifications() {
 	return (
 		<>
 			<h2>Qualifications</h2>
 			<ul>
 				<li>
-					<ExternalLink link="https://www.qut.edu.au/">QUT</ExternalLink>{" "}
-					Bachelor of Business (Marketing)
+					<p>Bachelor of Business (Marketing)</p>
+					<p>
+						<ExternalLink link="https://www.qut.edu.au/">QUT</ExternalLink> -
+						Gardens Point Brisbane QLD
+					</p>
+					<p>2013 - 2020</p>
 				</li>
 				<li>
-					<ExternalLink link="https://www.qut.edu.au/">QUT</ExternalLink>{" "}
-					Bachelor of Information Technology (Computer Science)
+					<p>Bachelor of Information Technology (Computer Science)</p>
+					<p>
+						<ExternalLink link="https://www.qut.edu.au/">QUT</ExternalLink> -
+						Gardens Point Brisbane QLD
+					</p>
+					<p>2013 - 2020</p>
 				</li>
 			</ul>
 		</>
@@ -90,6 +98,27 @@ function Interests() {
 				<li>Writing Science Fiction</li>
 				<li>Soccer</li>
 				<li>Card Games</li>
+			</ul>
+		</>
+	);
+}
+
+function Experience() {
+	return (
+		<>
+			<h2>Experience</h2>
+			<ul>
+				<li>
+					<p>Bot Squad Lead</p>
+					<p>Codebots/WorkingMouse - Brisbane QLD </p> <p>2019 - Present </p>
+				</li>
+				<li>
+					<p>Lead Tools Engineer </p>WorkingMouse - Brisbane QLD{" "}
+					<p>2018 - 2019 </p>
+				</li>
+				<li>
+					<p>Tools Engineer</p>Working Mouse - Brisbane QLD <p>2017 - 2018</p>
+				</li>
 			</ul>
 		</>
 	);
@@ -121,20 +150,37 @@ function Info() {
 	);
 }
 
-function Experience() {
+function Skills() {
 	return (
 		<>
-			<h2>Experience In</h2>
+			<h2>Skills</h2>
 			<ul>
-				<li>Software Architecture</li>
-				<li>Project Management</li>
-				<li>Agile Management and Development</li>
-				<li>Onboarding and Training Developers</li>
-				<li>Front End Development</li>
-				<li>Back End Development</li>
-				<li>Mobile Application Development</li>
-				<li>Technical Writing</li>
-				<li>CI/CD Technology</li>
+				<li>Software Architecture & Design </li>
+				<li>Agile Project Management & Development </li>
+				<li>Technical Writing & Documentation</li>
+				<li>Front/Back End Web Development </li>
+				<li>Mobile Development</li>
+			</ul>
+		</>
+	);
+}
+function TechnicalCompetencies() {
+	return (
+		<>
+			<h2>Technical Competencies</h2>
+			<ul>
+				<li>ASP Net Core (C#) & Entity Framework </li>
+				<li>Databases (PostgreSQL, SQL Server & MySQL) </li>
+				<li>React </li>
+				<li>Java </li>
+				<li>CI/CD Technology </li>
+				<li>Docker </li>
+				<li>Linux </li>
+				<li>powershell </li>
+				<li>Git </li>
+				<li>HTML, SCSS, JavaScript </li>
+				<li>Python </li>
+				<li>Adobe Photoshop, Premier & Illustrator</li>
 			</ul>
 		</>
 	);
