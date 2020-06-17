@@ -59,7 +59,6 @@ export default class About extends PureComponent<{}, SlideState> {
 				</NavWrapper>
 				<div className="page-wrapper">
 					<div className="page-content">
-						<Info />
 						<Skills />
 						<TechnicalCompetencies />
 						<Qualifications />
@@ -130,32 +129,6 @@ function Experience() {
 					<p>Tools Engineer</p>Working Mouse - Brisbane QLD <p>2017 - 2018</p>
 				</li>
 			</ul>
-		</>
-	);
-}
-
-function Info() {
-	return (
-		<>
-			<h2>Info</h2>
-			<p>
-				Kaelan specializes in project management of technical teams, developing
-				web applications using agile methodologies, backend systems architecture
-				and optimizing business processes through technology.
-			</p>
-			<p>
-				He enjoys problem solving, challenging himself and expanding his
-				skillset. Whilst he has lived his whole life in Australia, he is eager
-				to travel the world.
-			</p>
-			<p>
-				He is available for management and development of freelance or open
-				source projects.
-			</p>
-			<p>
-				Aside from his independent projects and collaboration with developers,
-				he works in a senior position as the Bot Squad Lead of Codebots
-			</p>
 		</>
 	);
 }
