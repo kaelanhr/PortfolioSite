@@ -59,6 +59,11 @@
 	width: 100%;
 	height: 694px;
 	background-color: whitesmoke;
+	display: flex;
+	align-items: center;
+	margin-left: auto;
+	margin-right: auto;
+	justify-content: center;
 }
 
 .home {
@@ -83,10 +88,6 @@
 }
 
 .welcome-text {
-	margin-left: 30%;
-	top: 10rem;
-	position: absolute;
-	align-items: center;
 	h1 {
 		color: #EFEFEF;
 	}

@@ -18,7 +18,7 @@ export default class RoutPages extends Component {
 		return (
 			<Switch>
 				<Route exact path="/">
-					<NavWrapper>
+					<NavWrapper displayHeader={false}>
 						<Home />
 					</NavWrapper>
 				</Route>

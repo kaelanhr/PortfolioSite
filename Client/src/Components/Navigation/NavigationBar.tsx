@@ -16,7 +16,7 @@ interface IState {
 	isLoading: boolean;
 }
 
-interface NavBarProps {
+export interface NavBarProps {
 	displayHeader: boolean;
 }
 

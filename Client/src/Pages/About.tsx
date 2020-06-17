@@ -33,7 +33,7 @@ export default class About extends PureComponent<{}, SlideState> {
 	render() {
 		return (
 			<>
-				<NavWrapper>
+				<NavWrapper displayHeader={true}>
 					<HeaderContent name="about">
 						<img
 							src={this.profileImage}

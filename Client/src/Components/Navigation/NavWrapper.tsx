@@ -1,14 +1,14 @@
 import React from "react";
-import NavigationBar from "./NavigationBar";
+import NavigationBar, { NavBarProps } from "./NavigationBar";
 
-interface IProps {
+interface IProps extends NavBarProps {
 	children?: React.ReactNode;
 }
 
 export default function NavWrapper(props: IProps) {
 	return (
 		<>
-			<NavigationBar displayHeader={false} />
+			<NavigationBar displayHeader={props.displayHeader} />
 				{props.children}
 			<div className="navigation-bar" />
 		</>)
