@@ -35,27 +35,37 @@ export default class About extends PureComponent<{}, SlideState> {
 			<>
 				<NavWrapper displayHeader={true}>
 					<HeaderContent name="about">
-						<img
-							src={this.profileImage}
-							className="about-profile-image"
-							onClick={this.ToggleProfileImage}
-						/>
-						<p>
-							Hi, I am Kaelan Reece, a Brisbane based Software Engineer who is
-							passionate about building high quality, user centred applications.
-							I enjoy problem solving, challenging myself and am eager to meet
-							new people and explore new places. I am available for management
-							and development of freelance or open source projects.
-						</p>
+						<div className="about-header-content">
+							<img
+								src={this.profileImage}
+								className="about-profile-image"
+								onClick={this.ToggleProfileImage}
+							/>
+							<br />
+							<h2>Hi,</h2>
+							<p>
+								I am Kaelan Reece, a Brisbane based Software Engineer who is
+								passionate about building high quality, user centred
+								applications. I enjoy problem solving, challenging myself and am
+								eager to meet new people and explore new places.
+							</p>
+							<br />
+							<p>
+								I am available for management and development of freelance or
+								open source projects.
+							</p>
+						</div>
 					</HeaderContent>
 				</NavWrapper>
-				<div className="page-content">
-					<Info />
-					<Skills />
-					<TechnicalCompetencies />
-					<Qualifications />
-					<Experience />
-					<Interests />
+				<div className="page-wrapper">
+					<div className="page-content">
+						<Info />
+						<Skills />
+						<TechnicalCompetencies />
+						<Qualifications />
+						<Experience />
+						<Interests />
+					</div>
 				</div>
 			</>
 		);
@@ -176,7 +186,7 @@ function TechnicalCompetencies() {
 				<li>CI/CD Technology </li>
 				<li>Docker </li>
 				<li>Linux </li>
-				<li>powershell </li>
+				<li>Powershell </li>
 				<li>Git </li>
 				<li>HTML, SCSS, JavaScript </li>
 				<li>Python </li>

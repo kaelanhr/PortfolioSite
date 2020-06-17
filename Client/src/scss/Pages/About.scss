@@ -27,15 +27,25 @@ $leftContent: 5em;
 	}
 }
 
-.about-profile-image {
-	height: 20em;
-	border-radius: 2em;
-	border: 1px solid #707070;
-	margin-top: 2em;
-	margin-left: 2em;
-}
-
 #about-slide {
 	padding-top: 7em;
 	height: 47em;
+}
+
+.about-header-content {
+	width: 40rem;
+	img {
+		text-align: center;
+		margin: auto;
+		display: flex;
+		height: 20em;
+		width: 20em;
+		border-radius: 50%;
+		border: 1px solid #707070;
+	}
+
+	p,
+	h2 {
+		color: white;
+	}
 }

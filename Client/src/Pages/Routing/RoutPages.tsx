@@ -11,6 +11,7 @@ import { store } from "../../store";
 import BlogPage from "../Blog/BlogListPage";
 import NewNavigationBar from '../../Components/Navigation/NavigationBar';
 import NavWrapper from '../../Components/Navigation/NavWrapper';
+import SocialMediaLinks from '../../Components/Links/SocialMediaLinks';
 
 export default class RoutPages extends Component {
 	render() {
@@ -32,6 +33,7 @@ export default class RoutPages extends Component {
 							<Route exact path="/projects" component={Projects} />
 							<Route component={NotFound} />
 						</Switch>
+						<SocialMediaLinks/>
 				</Route>
 			</Switch>
 		);

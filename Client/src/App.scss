@@ -29,13 +29,9 @@ h1 {
 }
 
 body {
-	background-color: #EFEFEF;
+	background-color: #efefef;
 	margin: 0px;
 	overflow-y: scroll;
-}
-
-h2 {
-	color: #16398b;
 }
 
 label,
@@ -49,16 +45,20 @@ label::before {
 	white-space: pre;
 }
 
+.page-wrapper {
+	display: flex;
+	justify-content: center;
+}
+
 .page-content {
 	display: block;
 	position: relative;
-	background-color: #E5E5E5;
+	background-color: #e5e5e5;
 
 	padding-top: 2rem;
 	padding-bottom: 2rem;
 	padding-left: 2rem;
-	margin-left: 8em;
-	margin-right: 8em;
+	padding-right: 2rem;
 	border-radius: 15px;
 	min-width: 800px;
 	width: 60%;
@@ -71,6 +71,10 @@ label::before {
 	h1 {
 		margin-left: 1em;
 		padding-top: 0.5em;
+	}
+	h2 {
+		color: #16398b;
+		padding-top: 0.5rem;
 	}
 
 	h1,
@@ -89,7 +93,7 @@ label::before {
 		top: 2rem;
 	}
 	h2 {
-		margin:0;
+		margin: 0;
 	}
 }
 

@@ -78,7 +78,7 @@
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
-	background-color: (rgba($color: #000000, $alpha: 0.8));
+	background-color: (rgba($color: #000000, $alpha: 0.85));
 	top: 0;
 	display: block;
 	width: 100%;
@@ -89,13 +89,15 @@
 
 .welcome-text {
 	h1 {
-		color: #EFEFEF;
+		color: #efefef;
 	}
 	h2 {
-		color: #DEDEDE;
+		color: #dedede;
 	}
 	line-height: 0.5rem;
 }
+
+
 
 .navigation {
 	z-index: 20;
