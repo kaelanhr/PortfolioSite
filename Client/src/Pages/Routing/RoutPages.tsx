@@ -9,9 +9,9 @@ import Logout from "../../Pages/Logout";
 import Projects from "../../Pages/Projects";
 import { store } from "../../store";
 import BlogPage from "../Blog/BlogListPage";
-import NewNavigationBar from '../../Components/Navigation/NavigationBar';
-import NavWrapper from '../../Components/Navigation/NavWrapper';
-import SocialMediaLinks from '../../Components/Links/SocialMediaLinks';
+import NewNavigationBar from "../../Components/Navigation/NavigationBar";
+import NavWrapper from "../../Components/Navigation/NavWrapper";
+import SocialMediaLinks from "../../Components/Links/SocialMediaLinks";
 
 export default class RoutPages extends Component {
 	render() {
@@ -19,21 +19,20 @@ export default class RoutPages extends Component {
 		return (
 			<Switch>
 				<Route exact path="/">
-					<NavWrapper displayHeader={false}>
-						<Home />
-					</NavWrapper>
+					<Home />
+					<SocialMediaLinks />
 				</Route>
 				<Route>
-						<Switch>
-							<Route path="/about" component={About} />
-							<Route path="/blog" component={BlogPage} />
-							<Route exact path="/admin" component={Admin} />
-							<Route exact path="/login" component={Login} />
-							<Route exact path="/logout" component={Logout} />
-							<Route exact path="/projects" component={Projects} />
-							<Route component={NotFound} />
-						</Switch>
-						<SocialMediaLinks/>
+					<Switch>
+						<Route path="/about" component={About} />
+						<Route path="/blog" component={BlogPage} />
+						<Route exact path="/admin" component={Admin} />
+						<Route exact path="/login" component={Login} />
+						<Route exact path="/logout" component={Logout} />
+						<Route path="/project" component={Projects} />
+						<Route component={NotFound} />
+					</Switch>
+					<SocialMediaLinks />
 				</Route>
 			</Switch>
 		);

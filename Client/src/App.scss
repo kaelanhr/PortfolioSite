@@ -2,6 +2,7 @@
 @import "scss/Pages/Blog.scss";
 @import "scss/Components/Navigation/NavigationBar.scss";
 @import "scss/Components/Links/SocialMediaLinks.scss";
+@import "scss/Components/Project/ProjectList.scss";
 @import "scss/Pages/Home.scss";
 
 $HomeLeftPadding: 48em;
@@ -95,6 +96,19 @@ label::before {
 	h2 {
 		margin: 0;
 	}
+}
+.list-content {
+	display: flex;
+	position: relative;
+	background-color: #e5e5e5;
+
+	padding-top: 2rem;
+	padding-bottom: 2rem;
+	padding-left: 2rem;
+	padding-right: 2rem;
+	border-radius: 15px;
+	min-width: 800px;
+	width: 80%;
 }
 
 /* Style page content */

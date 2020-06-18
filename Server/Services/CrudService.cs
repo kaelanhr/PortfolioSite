@@ -44,6 +44,12 @@ namespace PersonalSite.Services
 			return _dbContext.Set<T>();
 		}
 
+		public IQueryable<T> GetById<T>(Guid id)
+			where T : class, IAbstractModel, new()
+		{
+			return Get<T>().Where(model => model.Id == id);
+		}
+
 		/// <summary>
 		/// Create an entity of the given type.
 		/// </summary>

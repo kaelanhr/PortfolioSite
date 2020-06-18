@@ -45,6 +45,11 @@ namespace PersonalSite.Models
 		/// </summary>
 		public DbSet<SiteUser> SiteUser { get; set; }
 
+		/// <summary>
+		/// Gets or sets the project so they can be managed by EF.
+		/// </summary>
+		public DbSet<Project> Project { get; set; }
+
 		/// <inheritdoc/>
 		protected override void OnModelCreating(ModelBuilder builder)
 		{

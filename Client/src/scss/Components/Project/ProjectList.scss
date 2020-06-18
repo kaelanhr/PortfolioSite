@@ -1,0 +1,17 @@
+.project-list {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #e5e5e5;
+	.project {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 20rem;
+		width: 20rem;
+		background-color: skyblue;
+		position: relative;
+		top: 2rem;
+		margin-right: 5rem;
+	}
+}
