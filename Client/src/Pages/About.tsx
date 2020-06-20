@@ -2,11 +2,30 @@ import React, { useState } from "react";
 import { ExternalLink } from "../Components/Links/ExternalLinks";
 import NavWrapper from "../Components/Navigation/NavWrapper";
 import HeaderContent from "../Components/Header/Header";
+import PageLayout from "./PageLayout";
 
 const proImage = "/Images/Personal/profile.jpg";
 const personalImage = "/Images/Personal/profile-dwv.png";
 
 export default function About() {
+	return (
+		<>
+			<PageLayout displayHeader={true} headerComponent={<AboutHeader />}>
+				<div className="page-wrapper">
+					<div className="page-content">
+						<Skills />
+						<TechnicalCompetencies />
+						<Qualifications />
+						<Experience />
+						<Interests />
+					</div>
+				</div>
+			</PageLayout>
+		</>
+	);
+}
+
+export function AboutHeader() {
 	const [aboutImage, setImage] = useState(proImage);
 
 	let ToggleProfileImage = () => {
@@ -16,43 +35,29 @@ export default function About() {
 			setImage(proImage);
 		}
 	};
-
 	return (
-		<>
-			<NavWrapper displayHeader={true}>
-				<HeaderContent name="about">
-					<div className="about-header-content">
-						<img
-							src={aboutImage}
-							className="about-profile-image"
-							onClick={ToggleProfileImage}
-						/>
-						<br />
-						<h2>Hi,</h2>
-						<p>
-							I am Kaelan Reece, a Brisbane based Software Engineer who is
-							passionate about building high quality, user centred applications.
-							I enjoy problem solving, challenging myself and am eager to meet
-							new people and explore new places.
-						</p>
-						<br />
-						<p>
-							I am available for management and development of freelance or open
-							source projects.
-						</p>
-					</div>
-				</HeaderContent>
-			</NavWrapper>
-			<div className="page-wrapper">
-				<div className="page-content">
-					<Skills />
-					<TechnicalCompetencies />
-					<Qualifications />
-					<Experience />
-					<Interests />
-				</div>
+		<HeaderContent name="about">
+			<div className="about-header-content">
+				<img
+					src={aboutImage}
+					className="about-profile-image"
+					onClick={ToggleProfileImage}
+				/>
+				<br />
+				<h2>Hi,</h2>
+				<p>
+					I am Kaelan Reece, a Brisbane based Software Engineer who is
+					passionate about building high quality, user centred applications. I
+					enjoy problem solving, challenging myself and am eager to meet new
+					people and explore new places.
+				</p>
+				<br />
+				<p>
+					I am available for management and development of freelance or open
+					source projects.
+				</p>
 			</div>
-		</>
+		</HeaderContent>
 	);
 }
 
