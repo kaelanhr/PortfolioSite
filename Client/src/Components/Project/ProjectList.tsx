@@ -9,7 +9,7 @@ interface projectProps {
 export default function ProjectList(props: projectProps) {
 	let listItems = props.list.map((x) => (
 			<div className="project">
-				<Link to={`/Project/${x.id}`}>{x.title}</Link>
+				<Link to={`/projects/${x.id}`}>{x.title}</Link>
 			</div>
 	));
 	return (

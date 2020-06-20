@@ -29,7 +29,7 @@ export default class RoutPages extends Component {
 						<Route exact path="/admin" component={Admin} />
 						<Route exact path="/login" component={Login} />
 						<Route exact path="/logout" component={Logout} />
-						<Route path="/project" component={Projects} />
+						<Route path="/projects" component={Projects} />
 						<Route component={NotFound} />
 					</Switch>
 					<SocialMediaLinks />
