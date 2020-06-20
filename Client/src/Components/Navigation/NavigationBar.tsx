@@ -11,23 +11,14 @@ interface NavItemProps {
 	isDisplayed: boolean;
 }
 
-interface IState {
-	isAuthenticated: boolean;
-	isLoading: boolean;
-}
-
 export interface NavBarProps {
 	displayHeader: boolean;
 }
 
 @observer
-export default class NavigationBar extends Component<NavBarProps, IState> {
+export default class NavigationBar extends Component<NavBarProps> {
 	constructor(props: any) {
 		super(props);
-		this.state = {
-			isAuthenticated: false,
-			isLoading: true,
-		};
 	}
 
 	render() {

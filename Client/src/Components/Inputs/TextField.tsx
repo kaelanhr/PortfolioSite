@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import { observer } from 'mobx-react';
-import { action } from 'mobx';
 
 export interface TextFieldProps<T> {
 	model: T;

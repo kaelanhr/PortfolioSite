@@ -41,16 +41,12 @@ export class LoadData<T> extends React.Component<LoadingProps<T>> {
 	render() {
 		switch (this.requestState) {
 			case "error":
-				return this.props.errorElement ? (
-					this.props.errorElement(this.error)
-				) : (
-					<Error />
-				);
+				return this.props.errorElement ?? <Error />
 			case "done":
 				return this.props.done(this.data);
 			case "loading":
 			default:
-				return this.props.loadElement ? this.props.loadElement : <Loading />;
+				return this.props.loadElement ?? <Loading />;
 		}
 	}
 }

@@ -6,7 +6,6 @@ import React, { Component } from "react";
 import Back from "../../Components/Button/Back";
 import TextField from "../../Components/Inputs/TextField";
 import ErrorMessage from "../../Components/Text/ErrorMessage";
-import { store } from "../../store";
 import Blog from "../../Models/Blog";
 
 export interface BlogProps {

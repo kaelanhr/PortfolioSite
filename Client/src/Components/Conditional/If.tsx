@@ -5,8 +5,6 @@ import { store } from "../../store";
 interface IProps {
 	renderCondition: boolean;
 }
-
-@observer
 export default class If extends Component<IProps> {
 	render() {
 		if (this.props.renderCondition) {
@@ -17,7 +15,6 @@ export default class If extends Component<IProps> {
 	}
 }
 
-@observer
 export class IfAdmin extends Component {
 	render() {
 		return (

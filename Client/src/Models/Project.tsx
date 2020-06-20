@@ -27,7 +27,7 @@ export default class Project extends AbstractModel
 		axios
 			.post("/Api/Project/Create", {
 				Title: this.title,
-				content: this.content
+				content: this.content,
 			})
 			.then(function (response) {
 				console.log(response);
@@ -38,6 +38,17 @@ export default class Project extends AbstractModel
 				return "There was an error submitting your request";
 			});
 		return "";
+	};
+
+	public validate = () => {
+		let errorsArray: string[] = [];
+		if (!this.title) {
+			errorsArray.push("Project Title is required");
+		}
+		if (!this.content) {
+			errorsArray.push("Content Cannot be empty");
+		}
+		return errorsArray;
 	};
 }
 
