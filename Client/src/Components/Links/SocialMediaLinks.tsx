@@ -6,11 +6,11 @@ import { ExternalLink } from "./ExternalLinks";
 import { ImageLinkProps, LinkProps } from "./LinkProps";
 const socialPath = "/Icons/Social/";
 
-interface IProps {
+interface themeProps {
 	theme: "light" | "dark";
 }
 
-export default function SocialMediaLinks(props: IProps) {
+export default function SocialMediaLinks(props: themeProps) {
 	return (
 		<>
 			<div className={`social-links ${props.theme}`}>
