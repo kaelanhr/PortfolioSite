@@ -1,21 +1,37 @@
+import { ReactComponent as GitHubLogo } from "./github.svg";
+import { ReactComponent as LinkedInLogo } from "./linkedin.svg";
+import { ReactComponent as MailIcon } from "./mail-icon.svg";
 import React from "react";
 import { ExternalLink } from "./ExternalLinks";
-import { ImageLinkProps } from "./LinkProps";
+import { ImageLinkProps, LinkProps } from "./LinkProps";
 const socialPath = "/Icons/Social/";
 
-export default function SocialMediaLinks() {
+interface IProps {
+	theme: "light" | "dark";
+}
+
+export default function SocialMediaLinks(props: IProps) {
 	return (
 		<>
-			<div className="social-links">
-				<SocialLink link="https://github.com/KaeIan/" iconPath="github.svg" />
-				<SocialLink
+			<div className={`social-links ${props.theme}`}>
+				<ExternalLink
+					link="https://github.com/KaeIan/"
+					className="social-media-link"
+				>
+					<GitHubLogo />
+				</ExternalLink>
+				<ExternalLink
 					link="https://www.linkedin.com/in/kaelan-reece/"
-					iconPath="linkedin.svg"
-				/>
-				<SocialLink
+					className="social-media-link"
+				>
+					<LinkedInLogo />
+				</ExternalLink>
+				<ExternalLink
 					link="mailto:kaelanreece@gmail.com"
-					iconPath="mailicon-white.png"
-				/>
+					className="social-media-link"
+				>
+					<MailIcon />
+				</ExternalLink>
 			</div>
 		</>
 	);

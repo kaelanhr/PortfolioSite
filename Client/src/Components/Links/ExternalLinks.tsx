@@ -12,7 +12,7 @@ export default function ExternalImageLink(props: ImageLinkProps) {
 export function ExternalLink(props: ExtendedLinkProps) {
 	// I do not like it when external links take you away, new tab it is.
 	return (
-		<a href={props.link} target="_blank" rel="noopener noreferrer">
+		<a href={props.link} target="_blank" rel="noopener noreferrer" className={props.className}>
 			{props.children}
 		</a>
 	);

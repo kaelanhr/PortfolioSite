@@ -45,7 +45,7 @@ function HomeHeader() {
 				<br />
 				<h2>Senior Software Engineer from Brisbane, I specialise</h2>
 				<h2>in Web development</h2>
-				<SocialMediaLinks />
+				<SocialMediaLinks theme="light" />
 			</div>
 		</HeaderContent>
 	);

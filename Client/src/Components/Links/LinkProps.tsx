@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-interface LinkProps {
+export interface LinkProps {
 	link: string
 	className?: string
 }

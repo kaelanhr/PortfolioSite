@@ -20,7 +20,7 @@ export default class RoutPages extends Component {
 			<Switch>
 				<Route exact path="/">
 					<Home />
-					<SocialMediaLinks />
+					<SocialMediaLinks theme="dark" />
 				</Route>
 				<Route>
 					<Switch>
@@ -32,7 +32,7 @@ export default class RoutPages extends Component {
 						<Route path="/projects" component={Projects} />
 						<Route component={NotFound} />
 					</Switch>
-					<SocialMediaLinks />
+					<SocialMediaLinks theme="dark" />
 				</Route>
 			</Switch>
 		);

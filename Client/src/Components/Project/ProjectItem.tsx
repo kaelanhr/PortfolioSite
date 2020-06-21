@@ -5,6 +5,7 @@ import axios from "axios";
 import Project from "../../Models/Project";
 import PageLayout from "../../Pages/PageLayout";
 import HeaderContent from "../Header/Header";
+import Back from "../Button/Back";
 const ReactMarkdown = require("react-markdown");
 class ProjectItem extends Component<RouteComponentProps> {
 	componentDidMount() {}
@@ -30,6 +31,7 @@ class ProjectItem extends Component<RouteComponentProps> {
 											<ReactMarkdown source={a.content} />
 										</div>
 									</div>
+									<Back />
 								</PageLayout>
 							</>
 						);
