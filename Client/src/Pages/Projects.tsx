@@ -10,6 +10,7 @@ import ProjectList from '../Components/Project/ProjectList';
 import { IfAdmin } from '../Components/Conditional/If';
 import { Link } from 'react-router-dom';
 import PageLayout from './PageLayout';
+import ProjectItem from '../Components/Project/ProjectItem';
 
 export default class Projects extends Component {
 	render() {
@@ -53,7 +54,7 @@ export default class Projects extends Component {
 							<ProjectCreatePage />
 						</PageLayout>
 					</Route>
-					<Route path="/projects/:id?" component={dontbelame} />
+					<Route path="/projects/:id?" component={ProjectItem} />
 				</Switch>
 			</>
 		);

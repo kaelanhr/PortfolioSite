@@ -11,7 +11,7 @@ export default function About() {
 	return (
 		<>
 			<PageLayout displayHeader={true} headerComponent={<AboutHeader />}>
-				<div className="page-wrapper">
+				<div className="content-wrapper">
 					<div className="page-content">
 						<Skills />
 						<TechnicalCompetencies />

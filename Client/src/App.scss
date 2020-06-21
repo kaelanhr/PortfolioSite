@@ -46,12 +46,13 @@ label::before {
 	white-space: pre;
 }
 
-.page-wrapper {
+.content-wrapper {
 	display: flex;
 	justify-content: center;
 }
 
 .page-content {
+	$headingColor: #16398b;
 	display: block;
 	position: relative;
 	background-color: #e5e5e5;
@@ -69,30 +70,27 @@ label::before {
 		list-style: disclosure-closed;
 	}
 
-	h1 {
-		margin-left: 1em;
-		padding-top: 0.5em;
-	}
-	h2 {
-		color: #16398b;
+	h2,h1 {
+		color: $headingColor;
 		padding-top: 0.5rem;
+		padding-bottom: 1rem;
 	}
 
 	h1,
 	label {
-		color: white;
+		color: $headingColor;
 	}
-	h1::after {
-		height: 2px;
-		width: 15rem;
-		margin-left: 1rem;
-		background-color: rgb(9, 239, 247);
-		font-weight: bold;
-		box-sizing: border-box;
-		content: "";
-		position: absolute;
-		top: 2rem;
-	}
+	// h1::after {
+	// 	height: 2px;
+	// 	width: 15rem;
+	// 	margin-left: 1rem;
+	// 	background-color: rgb(9, 239, 247);
+	// 	font-weight: bold;
+	// 	box-sizing: border-box;
+	// 	content: "";
+	// 	position: absolute;
+	// 	top: 2rem;
+	// }
 	h2 {
 		margin: 0;
 	}
