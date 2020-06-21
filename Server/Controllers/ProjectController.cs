@@ -66,16 +66,15 @@ namespace PersonalSite.Controllers
 			return await _crudService.GetById<Project>(id).FirstOrDefaultAsync();
 		}
 
-		[HttpPost]
-		[AllowAnonymous]
-		[Route("test")]
-		public async Task<Project> Test()
+		/// <summary>
+		/// deletes a particular project.
+		/// </summary>
+		/// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
+		[HttpDelete]
+		[Route ("{id}")]
+		public async Task<Guid> DeleteProjectAsync(Guid id)
 		{
-			var project = new Project();
-
-			project.Content = "# get to teh chopper\n * no way man";
-			project.Title = "This is the test";
-			return await _crudService.CreateAsync(project);
+			return await _crudService.DeleteAsync<Project>(id);
 		}
 	}
 }

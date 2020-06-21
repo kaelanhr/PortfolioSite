@@ -23,7 +23,6 @@ export default class Projects extends Component {
 							headerComponent={<ProjectsHeader />}
 						>
 							<div>
-								<h1>Projects</h1>
 								<LoadData
 									promise={axios.get("/Api/Project")}
 									done={(data) => {
