@@ -5,6 +5,7 @@ import "react-markdown-editor-lite/lib/index.css";
 import { CreatePageNew } from "./CreatePage";
 import Project from "../../Models/Project";
 import TextField from "../Inputs/TextField";
+import Checkbox from '../Inputs/Checkbox';
 
 export default class ProjectCreatePage extends Component {
 	constructor(props: any) {
@@ -20,7 +21,8 @@ export default class ProjectCreatePage extends Component {
 		let newModel = new Project();
 		return (
 			<>
-				<TextField model={newModel} modelProperty="title" type="text"/>
+				<Checkbox model={newModel} modelProperty="highlight"/>
+				<TextField model={newModel} modelProperty="title" type="text" label="Title"/>
 				<CreatePageNew
 					entityAction="Create"
 					entityDisplayName="Project"

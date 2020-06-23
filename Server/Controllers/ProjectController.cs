@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -36,7 +37,7 @@ namespace PersonalSite.Controllers
 		/// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
 		[HttpPost]
 		[Authorize]
-		[Route("Create")]
+		[Route("")]
 		public async Task<Project> CreateBlogAsync([BindRequired, FromBody] Project project)
 		{
 			// cannot specify the guid.
@@ -60,6 +61,14 @@ namespace PersonalSite.Controllers
 
 		[HttpGet]
 		[AllowAnonymous]
+		[Route("Highlights")]
+		public async Task<IEnumerable<Project>> GetHighlightedProjectsAsync()
+		{
+			return await _crudService.Get<Project>().Where(x => x.Highlight).ToListAsync();
+		}
+
+		[HttpGet]
+		[AllowAnonymous]
 		[Route("{id}")]
 		public async Task<Project> GetProjectByIdAsync(Guid id)
 		{
@@ -71,7 +80,7 @@ namespace PersonalSite.Controllers
 		/// </summary>
 		/// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
 		[HttpDelete]
-		[Route ("{id}")]
+		[Route("{id}")]
 		public async Task<Guid> DeleteProjectAsync(Guid id)
 		{
 			return await _crudService.DeleteAsync<Project>(id);

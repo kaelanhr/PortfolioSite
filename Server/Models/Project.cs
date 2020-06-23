@@ -17,15 +17,21 @@ namespace PersonalSite.Models
 		public string Content { get; set; }
 
 		/// <summary>
-		/// Gets or sets the header image for the blog.
+		/// Gets or sets the header image for the project.
 		/// </summary>
 		public string HeaderImagePath { get; set; }
 
 		/// <summary>
-		/// Gets or sets the title of the blog.
+		/// Gets or sets the title of the project.
 		/// </summary>
 		[Required]
 		public string Title { get; set; }
+
+		/// <summary>
+		/// Gets or sets a value indicating whether the project is highlighted or not.
+		/// </summary>
+		[Required]
+		public bool Highlight { get; set; }
 
 		/// <inheritdoc/>
 		[Key]

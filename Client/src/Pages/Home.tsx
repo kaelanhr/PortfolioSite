@@ -25,7 +25,7 @@ export default class Home extends Component {
 			<>
 				<PageLayout headerComponent={<HomeHeader />} displayHeader={false}>
 					<LoadData
-						promise={axios.get("/Api/Project")}
+						promise={axios.get("/Api/Project/Highlights")}
 						done={(data) => {
 							let a: Project[] = data.data.map((x: any) => new Project(x));
 							return <ProjectList list={a} />;
