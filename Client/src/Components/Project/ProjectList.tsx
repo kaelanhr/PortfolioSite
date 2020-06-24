@@ -31,10 +31,19 @@ export default function ProjectList(props: projectProps) {
 	));
 	return (
 		<>
-			<div className="project-list">{listItems}</div>
+			<div className="project-list">{listItems.length > 0 ? listItems : <EmptyProjectsList />}</div>
 		</>
 	);
 }
+
+function EmptyProjectsList() {
+	return (
+		<div>
+			<p>No Projects were found</p>
+		</div>
+	)
+}
+
 
 interface IProjectItemProps extends IProjectAttributes {
 	onItemRemoved: Function;
