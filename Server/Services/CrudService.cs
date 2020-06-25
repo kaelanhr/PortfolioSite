@@ -39,13 +39,13 @@ namespace PersonalSite.Services
 		/// <typeparam name="T">The entity being read.</typeparam>
 		/// <returns>An IQueryable dbSet of a particular entity.</returns>
 		public IQueryable<T> Get<T>()
-			where T : class, IAbstractModel, new()
+			where T : class, IModel, new()
 		{
 			return _dbContext.Set<T>();
 		}
 
 		public IQueryable<T> GetById<T>(Guid id)
-			where T : class, IAbstractModel, new()
+			where T : class, IModel, new()
 		{
 			return Get<T>().Where(model => model.Id == id);
 		}
@@ -57,7 +57,7 @@ namespace PersonalSite.Services
 		/// <param name="entity">The entity being created.</param>
 		/// <returns>The entity which was saved.</returns>
 		public async Task<T> CreateAsync<T>(T entity)
-			where T : class, IAbstractModel, new()
+			where T : class, IModel, new()
 		{
 			var dbSet = _dbContext.Set<T>();
 			var entitySaved = dbSet.Add(entity).Entity;
@@ -73,7 +73,7 @@ namespace PersonalSite.Services
 		/// <param name="entity">The entity being created.</param>
 		/// <returns>The entity which was saved.</returns>
 		public async Task<T> UpdateAsync<T>(T entity)
-			where T : class, IAbstractModel, new()
+			where T : class, IModel, new()
 		{
 			var dbSet = _dbContext.Set<T>();
 			var entitySaved = dbSet.Update(entity).Entity;
@@ -89,7 +89,7 @@ namespace PersonalSite.Services
 		/// <param name="id">The id of the entity being deleted.</param>
 		/// <returns>The guid of the entity which has been deleted.</returns>
 		public async Task<Guid> DeleteAsync<T>(Guid id)
-		where T : class, IAbstractModel
+		where T : class, IModel
 		{
 			var dbSet = _dbContext.Set<T>();
 			var entity = dbSet.Where(e => e.Id == id);

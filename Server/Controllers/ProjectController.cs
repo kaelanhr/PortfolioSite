@@ -38,7 +38,7 @@ namespace PersonalSite.Controllers
 		[HttpPost]
 		[Authorize]
 		[Route("")]
-		public async Task<Project> CreateBlogAsync([BindRequired, FromBody] Project project)
+		public async Task<ProjectDto> CreateBlogAsync([BindRequired, FromBody] ProjectDto project)
 		{
 			// cannot specify the guid.
 			if (project.Id != Guid.Empty)
@@ -48,31 +48,34 @@ namespace PersonalSite.Controllers
 			}
 
 			_logger.LogInformation(4, "creating a blog.");
-			return await _crudService.CreateAsync(project);
+			return new ProjectDto(await _crudService.CreateAsync(project.ToEntity()));
 		}
 
 		[HttpGet]
 		[AllowAnonymous]
 		[Route("")]
-		public async Task<IEnumerable<Project>> GetProjectsAsync()
+		public async Task<IEnumerable<ProjectDto>> GetProjectsAsync()
 		{
-			return await _crudService.Get<Project>().ToListAsync();
+			var result = _crudService.Get<Project>();
+			return await result.Select(m => new ProjectDto(m)).ToListAsync();
 		}
 
 		[HttpGet]
 		[AllowAnonymous]
 		[Route("Highlights")]
-		public async Task<IEnumerable<Project>> GetHighlightedProjectsAsync()
+		public async Task<IEnumerable<ProjectDto>> GetHighlightedProjectsAsync()
 		{
-			return await _crudService.Get<Project>().Where(x => x.Highlight).ToListAsync();
+			var result = _crudService.Get<Project>().Where(x => x.Highlight);
+			return await result.Select(m => new ProjectDto(m)).ToListAsync();
 		}
 
 		[HttpGet]
 		[AllowAnonymous]
 		[Route("{id}")]
-		public async Task<Project> GetProjectByIdAsync(Guid id)
+		public async Task<ProjectDto> GetProjectByIdAsync(Guid id)
 		{
-			return await _crudService.GetById<Project>(id).FirstOrDefaultAsync();
+			var result = _crudService.GetById<Project>(id);
+			return await result.Select(m => new ProjectDto(m)).FirstOrDefaultAsync();
 		}
 
 		/// <summary>

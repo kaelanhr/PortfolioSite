@@ -7,7 +7,7 @@ namespace PersonalSite.Models
 	/// <summary>
 	/// Everything contained within a single blog post.
 	/// </summary>
-	public class Project : IAbstractModel
+	public class ProjectDto : ModelDto<Project>, IModelDto<Project>
 	{
 		/// <summary>
 		/// Gets or sets blog content.
@@ -33,8 +33,38 @@ namespace PersonalSite.Models
 		[Required]
 		public bool Highlight { get; set; }
 
-		/// <inheritdoc/>
-		[Key]
-		public Guid Id { get; set; }
+		public ProjectDto(Project model)
+		{
+			LoadEntity(model);
+		}
+
+		public ProjectDto() { }
+
+		public ModelDto<Project> LoadEntity(Project model)
+		{
+			Content = model.Content;
+			HeaderImagePath = model.HeaderImagePath;
+			Title = model.Title;
+			Id = model.Id;
+			Highlight = model.Highlight;
+			Creation = model.Creation;
+			Updated = model.Updated;
+
+			return this;
+		}
+
+		public Project ToEntity()
+		{
+			return new Project
+			{
+				Content = Content,
+				HeaderImagePath = HeaderImagePath,
+				Title = Title,
+				Id = Id,
+				Highlight = Highlight,
+				Creation = Creation,
+				Updated = Updated,
+			};
+		}
 	}
 }

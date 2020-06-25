@@ -6,7 +6,7 @@ namespace PersonalSite.Models
 	/// <summary>
 	/// Any general site content which can be updated by site admins.
 	/// </summary>
-	public class SiteContent : IAbstractModel
+	public class SiteContent : AbstractModel
 	{
 		/// <summary>
 		/// Gets or sets title of the content.
@@ -17,8 +17,5 @@ namespace PersonalSite.Models
 		/// Gets or sets the content.
 		/// </summary>
 		public string Content { get; set; }
-
-		[Key]
-		public Guid Id { get; set; }
 	}
 }
