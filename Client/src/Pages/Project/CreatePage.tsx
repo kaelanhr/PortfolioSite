@@ -1,8 +1,6 @@
-// import react, react-markdown-editor-lite, and a markdown parser you like
-import React, { Component, useState } from "react";
-// import style manually
-import Back from "../Button/Back";
-import MarkdownField from "../Inputs/MarkdownField";
+import React from "react";
+import Back from "Components/Button/Back";
+import MarkdownField from 'Components/Inputs/MarkdownField';
 
 interface IProps<T> {
 	entityAction: EntityAdminAction;

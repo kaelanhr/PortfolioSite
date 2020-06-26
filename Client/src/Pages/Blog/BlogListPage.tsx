@@ -2,12 +2,11 @@ import axios from "axios";
 import { action, observable } from "mobx";
 import { observer } from "mobx-react";
 import { Component, default as React } from "react";
-import { Link, Route, Switch, RouteComponentProps } from "react-router-dom";
-import { IfAdmin } from "../../Components/Conditional/If";
-import { LoadData } from "../../Components/LoadData/LoadData";
-import Blog, { IBlogAttributes } from "../../Models/Blog";
+import { Link, Route, Switch } from "react-router-dom";
+import { IfAdmin } from "Components/Conditional/If";
+import { LoadData } from "Components/LoadData/LoadData";
+import Blog, { IBlogAttributes } from "Models/Blog";
 import BlogCreatePage from "./BlogCategoryCreatePage";
-import BlogEntity from "./BlogPostCreatePage";
 import BlogCategoryEditPage from "./BlogCategoryEditPage";
 
 @observer

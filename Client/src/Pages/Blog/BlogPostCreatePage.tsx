@@ -5,7 +5,7 @@ import React, { Component } from "react";
 import MdEditor from "react-markdown-editor-lite";
 // import style manually
 import "react-markdown-editor-lite/lib/index.css";
-import Back from "../../Components/Button/Back";
+import Back from "Components/Button/Back";
 
 interface IProps {
 	entityAction: EntityAdminAction;

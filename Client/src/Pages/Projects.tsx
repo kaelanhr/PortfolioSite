@@ -3,14 +3,13 @@ import { Switch, Route } from "react-router";
 import { LoadData } from "../Components/LoadData/LoadData";
 import axios from "axios";
 import Project from "../Models/Project";
-import NavWrapper from "../Components/Navigation/NavWrapper";
 import HeaderContent from "../Components/Header/Header";
-import ProjectCreatePage from "../Components/Project/ProjectCreatePage";
-import ProjectList from '../Components/Project/ProjectList';
-import { IfAdmin } from '../Components/Conditional/If';
+import { IfAdmin } from 'Components/Conditional/If';
 import { Link } from 'react-router-dom';
 import PageLayout from './PageLayout';
-import ProjectItem from '../Components/Project/ProjectItem';
+import ProjectList from './Project/ProjectList';
+import ProjectCreatePage from './Project/ProjectCreatePage';
+import ProjectItem from './Project/ProjectItem';
 
 export default class Projects extends Component {
 	render() {

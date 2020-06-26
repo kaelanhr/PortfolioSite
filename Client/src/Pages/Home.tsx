@@ -1,15 +1,13 @@
 import { observer } from "mobx-react";
 import React, { Component } from "react";
-import SocialMediaLinks from "../Components/Links/SocialMediaLinks";
-import HeaderContent from "../Components/Header/Header";
+import SocialMediaLinks from "Components/Links/SocialMediaLinks";
+import HeaderContent from "Components/Header/Header";
 import { observable } from "mobx";
 import axios from "axios";
-import { LoadData } from "../Components/LoadData/LoadData";
-import Project from "../Models/Project";
-import NavWrapper from '../Components/Navigation/NavWrapper';
-import ProjectList from '../Components/Project/ProjectList';
-import { Switch, Route } from 'react-router';
+import { LoadData } from "Components/LoadData/LoadData";
+import Project from "Models/Project";
 import PageLayout from './PageLayout';
+import ProjectList from './Project/ProjectList';
 
 @observer
 export default class Home extends Component {

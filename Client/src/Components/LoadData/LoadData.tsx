@@ -10,7 +10,7 @@ interface LoadingProps<T> {
 }
 
 @observer
-export class LoadData<T> extends React.Component<LoadingProps<T>> {
+export class LoadData<T> extends Component<LoadingProps<T>> {
 	@observable
 	private requestState: "error" | "loading" | "done" = "loading";
 

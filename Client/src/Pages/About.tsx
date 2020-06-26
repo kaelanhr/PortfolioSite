@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { ExternalLink } from "../Components/Links/ExternalLinks";
-import NavWrapper from "../Components/Navigation/NavWrapper";
-import HeaderContent from "../Components/Header/Header";
+import { ExternalLink } from "Components/Links/ExternalLinks";
+import HeaderContent from "Components/Header/Header";
 import PageLayout from "./PageLayout";
 
 const proImage = "/Images/Personal/profile.jpg";

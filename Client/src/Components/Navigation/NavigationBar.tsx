@@ -2,8 +2,6 @@ import { observer } from "mobx-react";
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { store } from "../../store";
-import SocialMediaLinks from '../Links/SocialMediaLinks';
-import HeaderContent from '../Header/Header';
 
 interface NavItemProps {
 	linkUrl: string;

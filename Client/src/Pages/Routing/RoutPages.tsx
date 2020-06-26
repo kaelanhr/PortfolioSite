@@ -1,18 +1,14 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router";
-import NavigationBar from "../../Components/Navigation/NavigationBar";
-import About from "../../Pages/About";
-import Admin from "../../Pages/Admin";
-import Home from "../../Pages/Home";
-import Login from "../../Pages/Login";
-import Logout from "../../Pages/Logout";
-import Projects from "../../Pages/Projects";
-import { store } from "../../store";
+import About from "Pages/About";
+import Admin from "Pages/Admin";
+import Home from "Pages/Home";
+import Login from "Pages/Login";
+import Logout from "Pages/Logout";
+import Projects from "Pages/Projects";
+import { store } from "store";
 import BlogPage from "../Blog/BlogListPage";
-import NewNavigationBar from "../../Components/Navigation/NavigationBar";
-import NavWrapper from "../../Components/Navigation/NavWrapper";
-import SocialMediaLinks from "../../Components/Links/SocialMediaLinks";
-import Footer from '../../Components/Footer/Footer';
+import Footer from 'Components/Footer/Footer';
 
 export default class RoutPages extends Component {
 	render() {

@@ -1,5 +1,5 @@
 import React from "react";
-import SocialMediaLinks from "../Links/SocialMediaLinks";
+import SocialMediaLinks from "Components/Links/SocialMediaLinks";
 
 export default function Footer() {
 	return (

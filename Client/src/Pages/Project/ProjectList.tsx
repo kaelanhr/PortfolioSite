@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Project, { IProjectAttributes } from "../../Models/Project";
+import Project, { IProjectAttributes } from "Models/Project";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { IfAdmin } from "../Conditional/If";
+import { IfAdmin } from "Components/Conditional/If";
 
 interface projectProps {
 	list: Project[];

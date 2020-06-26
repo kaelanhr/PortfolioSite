@@ -1,6 +1,5 @@
-import { observer } from "mobx-react";
 import React, { Component } from "react";
-import { store } from "../../store";
+import { store } from "store";
 
 interface IProps {
 	renderCondition: boolean;

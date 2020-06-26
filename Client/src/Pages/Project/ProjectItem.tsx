@@ -1,11 +1,11 @@
 import { RouteComponentProps } from "react-router";
 import React, { Component } from "react";
-import { LoadData } from "../LoadData/LoadData";
+import { LoadData } from "Components/LoadData/LoadData";
 import axios from "axios";
-import Project from "../../Models/Project";
-import PageLayout from "../../Pages/PageLayout";
-import HeaderContent from "../Header/Header";
-import Back from "../Button/Back";
+import Project from "Models/Project";
+import PageLayout from "Pages/PageLayout";
+import HeaderContent from "Components/Header/Header";
+import Back from "Components/Button/Back";
 const ReactMarkdown = require("react-markdown");
 class ProjectItem extends Component<RouteComponentProps> {
 	componentDidMount() {}

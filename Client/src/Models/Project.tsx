@@ -1,6 +1,6 @@
 import AbstractModel, { IAbstractAttributes } from "./AbstractModel";
 import axios from "axios";
-import { store } from "../store";
+import { store } from "store";
 
 export default class Project extends AbstractModel
 	implements IProjectAttributes {

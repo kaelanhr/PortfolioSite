@@ -3,9 +3,9 @@ import React, { Component } from "react";
 // import style manually
 import "react-markdown-editor-lite/lib/index.css";
 import { CreatePageNew } from "./CreatePage";
-import Project from "../../Models/Project";
-import TextField from "../Inputs/TextField";
-import Checkbox from '../Inputs/Checkbox';
+import Project from "Models/Project";
+import TextField from "Components/Inputs/TextField";
+import Checkbox from "Components/Inputs/Checkbox";
 
 export default class ProjectCreatePage extends Component {
 	constructor(props: any) {
