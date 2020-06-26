@@ -1,13 +1,13 @@
 import React from "react";
 import Back from "Components/Button/Back";
-import MarkdownField from 'Components/Inputs/MarkdownField';
+import MarkdownField from "Components/Inputs/MarkdownField";
 
 interface IProps<T> {
 	entityAction: EntityAdminAction;
 	entityDisplayName: string;
 	model: T;
-	modelProperty: string;
 	onSubmit: (event: React.FormEvent<HTMLFormElement>, model: any) => void;
+	children?: React.ReactNode;
 }
 
 export type EntityAdminAction = "Create" | "Update";
@@ -19,10 +19,7 @@ export function CreatePageNew<T>(props: IProps<T>) {
 				{props.entityAction} A {props.entityDisplayName}
 			</h1>
 			<form onSubmit={(event) => props.onSubmit(event, props.model)}>
-				<MarkdownField
-					model={props.model}
-					modelProperty={props.modelProperty}
-				/>
+				{props.children}
 				<input type="submit" value={props.entityAction + " Project"} />
 			</form>
 			<Back />
