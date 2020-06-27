@@ -31,6 +31,12 @@ export default class ProjectCreatePage extends Component {
 						type="text"
 						label="Title"
 					/>
+					<TextField
+						model={newModel}
+						modelProperty="projectUrl"
+						type="text"
+						label="Project Url"
+					/>
 					<Checkbox
 						model={newModel}
 						modelProperty="highlight"

@@ -32,5 +32,7 @@ namespace PersonalSite.Models
 		/// </summary>
 		[Required]
 		public bool Highlight { get; set; }
+
+		public string ProjectUrl { get; set; }
 	}
 }

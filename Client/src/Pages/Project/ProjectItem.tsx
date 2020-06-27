@@ -7,6 +7,7 @@ import PageLayout from "Pages/PageLayout";
 import HeaderContent from "Components/Header/Header";
 import Back from "Components/Button/Back";
 import ContentWrapper from 'Components/ContentWrapper/ContentWrapper';
+import { ExternalLink } from 'Components/Links/ExternalLinks';
 const ReactMarkdown = require("react-markdown");
 class ProjectItem extends Component<RouteComponentProps> {
 	componentDidMount() {}
@@ -23,7 +24,9 @@ class ProjectItem extends Component<RouteComponentProps> {
 								<PageLayout
 									displayHeader={true}
 									headerComponent={
-										<HeaderContent name="article">{a.title}</HeaderContent>
+										<HeaderContent name="article">
+											{a.projectUrl ? <ExternalLink link={`${a.projectUrl}`}>{a.title}</ExternalLink> : a.title}
+											</HeaderContent>
 									}
 								>
 									<ContentWrapper>

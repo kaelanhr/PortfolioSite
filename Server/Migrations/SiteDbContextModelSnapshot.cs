@@ -126,11 +126,17 @@ namespace PersonalSite.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<DateTime>("Creation")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<string>("HeaderImagePath")
                         .HasColumnType("text");
 
                     b.Property<string>("Title")
                         .HasColumnType("text");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -146,11 +152,17 @@ namespace PersonalSite.Migrations
                     b.Property<string>("Content")
                         .HasColumnType("text");
 
+                    b.Property<DateTime>("Creation")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<string>("HeaderImagePath")
                         .HasColumnType("text");
 
                     b.Property<string>("Title")
                         .HasColumnType("text");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -167,12 +179,24 @@ namespace PersonalSite.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<DateTime>("Creation")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<string>("HeaderImagePath")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("Highlight")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("ProjectUrl")
                         .HasColumnType("text");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -190,6 +214,12 @@ namespace PersonalSite.Migrations
 
                     b.Property<string>("ContentLabel")
                         .HasColumnType("text");
+
+                    b.Property<DateTime>("Creation")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 

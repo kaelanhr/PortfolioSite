@@ -33,6 +33,8 @@ namespace PersonalSite.Models
 		[Required]
 		public bool Highlight { get; set; }
 
+		public string ProjectUrl { get; set; }
+
 		public ProjectDto(Project model)
 		{
 			LoadEntity(model);
@@ -42,13 +44,14 @@ namespace PersonalSite.Models
 
 		public ModelDto<Project> LoadEntity(Project model)
 		{
-			Content = model.Content;
-			HeaderImagePath = model.HeaderImagePath;
-			Title = model.Title;
 			Id = model.Id;
-			Highlight = model.Highlight;
 			Creation = model.Creation;
 			Updated = model.Updated;
+			Content = model.Content;
+			HeaderImagePath = model.HeaderImagePath;
+			Highlight = model.Highlight;
+			ProjectUrl = model.ProjectUrl;
+			Title = model.Title;
 
 			return this;
 		}
@@ -57,13 +60,14 @@ namespace PersonalSite.Models
 		{
 			return new Project
 			{
-				Content = Content,
-				HeaderImagePath = HeaderImagePath,
-				Title = Title,
 				Id = Id,
-				Highlight = Highlight,
 				Creation = Creation,
 				Updated = Updated,
+				Content = Content,
+				HeaderImagePath = HeaderImagePath,
+				Highlight = Highlight,
+				ProjectUrl = ProjectUrl,
+				Title = Title,
 			};
 		}
 	}

@@ -20,19 +20,24 @@ export default class Project extends AbstractModel
 			if (attributes.highlight) {
 				this.highlight = attributes.highlight;
 			}
+			if (attributes.projectUrl) {
+				this.projectUrl = attributes.projectUrl;
+			}
 		}
 	}
 	public content: string;
 	public headerImagePath?: string;
 	public title: string;
 	public highlight: boolean;
+	public projectUrl?: string;
 
 	public createProject = () => {
 		axios
 			.post("/Api/Project", {
 				Title: this.title,
 				content: this.content,
-				highlight: this.highlight
+				highlight: this.highlight,
+				projectUrl: this.projectUrl,
 			})
 			.then(function (response) {
 				console.log(response);
@@ -62,4 +67,5 @@ export interface IProjectAttributes extends IAbstractAttributes {
 	title: string;
 	content: string;
 	headerImagePath?: string;
+	projectUrl?: string;
 }
