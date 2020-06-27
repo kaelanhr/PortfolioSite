@@ -5,7 +5,7 @@ import PageLayout from "./PageLayout";
 import ContentWrapper from "Components/ContentWrapper/ContentWrapper";
 
 const proImage = "/Images/Personal/profile.jpg";
-const personalImage = "/Images/Personal/profile-dwv.png";
+const personalImage = "/Images/Personal/profile-dwv.jpg";
 
 export default function About() {
 	return (
