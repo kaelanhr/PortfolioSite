@@ -66,12 +66,3 @@ function ProjectsHeader() {
 		</HeaderContent>
 	);
 }
-
-
-function dontbelame() {
-	return (
-		<div>
-			<p>dont be lame</p>
-		</div>
-	)
-}

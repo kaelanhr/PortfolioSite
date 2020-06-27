@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ExternalLink } from "Components/Links/ExternalLinks";
 import HeaderContent from "Components/Header/Header";
 import PageLayout from "./PageLayout";
+import ContentWrapper from "Components/ContentWrapper/ContentWrapper";
 
 const proImage = "/Images/Personal/profile.jpg";
 const personalImage = "/Images/Personal/profile-dwv.png";
@@ -10,7 +11,7 @@ export default function About() {
 	return (
 		<>
 			<PageLayout displayHeader={true} headerComponent={<AboutHeader />}>
-				<div className="content-wrapper">
+				<ContentWrapper>
 					<div className="page-content">
 						<Skills />
 						<TechnicalCompetencies />
@@ -18,7 +19,7 @@ export default function About() {
 						<Experience />
 						<Interests />
 					</div>
-				</div>
+				</ContentWrapper>
 			</PageLayout>
 		</>
 	);

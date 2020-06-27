@@ -6,6 +6,7 @@ import Project from "Models/Project";
 import PageLayout from "Pages/PageLayout";
 import HeaderContent from "Components/Header/Header";
 import Back from "Components/Button/Back";
+import ContentWrapper from 'Components/ContentWrapper/ContentWrapper';
 const ReactMarkdown = require("react-markdown");
 class ProjectItem extends Component<RouteComponentProps> {
 	componentDidMount() {}
@@ -25,12 +26,12 @@ class ProjectItem extends Component<RouteComponentProps> {
 										<HeaderContent name="article">{a.title}</HeaderContent>
 									}
 								>
-									<div className="content-wrapper">
+									<ContentWrapper>
 										<div className="page-content">
 											<h1>{a.title}</h1>
 											<ReactMarkdown source={a.content} />
 										</div>
-									</div>
+									</ContentWrapper>
 									<Back />
 								</PageLayout>
 							</>
