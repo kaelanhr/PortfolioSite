@@ -3,16 +3,29 @@ import Project from "Models/Project";
 import TextField from "Components/Inputs/TextField";
 import Checkbox from "Components/Inputs/Checkbox";
 import MarkdownField from "Components/Inputs/MarkdownField";
-import CreateUpdateForm from 'Components/Form/CreateUpdateForm';
+import CreateUpdateForm from "Components/Form/CreateUpdateForm";
+import { observable, action } from 'mobx';
+import { observer } from 'mobx-react';
 
+@observer
 export default class ProjectCreatePage extends Component {
 	constructor(props: any) {
 		super(props);
 	}
 
-	SubmitHandler = (event: React.FormEvent<HTMLFormElement>, model: any) => {
+	@observable
+	private errorList: string[];
+
+	@action
+	SubmitHandler = (event: React.FormEvent<HTMLFormElement>, model: Project) => {
 		event.preventDefault();
-		model.createProject();
+
+		this.errorList = model.validate()
+
+		if (this.errorList.length > 0) {
+		} else {
+			model.createProject();
+		}
 	};
 
 	render() {
@@ -24,6 +37,7 @@ export default class ProjectCreatePage extends Component {
 					entityDisplayName="Project"
 					onSubmit={this.SubmitHandler}
 					model={newModel}
+					errorList={this.errorList}
 				>
 					<TextField
 						model={newModel}

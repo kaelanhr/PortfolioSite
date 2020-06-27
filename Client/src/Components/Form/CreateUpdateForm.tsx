@@ -16,6 +16,7 @@ export default function CreateUpdateForm<T>(props: CreateUpdateProps<T>) {
 			model={props.model}
 			onSubmit={props.onSubmit}
 			children={props.children}
+			errorList={props.errorList}
 		/>
 	);
 }
