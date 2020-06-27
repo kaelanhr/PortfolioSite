@@ -36,12 +36,6 @@ body {
 	overflow-y: scroll;
 }
 
-label,
-input,
-form {
-	display: table;
-}
-
 label::before {
 	content: "\A";
 	white-space: pre;
@@ -71,7 +65,8 @@ label::before {
 		list-style: disclosure-closed;
 	}
 
-	h2,h1 {
+	h2,
+	h1 {
 		color: $headingColor;
 		padding-top: 0.5rem;
 		padding-bottom: 1rem;
@@ -96,6 +91,65 @@ label::before {
 		margin: 0;
 	}
 }
+
+.rc-md-editor {
+	min-height: 45rem;
+}
+
+.admin-form {
+	$headingColor: #16398b;
+	display: block;
+	position: relative;
+	background-color: #e5e5e5;
+
+	padding-top: 2rem;
+	padding-bottom: 2rem;
+	padding-left: 2rem;
+	padding-right: 2rem;
+	border-radius: 15px;
+	min-width: 800px;
+	width: 80%;
+
+	li {
+		line-height: 2rem;
+		list-style: disclosure-closed;
+	}
+
+	h2,
+	h1 {
+		color: $headingColor;
+		padding-top: 0.5rem;
+		padding-bottom: 1rem;
+	}
+
+	h1,
+	label {
+		color: $headingColor;
+	}
+
+	label {
+		display: block;
+		padding-bottom: 1rem;
+		font-weight: bold;
+	}
+
+	h2 {
+		margin: 0;
+	}
+	button,
+	input[type="submit"] {
+		margin-top: 1rem;
+	}
+
+	input[type="text"] {
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		box-sizing: border-box;
+		padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+		min-width: 20rem;
+	}
+}
+
 .list-content {
 	display: flex;
 	position: relative;

@@ -1,10 +1,8 @@
 import React, { Component } from "react";
+import { InputFieldProps } from './InputFieldProps';
 
-export interface TextFieldProps<T> {
-	model: T;
-	modelProperty: string;
+export interface TextFieldProps<T> extends InputFieldProps<T> {
 	type: "text" | "email" | "password";
-	label?: string;
 	onBlur?: ((event: React.FocusEvent<HTMLInputElement>) => void) | undefined;
 	placeholder?: string;
 	value?: string;
@@ -15,8 +13,6 @@ export default class TextField<T> extends Component<TextFieldProps<T>> {
 		return (
 			<>
 				<label>{this.props.label}</label>
-				{/* temp add in br */}
-				<br />
 				<input
 					type={this.props.type}
 					name={this.props.modelProperty as string}

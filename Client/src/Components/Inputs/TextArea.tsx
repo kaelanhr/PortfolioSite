@@ -1,9 +1,7 @@
 import React, { Component } from "react";
+import { InputFieldProps } from './InputFieldProps';
 
-export interface TextAreaProps<T> {
-	model: T;
-	modelProperty: string;
-	label?: string;
+export interface TextAreaProps<T> extends InputFieldProps<T> {
 	onBlur?: ((event: React.FocusEvent<HTMLTextAreaElement>) => void) | undefined;
 }
 
@@ -12,8 +10,6 @@ export default class TextArea<T> extends Component<TextAreaProps<T>> {
 		return (
 			<>
 				<span>{this.props.label}</span>
-				{/* temp add in br */}
-				<br />
 				<textarea
 					name={this.props.modelProperty as string}
 					onChange={this.handleUserInput}

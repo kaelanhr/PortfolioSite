@@ -31,8 +31,8 @@ export default class ProjectCreatePage extends Component {
 						type="text"
 						label="Title"
 					/>
-					<Checkbox model={newModel} modelProperty="highlight" />
-					<MarkdownField model={newModel} modelProperty="content" />
+					<Checkbox model={newModel} modelProperty="highlight" label="Highlighted" />
+					<MarkdownField model={newModel} modelProperty="content" label="Content" placeholder="Project Content" />
 				</CreatePageNew>
 			</>
 		);
