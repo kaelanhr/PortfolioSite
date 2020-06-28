@@ -26,7 +26,6 @@ export default class TextField<T> extends Component<TextFieldProps<T>> {
 	}
 
 	private handleUserInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-		console.log("the thing happened");
 		this.props.model[this.props.modelProperty] = e.target.value as any;
 	};
 }
