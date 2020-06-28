@@ -59,6 +59,7 @@ function ProjectListItem(props: IProjectItemProps) {
 					onClick={
 						() => props.onItemRemoved(props.title, props.id)
 					}
+					className="bin-icon"
 				/>
 			</IfAdmin>
 		</div>
