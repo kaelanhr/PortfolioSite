@@ -39,7 +39,7 @@ export default function ProjectList(props: projectProps) {
 function EmptyProjectsList() {
 	return (
 		<div>
-			<p>No Projects were found</p>
+			<p>No Projects Listed</p>
 		</div>
 	)
 }

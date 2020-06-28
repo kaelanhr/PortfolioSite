@@ -62,7 +62,7 @@ export default class Projects extends Component {
 function ProjectsHeader() {
 	return (
 		<HeaderContent name="Projects">
-			<p>Project List</p>
+			<h1>Project List</h1>
 		</HeaderContent>
 	);
 }
