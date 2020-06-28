@@ -1,0 +1,167 @@
+.nav-bar {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: (rgba($color: #000000, $alpha: 0.8));
+	top: 0;
+	width: 100%;
+	position: fixed;
+
+	ul {
+		padding-right: 15rem;
+	}
+
+	h1 {
+		color: white;
+		position: fixed;
+		padding-left: 12em;
+		padding-top: 1rem;
+	}
+	li {
+		float: right;
+	}
+
+	li a {
+		display: block;
+		color: gray;
+		padding: 14px 16px;
+		text-decoration: none;
+		outline: 0;
+	}
+
+	li a:hover {
+		color: white;
+	}
+
+	.active {
+		color: white;
+	}
+	.active::before {
+		height: 2px;
+		width: 20px;
+		background-color: rgb(9, 239, 247);
+		font-weight: bold;
+		box-sizing: border-box;
+		content: "";
+		font-weight: 600;
+		position: absolute;
+		bottom: 0.5em;
+	}
+
+	.nav-item {
+		font-size: 0.9rem;
+		list-style: none;
+	}
+}
+
+.header {
+	width: 100%;
+	height: 694px;
+	background-color: #8c92ac;
+	display: flex;
+	align-items: center;
+	margin-left: auto;
+	margin-right: auto;
+	justify-content: center;
+
+	h1 {
+		color: white;
+	}
+	a {
+		color: white;
+
+		&:hover {
+			color: #16398b;
+		}
+	}
+}
+
+.home {
+	background: url("/Images/Backgrounds/home-background.jpg") no-repeat fixed;
+}
+.about {
+	background: url("/Images/Backgrounds/about-background.jpg") no-repeat fixed;
+}
+
+.navigation-bar {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: (rgba($color: #000000, $alpha: 0.85));
+	top: 0;
+	display: block;
+	width: 100%;
+	position: sticky;
+	height: 5rem;
+	z-index: 10;
+}
+
+.welcome-text {
+	h1 {
+		color: #efefef;
+	}
+	h2 {
+		color: #dedede;
+	}
+	line-height: 0.5rem;
+}
+
+.navigation {
+	z-index: 20;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	// background-color: (rgba($color: #000000, $alpha: 0.8));
+	top: 0;
+	width: 100%;
+	position: fixed;
+
+	ul {
+		padding-right: 15rem;
+	}
+
+	h1 {
+		color: white;
+		position: fixed;
+		padding-left: 12em;
+		padding-top: 1rem;
+	}
+	li {
+		float: right;
+	}
+
+	li a {
+		display: block;
+		color: white;
+		padding: 14px 16px;
+		text-decoration: none;
+		outline: 0;
+	}
+
+	li a:hover {
+		color: whitesmoke;
+	}
+
+	.active {
+		color: white;
+	}
+	.active::before {
+		height: 2px;
+		width: 20px;
+		background-color: rgb(9, 239, 247);
+		font-weight: bold;
+		box-sizing: border-box;
+		content: "";
+		font-weight: 600;
+		position: absolute;
+		bottom: 0.5em;
+	}
+
+	.nav-item {
+		font-size: 0.9rem;
+		list-style: none;
+	}
+}

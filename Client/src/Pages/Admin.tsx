@@ -2,10 +2,11 @@ import { observable } from "mobx";
 import { observer } from "mobx-react";
 import React, { Component } from "react";
 import { Redirect } from "react-router";
-import Form from "../Components/Form/Form";
-import TextArea from "../Components/Inputs/TextArea";
-import ErrorMessage from "../Components/Text/error";
-import { store } from "../store";
+import Form from "Components/Form/Form";
+import TextArea from "Components/Inputs/TextArea";
+import ErrorMessage from "Components/Text/ErrorMessage";
+import { store } from "store";
+import Back from 'Components/Button/Back';
 
 interface IState {
 	errorState: string;
@@ -41,6 +42,7 @@ export default class Admin extends Component<{}, IState> {
 							label="About"
 						/>
 					</Form>
+					<Back />
 				</div>
 			</>
 		);

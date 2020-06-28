@@ -23,7 +23,7 @@ export class TabSet extends Component<TabSetProps> {
 				this.currentIndex = 0;
 			}
 		}
-		console.log(this.currentIndex);
+
 		this.tabs = this.props.children
 			? this.props.children?.filter(
 					(x) => x.props.index == this.currentIndex

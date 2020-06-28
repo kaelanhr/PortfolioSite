@@ -2,9 +2,9 @@ import axios from "axios";
 import { observable } from "mobx";
 import { observer } from "mobx-react";
 import React, { Component } from "react";
-import TextField from "../Components/Inputs/TextField";
-import ErrorMessage from "../Components/Text/error";
-import { store } from "../store";
+import TextField from "Components/Inputs/TextField";
+import ErrorMessage from "Components/Text/ErrorMessage";
+import { store } from "store";
 
 interface LoginState {
 	errorMessage: string;
@@ -36,13 +36,13 @@ export default class Login extends Component<{}, LoginState> {
 						model={this.LoginModel}
 						modelProperty={"Email"}
 						type="email"
-						label="Email"
+						placeholder="Email"
 					/>
 					<TextField
 						model={this.LoginModel}
 						modelProperty={"Password"}
 						type="password"
-						label="Password"
+						placeholder="Password"
 					/>
 					<input type="submit" value="Login" />
 				</form>

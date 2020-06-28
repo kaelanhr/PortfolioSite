@@ -1,0 +1,26 @@
+.project-list {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	.project {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 20rem;
+		width: 20rem;
+		background-color: skyblue;
+		position: relative;
+		top: 2rem;
+		margin-right: 5rem;
+		margin-top: 5rem;
+	}
+	.bin-icon {
+		height: 1.5rem;
+		width: 1.5rem;
+		position: absolute;
+		bottom:1rem;
+		right: 1rem;
+		cursor: pointer;
+	}
+}

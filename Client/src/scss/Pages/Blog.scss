@@ -1,0 +1,32 @@
+.blog-items {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	.blog-item {
+		background-color: royalblue;
+		// margin-right: 5rem;
+		// margin-top: 5rem;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 3rem;
+		width: 15rem;
+		height: 15rem;
+		text-align: center;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		img {
+			height: 1.5rem;
+			cursor: pointer;
+			//position: absolute;
+			align-items: flex-end;
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			padding-right:0.5rem;
+			padding-bottom:0.5rem;
+
+		}
+	}
+}

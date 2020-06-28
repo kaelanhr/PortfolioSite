@@ -1,0 +1,42 @@
+.social-links {
+	text-align: center;
+	padding-top: 1rem;
+}
+
+.dark {
+	svg > path {
+		fill: black;
+	}
+	svg > polyline,
+	line,
+	polygon {
+		stroke: black;
+	}
+}
+
+.dark,
+.light {
+	svg > path {
+		&:hover {
+			fill: gray;
+			fill: stroke;
+		}
+	}
+	svg > polygon {
+		&:hover {
+			fill: gray;
+		}
+	}
+}
+
+.social-media-link {
+	svg {
+		height: 1.5rem;
+		width: 2rem;
+		padding-right: 15px;
+	}
+
+	a {
+		background-color: black;
+	}
+}

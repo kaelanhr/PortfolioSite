@@ -1,0 +1,51 @@
+$leftContent: 5em;
+
+#about-content {
+	display: flex;
+	.tab-content {
+		height: 25em;
+		left: $leftContent;
+		position: relative;
+		padding-top: 2em;
+		margin-right: 5em;
+		max-width: 70em;
+	}
+	.tab-titles {
+		padding-bottom: 2em;
+		margin-left: $leftContent;
+	}
+	.tab-full {
+		display: flex;
+	}
+	h2,p,ol {
+		color: white;
+	}
+
+	.next-tab {
+		float: right;
+		margin: auto;
+	}
+}
+
+#about-slide {
+	padding-top: 7em;
+	height: 47em;
+}
+
+.about-header-content {
+	width: 40rem;
+	img {
+		text-align: center;
+		margin: auto;
+		display: flex;
+		height: 20em;
+		width: 20em;
+		border-radius: 50%;
+		border: 1px solid #707070;
+	}
+
+	p,
+	h2 {
+		color: white;
+	}
+}

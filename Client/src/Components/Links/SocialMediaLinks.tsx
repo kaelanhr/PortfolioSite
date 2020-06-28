@@ -1,28 +1,38 @@
+import { ReactComponent as GitHubLogo } from "./github.svg";
+import { ReactComponent as LinkedInLogo } from "./linkedin.svg";
+import { ReactComponent as MailIcon } from "./mail-icon.svg";
 import React from "react";
 import { ExternalLink } from "./ExternalLinks";
-import { ImageLinkProps } from "./LinkProps";
+import { ImageLinkProps, LinkProps } from "./LinkProps";
 const socialPath = "/Icons/Social/";
 
-export default function SocialMediaLinks() {
+interface themeProps {
+	theme: "light" | "dark";
+}
+
+export default function SocialMediaLinks(props: themeProps) {
 	return (
 		<>
-			{/* <SocialMediaLink link="https://www.facebook.com/darkwolf88v" iconPath="facebook.png" /> */}
-			{/* <SocialMediaLink link="https://www.instagram.com/kaelanreece" iconPath="instagram.png" /> */}
-			{/* <SocialMediaLink link="https://twitter.com/KaelanReece" iconPath="twitter.png" />
-			<SocialMediaLink link="https://real-life-wolf.tumblr.com/" iconPath="tumblr.png" />
-			<SocialMediaLink link="https://www.pinterest.com.au/darkwolf_v/" iconPath="pinterest.png" />
-		<SocialMediaLink link="https://www.youtube.com/channel/UCkvCPSOUTjSiF2yFwnXhnsQ" iconPath="youtube.png" /> */}
-			{/* <SocialMediaLink link="https://www.patreon.com/darkwolf_v" iconPath="patreon.png" /> */}
-			<SocialLink link="https://github.com/KaeIan/" iconPath="github.png" />
-			<SocialLink
-				link="https://www.linkedin.com/in/kaelan-reece/"
-				iconPath="linkedin.png"
-			/>
-
-			<SocialLink
-				link="mailto:kaelanreece@gmail.com"
-				iconPath="mailicon-white.png"
-			/>
+			<div className={`social-links ${props.theme}`}>
+				<ExternalLink
+					link="https://github.com/KaeIan/"
+					className="social-media-link"
+				>
+					<GitHubLogo />
+				</ExternalLink>
+				<ExternalLink
+					link="https://www.linkedin.com/in/kaelan-reece/"
+					className="social-media-link"
+				>
+					<LinkedInLogo />
+				</ExternalLink>
+				<ExternalLink
+					link="mailto:kaelanreece@gmail.com"
+					className="social-media-link"
+				>
+					<MailIcon />
+				</ExternalLink>
+			</div>
 		</>
 	);
 }

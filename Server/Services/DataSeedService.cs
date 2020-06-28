@@ -13,7 +13,6 @@ namespace PersonalSite.Services
 		private readonly ILogger _logger;
 		private readonly string[] _roleList = { "Admin" };
 		private readonly RoleManager<SiteRole> _roleManager;
-		private readonly SignInManager<SiteUser> _signInManager;
 		private readonly UserManager<SiteUser> _userManager;
 
 		/// <summary>
@@ -25,12 +24,10 @@ namespace PersonalSite.Services
 		/// <param name="loggerFactory">The Logger Factory.</param>
 		public DataSeedService(
 			UserManager<SiteUser> userManager,
-			SignInManager<SiteUser> signInManager,
 			RoleManager<SiteRole> roleManager,
 			ILoggerFactory loggerFactory)
 		{
 			_userManager = userManager;
-			_signInManager = signInManager;
 			_roleManager = roleManager;
 			_logger = loggerFactory.CreateLogger<DataSeedService>();
 		}

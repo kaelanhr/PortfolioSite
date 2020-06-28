@@ -28,7 +28,12 @@ namespace PersonalSite.Models
 		/// <summary>
 		/// Gets or sets blog post so they can be created with EF.
 		/// </summary>
-		public DbSet<BlogPost> Blog { get; set; }
+		public DbSet<BlogPost> BlogPost { get; set; }
+
+		/// <summary>
+		/// Gets or sets blog post so they can be created with EF.
+		/// </summary>
+		public DbSet<BlogCategory> Blog { get; set; }
 
 		/// <summary>
 		/// Gets or sets site content so they can be created with EF.
@@ -39,6 +44,11 @@ namespace PersonalSite.Models
 		/// Gets or sets the site user so they can be created with EF.
 		/// </summary>
 		public DbSet<SiteUser> SiteUser { get; set; }
+
+		/// <summary>
+		/// Gets or sets the project so they can be managed by EF.
+		/// </summary>
+		public DbSet<Project> Project { get; set; }
 
 		/// <inheritdoc/>
 		protected override void OnModelCreating(ModelBuilder builder)

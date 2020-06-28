@@ -1,6 +1,6 @@
 import { observer } from "mobx-react";
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { store } from "../../store";
 
 interface NavItemProps {
@@ -9,47 +9,34 @@ interface NavItemProps {
 	isDisplayed: boolean;
 }
 
-interface IState {
-	isAuthenticated: boolean;
-	isLoading: boolean;
-}
-
-interface NavBarProps {
-	displayNavBar: boolean;
+export interface NavBarProps {
+	displayHeader: boolean;
 }
 
 @observer
-export default class NavigationBar extends Component<NavBarProps, IState> {
+export default class NavigationBar extends Component<NavBarProps> {
 	constructor(props: any) {
 		super(props);
-		this.state = {
-			isAuthenticated: false,
-			isLoading: true,
-			//	displayNavBar: true
-		};
 	}
 
 	render() {
-		let navClassName = "sidebar";
-		if (!this.props.displayNavBar) {
-			navClassName += " collapsed";
-		}
 		let navItems: NavItemProps[] = [
-			{ linkUrl: "", displayName: "Home", isDisplayed: true },
-			{ linkUrl: "about", displayName: "About", isDisplayed: true },
-			{ linkUrl: "blog", displayName: "Blog", isDisplayed: true },
-			{ linkUrl: "projects", displayName: "Projects", isDisplayed: true },
-			{
-				linkUrl: "admin",
-				displayName: "Admin",
-				isDisplayed: store.hasBackendAccess,
-			},
 			{
 				linkUrl: "logout",
 				displayName: "Logout",
 				isDisplayed: store.isLoggedIn,
 			},
+			// {
+			// 	linkUrl: "admin",
+			// 	displayName: "Admin",
+			// 	isDisplayed: store.hasBackendAccess,
+			// },
+			// { linkUrl: "blog", displayName: "Blog", isDisplayed: true },
+			{ linkUrl: "projects", displayName: "Projects", isDisplayed: true },
+			{ linkUrl: "about", displayName: "About", isDisplayed: true },
+			{ linkUrl: "", displayName: "Home", isDisplayed: true },
 		];
+
 		const htmlLinks = navItems
 			.filter((link) => link.isDisplayed)
 			.map((link) => (
@@ -57,12 +44,14 @@ export default class NavigationBar extends Component<NavBarProps, IState> {
 					displayName={link.displayName}
 					linkUrl={link.linkUrl}
 					isDisplayed={link.isDisplayed}
+					key={link.displayName}
 				/>
 			));
 
 		return (
 			<>
-				<div className={navClassName}>
+				<div className="navigation">
+					<h1>{this.props.displayHeader ? "Kaelan Reece" : ""}</h1>
 					<ul>{htmlLinks}</ul>
 				</div>
 			</>
@@ -71,9 +60,19 @@ export default class NavigationBar extends Component<NavBarProps, IState> {
 }
 
 function NavigationItem(props: NavItemProps) {
+	let useExactPath = false;
+	if (props.linkUrl === "") {
+		useExactPath = true;
+	}
 	return (
 		<li className="nav-item">
-			<Link to={"/" + props.linkUrl}>{props.displayName}</Link>
+			<NavLink
+				exact={useExactPath}
+				to={"/" + props.linkUrl}
+				activeClassName="active"
+			>
+				{props.displayName}
+			</NavLink>
 		</li>
 	);
 }

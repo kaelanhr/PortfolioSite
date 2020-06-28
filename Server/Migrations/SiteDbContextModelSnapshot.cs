@@ -120,6 +120,29 @@ namespace PersonalSite.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("PersonalSite.Models.BlogCategory", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("Creation")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("HeaderImagePath")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Blog");
+                });
+
             modelBuilder.Entity("PersonalSite.Models.BlogPost", b =>
                 {
                     b.Property<Guid>("Id")
@@ -129,15 +152,55 @@ namespace PersonalSite.Migrations
                     b.Property<string>("Content")
                         .HasColumnType("text");
 
+                    b.Property<DateTime>("Creation")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<string>("HeaderImagePath")
                         .HasColumnType("text");
 
                     b.Property<string>("Title")
                         .HasColumnType("text");
 
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("timestamp without time zone");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Blog");
+                    b.ToTable("BlogPost");
+                });
+
+            modelBuilder.Entity("PersonalSite.Models.Project", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("Creation")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("HeaderImagePath")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("Highlight")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("ProjectUrl")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Project");
                 });
 
             modelBuilder.Entity("PersonalSite.Models.SiteContent", b =>
@@ -151,6 +214,12 @@ namespace PersonalSite.Migrations
 
                     b.Property<string>("ContentLabel")
                         .HasColumnType("text");
+
+                    b.Property<DateTime>("Creation")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 

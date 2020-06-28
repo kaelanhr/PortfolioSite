@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router";
-import { HashLink as Link } from "react-router-hash-link";
-import About from "../../Pages/About";
-import Admin from "../../Pages/Admin";
-import Blog from "../../Pages/Blog/Blog";
-import Home from "../../Pages/Home";
-import Login from "../../Pages/Login";
-import Logout from "../../Pages/Logout";
-import Projects from "../../Pages/Projects";
-import { store } from "../../store";
+import About from "Pages/About";
+import Admin from "Pages/Admin";
+import Home from "Pages/Home";
+import Login from "Pages/Login";
+import Logout from "Pages/Logout";
+import Projects from "Pages/Projects";
+import { store } from "store";
+import BlogPage from "../Blog/BlogListPage";
+import Footer from 'Components/Footer/Footer';
 
 export default class RoutPages extends Component {
 	render() {
@@ -16,44 +16,30 @@ export default class RoutPages extends Component {
 		return (
 			<Switch>
 				<Route exact path="/">
-					<div id="home-slide">
-						<Home />
-						<div className="centered-icon">
-							<Link to="/#about-content">
-								<img className="expand-icon" src="/Icons/Down-Icon.svg" />
-							</Link>
-						</div>
-					</div>
-					<div id="about-slide">
-						<div className="home-page-content">
-							<About />
-						</div>
-					</div>
+					<Home />
+					<Footer />
 				</Route>
-
-				<div className="page-content">
-					<Route path="/blog">
-						<Route component={Blog} />
-					</Route>
-					<Route exact path="/admin">
-						<Admin />
-					</Route>
-					<Route exact path="/login">
-						<Login />
-					</Route>
-					<Route exact path="/logout">
-						<Logout />
-					</Route>
-					<Route exact path="/projects">
-						<Projects />
-					</Route>
-				</div>
-				<Route component={NotFound} />
+				<Route>
+					<Switch>
+						<Route path="/about" component={About} />
+						<Route path="/blog" component={BlogPage} />
+						<Route exact path="/admin" component={Admin} />
+						<Route exact path="/login" component={Login} />
+						<Route exact path="/logout" component={Logout} />
+						<Route path="/projects" component={Projects} />
+						<Route component={NotFound} />
+					</Switch>
+					<Footer />
+				</Route>
 			</Switch>
 		);
 	}
 }
 
 function NotFound() {
-	return <p>The Page you were looking for was not found</p>;
+	return (
+		<div id="not-found">
+			<h1>The Page you were looking for was not found</h1>
+		</div>
+	);
 }
