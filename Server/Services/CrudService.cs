@@ -60,10 +60,19 @@ namespace PersonalSite.Services
 			where T : class, IModel, new()
 		{
 			var dbSet = _dbContext.Set<T>();
-			var entitySaved = dbSet.Add(entity).Entity;
-			await _dbContext.SaveChangesAsync();
-			_logger.LogInformation(4, $"Created a {entity.GetType()} with ID {entity.Id}");
-			return entitySaved;
+
+			try
+			{
+				var entitySaved = dbSet.Add(entity).Entity;
+				await _dbContext.SaveChangesAsync();
+				_logger.LogInformation(4, $"Created a {entity.GetType()} with ID {entity.Id}");
+				return entitySaved;
+			}
+			catch (Exception e)
+			{
+				_logger.LogInformation("An error occured - " + e);
+				throw;
+			}
 		}
 
 		/// <summary>

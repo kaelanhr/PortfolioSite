@@ -38,7 +38,7 @@ namespace PersonalSite.Controllers
 		[HttpPost]
 		[Authorize]
 		[Route("")]
-		public async Task<ProjectDto> CreateBlogAsync([BindRequired, FromBody] ProjectDto project)
+		public async Task<ProjectDto> CreateProjectAsync([BindRequired, FromBody] ProjectDto project)
 		{
 			// cannot specify the guid.
 			if (project.Id != Guid.Empty)
