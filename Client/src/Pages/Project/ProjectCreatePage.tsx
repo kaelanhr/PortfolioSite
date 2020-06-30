@@ -16,11 +16,13 @@ export default class ProjectCreatePage extends Component {
 	@observable
 	private errorList: string[];
 
+	private model: Project = new Project();
+
 	@action
 	SubmitHandler = (event: React.FormEvent<HTMLFormElement>, model: Project) => {
 		event.preventDefault();
 
-		this.errorList = model.validate()
+		this.errorList = model.validate();
 
 		if (this.errorList.length > 0) {
 		} else {
@@ -29,35 +31,34 @@ export default class ProjectCreatePage extends Component {
 	};
 
 	render() {
-		let newModel = new Project();
 		return (
 			<>
 				<CreateUpdateForm
 					entityAction="Create"
 					entityDisplayName="Project"
 					onSubmit={this.SubmitHandler}
-					model={newModel}
+					model={this.model}
 					errorList={this.errorList}
 				>
 					<TextField
-						model={newModel}
+						model={this.model}
 						modelProperty="title"
 						type="text"
 						label="Title"
 					/>
 					<TextField
-						model={newModel}
+						model={this.model}
 						modelProperty="projectUrl"
 						type="text"
 						label="Project Url"
 					/>
 					<Checkbox
-						model={newModel}
+						model={this.model}
 						modelProperty="highlight"
 						label="Highlighted"
 					/>
 					<MarkdownField
-						model={newModel}
+						model={this.model}
 						modelProperty="content"
 						label="Content"
 						placeholder="Project Content"
