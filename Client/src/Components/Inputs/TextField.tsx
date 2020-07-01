@@ -19,14 +19,15 @@ export default class TextField<T> extends Component<TextFieldProps<T>> {
 					onChange={this.handleUserInput}
 					onBlur={this.props.onBlur}
 					placeholder={this.props.placeholder}
-					value={this.props.value}
+					value={
+						this.props.model[this.props.modelProperty] ?? ""
+					}
 				/>
 			</>
 		);
 	}
 
 	private handleUserInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-		console.log("the thing happened");
 		this.props.model[this.props.modelProperty] = e.target.value as any;
 	};
 }

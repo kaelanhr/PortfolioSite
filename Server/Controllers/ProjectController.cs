@@ -51,6 +51,26 @@ namespace PersonalSite.Controllers
 			return new ProjectDto(await _crudService.CreateAsync(project.ToEntity()));
 		}
 
+
+		/// <summary>
+		/// edit a project.
+		/// </summary>
+		/// <param name="project">A project entity.</param>
+		/// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
+		[HttpPut]
+		[Authorize]
+		[Route("")]
+		public async Task<ProjectDto> UpdateProjectAsync([BindRequired, FromBody] ProjectDto project)
+		{
+			if (Guid.Empty == project.Id)
+			{
+				Response.StatusCode = (int)HttpStatusCode.BadRequest;
+				return null;
+			}
+
+			return new ProjectDto(await _crudService.UpdateAsync(project.ToEntity()));
+		}
+
 		[HttpGet]
 		[AllowAnonymous]
 		[Route("")]

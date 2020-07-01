@@ -54,6 +54,7 @@ function ProjectListItem(props: IProjectItemProps) {
 		<div className="project">
 			<Link to={`/projects/${props.id}`}>{props.title}</Link>
 			<IfAdmin>
+				<Link to={`/projects/edit/${props.id}`}>Edit</Link>
 				<img
 					src="/Icons/bin-icon.svg"
 					onClick={

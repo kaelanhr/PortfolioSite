@@ -50,6 +50,26 @@ export default class Project extends AbstractModel
 		return "";
 	};
 
+	public updateProject = () => {
+		axios
+			.put("/Api/Project", {
+				id: this.id,
+				Title: this.title,
+				content: this.content,
+				highlight: this.highlight,
+				projectUrl: this.projectUrl,
+			})
+			.then(function (response) {
+				console.log(response);
+				store.history.push("/projects");
+			})
+			.catch((error) => {
+				console.log(error);
+				return "There was an error submitting your request";
+			});
+		return "";
+	};
+
 	public validate = () => {
 		let errorsArray: string[] = [];
 		if (!this.title) {

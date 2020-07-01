@@ -87,7 +87,7 @@ namespace PersonalSite.Services
 			var dbSet = _dbContext.Set<T>();
 			var entitySaved = dbSet.Update(entity).Entity;
 			await _dbContext.SaveChangesAsync();
-			_logger.LogInformation(4, $"Created a {entity.GetType()} with ID {entity.Id}");
+			_logger.LogInformation(4, $"Updated a {entity.GetType()} with ID {entity.Id}");
 			return entitySaved;
 		}
 

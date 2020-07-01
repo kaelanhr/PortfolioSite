@@ -4,11 +4,16 @@ import TextField from "Components/Inputs/TextField";
 import Checkbox from "Components/Inputs/Checkbox";
 import MarkdownField from "Components/Inputs/MarkdownField";
 import CreateUpdateForm from "Components/Form/CreateUpdateForm";
-import { observable, action } from 'mobx';
-import { observer } from 'mobx-react';
+import { observable, action } from "mobx";
+import { observer } from "mobx-react";
+
+interface CreatePageProps {
+	model?: Project;
+	action: "create" | "update";
+}
 
 @observer
-export default class ProjectCreatePage extends Component {
+export default class ProjectCreatePage extends Component<CreatePageProps> {
 	constructor(props: any) {
 		super(props);
 	}
@@ -16,17 +21,23 @@ export default class ProjectCreatePage extends Component {
 	@observable
 	private errorList: string[];
 
-	private model: Project = new Project();
+	@observable
+	private model: Project = this.props.model ?? new Project();
 
 	@action
 	SubmitHandler = (event: React.FormEvent<HTMLFormElement>, model: Project) => {
 		event.preventDefault();
 
-		this.errorList = model.validate();
+		let submission = new Project(model);
+		this.errorList = submission.validate();
 
 		if (this.errorList.length > 0) {
 		} else {
-			model.createProject();
+			if (this.props.action == "create") {
+				submission.createProject();
+			} else if (this.props.action == "update") {
+				submission.updateProject();
+			}
 		}
 	};
 
@@ -45,12 +56,14 @@ export default class ProjectCreatePage extends Component {
 						modelProperty="title"
 						type="text"
 						label="Title"
+						value={this.model.title}
 					/>
 					<TextField
 						model={this.model}
 						modelProperty="projectUrl"
 						type="text"
 						label="Project Url"
+						value={this.model.projectUrl}
 					/>
 					<Checkbox
 						model={this.model}
@@ -62,6 +75,7 @@ export default class ProjectCreatePage extends Component {
 						modelProperty="content"
 						label="Content"
 						placeholder="Project Content"
+						value={this.model.content}
 					/>
 				</CreateUpdateForm>
 			</>
