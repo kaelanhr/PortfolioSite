@@ -3,13 +3,13 @@ import Project from "Models/Project";
 import TextField from "Components/Inputs/TextField";
 import Checkbox from "Components/Inputs/Checkbox";
 import MarkdownField from "Components/Inputs/MarkdownField";
-import CreateUpdateForm from "Components/Form/CreateUpdateForm";
+import CreateUpdateForm, { EntityAdminAction } from "Components/Form/CreateUpdateForm";
 import { observable, action } from "mobx";
 import { observer } from "mobx-react";
 
 interface CreatePageProps {
 	model?: Project;
-	action: "create" | "update";
+	action: EntityAdminAction
 }
 
 @observer
@@ -33,9 +33,9 @@ export default class ProjectCreatePage extends Component<CreatePageProps> {
 
 		if (this.errorList.length > 0) {
 		} else {
-			if (this.props.action == "create") {
+			if (this.props.action == "Create") {
 				submission.createProject();
-			} else if (this.props.action == "update") {
+			} else if (this.props.action == "Update") {
 				submission.updateProject();
 			}
 		}
@@ -45,7 +45,7 @@ export default class ProjectCreatePage extends Component<CreatePageProps> {
 		return (
 			<>
 				<CreateUpdateForm
-					entityAction="Create"
+					entityAction={this.props.action}
 					entityDisplayName="Project"
 					onSubmit={this.SubmitHandler}
 					model={this.model}

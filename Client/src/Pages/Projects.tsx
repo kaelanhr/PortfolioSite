@@ -52,7 +52,7 @@ export default class Projects extends Component<RouteComponentProps> {
 								</HeaderContent>
 							}
 						>
-							<ProjectCreatePage action="create" />
+							<ProjectCreatePage action="Create" />
 						</PageLayout>
 					</Route>
 					<Route
@@ -70,48 +70,25 @@ export default class Projects extends Component<RouteComponentProps> {
 export class ProjectCreateUpdate extends Component<RouteComponentProps> {
 	constructor(props: any) {
 		super(props);
-		this.getProject();
 	}
-
-	@observable
-	loadingState: "error" | "loading" | "done" = "loading";
-
-	@observable
-	fetchedModel: Project;
-
-	@action
-	getProject = () => {
-		axios.get(`/Api/Project/${this.props.match.params["id"]}`)
-			.then((response) => {
-				this.fetchedModel = response.data;
-				this.loadingState = "done";
-			})
-			.catch((error) => {
-				console.log(error);
-				this.loadingState = "error";
-			});
-	};
 	render() {
-		switch (this.loadingState) {
-			case "done":
-				return (
-					<PageLayout
-						displayHeader={true}
-						headerComponent={
-							<HeaderContent name="Projects">
-								<p>Update project</p>
-							</HeaderContent>
-						}
-					>
-					<ProjectCreatePage action="update" model={this.fetchedModel} />
-					</PageLayout>
-				);
-			case "error":
-				return "There was an error";
-			case "loading":
-			default:
-				return "Loading Page";
-		}
+		return (
+			<PageLayout
+				displayHeader={true}
+				headerComponent={
+					<HeaderContent name="Projects">
+						<p>Update project</p>
+					</HeaderContent>
+				}
+			>
+				<LoadData
+					promise={axios.get(`/Api/Project/${this.props.match.params["id"]}`)}
+					done={(data) => {
+						return <ProjectCreatePage action="Update" model={data.data} />;
+					}}
+				/>
+			</PageLayout>
+		);
 	}
 }
 
