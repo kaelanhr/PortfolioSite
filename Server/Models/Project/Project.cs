@@ -1,4 +1,3 @@
-using PersonalSite.Attributes.Validator;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -26,7 +25,6 @@ namespace PersonalSite.Models
 		/// Gets or sets the title of the project.
 		/// </summary>
 		[Required]
-		[ProjectUniqueAttribute]
 		public string Title { get; set; }
 
 		/// <summary>
