@@ -35,7 +35,7 @@ export default class Home extends Component {
 	}
 }
 
-function HomeHeader() {
+export function HomeHeader() {
 	return (
 		<HeaderContent name="home">
 			<div className="welcome-text">
