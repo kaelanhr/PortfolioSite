@@ -1,4 +1,3 @@
-using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -33,6 +32,10 @@ namespace PersonalSite.Models
 		[Required]
 		public bool Highlight { get; set; }
 
+		/// <summary>
+		/// Gets or sets the url of a particular projects source code, usually located
+		/// on github.
+		/// </summary>
 		public string ProjectUrl { get; set; }
 	}
 }

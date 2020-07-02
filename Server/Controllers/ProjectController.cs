@@ -24,6 +24,11 @@ namespace PersonalSite.Controllers
 		private readonly ILogger _logger;
 		private readonly CrudService _crudService;
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="ProjectController"/> class.
+		/// </summary>
+		/// <param name="loggerFactory">The logger factory being used.</param>
+		/// <param name="crudService">The crud service.</param>
 		public ProjectController(ILoggerFactory loggerFactory, CrudService crudService)
 		{
 			_logger = loggerFactory.CreateLogger<ProjectController>();
@@ -47,10 +52,17 @@ namespace PersonalSite.Controllers
 				return null;
 			}
 
-			_logger.LogInformation(4, "creating a blog.");
-			return new ProjectDto(await _crudService.CreateAsync(project.ToEntity()));
+			_logger.LogInformation(4, "creating a project.");
+			try
+			{
+				return new ProjectDto(await _crudService.CreateAsync(project.ToEntity()));
+			}
+			catch (Exception)
+			{
+				Response.StatusCode = (int)HttpStatusCode.BadRequest;
+				throw;
+			}
 		}
-
 
 		/// <summary>
 		/// edit a project.
@@ -60,9 +72,9 @@ namespace PersonalSite.Controllers
 		[HttpPut]
 		[Authorize]
 		[Route("")]
-		public async Task<ProjectDto> UpdateProjectAsync([BindRequired, FromBody] ProjectDto project)
+		public async Task<ProjectDto> EditProjectAsync([BindRequired, FromBody] ProjectDto project)
 		{
-			if (Guid.Empty == project.Id)
+			if (project.Id == Guid.Empty)
 			{
 				Response.StatusCode = (int)HttpStatusCode.BadRequest;
 				return null;
@@ -71,6 +83,10 @@ namespace PersonalSite.Controllers
 			return new ProjectDto(await _crudService.UpdateAsync(project.ToEntity()));
 		}
 
+		/// <summary>
+		/// gets all projects.
+		/// </summary>
+		/// <returns>All projects.</returns>
 		[HttpGet]
 		[AllowAnonymous]
 		[Route("")]
@@ -80,6 +96,10 @@ namespace PersonalSite.Controllers
 			return await result.Select(m => new ProjectDto(m)).ToListAsync();
 		}
 
+		/// <summary>
+		/// Gets all projects which are highlighted.
+		/// </summary>
+		/// <returns>A list of highlighted projects.</returns>
 		[HttpGet]
 		[AllowAnonymous]
 		[Route("Highlights")]
@@ -89,6 +109,11 @@ namespace PersonalSite.Controllers
 			return await result.Select(m => new ProjectDto(m)).ToListAsync();
 		}
 
+		/// <summary>
+		/// Gets a single project, given an id.
+		/// </summary>
+		/// <param name="id">The id of the project.</param>
+		/// <returns>The DTO of the project which matches the id.</returns>
 		[HttpGet]
 		[AllowAnonymous]
 		[Route("{id}")]
@@ -101,6 +126,7 @@ namespace PersonalSite.Controllers
 		/// <summary>
 		/// deletes a particular project.
 		/// </summary>
+		/// <param name="id">The id of the project being deleted.</param>
 		/// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
 		[HttpDelete]
 		[Route("{id}")]

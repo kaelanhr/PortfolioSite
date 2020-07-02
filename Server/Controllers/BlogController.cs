@@ -13,27 +13,27 @@ using PersonalSite.Services;
 namespace PersonalSite.Controllers
 {
 	/// <summary>
-	/// Manage user accounts login, register, forgot password etc.
+	/// api for crud operations on a blog category.
 	/// </summary>
 	[Authorize]
 	[ApiController]
 	[Route("/Api/Blog")]
-	public class BlogCategoryController : Controller
+	public class BlogController : Controller
 	{
 		private readonly ILogger _logger;
 		private readonly CrudService _crudService;
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="BlogCategoryController"/> class.
+		/// Initializes a new instance of the <see cref="BlogController"/> class.
 		/// </summary>
 		/// <param name="loggerFactory">Log controller actions.</param>
 		/// <param name="crudService">The crud service used.</param>
-		public BlogCategoryController(
+		public BlogController(
 			ILoggerFactory loggerFactory,
 			CrudService crudService)
 		{
 			_crudService = crudService;
-			_logger = loggerFactory.CreateLogger<BlogCategoryController>();
+			_logger = loggerFactory.CreateLogger<BlogController>();
 		}
 
 		/// <summary>
@@ -44,7 +44,7 @@ namespace PersonalSite.Controllers
 		[HttpPost]
 		[Authorize]
 		[Route("Create")]
-		public async Task<BlogCategory> CreateBlogAsync([BindRequired, FromBody] BlogCategory blogCategory)
+		public async Task<Blog> CreateBlogAsync([BindRequired, FromBody] Blog blogCategory)
 		{
 			// cannot specify the guid.
 			if (blogCategory.Id != Guid.Empty)
@@ -64,19 +64,20 @@ namespace PersonalSite.Controllers
 		[HttpGet]
 		[AllowAnonymous]
 		[Route("")]
-		public async Task<IEnumerable<BlogCategory>> GetBlogAsync()
+		public async Task<IEnumerable<Blog>> GetBlogAsync()
 		{
-			return await _crudService.Get<BlogCategory>().ToListAsync();
+			return await _crudService.Get<Blog>().ToListAsync();
 		}
 
 		/// <summary>
 		/// deletes a particular blog.
 		/// </summary>
+		/// <param name="id">the id of the blog to delete.</param>
 		/// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
 		[HttpDelete]
 		[Route ("{id}")]
 		public async Task<Guid> DeleteBlogAsync(Guid id){
-			return await _crudService.DeleteAsync<BlogCategory> (id);
+			return await _crudService.DeleteAsync<Blog>(id);
 		}
 	}
 }

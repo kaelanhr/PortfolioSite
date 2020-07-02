@@ -20,8 +20,7 @@ export default class TextField<T> extends Component<TextFieldProps<T>> {
 					onBlur={this.props.onBlur}
 					placeholder={this.props.placeholder}
 					value={
-						this.props.model[this.props.modelProperty] ?? ""
-					}
+						this.props.model[this.props.modelProperty]}
 				/>
 			</>
 		);

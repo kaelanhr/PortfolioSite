@@ -1,12 +1,9 @@
-using System;
-using System.ComponentModel.DataAnnotations;
-
 namespace PersonalSite.Models
 {
 	/// <summary>
-	/// Everything contained within a single blog post.
+	/// A blog category which can contain many blog posts.
 	/// </summary>
-	public class BlogCategory : AbstractModel
+	public class Blog : AbstractModel
 	{
 		/// <summary>
 		/// Gets or sets the header image for the blog.

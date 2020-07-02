@@ -33,7 +33,7 @@ namespace PersonalSite.Models
 		/// <summary>
 		/// Gets or sets blog post so they can be created with EF.
 		/// </summary>
-		public DbSet<BlogCategory> Blog { get; set; }
+		public DbSet<Blog> Blog { get; set; }
 
 		/// <summary>
 		/// Gets or sets site content so they can be created with EF.

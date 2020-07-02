@@ -148,6 +148,7 @@ namespace PersonalSite
 
 			app.UseStaticFiles();
 			app.UseSpaStaticFiles();
+			app.UseMiddleware<ExceptionHandler>();
 			app.UseRouting();
 			app.UseCookiePolicy();
 			app.UseAuthentication();

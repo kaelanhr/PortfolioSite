@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
+using PersonalSite.Exceptions;
 using PersonalSite.Models;
 
 namespace PersonalSite.Services
@@ -15,21 +16,17 @@ namespace PersonalSite.Services
 	{
 		private readonly ILogger _logger;
 		private readonly SiteDbContext _dbContext;
-		private readonly UserManager<SiteUser> _userManager;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="CrudService"/> class.
 		/// </summary>
-		/// <param name="userManager">The User Manager used.</param>
 		/// <param name="dbContext">The dbContext used for this service.</param>
 		/// <param name="loggerFactory">The logger factory used.</param>
 		public CrudService(
-			UserManager<SiteUser> userManager,
 			SiteDbContext dbContext,
 			ILoggerFactory loggerFactory)
 		{
 			_dbContext = dbContext;
-			_userManager = userManager;
 			_logger = loggerFactory.CreateLogger<DataSeedService>();
 		}
 
@@ -44,6 +41,12 @@ namespace PersonalSite.Services
 			return _dbContext.Set<T>();
 		}
 
+		/// <summary>
+		/// Returns the db set of an entity with the given id.
+		/// </summary>
+		/// <typeparam name="T">The entity being retrieved.</typeparam>
+		/// <param name="id">The id of the entity being retrieved.</param>
+		/// <returns>An IQueryable dbSet of an entity matching the id.</returns>
 		public IQueryable<T> GetById<T>(Guid id)
 			where T : class, IModel, new()
 		{
@@ -71,7 +74,12 @@ namespace PersonalSite.Services
 			catch (Exception e)
 			{
 				_logger.LogInformation("An error occured - " + e);
-				throw;
+				if (e.InnerException.Data["SqlState"].ToString() == "23505")
+				{
+					throw new DuplicateIndexException();
+				}
+
+				throw new BaseErrorException();
 			}
 		}
 
