@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Footer from "Components/Footer/Footer";
 
 export default class MainApp extends Component<{}> {
 	constructor(props: any) {
@@ -8,7 +9,10 @@ export default class MainApp extends Component<{}> {
 	render() {
 		return (
 			<>
-				<div className={"main"}>{this.props.children}</div>
+				<div className={"main"}>
+					{this.props.children}
+					<Footer />
+				</div>
 			</>
 		);
 	}

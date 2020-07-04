@@ -17,7 +17,6 @@ export default class RoutPages extends Component {
 			<Switch>
 				<Route exact path="/">
 					<Home />
-					<Footer />
 				</Route>
 				<Route>
 					<Switch>
@@ -29,7 +28,6 @@ export default class RoutPages extends Component {
 						<Route path="/projects" component={Projects} />
 						<Route component={NotFound} />
 					</Switch>
-					<Footer />
 				</Route>
 			</Switch>
 		);
