@@ -8,11 +8,8 @@ import { IfAdmin } from "Components/Conditional/If";
 import { Link } from "react-router-dom";
 import PageLayout from "./PageLayout";
 import ProjectList from "./Project/ProjectList";
-import ProjectCreatePage from "./Project/ProjectCreatePage";
 import ProjectItem from "./Project/ProjectItem";
-import { observer } from "mobx-react";
-import { observable, action } from "mobx";
-import { act } from "react-dom/test-utils";
+import ProjectAdminLayout from "./Project/ProjectAdminLayout";
 
 export default class Projects extends Component<RouteComponentProps> {
 	render() {
@@ -43,51 +40,21 @@ export default class Projects extends Component<RouteComponentProps> {
 							</div>
 						</PageLayout>
 					</Route>
-					<Route path="/projects/create">
-						<PageLayout
-							displayHeader={true}
-							headerComponent={
-								<HeaderContent name="Projects">
-									<p>Add new project</p>
-								</HeaderContent>
-							}
-						>
-							<ProjectCreatePage action="Create" />
-						</PageLayout>
-					</Route>
+					<Route
+						path="/projects/create"
+						render={(props) => (
+							<ProjectAdminLayout {...props} entityAction="Create" />
+						)}
+					/>
 					<Route
 						path="/projects/edit/:id?"
-						component={ProjectCreateUpdate}
-					></Route>
+						render={(props) => (
+							<ProjectAdminLayout {...props} entityAction="Update" />
+						)}
+					/>
 					<Route path="/projects/:id?" component={ProjectItem} />
 				</Switch>
 			</>
-		);
-	}
-}
-
-@observer
-export class ProjectCreateUpdate extends Component<RouteComponentProps> {
-	constructor(props: any) {
-		super(props);
-	}
-	render() {
-		return (
-			<PageLayout
-				displayHeader={true}
-				headerComponent={
-					<HeaderContent name="Projects">
-						<p>Update project</p>
-					</HeaderContent>
-				}
-			>
-				<LoadData
-					promise={axios.get(`/Api/Project/${this.props.match.params["id"]}`)}
-					done={(data) => {
-						return <ProjectCreatePage action="Update" model={data.data} />;
-					}}
-				/>
-			</PageLayout>
 		);
 	}
 }

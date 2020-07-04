@@ -3,7 +3,7 @@ import Project from "Models/Project";
 import TextField from "Components/Inputs/TextField";
 import Checkbox from "Components/Inputs/Checkbox";
 import MarkdownField from "Components/Inputs/MarkdownField";
-import CreateUpdateForm, { EntityAdminAction } from "Components/Form/CreateUpdateForm";
+import AdminCrudForm, { EntityAdminAction } from "Components/Form/AdminCrudForm";
 import { observable, action } from "mobx";
 import { observer } from "mobx-react";
 
@@ -44,7 +44,7 @@ export default class ProjectCreatePage extends Component<CreatePageProps> {
 	render() {
 		return (
 			<>
-				<CreateUpdateForm
+				<AdminCrudForm
 					entityAction={this.props.action}
 					entityDisplayName="Project"
 					onSubmit={this.SubmitHandler}
@@ -77,7 +77,7 @@ export default class ProjectCreatePage extends Component<CreatePageProps> {
 						placeholder="Project Content"
 						value={this.model.content}
 					/>
-				</CreateUpdateForm>
+				</AdminCrudForm>
 			</>
 		);
 	}
