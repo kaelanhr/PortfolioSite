@@ -15,12 +15,15 @@
 		margin-right: 5rem;
 		margin-top: 5rem;
 	}
-	.bin-icon {
-		height: 1.5rem;
-		width: 1.5rem;
+	.admin-icons {
 		position: absolute;
-		bottom:1rem;
+		bottom: 1rem;
 		right: 1rem;
-		cursor: pointer;
+		.action-icon {
+			height: 1.5rem;
+			width: 1.5rem;
+			padding-right: 0.5rem;
+			cursor: pointer;
+		}
 	}
 }

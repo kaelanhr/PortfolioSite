@@ -9,7 +9,7 @@ interface projectProps {
 }
 
 export default function ProjectList(props: projectProps) {
-	const [projectList, setProjects] = useState(props.list)
+	const [projectList, setProjects] = useState(props.list);
 
 	let onDelete = (title: string, id: string) => {
 		let accepted = window.confirm(`Are you sure you wish to delete: ${title}?`);
@@ -31,7 +31,9 @@ export default function ProjectList(props: projectProps) {
 	));
 	return (
 		<>
-			<div className="project-list">{listItems.length > 0 ? listItems : <EmptyProjectsList />}</div>
+			<div className="project-list">
+				{listItems.length > 0 ? listItems : <EmptyProjectsList />}
+			</div>
 		</>
 	);
 }
@@ -41,9 +43,8 @@ function EmptyProjectsList() {
 		<div>
 			<p>No Projects Listed</p>
 		</div>
-	)
+	);
 }
-
 
 interface IProjectItemProps extends IProjectAttributes {
 	onItemRemoved: Function;
@@ -54,14 +55,16 @@ function ProjectListItem(props: IProjectItemProps) {
 		<div className="project">
 			<Link to={`/projects/${props.id}`}>{props.title}</Link>
 			<IfAdmin>
-				<Link to={`/projects/edit/${props.id}`}>Edit</Link>
-				<img
-					src="/Icons/bin-icon.svg"
-					onClick={
-						() => props.onItemRemoved(props.title, props.id)
-					}
-					className="bin-icon"
-				/>
+				<div className="admin-icons">
+					<Link to={`/projects/edit/${props.id}`}>
+						<img src="/Icons/edit-icon.svg" className="action-icon" />
+					</Link>
+					<img
+						src="/Icons/bin-icon.svg"
+						onClick={() => props.onItemRemoved(props.title, props.id)}
+						className="action-icon"
+					/>
+				</div>
 			</IfAdmin>
 		</div>
 	);
