@@ -16,3 +16,9 @@ export default class AbstractModel implements IAbstractAttributes {
 export interface IAbstractAttributes {
 	id?: string;
 }
+
+export interface IModelMethods {
+	createModel: () => string;
+	editModel: () => string;
+	validateModel: () => string[];
+}

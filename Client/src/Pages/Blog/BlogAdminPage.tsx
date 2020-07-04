@@ -29,14 +29,14 @@ export default class BlogCreatePage extends Component<CreatePageProps> {
 		event.preventDefault();
 
 		let submission = new Blog(model);
-		this.errorList = submission.validate();
+		this.errorList = submission.validateModel();
 
 		if (this.errorList.length > 0) {
 		} else {
 			if (this.props.action == "Create") {
-				submission.createBlog();
+				submission.createModel();
 			} else if (this.props.action == "Update") {
-				submission.updateBlog();
+				submission.editModel();
 			}
 		}
 	};

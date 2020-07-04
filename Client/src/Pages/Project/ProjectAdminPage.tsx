@@ -29,14 +29,14 @@ export default class ProjectCreatePage extends Component<CreatePageProps> {
 		event.preventDefault();
 
 		let submission = new Project(model);
-		this.errorList = submission.validate();
+		this.errorList = submission.validateModel();
 
 		if (this.errorList.length > 0) {
 		} else {
 			if (this.props.action == "Create") {
-				submission.createProject();
+				submission.createModel();
 			} else if (this.props.action == "Update") {
-				submission.updateProject();
+				submission.editModel();
 			}
 		}
 	};
