@@ -2,10 +2,10 @@ import React from "react";
 import PageLayout from "Pages/PageLayout";
 import HeaderContent from "Components/Header/Header";
 import ProjectAdminPage from "./ProjectAdminPage";
-import { EntityAdminAction } from "Pages/Blog/BlogPostCreatePage";
 import { LoadData } from 'Components/LoadData/LoadData';
 import { RouteComponentProps } from 'react-router';
 import axios from 'axios';
+import { EntityAdminAction } from 'Components/Form/AdminCrudForm';
 
 interface ProjectLayoutProps extends RouteComponentProps {
 	entityAction: EntityAdminAction;

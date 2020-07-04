@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -17,8 +18,8 @@ namespace PersonalSite.Controllers
 	/// </summary>
 	[Authorize]
 	[ApiController]
-	[Route("/Api/Blog")]
-	public class BlogController : Controller
+	[Route("/Api/Blogs")]
+	public class BlogController : Controller, IEntityController<BlogDto>
 	{
 		private readonly ILogger _logger;
 		private readonly CrudService _crudService;
@@ -39,22 +40,49 @@ namespace PersonalSite.Controllers
 		/// <summary>
 		/// Create a blog.
 		/// </summary>
-		/// <param name="blogCategory">A blog category entity.</param>
+		/// <param name="blog">The blog being created.</param>
 		/// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
 		[HttpPost]
 		[Authorize]
-		[Route("Create")]
-		public async Task<Blog> CreateBlogAsync([BindRequired, FromBody] Blog blogCategory)
+		[Route("")]
+		public async Task<BlogDto> CreateAsync([BindRequired, FromBody] BlogDto blog)
 		{
 			// cannot specify the guid.
-			if (blogCategory.Id != Guid.Empty)
+			if (blog.Id != Guid.Empty)
 			{
 				Response.StatusCode = (int)HttpStatusCode.BadRequest;
 				return null;
 			}
 
-			_logger.LogInformation(4, "creating a blog.");
-			return await _crudService.CreateAsync(blogCategory);
+			_logger.LogInformation(4, "creating a project.");
+			try
+			{
+				return new BlogDto(await _crudService.CreateAsync(blog.ToEntity()));
+			}
+			catch (Exception)
+			{
+				Response.StatusCode = (int)HttpStatusCode.BadRequest;
+				throw;
+			}
+		}
+
+		/// <summary>
+		/// edit a blog.
+		/// </summary>
+		/// <param name="project">A blog entity.</param>
+		/// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
+		[HttpPut]
+		[Authorize]
+		[Route("")]
+		public async Task<BlogDto> EditAsync([BindRequired, FromBody] BlogDto blog)
+		{
+			if (blog.Id == Guid.Empty)
+			{
+				Response.StatusCode = (int)HttpStatusCode.BadRequest;
+				return null;
+			}
+
+			return new BlogDto(await _crudService.UpdateAsync(blog.ToEntity()));
 		}
 
 		/// <summary>
@@ -64,9 +92,24 @@ namespace PersonalSite.Controllers
 		[HttpGet]
 		[AllowAnonymous]
 		[Route("")]
-		public async Task<IEnumerable<Blog>> GetBlogAsync()
+		public async Task<IEnumerable<BlogDto>> GetAsync()
 		{
-			return await _crudService.Get<Blog>().ToListAsync();
+			var result = _crudService.Get<Blog>();
+			return await result.Select(b => new BlogDto(b)).ToListAsync();
+		}
+
+		/// <summary>
+		/// Gets a single blog, given an id.
+		/// </summary>
+		/// <param name="id">The id of the blog.</param>
+		/// <returns>The DTO of the blog which matches the id.</returns>
+		[HttpGet]
+		[AllowAnonymous]
+		[Route("{id}")]
+		public async Task<BlogDto> GetByIdAsync(Guid id)
+		{
+			var result = _crudService.GetById<Blog>(id);
+			return await result.Select(b => new BlogDto(b)).FirstOrDefaultAsync();
 		}
 
 		/// <summary>
@@ -75,8 +118,9 @@ namespace PersonalSite.Controllers
 		/// <param name="id">the id of the blog to delete.</param>
 		/// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
 		[HttpDelete]
-		[Route ("{id}")]
-		public async Task<Guid> DeleteBlogAsync(Guid id){
+		[Route("{id}")]
+		public async Task<Guid> DeleteAsync(Guid id)
+		{
 			return await _crudService.DeleteAsync<Blog>(id);
 		}
 	}

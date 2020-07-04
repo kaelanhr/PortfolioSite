@@ -7,8 +7,8 @@ import Login from "Pages/Login";
 import Logout from "Pages/Logout";
 import Projects from "Pages/Projects";
 import { store } from "store";
-import BlogPage from "../Blog/BlogListPage";
 import Footer from 'Components/Footer/Footer';
+import Blogs from 'Pages/Blogs';
 
 export default class RoutPages extends Component {
 	render() {
@@ -22,7 +22,7 @@ export default class RoutPages extends Component {
 				<Route>
 					<Switch>
 						<Route path="/about" component={About} />
-						<Route path="/blog" component={BlogPage} />
+						<Route path="/Blogs" component={Blogs} />
 						<Route exact path="/admin" component={Admin} />
 						<Route exact path="/login" component={Login} />
 						<Route exact path="/logout" component={Logout} />

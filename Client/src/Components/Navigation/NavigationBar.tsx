@@ -31,7 +31,7 @@ export default class NavigationBar extends Component<NavBarProps> {
 			// 	displayName: "Admin",
 			// 	isDisplayed: store.hasBackendAccess,
 			// },
-			// { linkUrl: "blog", displayName: "Blog", isDisplayed: true },
+			{ linkUrl: "Blogs", displayName: "Blog", isDisplayed: true },
 			{ linkUrl: "projects", displayName: "Projects", isDisplayed: true },
 			{ linkUrl: "about", displayName: "About", isDisplayed: true },
 			{ linkUrl: "", displayName: "Home", isDisplayed: true },

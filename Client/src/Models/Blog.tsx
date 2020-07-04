@@ -21,12 +21,29 @@ export default class Blog extends AbstractModel implements IBlogAttributes {
 
 	public createBlog = () => {
 		axios
-			.post("/Api/Blog/Create", {
+			.post("/Api/Blogs/Create", {
 				Title: this.title,
 			})
 			.then(function (response) {
 				console.log(response);
-				store.history.push("/blog");
+				store.history.push("/blogs");
+			})
+			.catch((error) => {
+				console.log(error);
+				return "There was an error submitting your request";
+			});
+		return "";
+	};
+
+	public updateBlog = () => {
+		axios
+			.put("/Api/Blogs", {
+				id: this.id,
+				Title: this.title,
+			})
+			.then(function (response) {
+				console.log(response);
+				store.history.push("/Blogs");
 			})
 			.catch((error) => {
 				console.log(error);
@@ -36,7 +53,7 @@ export default class Blog extends AbstractModel implements IBlogAttributes {
 	};
 
 	public validate = () => {
-		let errorsArray:string[] = [];
+		let errorsArray: string[] = [];
 		if (!this.title) {
 			errorsArray.push("Blog Title is required");
 		}
