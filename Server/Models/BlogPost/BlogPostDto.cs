@@ -8,8 +8,13 @@ namespace PersonalSite.Models
 	/// <summary>
 	/// Everything contained within a single blog post.
 	/// </summary>
-	public class BlogDto : ModelDto<Blog>, IModelDto<Blog>
+	public class BlogPostDto : ModelDto<BlogPost>, IModelDto<BlogPost>
 	{
+		/// <summary>
+		/// Gets or sets blog content.
+		/// </summary>
+		public string Content { get; set; }
+
 		/// <summary>
 		/// Gets or sets the header image for the blog.
 		/// </summary>
@@ -20,41 +25,34 @@ namespace PersonalSite.Models
 		/// </summary>
 		public string Title { get; set; }
 
-		/// <summary>
-		/// Gets or sets Blog posts associated with this blog.
-		/// </summary>
-		public List<BlogPost> Posts { get; set; }
-
-		public BlogDto(Blog model)
+		public BlogPostDto(BlogPost model)
 		{
 			LoadEntity(model);
 		}
 
-		public BlogDto() { }
+		public BlogPostDto() { }
 
-		public ModelDto<Blog> LoadEntity(Blog model)
+		public ModelDto<BlogPost> LoadEntity(BlogPost model)
 		{
 			Id = model.Id;
 			Creation = model.Creation;
 			Updated = model.Updated;
 			HeaderImagePath = model.HeaderImagePath;
 			Title = model.Title;
-			Posts = model.Posts;
+			Content = model.Content;
 			return this;
 		}
 
-		public Blog ToEntity()
+		public BlogPost ToEntity()
 		{
-			return new Blog
+			return new BlogPost
 			{
 				Id = Id,
 				Creation = Creation,
 				Updated = Updated,
 				Title = Title,
 				HeaderImagePath = HeaderImagePath,
-				Posts = Posts,
 			};
 		}
-
 	}
 }
