@@ -3,7 +3,7 @@ import Blog, { IBlogAttributes } from "Models/Blog";
 import { Link, RouteComponentProps } from "react-router-dom";
 import axios from "axios";
 import { IfAdmin } from "Components/Conditional/If";
-import BlogPosts, { IBlogPostAttributes } from 'Models/BlogPost';
+import BlogPosts, { IBlogPostAttributes } from "Models/BlogPost";
 
 interface blogProps extends RouteComponentProps {
 	list: BlogPosts[];
@@ -28,15 +28,9 @@ export default function BlogPostList(props: blogProps) {
 	};
 
 	let listItems = blogList.map((x) => (
-		<BlogPostListItem {...x} onItemRemoved={onDelete}  />
+		<BlogPostListItem {...x} onItemRemoved={onDelete} />
 	));
-	return (
-		<>
-			<div className="Blog-list">
-				{listItems.length > 0 ? listItems : <EmptyBlogsList />}
-			</div>
-		</>
-	);
+	return <>{listItems.length > 0 ? listItems : <EmptyBlogsList />}</>;
 }
 
 function EmptyBlogsList() {
@@ -53,7 +47,7 @@ interface IBlogItemProps extends IBlogPostAttributes {
 
 function BlogPostListItem(props: IBlogItemProps) {
 	return (
-		<div className="Blog">
+		<div className="blog-post">
 			<Link to={`/Blogs/Post/${props.id}`}>{props.title}</Link>
 			<IfAdmin>
 				<div className="admin-icons">

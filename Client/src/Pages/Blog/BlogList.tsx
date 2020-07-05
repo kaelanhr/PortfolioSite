@@ -29,13 +29,7 @@ export default function BlogList(props: blogProps) {
 	let listItems = blogList.map((x) => (
 		<BlogListItem {...x} onItemRemoved={onDelete} />
 	));
-	return (
-		<>
-			<div className="Blog-list">
-				{listItems.length > 0 ? listItems : <EmptyBlogsList />}
-			</div>
-		</>
-	);
+	return <>{listItems.length > 0 ? listItems : <EmptyBlogsList />}</>;
 }
 
 function EmptyBlogsList() {
@@ -52,7 +46,7 @@ interface IBlogItemProps extends IBlogAttributes {
 
 function BlogListItem(props: IBlogItemProps) {
 	return (
-		<div className="Blog">
+		<div className="blog">
 			<Link to={`/Blogs/Posts/${props.id}`}>{props.title}</Link>
 			<IfAdmin>
 				<div className="admin-icons">

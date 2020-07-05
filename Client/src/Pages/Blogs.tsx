@@ -26,20 +26,18 @@ export default class Blogs extends Component<RouteComponentProps> {
 							header={<BlogsHeader />}
 							wrapperType="list-wrapper"
 							beforeWrapper={
-									<AdminAction>
-										<Link to="/Blogs/Admin/create">Add Blog</Link>
-									</AdminAction>
+								<AdminAction>
+									<Link to="/Blogs/Admin/create">Add Blog</Link>
+								</AdminAction>
 							}
 						>
-							<div>
-								<LoadData
-									promise={axios.get("/Api/Blogs")}
-									done={(data) => {
-										let a: Blog[] = data.data.map((x: any) => new Blog(x));
-										return <BlogList list={a} />;
-									}}
-								/>
-							</div>
+							<LoadData
+								promise={axios.get("/Api/Blogs")}
+								done={(data) => {
+									let a: Blog[] = data.data.map((x: any) => new Blog(x));
+									return <BlogList list={a} />;
+								}}
+							/>
 						</Page>
 					</Route>
 					<Route

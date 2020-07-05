@@ -1,15 +1,27 @@
+@mixin list-Item {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 20rem;
+	width: 20rem;
+	position: relative;
+	top: 2rem;
+	margin-right: 5rem;
+	margin-top: 5rem;
+}
+
 .list-wrapper {
 	.project {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		height: 20rem;
-		width: 20rem;
+		@include list-Item();
 		background-color: skyblue;
-		position: relative;
-		top: 2rem;
-		margin-right: 5rem;
-		margin-top: 5rem;
+	}
+	.blog {
+		@include list-Item();
+		background-color: green;
+	}
+	.blog-post {
+		@include list-Item();
+		background-color: red;
 	}
 	.admin-icons {
 		position: absolute;
