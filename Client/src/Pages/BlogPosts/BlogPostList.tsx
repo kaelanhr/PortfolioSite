@@ -38,7 +38,7 @@ export default function BlogPostList(props: blogProps) {
 					<br />
 					<br />
 					<br />
-					<Link to={`/Blogs/Post/create/${props.match.params["id"]}`}>
+					<Link to={`/Blogs/Admin/Post/create/${props.match.params["id"]}`}>
 						Add Blog Post
 					</Link>
 				</IfAdmin>
@@ -62,7 +62,7 @@ interface IBlogItemProps extends IBlogPostAttributes {
 function BlogPostListItem(props: IBlogItemProps) {
 	return (
 		<div className="Blog">
-			<Link to={`/BlogPost/${props.id}`}>{props.title}</Link>
+			<Link to={`/Blogs/Post/${props.id}`}>{props.title}</Link>
 			<IfAdmin>
 				<div className="admin-icons">
 					<Link to={`/BlogPost/edit/${props.id}`}>

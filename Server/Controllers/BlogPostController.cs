@@ -61,7 +61,7 @@ namespace PersonalSite.Controllers
 
 		[HttpDelete]
 		[Authorize]
-		[Route("")]
+		[Route("{id}")]
 		public async Task<Guid> DeleteAsync(Guid id)
 		{
 			return await _crudService.DeleteAsync<BlogPost>(id);
@@ -92,7 +92,7 @@ namespace PersonalSite.Controllers
 
 		[HttpGet]
 		[AllowAnonymous]
-		[Route("")]
+		[Route("{id}")]
 		public async Task<BlogPostDto> GetByIdAsync(Guid id)
 		{
 			var result = _crudService.GetById<BlogPost>(id);

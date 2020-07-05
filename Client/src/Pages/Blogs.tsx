@@ -12,7 +12,8 @@ import BlogPostList from "./BlogPosts/BlogPostList";
 import BlogPostListPage from "./BlogPosts/BlogPostListPage";
 import Page from "Components/Page/Page";
 import BlogAdminLayout, { AdminBlogHeader } from "./Blog/BlogAdminLayout";
-import BlogPostAdminForm from './BlogPosts/BlogPostAdminForm';
+import BlogPostAdminForm from "./BlogPosts/BlogPostAdminForm";
+import BlogPostItem from "./BlogPosts/BlogPostItem";
 
 export default class Blogs extends Component<RouteComponentProps> {
 	render() {
@@ -20,10 +21,7 @@ export default class Blogs extends Component<RouteComponentProps> {
 			<>
 				<Switch>
 					<Route exact path={this.props.match.path}>
-						<Page
-							header={<BlogsHeader />}
-							wrapperType="list-wrapper"
-						>
+						<Page header={<BlogsHeader />} wrapperType="list-wrapper">
 							<div>
 								<LoadData
 									promise={axios.get("/Api/Blogs")}
@@ -36,13 +34,13 @@ export default class Blogs extends Component<RouteComponentProps> {
 									<br />
 									<br />
 									<br />
-									<Link to="/Blogs/create">Add Blog</Link>
+									<Link to="/Blogs/Admin/create">Add Blog</Link>
 								</IfAdmin>
 							</div>
 						</Page>
 					</Route>
 					<Route
-						path="/Blogs/create"
+						path="/Blogs/Admin/create"
 						render={(props) => (
 							<>
 								<Page
@@ -55,7 +53,7 @@ export default class Blogs extends Component<RouteComponentProps> {
 						)}
 					/>
 					<Route
-						path="/Blogs/edit/:id?"
+						path="/Blogs/Admin/edit/:id?"
 						render={(props) => (
 							<Page
 								header={<AdminBlogHeader action={"Update"} />}
@@ -68,21 +66,19 @@ export default class Blogs extends Component<RouteComponentProps> {
 					<Route
 						path="/Blogs/Posts/:id?"
 						render={(props) => (
-							<Page
-								header={<BlogsHeader />}
-								wrapperType="list-wrapper"
-							>
+							<Page header={<BlogsHeader />} wrapperType="list-wrapper">
 								<BlogPostListPage {...props} />
 							</Page>
 						)}
 					/>
 					<Route
-						path={`${this.props.match.path}/Post/create/:id?`}
+						path="/Blogs/Post/:id?"
+						render={(props) => <BlogPostItem {...props} />}
+					/>
+					<Route
+						path={`${this.props.match.path}/Admin/Post/create/:id?`}
 						render={(props) => (
-							<Page
-								header={<BlogsHeader />}
-								wrapperType="list-wrapper"
-							>
+							<Page header={<BlogsHeader />} wrapperType="list-wrapper">
 								<BlogPostAdminForm {...props} action="Create" />
 							</Page>
 						)}
