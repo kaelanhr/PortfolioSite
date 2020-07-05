@@ -23,7 +23,7 @@ namespace PersonalSite.Models
 		/// <summary>
 		/// Gets or sets Blog posts associated with this blog.
 		/// </summary>
-		public List<BlogPost> Posts { get; set; }
+		public List<BlogPost> BlogPosts { get; set; }
 
 		public BlogDto(Blog model)
 		{
@@ -39,7 +39,7 @@ namespace PersonalSite.Models
 			Updated = model.Updated;
 			HeaderImagePath = model.HeaderImagePath;
 			Title = model.Title;
-			Posts = model.Posts;
+			BlogPosts = model.BlogPosts;
 			return this;
 		}
 
@@ -52,7 +52,7 @@ namespace PersonalSite.Models
 				Updated = Updated,
 				Title = Title,
 				HeaderImagePath = HeaderImagePath,
-				Posts = Posts,
+				BlogPosts = BlogPosts,
 			};
 		}
 

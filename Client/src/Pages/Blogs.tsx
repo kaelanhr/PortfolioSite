@@ -12,13 +12,14 @@ import BlogPostList from "./BlogPosts/BlogPostList";
 import BlogPostListPage from "./BlogPosts/BlogPostListPage";
 import Page from "Components/Page/Page";
 import BlogAdminLayout, { AdminBlogHeader } from "./Blog/BlogAdminLayout";
+import BlogPostAdminForm from './BlogPosts/BlogPostAdminForm';
 
 export default class Blogs extends Component<RouteComponentProps> {
 	render() {
 		return (
 			<>
 				<Switch>
-					<Route exact path="/Blogs">
+					<Route exact path={this.props.match.path}>
 						<Page
 							header={<BlogsHeader />}
 							wrapperType="list-wrapper"
@@ -65,13 +66,24 @@ export default class Blogs extends Component<RouteComponentProps> {
 						)}
 					/>
 					<Route
-						path="/Blogs/:id?"
+						path="/Blogs/Posts/:id?"
 						render={(props) => (
 							<Page
 								header={<BlogsHeader />}
 								wrapperType="list-wrapper"
 							>
 								<BlogPostListPage {...props} />
+							</Page>
+						)}
+					/>
+					<Route
+						path={`${this.props.match.path}/Post/create/:id?`}
+						render={(props) => (
+							<Page
+								header={<BlogsHeader />}
+								wrapperType="list-wrapper"
+							>
+								<BlogPostAdminForm {...props} action="Create" />
 							</Page>
 						)}
 					/>

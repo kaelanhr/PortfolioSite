@@ -1,3 +1,6 @@
+using System;
+using System.ComponentModel.DataAnnotations;
+
 namespace PersonalSite.Models
 {
 	/// <summary>
@@ -8,6 +11,7 @@ namespace PersonalSite.Models
 		/// <summary>
 		/// Gets or sets blog content.
 		/// </summary>
+		[Required]
 		public string Content { get; set; }
 
 		/// <summary>
@@ -19,5 +23,9 @@ namespace PersonalSite.Models
 		/// Gets or sets the title of the blog.
 		/// </summary>
 		public string Title { get; set; }
+
+		//public Guid BlogId { get; set; }
+
+		public Blog Blog { get; set; }
 	}
 }

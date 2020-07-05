@@ -17,18 +17,23 @@ export default class BlogPosts extends AbstractModel
 			if (attributes.content) {
 				this.content = attributes.content;
 			}
+			if (attributes.blogId) {
+				this.blogId = attributes.blogId;
+			}
 		}
 	}
 
 	public headerImagePath?: string;
 	public title: string;
 	public content: string;
+	public blogId: string;
 
 	public createModel = () => {
 		axios
 			.post("/Api/BlogPost/", {
 				Title: this.title,
-				content: this.content
+				Content: this.content,
+				BlogId: this.blogId
 			})
 			.then(function (response) {
 				console.log(response);
@@ -46,6 +51,8 @@ export default class BlogPosts extends AbstractModel
 			.put("/Api/BlogPost", {
 				id: this.id,
 				Title: this.title,
+				Content: this.content,
+				BlogId: this.blogId,
 			})
 			.then(function (response) {
 				console.log(response);
@@ -74,4 +81,5 @@ export interface IBlogPostAttributes extends IAbstractAttributes {
 	title: string;
 	headerImagePath?: string;
 	content: string;
+	blogId: string;
 }

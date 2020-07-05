@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Blog, { IBlogAttributes } from "Models/Blog";
-import { Link } from "react-router-dom";
+import { Link, RouteComponentProps } from "react-router-dom";
 import axios from "axios";
 import { IfAdmin } from "Components/Conditional/If";
 import BlogPosts, { IBlogPostAttributes } from 'Models/BlogPost';
 
-interface blogProps {
+interface blogProps extends RouteComponentProps {
 	list: BlogPosts[];
 }
 
@@ -38,7 +38,9 @@ export default function BlogPostList(props: blogProps) {
 					<br />
 					<br />
 					<br />
-					<Link to="/BlogPosts/create">Add Blog Post</Link>
+					<Link to={`/Blogs/Post/create/${props.match.params["id"]}`}>
+						Add Blog Post
+					</Link>
 				</IfAdmin>
 			</div>
 		</>

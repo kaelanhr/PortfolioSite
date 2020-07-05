@@ -90,7 +90,7 @@ namespace PersonalSite.Controllers
 			return await result.Select(b => new BlogPostDto(b)).ToListAsync();
 		}
 
-		[HttpPost]
+		[HttpGet]
 		[AllowAnonymous]
 		[Route("")]
 		public async Task<BlogPostDto> GetByIdAsync(Guid id)

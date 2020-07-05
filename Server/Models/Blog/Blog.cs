@@ -20,6 +20,6 @@ namespace PersonalSite.Models
 		/// <summary>
 		/// Gets or sets Blog posts associated with this blog.
 		/// </summary>
-		public List<BlogPost> Posts { get; set; }
+		public List<BlogPost> BlogPosts { get; set; }
 	}
 }

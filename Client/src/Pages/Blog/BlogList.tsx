@@ -53,7 +53,7 @@ interface IBlogItemProps extends IBlogAttributes {
 function BlogListItem(props: IBlogItemProps) {
 	return (
 		<div className="Blog">
-			<Link to={`/Blogs/${props.id}`}>{props.title}</Link>
+			<Link to={`/Blogs/Posts/${props.id}`}>{props.title}</Link>
 			<IfAdmin>
 				<div className="admin-icons">
 					<Link to={`/Blogs/edit/${props.id}`}>

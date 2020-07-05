@@ -25,6 +25,14 @@ namespace PersonalSite.Models
 		/// </summary>
 		public string Title { get; set; }
 
+		public Blog Blog { get; set; }
+
+
+		/// <summary>
+		/// Gets or sets the reference of the blog it is referring to.
+		/// </summary>
+		public Guid BlogId { get; set; }
+
 		public BlogPostDto(BlogPost model)
 		{
 			LoadEntity(model);
@@ -40,6 +48,8 @@ namespace PersonalSite.Models
 			HeaderImagePath = model.HeaderImagePath;
 			Title = model.Title;
 			Content = model.Content;
+			//BlogId = model.BlogId;
+			Blog = model.Blog;
 			return this;
 		}
 
@@ -52,6 +62,9 @@ namespace PersonalSite.Models
 				Updated = Updated,
 				Title = Title,
 				HeaderImagePath = HeaderImagePath,
+				Blog = Blog,
+				//BlogId = BlogId,
+				Content = Content,
 			};
 		}
 	}

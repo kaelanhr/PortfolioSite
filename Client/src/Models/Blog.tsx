@@ -18,28 +18,38 @@ export default class Blog extends AbstractModel
 			if (attributes.headerImagePath) {
 				this.headerImagePath = attributes.headerImagePath;
 			}
-			if (attributes.posts) {
-				this.posts = attributes.posts;
+			if (attributes.blogPosts) {
+				this.blogPosts = attributes.blogPosts;
 			}
 		}
 	}
 
 	public headerImagePath?: string;
 	public title: string;
-	public posts: BlogPosts[];
+	public blogPosts: BlogPosts[];
 
 	public static getModelById = (id: string) => {
-		return axios.get(`/Api/Blogs/${id}`).then(response => {
-			return new Blog(response.data);
-		}).catch(error => {return new Blog()})
-	}
+		return axios
+			.get(`/Api/Blogs/${id}`)
+			.then((response) => {
+				return new Blog(response.data);
+			})
+			.catch((error) => {
+				return new Blog();
+			});
+	};
 
 	public static getModel = () => {
-		return axios.get("/Api/Blogs/").then(response => {
-			let blogList:Blog[] = response.data;
-			return blogList.map((b) => new Blog(b));
-		}).catch(error => {return null})
-	}
+		return axios
+			.get("/Api/Blogs/")
+			.then((response) => {
+				let blogList: Blog[] = response.data;
+				return blogList.map((b) => new Blog(b));
+			})
+			.catch((error) => {
+				return null;
+			});
+	};
 
 	public createModel = () => {
 		axios
@@ -86,5 +96,5 @@ export default class Blog extends AbstractModel
 export interface IBlogAttributes extends IAbstractAttributes {
 	title: string;
 	headerImagePath?: string;
-	posts: BlogPosts[];
+	blogPosts: BlogPosts[];
 }

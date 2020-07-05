@@ -108,7 +108,7 @@ namespace PersonalSite.Controllers
 		[Route("{id}")]
 		public async Task<BlogDto> GetByIdAsync(Guid id)
 		{
-			var result = _crudService.GetById<Blog>(id);
+			var result = _crudService.GetById<Blog>(id).Include(s => s.BlogPosts);
 			return await result.Select(b => new BlogDto(b)).FirstOrDefaultAsync();
 		}
 
