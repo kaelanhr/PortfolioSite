@@ -24,7 +24,7 @@ namespace PersonalSite.Models
 		/// </summary>
 		public string Title { get; set; }
 
-		//public Guid BlogId { get; set; }
+		public Guid BlogId { get; set; }
 
 		public Blog Blog { get; set; }
 	}

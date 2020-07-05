@@ -48,7 +48,7 @@ namespace PersonalSite.Models
 			HeaderImagePath = model.HeaderImagePath;
 			Title = model.Title;
 			Content = model.Content;
-			//BlogId = model.BlogId;
+			BlogId = model.BlogId;
 			Blog = model.Blog;
 			return this;
 		}
@@ -63,7 +63,7 @@ namespace PersonalSite.Models
 				Title = Title,
 				HeaderImagePath = HeaderImagePath,
 				Blog = Blog,
-				//BlogId = BlogId,
+				BlogId = BlogId,
 				Content = Content,
 			};
 		}
