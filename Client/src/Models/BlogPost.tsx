@@ -1,14 +1,10 @@
-import AbstractModel, {
-	IAbstractAttributes,
-	IModelMethods,
-} from "./AbstractModel";
+import AbstractModel, { IAbstractAttributes, IModelMethods } from "./AbstractModel";
 import axios from "axios";
 import { store } from "store";
-import BlogPosts from "./BlogPost";
 
-export default class Blog extends AbstractModel
-	implements IBlogAttributes, IModelMethods {
-	constructor(attributes?: Partial<IBlogAttributes>) {
+export default class BlogPosts extends AbstractModel
+	implements IBlogPostAttributes, IModelMethods {
+	constructor(attributes?: Partial<IBlogPostAttributes>) {
 		super(attributes);
 
 		if (attributes) {
@@ -18,20 +14,21 @@ export default class Blog extends AbstractModel
 			if (attributes.headerImagePath) {
 				this.headerImagePath = attributes.headerImagePath;
 			}
-			if (attributes.posts) {
-				this.posts = attributes.posts;
+			if (attributes.content) {
+				this.content = attributes.content;
 			}
 		}
 	}
 
 	public headerImagePath?: string;
 	public title: string;
-	public posts: BlogPosts[];
+	public content: string;
 
 	public createModel = () => {
 		axios
-			.post("/Api/Blogs/", {
+			.post("/Api/BlogPost/", {
 				Title: this.title,
+				content: this.content
 			})
 			.then(function (response) {
 				console.log(response);
@@ -46,7 +43,7 @@ export default class Blog extends AbstractModel
 
 	public editModel = () => {
 		axios
-			.put("/Api/Blogs", {
+			.put("/Api/BlogPost", {
 				id: this.id,
 				Title: this.title,
 			})
@@ -66,12 +63,15 @@ export default class Blog extends AbstractModel
 		if (!this.title) {
 			errorsArray.push("Blog Title is required");
 		}
+		if (!this.content) {
+			errorsArray.push("Blog content is required");
+		}
 		return errorsArray;
 	};
 }
 
-export interface IBlogAttributes extends IAbstractAttributes {
+export interface IBlogPostAttributes extends IAbstractAttributes {
 	title: string;
 	headerImagePath?: string;
-	posts: BlogPosts[];
+	content: string;
 }

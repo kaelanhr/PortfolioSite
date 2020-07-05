@@ -35,6 +35,9 @@ namespace PersonalSite.Controllers
 			_logger = loggerFactory.CreateLogger<BlogPostController>();
 		}
 
+		[HttpPost]
+		[Authorize]
+		[Route("")]
 		public async Task<BlogPostDto> CreateAsync([BindRequired, FromBody] BlogPostDto blogPost)
 		{
 			// cannot specify the guid.
@@ -44,7 +47,7 @@ namespace PersonalSite.Controllers
 				return null;
 			}
 
-			_logger.LogInformation(4, "creating a project.");
+			_logger.LogInformation(4, "creating a blog post.");
 			try
 			{
 				return new BlogPostDto(await _crudService.CreateAsync(blogPost.ToEntity()));
@@ -56,11 +59,17 @@ namespace PersonalSite.Controllers
 			}
 		}
 
+		[HttpDelete]
+		[Authorize]
+		[Route("")]
 		public async Task<Guid> DeleteAsync(Guid id)
 		{
 			return await _crudService.DeleteAsync<BlogPost>(id);
 		}
 
+		[HttpPut]
+		[Authorize]
+		[Route("")]
 		public async Task<BlogPostDto> EditAsync([BindRequired, FromBody] BlogPostDto blogPost)
 		{
 			if (blogPost.Id == Guid.Empty)
@@ -72,12 +81,18 @@ namespace PersonalSite.Controllers
 			return new BlogPostDto(await _crudService.UpdateAsync(blogPost.ToEntity()));
 		}
 
+		[HttpGet]
+		[AllowAnonymous]
+		[Route("")]
 		public async Task<IEnumerable<BlogPostDto>> GetAsync()
 		{
 			var result = _crudService.Get<BlogPost>();
 			return await result.Select(b => new BlogPostDto(b)).ToListAsync();
 		}
 
+		[HttpPost]
+		[AllowAnonymous]
+		[Route("")]
 		public async Task<BlogPostDto> GetByIdAsync(Guid id)
 		{
 			var result = _crudService.GetById<BlogPost>(id);
