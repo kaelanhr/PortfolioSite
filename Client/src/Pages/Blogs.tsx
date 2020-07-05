@@ -14,6 +14,7 @@ import Page from "Components/Page/Page";
 import BlogAdminLayout, { AdminBlogHeader } from "./Blog/BlogAdminLayout";
 import BlogPostAdminForm from "./BlogPosts/BlogPostAdminForm";
 import BlogPostItem from "./BlogPosts/BlogPostItem";
+import AdminAction from "Components/Admin/AdminAction";
 
 export default class Blogs extends Component<RouteComponentProps> {
 	render() {
@@ -21,7 +22,15 @@ export default class Blogs extends Component<RouteComponentProps> {
 			<>
 				<Switch>
 					<Route exact path={this.props.match.path}>
-						<Page header={<BlogsHeader />} wrapperType="list-wrapper">
+						<Page
+							header={<BlogsHeader />}
+							wrapperType="list-wrapper"
+							beforeWrapper={
+									<AdminAction>
+										<Link to="/Blogs/Admin/create">Add Blog</Link>
+									</AdminAction>
+							}
+						>
 							<div>
 								<LoadData
 									promise={axios.get("/Api/Blogs")}
@@ -30,12 +39,6 @@ export default class Blogs extends Component<RouteComponentProps> {
 										return <BlogList list={a} />;
 									}}
 								/>
-								<IfAdmin>
-									<br />
-									<br />
-									<br />
-									<Link to="/Blogs/Admin/create">Add Blog</Link>
-								</IfAdmin>
 							</div>
 						</Page>
 					</Route>
@@ -66,7 +69,19 @@ export default class Blogs extends Component<RouteComponentProps> {
 					<Route
 						path="/Blogs/Posts/:id?"
 						render={(props) => (
-							<Page header={<BlogsHeader />} wrapperType="list-wrapper">
+							<Page
+								header={<BlogsHeader />}
+								wrapperType="list-wrapper"
+								beforeWrapper={
+									<AdminAction>
+										<Link
+											to={`/Blogs/Admin/Post/create/${props.match.params["id"]}`}
+										>
+											Add Blog Post
+										</Link>
+									</AdminAction>
+								}
+							>
 								<BlogPostListPage {...props} />
 							</Page>
 						)}

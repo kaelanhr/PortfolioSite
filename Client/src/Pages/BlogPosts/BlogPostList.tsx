@@ -34,14 +34,6 @@ export default function BlogPostList(props: blogProps) {
 		<>
 			<div className="Blog-list">
 				{listItems.length > 0 ? listItems : <EmptyBlogsList />}
-				<IfAdmin>
-					<br />
-					<br />
-					<br />
-					<Link to={`/Blogs/Admin/Post/create/${props.match.params["id"]}`}>
-						Add Blog Post
-					</Link>
-				</IfAdmin>
 			</div>
 		</>
 	);

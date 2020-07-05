@@ -4,12 +4,14 @@ import { LoadData } from "../Components/LoadData/LoadData";
 import axios from "axios";
 import Project from "../Models/Project";
 import HeaderContent from "../Components/Header/Header";
-import { IfAdmin } from "Components/Conditional/If";
 import { Link } from "react-router-dom";
 import ProjectList from "./Project/ProjectList";
 import ProjectItem from "./Project/ProjectItem";
-import ProjectAdminLayout, { AdminProjectHeader } from "./Project/ProjectAdminLayout";
-import Page from 'Components/Page/Page';
+import ProjectAdminLayout, {
+	AdminProjectHeader,
+} from "./Project/ProjectAdminLayout";
+import Page from "Components/Page/Page";
+import AdminAction from 'Components/Admin/AdminAction';
 
 export default class Projects extends Component<RouteComponentProps> {
 	render() {
@@ -20,13 +22,12 @@ export default class Projects extends Component<RouteComponentProps> {
 						<Page
 							header={<ProjectsHeader />}
 							wrapperType="list-wrapper"
+							beforeWrapper={
+								<AdminAction>
+									<Link to="/projects/create">Add project</Link>
+								</AdminAction>
+							}
 						>
-							<IfAdmin>
-								<br />
-								<br />
-								<br />
-								<Link to="/projects/create">Add project</Link>
-							</IfAdmin>
 							<LoadData
 								promise={axios.get("/Api/Project")}
 								done={(data) => {

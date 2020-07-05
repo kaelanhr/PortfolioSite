@@ -6,6 +6,7 @@ interface PageProps extends ContentWrapperProps {
 	header: React.ReactNode;
 	children?: React.ReactNode;
 	nameInHeader?: boolean;
+	beforeWrapper?: React.ReactNode;
 
 }
 
@@ -15,6 +16,7 @@ export default function Page(props: PageProps) {
 			displayHeader={props.nameInHeader ?? true}
 			headerComponent={props.header}
 		>
+			{props.beforeWrapper}
 			{<ContentWrapper wrapperType={props.wrapperType}>{props.children}</ContentWrapper>}
 		</PageLayout>
 	);
