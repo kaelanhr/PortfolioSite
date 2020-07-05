@@ -31,9 +31,7 @@ export default function ProjectList(props: projectProps) {
 	));
 	return (
 		<>
-			<div className="project-list">
 				{listItems.length > 0 ? listItems : <EmptyProjectsList />}
-			</div>
 		</>
 	);
 }

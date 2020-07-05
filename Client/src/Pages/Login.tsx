@@ -8,6 +8,7 @@ import { store } from "store";
 import { HomeHeader } from "./Home";
 import PageLayout from "./PageLayout";
 import ContentWrapper from 'Components/ContentWrapper/ContentWrapper';
+import Page from 'Components/Page/Page';
 
 interface LoginState {
 	errorMessage: string;
@@ -33,8 +34,7 @@ export default class Login extends Component<{}, LoginState> {
 	render() {
 		return (
 			<>
-				<PageLayout headerComponent={<HomeHeader />} displayHeader={false}>
-					<ContentWrapper>
+				<Page header={<HomeHeader />} nameInHeader={false} wrapperType="content-wrapper">
 						<form onSubmit={this.SubmitHandler}>
 							<ErrorMessage>{this.state.errorMessage}</ErrorMessage>
 							<TextField
@@ -51,8 +51,7 @@ export default class Login extends Component<{}, LoginState> {
 							/>
 							<input type="submit" value="Login" />
 						</form>
-					</ContentWrapper>
-				</PageLayout>
+				</Page>
 			</>
 		);
 	}

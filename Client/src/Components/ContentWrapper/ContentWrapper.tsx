@@ -1,9 +1,10 @@
 import React from "react";
 
-interface ContentWrapperProps {
+export interface ContentWrapperProps {
 	children?: React.ReactNode;
+	wrapperType: "list-wrapper" | "content-wrapper";
 }
 
 export default function ContentWrapper(props: ContentWrapperProps) {
-	return <div className="content-wrapper">{props.children}</div>;
+	return <div className={props.wrapperType}>{props.children}</div>;
 }

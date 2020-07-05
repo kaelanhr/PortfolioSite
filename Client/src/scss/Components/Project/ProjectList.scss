@@ -1,8 +1,4 @@
-.project-list {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-wrap: wrap;
+.list-wrapper {
 	.project {
 		display: flex;
 		align-items: center;
@@ -26,4 +22,11 @@
 			cursor: pointer;
 		}
 	}
+}
+
+.list-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
 }

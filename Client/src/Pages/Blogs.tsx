@@ -2,20 +2,16 @@ import React, { Component } from "react";
 import { Switch, Route, RouteComponentProps } from "react-router";
 import { LoadData } from "../Components/LoadData/LoadData";
 import axios from "axios";
-import Project from "../Models/Project";
 import HeaderContent from "../Components/Header/Header";
 import { IfAdmin } from "Components/Conditional/If";
 import { Link } from "react-router-dom";
-import PageLayout from "./PageLayout";
-import ProjectList from "./Project/ProjectList";
-import ProjectItem from "./Project/ProjectItem";
-import ProjectAdminLayout from "./Project/ProjectAdminLayout";
 import Blog from "Models/Blog";
 import BlogList from "./Blog/BlogList";
-import BlogAdminLayout from "./Blog/BlogAdminLayout";
 import BlogPosts from "Models/BlogPost";
 import BlogPostList from "./BlogPosts/BlogPostList";
 import BlogPostListPage from "./BlogPosts/BlogPostListPage";
+import Page from "Components/Page/Page";
+import BlogAdminLayout, { AdminBlogHeader } from "./Blog/BlogAdminLayout";
 
 export default class Blogs extends Component<RouteComponentProps> {
 	render() {
@@ -23,7 +19,10 @@ export default class Blogs extends Component<RouteComponentProps> {
 			<>
 				<Switch>
 					<Route exact path="/Blogs">
-						<PageLayout displayHeader={true} headerComponent={<BlogsHeader />}>
+						<Page
+							header={<BlogsHeader />}
+							wrapperType="list-wrapper"
+						>
 							<div>
 								<LoadData
 									promise={axios.get("/Api/Blogs")}
@@ -39,29 +38,41 @@ export default class Blogs extends Component<RouteComponentProps> {
 									<Link to="/Blogs/create">Add Blog</Link>
 								</IfAdmin>
 							</div>
-						</PageLayout>
+						</Page>
 					</Route>
 					<Route
 						path="/Blogs/create"
 						render={(props) => (
-							<BlogAdminLayout {...props} entityAction="Create" />
+							<>
+								<Page
+									header={<AdminBlogHeader action={"Create"} />}
+									wrapperType="content-wrapper"
+								>
+									<BlogAdminLayout {...props} entityAction="Create" />
+								</Page>
+							</>
 						)}
 					/>
 					<Route
 						path="/Blogs/edit/:id?"
 						render={(props) => (
-							<BlogAdminLayout {...props} entityAction="Update" />
+							<Page
+								header={<AdminBlogHeader action={"Update"} />}
+								wrapperType="content-wrapper"
+							>
+								<BlogAdminLayout {...props} entityAction="Update" />
+							</Page>
 						)}
 					/>
 					<Route
 						path="/Blogs/:id?"
 						render={(props) => (
-							<PageLayout
-								displayHeader={true}
-								headerComponent={<BlogsHeader />}
+							<Page
+								header={<BlogsHeader />}
+								wrapperType="list-wrapper"
 							>
 								<BlogPostListPage {...props} />
-							</PageLayout>
+							</Page>
 						)}
 					/>
 				</Switch>

@@ -15,7 +15,6 @@ export interface AdminFormProps<T> {
 export function AdminForm<T>(props: AdminFormProps<T>) {
 	return (
 		<>
-			<ContentWrapper>
 				<div className="admin-form">
 					<h1>{props.header}</h1>
 					{props.errorList?.map((e) => (
@@ -27,7 +26,6 @@ export function AdminForm<T>(props: AdminFormProps<T>) {
 					</form>
 					<Back />
 				</div>
-			</ContentWrapper>
 		</>
 	);
 }

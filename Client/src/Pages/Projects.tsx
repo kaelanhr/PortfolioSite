@@ -6,10 +6,10 @@ import Project from "../Models/Project";
 import HeaderContent from "../Components/Header/Header";
 import { IfAdmin } from "Components/Conditional/If";
 import { Link } from "react-router-dom";
-import PageLayout from "./PageLayout";
 import ProjectList from "./Project/ProjectList";
 import ProjectItem from "./Project/ProjectItem";
-import ProjectAdminLayout from "./Project/ProjectAdminLayout";
+import ProjectAdminLayout, { AdminProjectHeader } from "./Project/ProjectAdminLayout";
+import Page from 'Components/Page/Page';
 
 export default class Projects extends Component<RouteComponentProps> {
 	render() {
@@ -17,39 +17,45 @@ export default class Projects extends Component<RouteComponentProps> {
 			<>
 				<Switch>
 					<Route exact path="/projects">
-						<PageLayout
-							displayHeader={true}
-							headerComponent={<ProjectsHeader />}
+						<Page
+							header={<ProjectsHeader />}
+							wrapperType="list-wrapper"
 						>
-							<div>
-								<LoadData
-									promise={axios.get("/Api/Project")}
-									done={(data) => {
-										let a: Project[] = data.data.map(
-											(x: any) => new Project(x)
-										);
-										return <ProjectList list={a} />;
-									}}
-								/>
-								<IfAdmin>
-									<br />
-									<br />
-									<br />
-									<Link to="/projects/create">Add project</Link>
-								</IfAdmin>
-							</div>
-						</PageLayout>
+							<IfAdmin>
+								<br />
+								<br />
+								<br />
+								<Link to="/projects/create">Add project</Link>
+							</IfAdmin>
+							<LoadData
+								promise={axios.get("/Api/Project")}
+								done={(data) => {
+									let a: Project[] = data.data.map((x: any) => new Project(x));
+									return <ProjectList list={a} />;
+								}}
+							/>
+						</Page>
 					</Route>
 					<Route
 						path="/projects/create"
 						render={(props) => (
-							<ProjectAdminLayout {...props} entityAction="Create" />
+							<Page
+								header={<AdminProjectHeader action="Create" />}
+								wrapperType="content-wrapper"
+							>
+								<ProjectAdminLayout {...props} entityAction="Create" />
+							</Page>
 						)}
 					/>
 					<Route
 						path="/projects/edit/:id?"
 						render={(props) => (
-							<ProjectAdminLayout {...props} entityAction="Update" />
+							<Page
+								header={<AdminProjectHeader action="Update" />}
+								wrapperType="content-wrapper"
+							>
+								<ProjectAdminLayout {...props} entityAction="Update" />
+							</Page>
 						)}
 					/>
 					<Route path="/projects/:id?" component={ProjectItem} />
