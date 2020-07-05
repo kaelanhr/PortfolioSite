@@ -51,7 +51,7 @@ function BlogPostListItem(props: IBlogItemProps) {
 			<Link to={`/Blogs/Post/${props.id}`}>{props.title}</Link>
 			<IfAdmin>
 				<div className="admin-icons">
-					<Link to={`/BlogPost/edit/${props.id}`}>
+					<Link to={`/Blogs/Admin/Post/edit/${props.id}`}>
 						<img src="/Icons/edit-icon.svg" className="action-icon" />
 					</Link>
 					<img

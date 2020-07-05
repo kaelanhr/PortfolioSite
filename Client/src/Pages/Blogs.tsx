@@ -15,6 +15,7 @@ import BlogAdminLayout, { AdminBlogHeader } from "./Blog/BlogAdminLayout";
 import BlogPostAdminForm from "./BlogPosts/BlogPostAdminForm";
 import BlogPostItem from "./BlogPosts/BlogPostItem";
 import AdminAction from "Components/Admin/AdminAction";
+import BlogPostAdminLayout from './BlogPosts/BlogPostAdminLayout';
 
 export default class Blogs extends Component<RouteComponentProps> {
 	render() {
@@ -92,7 +93,15 @@ export default class Blogs extends Component<RouteComponentProps> {
 						path={`${this.props.match.path}/Admin/Post/create/:id?`}
 						render={(props) => (
 							<Page header={<BlogsHeader />} wrapperType="list-wrapper">
-								<BlogPostAdminForm {...props} action="Create" />
+								<BlogPostAdminLayout {...props} entityAction="Create" />
+							</Page>
+						)}
+					/>
+					<Route
+						path={`${this.props.match.path}/Admin/Post/edit/:id?`}
+						render={(props) => (
+							<Page header={<BlogsHeader />} wrapperType="list-wrapper">
+								<BlogPostAdminLayout {...props} entityAction="Update" />
 							</Page>
 						)}
 					/>
