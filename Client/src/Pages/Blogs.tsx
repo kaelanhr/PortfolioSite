@@ -10,9 +10,12 @@ import PageLayout from "./PageLayout";
 import ProjectList from "./Project/ProjectList";
 import ProjectItem from "./Project/ProjectItem";
 import ProjectAdminLayout from "./Project/ProjectAdminLayout";
-import Blog from 'Models/Blog';
-import BlogList from './Blog/BlogList';
-import BlogAdminLayout from './Blog/BlogAdminLayout';
+import Blog from "Models/Blog";
+import BlogList from "./Blog/BlogList";
+import BlogAdminLayout from "./Blog/BlogAdminLayout";
+import BlogPosts from "Models/BlogPost";
+import BlogPostList from "./BlogPosts/BlogPostList";
+import BlogPostListPage from "./BlogPosts/BlogPostListPage";
 
 export default class Blogs extends Component<RouteComponentProps> {
 	render() {
@@ -20,17 +23,12 @@ export default class Blogs extends Component<RouteComponentProps> {
 			<>
 				<Switch>
 					<Route exact path="/Blogs">
-						<PageLayout
-							displayHeader={true}
-							headerComponent={<BlogsHeader />}
-						>
+						<PageLayout displayHeader={true} headerComponent={<BlogsHeader />}>
 							<div>
 								<LoadData
 									promise={axios.get("/Api/Blogs")}
 									done={(data) => {
-										let a: Blog[] = data.data.map(
-											(x: any) => new Blog(x)
-										);
+										let a: Blog[] = data.data.map((x: any) => new Blog(x));
 										return <BlogList list={a} />;
 									}}
 								/>
@@ -53,6 +51,17 @@ export default class Blogs extends Component<RouteComponentProps> {
 						path="/Blogs/edit/:id?"
 						render={(props) => (
 							<BlogAdminLayout {...props} entityAction="Update" />
+						)}
+					/>
+					<Route
+						path="/Blogs/:id?"
+						render={(props) => (
+							<PageLayout
+								displayHeader={true}
+								headerComponent={<BlogsHeader />}
+							>
+								<BlogPostListPage {...props} />
+							</PageLayout>
 						)}
 					/>
 				</Switch>

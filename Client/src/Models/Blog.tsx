@@ -28,6 +28,19 @@ export default class Blog extends AbstractModel
 	public title: string;
 	public posts: BlogPosts[];
 
+	public static getModelById = (id: string) => {
+		return axios.get(`/Api/Blogs/${id}`).then(response => {
+			return new Blog(response.data);
+		}).catch(error => {return new Blog()})
+	}
+
+	public static getModel = () => {
+		return axios.get("/Api/Blogs/").then(response => {
+			let blogList:Blog[] = response.data;
+			return blogList.map((b) => new Blog(b));
+		}).catch(error => {return null})
+	}
+
 	public createModel = () => {
 		axios
 			.post("/Api/Blogs/", {
