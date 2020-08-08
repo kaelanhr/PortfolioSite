@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using PersonalSite.Models;
+using PersonalSite.UserDtos;
 
 namespace PersonalSite.Controllers
 {
@@ -48,7 +49,7 @@ namespace PersonalSite.Controllers
 		[HttpPost]
 		[AllowAnonymous]
 		[Route("/Identity/Account/Login")]
-		public async Task<IActionResult> LoginAsync([FromBody] UserModel userModel)
+		public async Task<IActionResult> LoginAsync([FromBody] UserAuthenticationModel userModel)
 		{
 			if (ModelState.IsValid)
 			{
@@ -123,84 +124,5 @@ namespace PersonalSite.Controllers
 			_logger.LogInformation(4, "User is not authenticated");
 			return null;
 		}
-	}
-
-	/// <summary>
-	/// type returned to the client as a user result.
-	/// </summary>
-	public class UserResult
-	{
-		/// <summary>
-		/// Gets or sets the email of the user.
-		/// </summary>
-		public string Email { get; set; }
-
-		/// <summary>
-		/// Gets or sets username of user.
-		/// </summary>
-		public string UserName { get; set; }
-
-		/// <summary>
-		/// Gets or sets users first name.
-		/// </summary>
-		public string FirstName { get; set; }
-
-		/// <summary>
-		/// Gets or sets users last name.
-		/// </summary>
-		public string LastName { get; set; }
-
-		/// <summary>
-		/// Gets or sets an enumerable object of the users groups.
-		/// </summary>
-		public IEnumerable<UserGroupResult> UserGroups { get; set; }
-	}
-
-	/// <summary>
-	/// attributes used for registration.
-	/// </summary>
-	public class UserRegistrationModel : UserModel
-	{
-		/// <summary>
-		/// Gets or sets required username.
-		/// </summary>
-		[Required]
-		[Display(Name = "Username")]
-		public string Username { get; set; }
-	}
-
-	/// <summary>
-	/// user group attributes for a user.
-	/// </summary>
-	public class UserGroupResult
-	{
-		/// <summary>
-		/// Gets or sets the name of the user group.
-		/// </summary>
-		[Required]
-		[Display(Name = "Name")]
-		public string Name { get; set; }
-	}
-
-	/// <summary>
-	/// what is required for minimum user credentials.
-	/// </summary>
-	public class UserModel
-	{
-		/// <summary>
-		/// Gets or sets password is required.
-		/// </summary>
-		[Required]
-		[DataType(DataType.Password)]
-		[Display(Name = "Password")]
-		public string Password { get; set; }
-
-		/// <summary>
-		/// Gets or sets required valid email address.
-		/// </summary>
-		[Required]
-		[EmailAddress]
-		[Display(Name = "Email")]
-		public string Email { get; set; }
 	}
 }
