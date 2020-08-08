@@ -71,8 +71,8 @@ export default class BlogPostAdminForm extends Component<CreatePageProps> {
 					model={this.model}
 					errorList={this.errorList}
 				>
-					<select>
-						{this.blogs?.map((x) => <option value= {x.id}>{x.title}</option>) ?? ""}
+					<select onChange={(e) => this.model.blogId = e.target.value}>
+						{this.blogs?.map((x) => <option value= {x.id} selected={x.id == this.model.blogId}>{x.title}</option>) ?? ""}
 					</select>
 					<TextField
 						model={this.model}

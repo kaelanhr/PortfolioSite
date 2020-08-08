@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using PersonalSite.Models;
@@ -9,9 +10,10 @@ using PersonalSite.Models;
 namespace PersonalSite.Migrations
 {
     [DbContext(typeof(SiteDbContext))]
-    partial class SiteDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200704063838_BlogPostRelation")]
+    partial class BlogPostRelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -149,11 +151,10 @@ namespace PersonalSite.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("BlogId")
+                    b.Property<Guid?>("BlogId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Content")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("Creation")
@@ -389,11 +390,9 @@ namespace PersonalSite.Migrations
 
             modelBuilder.Entity("PersonalSite.Models.BlogPost", b =>
                 {
-                    b.HasOne("PersonalSite.Models.Blog", "Blog")
-                        .WithMany("BlogPosts")
-                        .HasForeignKey("BlogId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("PersonalSite.Models.Blog", null)
+                        .WithMany("Posts")
+                        .HasForeignKey("BlogId");
                 });
 #pragma warning restore 612, 618
         }

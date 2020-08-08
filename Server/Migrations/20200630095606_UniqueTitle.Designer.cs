@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using PersonalSite.Models;
@@ -9,9 +10,10 @@ using PersonalSite.Models;
 namespace PersonalSite.Migrations
 {
     [DbContext(typeof(SiteDbContext))]
-    partial class SiteDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200630095606_UniqueTitle")]
+    partial class UniqueTitle
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -120,7 +122,7 @@ namespace PersonalSite.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("PersonalSite.Models.Blog", b =>
+            modelBuilder.Entity("PersonalSite.Models.BlogCategory", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -149,11 +151,7 @@ namespace PersonalSite.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("BlogId")
-                        .HasColumnType("uuid");
-
                     b.Property<string>("Content")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("Creation")
@@ -169,8 +167,6 @@ namespace PersonalSite.Migrations
                         .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BlogId");
 
                     b.ToTable("BlogPost");
                 });
@@ -383,15 +379,6 @@ namespace PersonalSite.Migrations
                     b.HasOne("PersonalSite.Models.SiteUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("PersonalSite.Models.BlogPost", b =>
-                {
-                    b.HasOne("PersonalSite.Models.Blog", "Blog")
-                        .WithMany("BlogPosts")
-                        .HasForeignKey("BlogId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
