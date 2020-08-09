@@ -3,11 +3,10 @@ import React, { Component } from "react";
 import { LoadData } from "Components/LoadData/LoadData";
 import axios from "axios";
 import Project from "Models/Project";
-import PageLayout from "Pages/PageLayout";
 import HeaderContent from "Components/Header/Header";
 import Back from "Components/Button/Back";
-import ContentWrapper from "Components/ContentWrapper/ContentWrapper";
 import { ExternalLink } from "Components/Links/ExternalLinks";
+import Page from "Components/Page/Page";
 const ReactMarkdown = require("react-markdown");
 class ProjectItem extends Component<RouteComponentProps> {
 	componentDidMount() {}
@@ -21,9 +20,8 @@ class ProjectItem extends Component<RouteComponentProps> {
 
 						return (
 							<>
-								<PageLayout
-									displayHeader={true}
-									headerComponent={
+								<Page
+									header={
 										<HeaderContent name="article">
 											<h1>
 												{a.projectUrl ? (
@@ -36,15 +34,14 @@ class ProjectItem extends Component<RouteComponentProps> {
 											</h1>
 										</HeaderContent>
 									}
+									wrapperType="content-wrapper"
 								>
-									<ContentWrapper>
-										<div className="page-content">
-											<h1>{a.title}</h1>
-											<ReactMarkdown source={a.content} />
-										</div>
-									</ContentWrapper>
-									<Back />
-								</PageLayout>
+									<div className="page-content">
+										<h1>{a.title}</h1>
+										<ReactMarkdown source={a.content} />
+										<Back />
+									</div>
+								</Page>
 							</>
 						);
 					}}

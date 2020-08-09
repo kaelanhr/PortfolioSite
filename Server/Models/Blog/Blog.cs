@@ -1,12 +1,11 @@
-using System;
-using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 namespace PersonalSite.Models
 {
 	/// <summary>
-	/// Everything contained within a single blog post.
+	/// A blog category which can contain many blog posts.
 	/// </summary>
-	public class BlogCategory : AbstractModel
+	public class Blog : AbstractModel
 	{
 		/// <summary>
 		/// Gets or sets the header image for the blog.
@@ -17,5 +16,10 @@ namespace PersonalSite.Models
 		/// Gets or sets the title of the blog.
 		/// </summary>
 		public string Title { get; set; }
+
+		/// <summary>
+		/// Gets or sets Blog posts associated with this blog.
+		/// </summary>
+		public List<BlogPost> BlogPosts { get; set; }
 	}
 }

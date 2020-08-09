@@ -48,7 +48,9 @@ namespace PersonalSite
 		/// <param name="services">Services Collection.</param>
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddControllersWithViews();
+			services.AddControllersWithViews()
+				.AddNewtonsoftJson(options =>
+				options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
 			// In production, the React files will be served from this directory
 			services.AddSpaStaticFiles(configuration =>
@@ -148,6 +150,7 @@ namespace PersonalSite
 
 			app.UseStaticFiles();
 			app.UseSpaStaticFiles();
+			app.UseMiddleware<ExceptionHandler>();
 			app.UseRouting();
 			app.UseCookiePolicy();
 			app.UseAuthentication();

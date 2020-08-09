@@ -19,7 +19,6 @@ namespace PersonalSite.Services
 		/// Initializes a new instance of the <see cref="DataSeedService"/> class.
 		/// </summary>
 		/// <param name="userManager">The User Manager used.</param>
-		/// <param name="signInManager">The Signin Manager used.</param>
 		/// <param name="roleManager">The Role Manager used.</param>
 		/// <param name="loggerFactory">The Logger Factory.</param>
 		public DataSeedService(

@@ -8,7 +8,7 @@ interface CreateUpdateProps<T> extends AdminFormProps<T> {
 
 export type EntityAdminAction = "Create" | "Update";
 
-export default function CreateUpdateForm<T>(props: CreateUpdateProps<T>) {
+export default function AdminCrudForm<T>(props: CreateUpdateProps<T>) {
 	return (
 		<AdminForm
 			header={props.header ?? `${props.entityAction} A ${props.entityDisplayName}`}

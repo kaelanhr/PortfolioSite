@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { ExternalLink } from "Components/Links/ExternalLinks";
 import HeaderContent from "Components/Header/Header";
-import PageLayout from "./PageLayout";
-import ContentWrapper from "Components/ContentWrapper/ContentWrapper";
+import Page from "Components/Page/Page";
 
 const proImage = "/Images/Personal/profile.jpg";
 const personalImage = "/Images/Personal/profile-dwv.jpg";
@@ -10,17 +9,15 @@ const personalImage = "/Images/Personal/profile-dwv.jpg";
 export default function About() {
 	return (
 		<>
-			<PageLayout displayHeader={true} headerComponent={<AboutHeader />}>
-				<ContentWrapper>
-					<div className="page-content">
-						<Skills />
-						<TechnicalCompetencies />
-						<Qualifications />
-						<Experience />
-						<Interests />
-					</div>
-				</ContentWrapper>
-			</PageLayout>
+			<Page header={<AboutHeader />} wrapperType="content-wrapper">
+				<div className="page-content">
+					<Skills />
+					<TechnicalCompetencies />
+					<Qualifications />
+					<Experience />
+					<Interests />
+				</div>
+			</Page>
 		</>
 	);
 }

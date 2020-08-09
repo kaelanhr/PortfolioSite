@@ -33,7 +33,7 @@ namespace PersonalSite.Models
 		/// <summary>
 		/// Gets or sets blog post so they can be created with EF.
 		/// </summary>
-		public DbSet<BlogCategory> Blog { get; set; }
+		public DbSet<Blog> Blog { get; set; }
 
 		/// <summary>
 		/// Gets or sets site content so they can be created with EF.
@@ -58,6 +58,15 @@ namespace PersonalSite.Models
 			builder.Entity<SiteUser>()
 				.HasIndex(u => u.UserName)
 				.IsUnique();
+
+			builder.Entity<Project>()
+				.HasIndex(i => i.Title)
+				.IsUnique();
+
+			builder.Entity<BlogPost>()
+				.HasOne(p => p.Blog)
+				.WithMany(b => b.BlogPosts)
+				.IsRequired();
 		}
 	}
 }

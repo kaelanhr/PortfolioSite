@@ -11,7 +11,7 @@ export default class Checkbox<T> extends Component<InputFieldProps<T>> {
 						type="checkbox"
 						name={this.props.modelProperty as string}
 						onChange={this.handleUserInput}
-						checked={this.props.model[this.props.modelProperty]}
+						defaultChecked={this.props.model[this.props.modelProperty]}
 					/>
 					<span className="checkmark"></span>
 				</div>

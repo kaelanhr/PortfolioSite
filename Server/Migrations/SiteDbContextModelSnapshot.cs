@@ -120,7 +120,7 @@ namespace PersonalSite.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("PersonalSite.Models.BlogCategory", b =>
+            modelBuilder.Entity("PersonalSite.Models.Blog", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -149,7 +149,11 @@ namespace PersonalSite.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<Guid>("BlogId")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("Content")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("Creation")
@@ -165,6 +169,8 @@ namespace PersonalSite.Migrations
                         .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BlogId");
 
                     b.ToTable("BlogPost");
                 });
@@ -199,6 +205,9 @@ namespace PersonalSite.Migrations
                         .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Title")
+                        .IsUnique();
 
                     b.ToTable("Project");
                 });
@@ -374,6 +383,15 @@ namespace PersonalSite.Migrations
                     b.HasOne("PersonalSite.Models.SiteUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("PersonalSite.Models.BlogPost", b =>
+                {
+                    b.HasOne("PersonalSite.Models.Blog", "Blog")
+                        .WithMany("BlogPosts")
+                        .HasForeignKey("BlogId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

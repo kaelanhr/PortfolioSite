@@ -1,57 +1,64 @@
 import React, { Component } from "react";
-import { Switch, Route } from "react-router";
+import { Switch, Route, RouteComponentProps } from "react-router";
 import { LoadData } from "../Components/LoadData/LoadData";
 import axios from "axios";
 import Project from "../Models/Project";
 import HeaderContent from "../Components/Header/Header";
-import { IfAdmin } from 'Components/Conditional/If';
-import { Link } from 'react-router-dom';
-import PageLayout from './PageLayout';
-import ProjectList from './Project/ProjectList';
-import ProjectCreatePage from './Project/ProjectCreatePage';
-import ProjectItem from './Project/ProjectItem';
+import { Link } from "react-router-dom";
+import ProjectList from "./Project/ProjectList";
+import ProjectItem from "./Project/ProjectItem";
+import ProjectAdminLayout, {
+	AdminProjectHeader,
+} from "./Project/ProjectAdminLayout";
+import Page from "Components/Page/Page";
+import AdminAction from 'Components/Admin/AdminAction';
 
-export default class Projects extends Component {
+export default class Projects extends Component<RouteComponentProps> {
 	render() {
 		return (
 			<>
 				<Switch>
 					<Route exact path="/projects">
-						<PageLayout
-							displayHeader={true}
-							headerComponent={<ProjectsHeader />}
-						>
-							<div>
-								<LoadData
-									promise={axios.get("/Api/Project")}
-									done={(data) => {
-										let a: Project[] = data.data.map(
-											(x: any) => new Project(x)
-										);
-										return <ProjectList list={a} />;
-									}}
-								/>
-								<IfAdmin>
-									<br />
-									<br />
-									<br />
+						<Page
+							header={<ProjectsHeader />}
+							wrapperType="list-wrapper"
+							beforeWrapper={
+								<AdminAction>
 									<Link to="/projects/create">Add project</Link>
-								</IfAdmin>
-							</div>
-						</PageLayout>
-					</Route>
-					<Route path="/projects/create">
-						<PageLayout
-							displayHeader={true}
-							headerComponent={
-								<HeaderContent name="Projects">
-									<p>Add new project</p>
-								</HeaderContent>
+								</AdminAction>
 							}
 						>
-							<ProjectCreatePage />
-						</PageLayout>
+							<LoadData
+								promise={axios.get("/Api/Project")}
+								done={(data) => {
+									let a: Project[] = data.data.map((x: any) => new Project(x));
+									return <ProjectList list={a} />;
+								}}
+							/>
+						</Page>
 					</Route>
+					<Route
+						path="/projects/create"
+						render={(props) => (
+							<Page
+								header={<AdminProjectHeader action="Create" />}
+								wrapperType="content-wrapper"
+							>
+								<ProjectAdminLayout {...props} entityAction="Create" />
+							</Page>
+						)}
+					/>
+					<Route
+						path="/projects/edit/:id?"
+						render={(props) => (
+							<Page
+								header={<AdminProjectHeader action="Update" />}
+								wrapperType="content-wrapper"
+							>
+								<ProjectAdminLayout {...props} entityAction="Update" />
+							</Page>
+						)}
+					/>
 					<Route path="/projects/:id?" component={ProjectItem} />
 				</Switch>
 			</>

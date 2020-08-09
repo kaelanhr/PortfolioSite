@@ -150,6 +150,26 @@ label::before {
 	}
 }
 
+.admin-action {
+	right: 2rem;
+	position: absolute;
+	display: flex;
+	margin-top: 2rem;
+	background-color: #2e3444;
+	color: white;
+	padding: 1rem;
+
+	a {
+		text-decoration: none;
+		&:visited {
+			color: white;
+		}
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
 .list-content {
 	display: flex;
 	position: relative;

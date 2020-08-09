@@ -5,6 +5,10 @@ import React, { Component } from "react";
 import TextField from "Components/Inputs/TextField";
 import ErrorMessage from "Components/Text/ErrorMessage";
 import { store } from "store";
+import { HomeHeader } from "./Home";
+import PageLayout from "./PageLayout";
+import ContentWrapper from 'Components/ContentWrapper/ContentWrapper';
+import Page from 'Components/Page/Page';
 
 interface LoginState {
 	errorMessage: string;
@@ -30,22 +34,24 @@ export default class Login extends Component<{}, LoginState> {
 	render() {
 		return (
 			<>
-				<form onSubmit={this.SubmitHandler}>
-					<ErrorMessage>{this.state.errorMessage}</ErrorMessage>
-					<TextField
-						model={this.LoginModel}
-						modelProperty={"Email"}
-						type="email"
-						placeholder="Email"
-					/>
-					<TextField
-						model={this.LoginModel}
-						modelProperty={"Password"}
-						type="password"
-						placeholder="Password"
-					/>
-					<input type="submit" value="Login" />
-				</form>
+				<Page header={<HomeHeader />} nameInHeader={false} wrapperType="content-wrapper">
+						<form onSubmit={this.SubmitHandler}>
+							<ErrorMessage>{this.state.errorMessage}</ErrorMessage>
+							<TextField
+								model={this.LoginModel}
+								modelProperty={"Email"}
+								type="email"
+								placeholder="Email"
+							/>
+							<TextField
+								model={this.LoginModel}
+								modelProperty={"Password"}
+								type="password"
+								placeholder="Password"
+							/>
+							<input type="submit" value="Login" />
+						</form>
+				</Page>
 			</>
 		);
 	}
