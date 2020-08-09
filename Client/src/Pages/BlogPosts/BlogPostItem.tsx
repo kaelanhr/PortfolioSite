@@ -35,8 +35,8 @@ class BlogPostItem extends Component<RouteComponentProps> {
 									<div className="page-content">
 										<h1>{a.title}</h1>
 										<ReactMarkdown source={a.content} />
+										<Back />
 									</div>
-									<Back />
 								</Page>
 							</>
 						);

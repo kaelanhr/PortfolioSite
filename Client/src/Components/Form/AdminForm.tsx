@@ -24,7 +24,6 @@ export function AdminForm<T>(props: AdminFormProps<T>) {
 						{props.children}
 						<input type="submit" value={`${props.submitText ?? "Submit"}`} />
 					</form>
-					<Back />
 				</div>
 		</>
 	);

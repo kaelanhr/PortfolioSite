@@ -42,7 +42,6 @@ export default class Admin extends Component<{}, IState> {
 							label="About"
 						/>
 					</Form>
-					<Back />
 				</div>
 			</>
 		);
