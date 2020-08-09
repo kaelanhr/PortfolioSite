@@ -3,15 +3,18 @@ import Blog from "Models/Blog";
 import TextField from "Components/Inputs/TextField";
 import Checkbox from "Components/Inputs/Checkbox";
 import MarkdownField from "Components/Inputs/MarkdownField";
-import AdminCrudForm, { EntityAdminAction } from "Components/Form/AdminCrudForm";
+import AdminCrudForm, {
+	EntityAdminAction,
+} from "Components/Form/AdminCrudForm";
 import { observable, action } from "mobx";
 import { observer } from "mobx-react";
-import BlogPosts from 'Models/BlogPost';
-import { RouteComponentProps } from 'react-router';
+import BlogPosts from "Models/BlogPost";
+import { RouteComponentProps } from "react-router";
+import Select from "Components/Inputs/Select";
 
 interface CreatePageProps extends RouteComponentProps {
 	model?: BlogPosts;
-	action: EntityAdminAction
+	action: EntityAdminAction;
 }
 
 @observer
@@ -25,10 +28,10 @@ export default class BlogPostAdminForm extends Component<CreatePageProps> {
 	@action
 	fetchBlogs = () => {
 		Blog.getModel().then((response: any) => {
-			this.blogs = response
+			this.blogs = response;
 			console.log(this.blogs);
 		});
-	}
+	};
 
 	@observable
 	private errorList: string[];
@@ -71,9 +74,15 @@ export default class BlogPostAdminForm extends Component<CreatePageProps> {
 					model={this.model}
 					errorList={this.errorList}
 				>
-					<select onChange={(e) => this.model.blogId = e.target.value}>
-						{this.blogs?.map((x) => <option value= {x.id} selected={x.id == this.model.blogId}>{x.title}</option>) ?? ""}
-					</select>
+					<Select
+						selected={this.model.blogId ? this.model.blogId : ""}
+						options={this.blogs.map((x) => ({
+							value: x.id,
+							displayValue: x.title,
+						}))}
+						model={this.model}
+						modelProperty="blogId"
+					/>
 					<TextField
 						model={this.model}
 						modelProperty="title"
