@@ -139,17 +139,23 @@ namespace PersonalSite
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
+				app.UseDatabaseErrorPage();
 			}
 			else
 			{
 				app.UseExceptionHandler("/Error");
 
 				// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-				// app.UseHsts ();
+				app.UseHsts ();
 			}
 
 			app.UseStaticFiles();
-			app.UseSpaStaticFiles();
+
+			if (!env.IsDevelopment())
+			{
+				app.UseSpaStaticFiles();
+			}
+
 			app.UseMiddleware<ExceptionHandler>();
 			app.UseRouting();
 			app.UseCookiePolicy();
@@ -165,7 +171,7 @@ namespace PersonalSite
 
 			app.UseSpa(spa =>
 			{
-				spa.Options.SourcePath = "Client";
+				spa.Options.SourcePath = "ClientApp";
 
 				if (env.IsDevelopment())
 				{

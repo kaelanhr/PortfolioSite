@@ -2,9 +2,11 @@
 
 	<PropertyGroup>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<RootNamespace>PersonalSite.WebUI</RootNamespace>
+    	<AssemblyName>PersonalSite.WebUI</AssemblyName>
 		<TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
 		<TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
-		<SpaRoot>..\Client</SpaRoot>
+		<SpaRoot>ClientApp\</SpaRoot>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -31,6 +33,11 @@
 
 	<ItemGroup>
 		<AdditionalFiles Include="stylecop.json" CopyToOutputDirectory="PreserveNewest"/>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Application\Application.csproj" />
+		<ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
 	</ItemGroup>
 
 	<Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
@@ -66,5 +73,5 @@
 				<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
 			</ResolvedFileToPublish>
 		</ItemGroup>
-	</Target>	
+	</Target>
 </Project>
