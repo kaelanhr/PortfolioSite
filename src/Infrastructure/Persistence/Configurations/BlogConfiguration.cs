@@ -12,6 +12,8 @@ namespace PersonalSite.Infrastructure.Persistence.Configurations
 				.HasOne(p => p.Blog)
 				.WithMany(b => b.BlogPosts)
 				.IsRequired();
+
+			builder.Property(e => e.Content).IsRequired();
 		}
 	}
 }

@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using PersonalSite.Domain.Common;
 
 namespace PersonalSite.Domain.Entities
@@ -12,8 +10,6 @@ namespace PersonalSite.Domain.Entities
 		/// <summary>
 		/// Gets or sets blog content.
 		/// </summary>
-		[Column(TypeName = "text")]
-		[Required]
 		public string Content { get; set; }
 
 		/// <summary>
@@ -24,13 +20,11 @@ namespace PersonalSite.Domain.Entities
 		/// <summary>
 		/// Gets or sets the title of the project.
 		/// </summary>
-		[Required]
 		public string Title { get; set; }
 
 		/// <summary>
 		/// Gets or sets a value indicating whether the project is highlighted or not.
 		/// </summary>
-		[Required]
 		public bool Highlight { get; set; }
 
 		/// <summary>

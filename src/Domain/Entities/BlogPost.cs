@@ -1,5 +1,4 @@
 using System;
-using System.ComponentModel.DataAnnotations;
 using PersonalSite.Domain.Common;
 using PersonalSite.Domain.Entities;
 
@@ -13,7 +12,6 @@ namespace PersonalSite.Domain.Entities
 		/// <summary>
 		/// Gets or sets blog content.
 		/// </summary>
-		[Required]
 		public string Content { get; set; }
 
 		/// <summary>

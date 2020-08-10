@@ -1,5 +1,4 @@
 using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace PersonalSite.Domain.Common
 {
@@ -11,7 +10,6 @@ namespace PersonalSite.Domain.Common
 		/// <summary>
 		/// Gets or sets the primary key of the entity.
 		/// </summary>
-		[Key]
 		public Guid Id { get; set; }
 
 		/// <summary>

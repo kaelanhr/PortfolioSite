@@ -11,6 +11,13 @@ namespace PersonalSite.Infrastructure.Persistence.Configurations
 			builder
 				.HasIndex(i => i.Title)
 				.IsUnique();
+
+			builder.Property(e => e.Content)
+				.HasMaxLength(1500)
+				.IsRequired();
+
+			builder.Property(e => e.Title).IsRequired();
+			builder.Property(e => e.Highlight).IsRequired();
 		}
 	}
 }
