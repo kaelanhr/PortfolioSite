@@ -5,10 +5,11 @@ using PersonalSite.Models;
 
 namespace PersonalSite.Services
 {
+
 	/// <summary>
 	/// Seed users and roles.
 	/// </summary>
-	public class DataSeedService
+	public class DataSeedService : IDataSeedService
 	{
 		private readonly ILogger _logger;
 		private readonly string[] _roleList = { "Admin" };

@@ -5,7 +5,8 @@ using Newtonsoft.Json;
 
 namespace PersonalSite.Services
 {
-	public class ExceptionHandler
+
+	public class ExceptionHandler : IExceptionHandler
 	{
 		private readonly RequestDelegate _next;
 

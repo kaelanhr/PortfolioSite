@@ -58,15 +58,6 @@ namespace PersonalSite.Models
 			builder.Entity<SiteUser>()
 				.HasIndex(u => u.UserName)
 				.IsUnique();
-
-			builder.Entity<Project>()
-				.HasIndex(i => i.Title)
-				.IsUnique();
-
-			builder.Entity<BlogPost>()
-				.HasOne(p => p.Blog)
-				.WithMany(b => b.BlogPosts)
-				.IsRequired();
 		}
 	}
 }

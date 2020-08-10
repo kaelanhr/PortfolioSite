@@ -12,7 +12,7 @@ namespace PersonalSite.Services
 	/// Crud service is used for performing all crud
 	/// operations on entities.
 	/// </summary>
-	public class CrudService
+	public class CrudService : ICrudService
 	{
 		private readonly ILogger _logger;
 		private readonly SiteDbContext _dbContext;
