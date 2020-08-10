@@ -1,8 +1,10 @@
-using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using PersonalSite.Application.Common;
+using PersonalSite.Application.Common.Interfaces;
+using PersonalSite.Domain.Entities;
 
-namespace PersonalSite.Models
+namespace PersonalSite.Application.Projects.Queries.GetProjects
 {
 	/// <summary>
 	/// Everything contained within a single blog post.
@@ -46,7 +48,7 @@ namespace PersonalSite.Models
 		{
 			Id = model.Id;
 			Creation = model.Creation;
-			Updated = model.Updated;
+			LastModified = model.LastModified;
 			Content = model.Content;
 			HeaderImagePath = model.HeaderImagePath;
 			Highlight = model.Highlight;
@@ -62,7 +64,7 @@ namespace PersonalSite.Models
 			{
 				Id = Id,
 				Creation = Creation,
-				Updated = Updated,
+				LastModified = LastModified,
 				Content = Content,
 				HeaderImagePath = HeaderImagePath,
 				Highlight = Highlight,

@@ -3,8 +3,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
-using PersonalSite.Exceptions;
-using PersonalSite.Models;
+using PersonalSite.Application.Common.Interfaces;
+using PersonalSite.Domain.Common;
+using PersonalSite.Domain.Exceptions;
+using PersonalSite.Infrastructure.Persistence;
 
 namespace PersonalSite.Services
 {

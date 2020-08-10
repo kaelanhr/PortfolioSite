@@ -1,5 +1,11 @@
-public interface IDataSeedService
+using System.Threading.Tasks;
+
+namespace PersonalSite.Application.Common.Interfaces
 {
-	Task SeedRolesAsync();
-	Task SeedUsersAsync();
+
+	public interface IDataSeedService
+	{
+		Task SeedRolesAsync();
+		Task SeedUsersAsync();
+	}
 }

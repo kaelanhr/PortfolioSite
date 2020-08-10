@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace PersonalSite.Models
+namespace PersonalSite.Domain.Common
 {
 	/// <summary>
 	/// All shared model attributes.
@@ -22,6 +22,6 @@ namespace PersonalSite.Models
 		/// <summary>
 		/// Gets or sets the last updated date of the entity.
 		/// </summary>
-		public DateTime Updated { get; set; }
+		public DateTime LastModified { get; set; }
 	}
 }

@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
+using PersonalSite.Application.Users;
 
-namespace PersonalSite.UserDtos
+namespace PersonalSite.Application.Users
 {
 	/// <summary>
 	/// attributes used for registration.

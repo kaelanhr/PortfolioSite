@@ -12,7 +12,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using PersonalSite.Models;
+using PersonalSite.Infrastructure.Identity;
+using PersonalSite.Infrastructure.Persistence;
 using PersonalSite.Services;
 
 namespace PersonalSite

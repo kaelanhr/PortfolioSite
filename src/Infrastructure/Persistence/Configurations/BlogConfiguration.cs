@@ -1,13 +1,14 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using PersonalSite.Domain.Entities;
 
-namespace Infrastructure.Persistence.Configurations
+namespace PersonalSite.Infrastructure.Persistence.Configurations
 {
-	public class BlogConfiguration : IEntityTypeConfiguration<TodoItem>
+	public class BlogConfiguration : IEntityTypeConfiguration<BlogPost>
 	{
 		public void Configure(EntityTypeBuilder<BlogPost> builder)
 		{
-			builder.Entity<BlogPost>()
+			builder
 				.HasOne(p => p.Blog)
 				.WithMany(b => b.BlogPosts)
 				.IsRequired();

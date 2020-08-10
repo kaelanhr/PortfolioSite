@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace PersonalSite.UserDtos
+namespace PersonalSite.Application.Users
 {
 	/// <summary>
 	/// what is required for minimum user credentials.

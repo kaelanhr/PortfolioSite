@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PersonalSite.Models
+namespace PersonalSite.Domain.Common
 {
 	/// <summary>
 	/// Abstract class for model dto's. Containing shared properties.

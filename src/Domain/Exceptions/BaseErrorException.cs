@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PersonalSite.Exceptions
+namespace PersonalSite.Domain.Exceptions
 {
 	/// <summary>
 	/// The exception to be thrown when an unknown error has occured and

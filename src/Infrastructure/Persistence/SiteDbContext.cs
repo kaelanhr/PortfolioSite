@@ -1,8 +1,10 @@
 using System;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using PersonalSite.Domain.Entities;
+using PersonalSite.Infrastructure.Identity;
 
-namespace PersonalSite.Models
+namespace PersonalSite.Infrastructure.Persistence
 {
 	/// <summary>
 	/// The database context used for the site.

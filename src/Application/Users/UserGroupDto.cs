@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace PersonalSite.UserDtos
+namespace PersonalSite.Application.Users
 {
 	/// <summary>
 	/// user group attributes for a user.

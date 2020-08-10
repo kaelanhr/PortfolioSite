@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Identity;
 
-namespace PersonalSite.Models
+namespace PersonalSite.Infrastructure.Identity
 {
 	/// <summary>
 	/// A registered user of the site.

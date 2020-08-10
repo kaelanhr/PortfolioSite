@@ -8,7 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using PersonalSite.Models;
+using PersonalSite.Application.Projects.Queries.GetProjects;
+using PersonalSite.Domain.Entities;
 using PersonalSite.Services;
 
 namespace PersonalSite.Controllers

@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using PersonalSite.Models;
+using PersonalSite.Infrastructure.Persistence;
 
 namespace PersonalSite.Migrations
 {
-    [DbContext(typeof(SiteDbContext))]
+	[DbContext(typeof(SiteDbContext))]
     partial class SiteDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

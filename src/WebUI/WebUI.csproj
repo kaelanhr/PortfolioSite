@@ -3,24 +3,23 @@
 	<PropertyGroup>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
 		<RootNamespace>PersonalSite.WebUI</RootNamespace>
-    	<AssemblyName>PersonalSite.WebUI</AssemblyName>
+			<AssemblyName>PersonalSite.WebUI</AssemblyName>
 		<TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
 		<TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
 		<SpaRoot>ClientApp\</SpaRoot>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.1" />
-		<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.6" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.6" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.5" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.1" />
-		<PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.1" />
-		<PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.1" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.1">
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.6" />
+		<PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.6" />
+		<PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.6" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.6">
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 			<PrivateAssets>all</PrivateAssets>
 		</PackageReference>
-		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.1.2" />
 		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>

@@ -1,4 +1,4 @@
-﻿namespace PersonalSite.Models
+﻿namespace PersonalSite.Application.Common.Interfaces
 {
 	public interface IModelDto<T>
 	{

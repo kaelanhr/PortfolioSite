@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using PersonalSite.Models;
+using PersonalSite.Infrastructure.Persistence;
 
 namespace PersonalSite.Migrations
 {
-    [DbContext(typeof(SiteDbContext))]
+	[DbContext(typeof(SiteDbContext))]
     [Migration("20200705071334_next2")]
     partial class next2
     {

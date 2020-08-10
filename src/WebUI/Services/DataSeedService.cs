@@ -1,7 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
-using PersonalSite.Models;
+using PersonalSite.Application.Common.Interfaces;
+using PersonalSite.Infrastructure.Identity;
 
 namespace PersonalSite.Services
 {

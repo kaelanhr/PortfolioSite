@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 
-namespace PersonalSite.UserDtos
+namespace PersonalSite.Application.Users
 {
 	/// <summary>
 	/// type returned to the client as a user result.
 	/// </summary>
-	public class UserResult
+	public class UserDto
 	{
 		/// <summary>
 		/// Gets or sets the email of the user.

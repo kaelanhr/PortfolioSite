@@ -1,7 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using PersonalSite.Domain.Common;
 
-namespace PersonalSite.Models
+namespace PersonalSite.Domain.Entities
 {
 	/// <summary>
 	/// Everything contained within a single blog post.

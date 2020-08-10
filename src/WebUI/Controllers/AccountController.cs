@@ -10,8 +10,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using PersonalSite.Models;
-using PersonalSite.UserDtos;
+using PersonalSite.Application.Users;
+using PersonalSite.Infrastructure.Identity;
 
 namespace PersonalSite.Controllers
 {
@@ -104,7 +104,7 @@ namespace PersonalSite.Controllers
 		[HttpGet]
 		[Authorize]
 		[Route("/Identity/Account/me")]
-		public async Task<UserResult> CheckLoginAsync()
+		public async Task<UserDto> CheckLoginAsync()
 		{
 			if (User.Identity.IsAuthenticated)
 			{
@@ -113,7 +113,7 @@ namespace PersonalSite.Controllers
 				var userRoleNames = (await _userManager.GetRolesAsync(user)).ToList();
 				var userRoles = await _roleManager.Roles.Where(r => userRoleNames.Contains(r.Name)).ToListAsync();
 				_logger.LogInformation(4, "Check whether this user is logged in");
-				return new UserResult
+				return new UserDto
 				{
 					Email = user.Email,
 					UserName = user.UserName,

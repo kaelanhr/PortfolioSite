@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using PersonalSite.Domain.Common;
 
-namespace PersonalSite.Models
+namespace PersonalSite.Domain.Entities
 {
 	/// <summary>
 	/// A blog category which can contain many blog posts.

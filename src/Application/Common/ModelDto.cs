@@ -1,17 +1,16 @@
-using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System;
 
-namespace PersonalSite.Domain.Common
+namespace PersonalSite.Application.Common
 {
 	/// <summary>
-	/// All shared model attributes.
+	/// Abstract class for model dto's. Containing shared properties.
 	/// </summary>
-	public interface IModel
+	/// <typeparam name="T">The generic model type.</typeparam>
+	public abstract class ModelDto<T>
 	{
 		/// <summary>
 		/// Gets or sets the primary key of the entity.
 		/// </summary>
-		[Key]
 		public Guid Id { get; set; }
 
 		/// <summary>

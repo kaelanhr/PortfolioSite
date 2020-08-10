@@ -1,4 +1,6 @@
-namespace PersonalSite.Models
+using PersonalSite.Domain.Common;
+
+namespace PersonalSite.Domain.Entities
 {
 	/// <summary>
 	/// Any general site content which can be updated by site admins.
