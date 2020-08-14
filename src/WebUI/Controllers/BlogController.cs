@@ -9,10 +9,11 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using PersonalSite.Application.Blogs.Queries.GetBlogs;
+using PersonalSite.Controllers;
 using PersonalSite.Domain.Entities;
 using PersonalSite.Services;
 
-namespace PersonalSite.Controllers
+namespace PersonalSite.WebUI.Controllers
 {
 	/// <summary>
 	/// api for crud operations on a blog category.
@@ -20,7 +21,7 @@ namespace PersonalSite.Controllers
 	[Authorize]
 	[ApiController]
 	[Route("/Api/Blogs")]
-	public class BlogController : Controller, IEntityController<BlogDto>
+	public class BlogController : ApiController
 	{
 		private readonly ILogger _logger;
 		private readonly CrudService _crudService;

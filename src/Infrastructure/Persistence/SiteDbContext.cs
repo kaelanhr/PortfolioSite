@@ -1,6 +1,10 @@
 using System;
+using System.Reflection;
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using PersonalSite.Domain.Common;
 using PersonalSite.Domain.Entities;
 using PersonalSite.Infrastructure.Identity;
 
@@ -52,9 +56,30 @@ namespace PersonalSite.Infrastructure.Persistence
 		/// </summary>
 		public DbSet<Project> Project { get; set; }
 
+
+		public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+		{
+			foreach (var entry in ChangeTracker.Entries<AbstractModel>())
+			{
+				switch (entry.State)
+				{
+					case EntityState.Added:
+						entry.Entity.Creation = DateTime.Now;
+						break;
+					case EntityState.Modified:
+						entry.Entity.LastModified = DateTime.Now;
+						break;
+				}
+			}
+
+			return base.SaveChangesAsync(cancellationToken);
+		}
+
 		/// <inheritdoc/>
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
+			builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
 			base.OnModelCreating(builder);
 
 			builder.Entity<SiteUser>()

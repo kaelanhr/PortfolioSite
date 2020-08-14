@@ -13,7 +13,9 @@ namespace PersonalSite.Infrastructure.Persistence.Configurations
 				.WithMany(b => b.BlogPosts)
 				.IsRequired();
 
-			builder.Property(e => e.Content).IsRequired();
+			builder.Property(e => e.Content)
+				.HasMaxLength(500)
+				.IsRequired();
 		}
 	}
 }

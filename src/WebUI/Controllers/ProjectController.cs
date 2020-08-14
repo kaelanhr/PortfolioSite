@@ -5,14 +5,18 @@ using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using PersonalSite.Application.Projects.CreateProject;
+using PersonalSite.Application.Projects.DeleteProject;
 using PersonalSite.Application.Projects.Queries.GetProjects;
+using PersonalSite.Application.Projects.UpdateProject;
 using PersonalSite.Domain.Entities;
 using PersonalSite.Services;
 
-namespace PersonalSite.Controllers
+namespace PersonalSite.WebUI.Controllers
 {
 	/// <summary>
 	/// Manage the endpoints for projects.
@@ -20,7 +24,7 @@ namespace PersonalSite.Controllers
 	[Authorize]
 	[ApiController]
 	[Route("/Api/Project")]
-	public class ProjectController : Controller, IEntityController<ProjectDto>
+	public class ProjectController : ApiController
 	{
 		private readonly ILogger _logger;
 		private readonly CrudService _crudService;
@@ -44,25 +48,9 @@ namespace PersonalSite.Controllers
 		[HttpPost]
 		[Authorize]
 		[Route("")]
-		public async Task<ProjectDto> CreateAsync([BindRequired, FromBody] ProjectDto project)
+		public async Task<ActionResult<Guid>> CreateAsync(CreateProjectCommand command)
 		{
-			// cannot specify the guid.
-			if (project.Id != Guid.Empty)
-			{
-				Response.StatusCode = (int)HttpStatusCode.BadRequest;
-				return null;
-			}
-
-			_logger.LogInformation(4, "creating a project.");
-			try
-			{
-				return new ProjectDto(await _crudService.CreateAsync(project.ToEntity()));
-			}
-			catch (Exception)
-			{
-				Response.StatusCode = (int)HttpStatusCode.BadRequest;
-				throw;
-			}
+			return await Mediator.Send(command);
 		}
 
 		/// <summary>
@@ -72,16 +60,17 @@ namespace PersonalSite.Controllers
 		/// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
 		[HttpPut]
 		[Authorize]
-		[Route("")]
-		public async Task<ProjectDto> EditAsync([BindRequired, FromBody] ProjectDto project)
+		[Route("{id}")]
+		public async Task<ActionResult> EditAsync(Guid Id, UpdateProjectCommand command)
 		{
-			if (project.Id == Guid.Empty)
+			if (Id != command.Id)
 			{
-				Response.StatusCode = (int)HttpStatusCode.BadRequest;
-				return null;
+				return BadRequest();
 			}
 
-			return new ProjectDto(await _crudService.UpdateAsync(project.ToEntity()));
+			await Mediator.Send(command);
+
+			return NoContent();
 		}
 
 		/// <summary>
@@ -91,24 +80,23 @@ namespace PersonalSite.Controllers
 		[HttpGet]
 		[AllowAnonymous]
 		[Route("")]
-		public async Task<IEnumerable<ProjectDto>> GetAsync()
+		public async Task<ActionResult<ProjectsVm>> GetAsync()
 		{
-			var result = _crudService.Get<Project>();
-			return await result.Select(m => new ProjectDto(m)).ToListAsync();
+			return await Mediator.Send(new GetProjectsQuery());
 		}
 
 		/// <summary>
 		/// Gets all projects which are highlighted.
 		/// </summary>
 		/// <returns>A list of highlighted projects.</returns>
-		[HttpGet]
-		[AllowAnonymous]
-		[Route("Highlights")]
-		public async Task<IEnumerable<ProjectDto>> GetHighlightedProjectsAsync()
-		{
-			var result = _crudService.Get<Project>().Where(x => x.Highlight);
-			return await result.Select(m => new ProjectDto(m)).ToListAsync();
-		}
+		//[HttpGet]
+		//[AllowAnonymous]
+		//[Route("Highlights")]
+		//public async Task<IEnumerable<ProjectDto>> GetHighlightedProjectsAsync()
+		//{
+		//	var result = _crudService.Get<Project>().Where(x => x.Highlight);
+		//	return await result.Select(m => new ProjectDto(m)).ToListAsync();
+		//}
 
 		/// <summary>
 		/// Gets a single project, given an id.
@@ -118,10 +106,9 @@ namespace PersonalSite.Controllers
 		[HttpGet]
 		[AllowAnonymous]
 		[Route("{id}")]
-		public async Task<ProjectDto> GetByIdAsync(Guid id)
+		public async Task<ProjectsVm> GetByIdAsync(Guid id)
 		{
-			var result = _crudService.GetById<Project>(id);
-			return await result.Select(m => new ProjectDto(m)).FirstOrDefaultAsync();
+			return await Mediator.Send(new GetProjectsQueryById { Id = id });
 		}
 
 		/// <summary>
@@ -131,9 +118,11 @@ namespace PersonalSite.Controllers
 		/// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
 		[HttpDelete]
 		[Route("{id}")]
-		public async Task<Guid> DeleteAsync(Guid id)
+		public async Task<ActionResult> DeleteAsync(Guid id)
 		{
-			return await _crudService.DeleteAsync<Project>(id);
+			await Mediator.Send(new DeleteProjectCommand { Id = id });
+
+			return NoContent();
 		}
 	}
 }

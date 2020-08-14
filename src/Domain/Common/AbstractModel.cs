@@ -5,7 +5,7 @@ namespace PersonalSite.Domain.Common
 	/// <summary>
 	/// All shared model attributes.
 	/// </summary>
-	public abstract class AbstractModel : IModel
+	public abstract class AbstractModel
 	{
 		/// <summary>
 		/// Gets or sets the primary key of the entity.
@@ -20,6 +20,6 @@ namespace PersonalSite.Domain.Common
 		/// <summary>
 		/// Gets or sets the last updated date of the entity.
 		/// </summary>
-		public DateTime LastModified { get; set; }
+		public DateTime? LastModified { get; set; }
 	}
 }

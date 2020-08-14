@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using PersonalSite.Application.Common;
-using PersonalSite.Application.Common.Interfaces;
+using AutoMapper;
+using PersonalSite.Application.Common.Mappings;
 using PersonalSite.Domain.Entities;
 
 namespace PersonalSite.Application.Projects.Queries.GetProjects
@@ -9,7 +9,7 @@ namespace PersonalSite.Application.Projects.Queries.GetProjects
 	/// <summary>
 	/// Everything contained within a single blog post.
 	/// </summary>
-	public class ProjectDto : ModelDto<Project>, IModelDto<Project>
+	public class ProjectDto : IMapFrom<Project>
 	{
 		/// <summary>
 		/// Gets or sets blog content.
@@ -37,40 +37,9 @@ namespace PersonalSite.Application.Projects.Queries.GetProjects
 
 		public string ProjectUrl { get; set; }
 
-		public ProjectDto(Project model)
+		public void Mapping(Profile profile)
 		{
-			LoadEntity(model);
-		}
-
-		public ProjectDto() { }
-
-		public ModelDto<Project> LoadEntity(Project model)
-		{
-			Id = model.Id;
-			Creation = model.Creation;
-			LastModified = model.LastModified;
-			Content = model.Content;
-			HeaderImagePath = model.HeaderImagePath;
-			Highlight = model.Highlight;
-			ProjectUrl = model.ProjectUrl;
-			Title = model.Title;
-
-			return this;
-		}
-
-		public Project ToEntity()
-		{
-			return new Project
-			{
-				Id = Id,
-				Creation = Creation,
-				LastModified = LastModified,
-				Content = Content,
-				HeaderImagePath = HeaderImagePath,
-				Highlight = Highlight,
-				ProjectUrl = ProjectUrl,
-				Title = Title,
-			};
+			profile.CreateMap<Project, ProjectDto>();
 		}
 	}
 }
