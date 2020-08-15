@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using PersonalSite.Application.Common.Interfaces;
 using PersonalSite.Domain.Common;
 using PersonalSite.Domain.Entities;
 using PersonalSite.Infrastructure.Identity;
@@ -13,7 +14,7 @@ namespace PersonalSite.Infrastructure.Persistence
 	/// <summary>
 	/// The database context used for the site.
 	/// </summary>
-	public class SiteDbContext : IdentityDbContext<SiteUser, SiteRole, Guid>
+	public class SiteDbContext : IdentityDbContext<SiteUser, SiteRole, Guid>, IDbContext
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="SiteDbContext"/> class.

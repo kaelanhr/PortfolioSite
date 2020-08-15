@@ -8,7 +8,7 @@ namespace PersonalSite.Application.Blogs.Queries.GetBlogs
 	/// <summary>
 	/// Everything contained within a single blog post.
 	/// </summary>
-	public class BlogPostDto : ModelDto<BlogPost>, IModelDto<BlogPost>
+	public class BlogPostDto : ModelDto<BlogPost>
 	{
 		/// <summary>
 		/// Gets or sets blog content.
@@ -35,23 +35,23 @@ namespace PersonalSite.Application.Blogs.Queries.GetBlogs
 
 		public BlogPostDto(BlogPost model)
 		{
-			LoadEntity(model);
+			//LoadEntity(model);
 		}
 
 		public BlogPostDto() { }
 
-		public ModelDto<BlogPost> LoadEntity(BlogPost model)
-		{
-			Id = model.Id;
-			Creation = model.Creation;
-			LastModified = model.LastModified;
-			HeaderImagePath = model.HeaderImagePath;
-			Title = model.Title;
-			Content = model.Content;
-			BlogId = model.BlogId;
-			Blog = model.Blog;
-			return this;
-		}
+		//public ModelDto<BlogPost> LoadEntity(BlogPost model)
+		//{
+		//	Id = model.Id;
+		//	Creation = model.Creation;
+		//	LastModified = model.LastModified;
+		//	HeaderImagePath = model.HeaderImagePath;
+		//	Title = model.Title;
+		//	Content = model.Content;
+		//	BlogId = model.BlogId;
+		//	Blog = model.Blog;
+		//	return this;
+		//}
 
 		public BlogPost ToEntity()
 		{

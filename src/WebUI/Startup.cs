@@ -1,20 +1,16 @@
 using System;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using PersonalSite.Application;
-using PersonalSite.Infrastructure.Identity;
-using PersonalSite.Infrastructure.Persistence;
+using PersonalSite.Infrastructure;
 using PersonalSite.Services;
 
 namespace PersonalSite
@@ -63,49 +59,13 @@ namespace PersonalSite
 				configuration.RootPath = "Client";
 			});
 
-			services.AddDbContext<SiteDbContext>(options =>
-			options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
-
-			services.AddIdentity<SiteUser, SiteRole>(options => options.SignIn.RequireConfirmedAccount = true)
-			.AddDefaultTokenProviders()
-			.AddEntityFrameworkStores<SiteDbContext>();
-
-			services.Configure<IdentityOptions>(options =>
-			{
-				/* Password settings.
-				* The only limitation we will enforce is length
-				* any other password restrictions make it easier to decipher
-				*/
-				options.Password.RequireDigit = false;
-				options.Password.RequireLowercase = false;
-				options.Password.RequireNonAlphanumeric = false;
-				options.Password.RequireUppercase = false;
-				options.Password.RequiredLength = 12;
-				options.Password.RequiredUniqueChars = 0;
-
-				// Lockout settings.
-				options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
-				options.Lockout.MaxFailedAccessAttempts = 5;
-				options.Lockout.AllowedForNewUsers = true;
-
-				// User settings.
-				options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
-				options.User.RequireUniqueEmail = true;
-			});
-
-			services.AddAuthentication(options =>
-			{
-				options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-				options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-			}).AddCookie();
-
 			services.ConfigureApplicationCookie(options =>
 			{
 				options.Events.OnRedirectToLogin = context =>
-	{
-		context.Response.StatusCode = 401;
-		return Task.CompletedTask;
-	};
+				{
+					context.Response.StatusCode = 401;
+					return Task.CompletedTask;
+				};
 
 				// Cookie settings
 				options.Cookie.HttpOnly = true;
@@ -118,13 +78,8 @@ namespace PersonalSite
 				options.SlidingExpiration = true;
 			});
 
-			services.AddAuthorization(options =>
-			{
-				options.AddPolicy("AdminRoleRequired", policy => policy.RequireRole("Administrator"));
-			});
-
 			services.AddScoped<DataSeedService, DataSeedService>();
-			services.AddScoped<CrudService, CrudService>();
+			//services.AddScoped<CrudService, CrudService>();
 		}
 
 		/// <summary>
@@ -151,7 +106,7 @@ namespace PersonalSite
 				app.UseExceptionHandler("/Error");
 
 				// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-				app.UseHsts ();
+				app.UseHsts();
 			}
 
 			app.UseStaticFiles();

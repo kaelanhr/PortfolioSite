@@ -8,7 +8,7 @@ namespace PersonalSite.Application.Blogs.Queries.GetBlogs
 	/// <summary>
 	/// Everything contained within a single blog post.
 	/// </summary>
-	public class BlogDto : ModelDto<Blog>, IModelDto<Blog>
+	public class BlogDto : ModelDto<Blog>
 	{
 		/// <summary>
 		/// Gets or sets the header image for the blog.
@@ -27,21 +27,21 @@ namespace PersonalSite.Application.Blogs.Queries.GetBlogs
 
 		public BlogDto(Blog model)
 		{
-			LoadEntity(model);
+			//LoadEntity(model);
 		}
 
 		public BlogDto() { }
 
-		public ModelDto<Blog> LoadEntity(Blog model)
-		{
-			Id = model.Id;
-			Creation = model.Creation;
-			LastModified = model.LastModified;
-			HeaderImagePath = model.HeaderImagePath;
-			Title = model.Title;
-			BlogPosts = model.BlogPosts;
-			return this;
-		}
+		//public ModelDto<Blog> LoadEntity(Blog model)
+		//{
+		//	Id = model.Id;
+		//	Creation = model.Creation;
+		//	LastModified = model.LastModified;
+		//	HeaderImagePath = model.HeaderImagePath;
+		//	Title = model.Title;
+		//	BlogPosts = model.BlogPosts;
+		//	return this;
+		//}
 
 		public Blog ToEntity()
 		{

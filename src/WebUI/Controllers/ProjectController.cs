@@ -27,17 +27,17 @@ namespace PersonalSite.WebUI.Controllers
 	public class ProjectController : ApiController
 	{
 		private readonly ILogger _logger;
-		private readonly CrudService _crudService;
+		//private readonly CrudService _crudService;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="ProjectController"/> class.
 		/// </summary>
 		/// <param name="loggerFactory">The logger factory being used.</param>
 		/// <param name="crudService">The crud service.</param>
-		public ProjectController(ILoggerFactory loggerFactory, CrudService crudService)
+		public ProjectController(ILoggerFactory loggerFactory)
 		{
 			_logger = loggerFactory.CreateLogger<ProjectController>();
-			_crudService = crudService;
+			//_crudService = crudService;
 		}
 
 		/// <summary>
