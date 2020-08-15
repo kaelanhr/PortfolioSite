@@ -1,6 +1,4 @@
 using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using AutoMapper;
 using PersonalSite.Application.Common.Mappings;
 using PersonalSite.Domain.Entities;
