@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using AutoMapper;
@@ -11,6 +12,9 @@ namespace PersonalSite.Application.Projects.Queries.GetProjects
 	/// </summary>
 	public class ProjectDto : IMapFrom<Project>
 	{
+
+		public Guid Id { get; set; }
+
 		/// <summary>
 		/// Gets or sets blog content.
 		/// </summary>

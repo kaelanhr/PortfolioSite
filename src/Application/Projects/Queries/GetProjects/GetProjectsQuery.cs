@@ -28,7 +28,7 @@ namespace PersonalSite.Application.Projects.Queries.GetProjects
 		{
 			return new ProjectsVm
 			{
-				Lists = await _context.Project.ProjectTo<ProjectDto>(_mapper.ConfigurationProvider)
+				List = await _context.Project.ProjectTo<ProjectDto>(_mapper.ConfigurationProvider)
 				.OrderBy(t => t.Title)
 				.ToListAsync(cancellationToken)
 			};

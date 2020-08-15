@@ -58,7 +58,7 @@
 		<ItemGroup>
 			<DistFiles Include="$(SpaRoot)\build\**" />
 			<ResolvedFileToPublish Include="@(DistFiles)" Exclude="@(ResolvedFileToPublish)">
-				<RelativePath>Client/%(RecursiveDir)%(Filename)%(Extension)</RelativePath>
+				<RelativePath>ClientApp/%(RecursiveDir)%(Filename)%(Extension)</RelativePath>
 				<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
 			</ResolvedFileToPublish>
 		</ItemGroup>
@@ -68,7 +68,7 @@
 		<ItemGroup>
 			<DistFiles Include="$(SpaRoot)\build\**" />
 			<ResolvedFileToPublish Include="@(DistFiles)" Exclude="@(ResolvedFileToPublish)">
-				<RelativePath>Client/%(RecursiveDir)%(Filename)%(Extension)</RelativePath>
+				<RelativePath>ClientApp/%(RecursiveDir)%(Filename)%(Extension)</RelativePath>
 				<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
 			</ResolvedFileToPublish>
 		</ItemGroup>

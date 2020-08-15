@@ -30,7 +30,7 @@ namespace PersonalSite.Application.Projects.Queries.GetProjects
 		{
 			return new ProjectsVm
 			{
-				Lists = await _context.Project
+				List = await _context.Project
 				.Where(p => p.Id == request.Id)
 				.ProjectTo<ProjectDto>(_mapper.ConfigurationProvider)
 				.OrderBy(t => t.Title)
