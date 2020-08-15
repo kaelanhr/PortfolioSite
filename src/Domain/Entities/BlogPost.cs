@@ -4,9 +4,6 @@ using PersonalSite.Domain.Entities;
 
 namespace PersonalSite.Domain.Entities
 {
-	/// <summary>
-	/// Everything contained within a single blog post.
-	/// </summary>
 	public class BlogPost : AbstractModel
 	{
 		/// <summary>

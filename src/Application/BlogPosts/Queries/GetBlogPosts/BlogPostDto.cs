@@ -3,7 +3,7 @@ using AutoMapper;
 using PersonalSite.Application.Common.Mappings;
 using PersonalSite.Domain.Entities;
 
-namespace PersonalSite.Application.Blogs.Queries.GetBlogs
+namespace PersonalSite.Application.BlogPosts.Queries.GetBlogPosts
 {
 	public class BlogPostDto : IMapFrom<BlogPost>
 	{
