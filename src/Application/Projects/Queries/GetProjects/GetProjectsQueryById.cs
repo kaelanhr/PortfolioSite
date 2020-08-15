@@ -10,12 +10,12 @@ using PersonalSite.Application.Common.Interfaces;
 
 namespace PersonalSite.Application.Projects.Queries.GetProjects
 {
-	public class GetProjectsQueryById : IRequest<ProjectsVm>
+	public class GetProjectsQueryById : IRequest<ProjectDto>
 	{
 		public Guid Id { get; set; }
 	}
 
-	public class GetProjectsByIdQueryHandler : IRequestHandler<GetProjectsQueryById, ProjectsVm>
+	public class GetProjectsByIdQueryHandler : IRequestHandler<GetProjectsQueryById, ProjectDto>
 	{
 		private readonly IDbContext _context;
 		private readonly IMapper _mapper;
@@ -26,16 +26,13 @@ namespace PersonalSite.Application.Projects.Queries.GetProjects
 			_mapper = mapper;
 		}
 
-		public async Task<ProjectsVm> Handle(GetProjectsQueryById request, CancellationToken cancellationToken)
+		public async Task<ProjectDto> Handle(GetProjectsQueryById request, CancellationToken cancellationToken)
 		{
-			return new ProjectsVm
-			{
-				List = await _context.Project
+			return await _context.Project
 				.Where(p => p.Id == request.Id)
 				.ProjectTo<ProjectDto>(_mapper.ConfigurationProvider)
 				.OrderBy(t => t.Title)
-				.ToListAsync(cancellationToken)
-			};
+				.FirstOrDefaultAsync(cancellationToken);
 		}
 	}
 }

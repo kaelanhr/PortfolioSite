@@ -31,7 +31,7 @@ export default class Projects extends Component<RouteComponentProps> {
 							<LoadData
 								promise={axios.get("/Api/Project")}
 								done={(data) => {
-									let a: Project[] = data.data.list.map((x: any) => new Project(x));
+									let a: Project[] = data.data.map((x: any) => new Project(x));
 									return <ProjectList list={a} />;
 								}}
 							/>

@@ -80,9 +80,9 @@ namespace PersonalSite.WebUI.Controllers
 		[HttpGet]
 		[AllowAnonymous]
 		[Route("")]
-		public async Task<ActionResult<ProjectsVm>> GetAsync()
+		public async Task<ActionResult<IEnumerable<ProjectDto>>> GetAsync()
 		{
-			return await Mediator.Send(new GetProjectsQuery());
+			return Ok(await Mediator.Send(new GetProjectsQuery()));
 		}
 
 		/// <summary>
@@ -106,9 +106,10 @@ namespace PersonalSite.WebUI.Controllers
 		[HttpGet]
 		[AllowAnonymous]
 		[Route("{id}")]
-		public async Task<ProjectsVm> GetByIdAsync(Guid id)
+		public async Task<ProjectDto> GetByIdAsync(Guid id)
 		{
-			return await Mediator.Send(new GetProjectsQueryById { Id = id });
+			var a = await Mediator.Send(new GetProjectsQueryById { Id = id });
+			return a;
 		}
 
 		/// <summary>

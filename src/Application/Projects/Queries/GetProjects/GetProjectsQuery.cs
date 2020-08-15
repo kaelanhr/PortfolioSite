@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -9,11 +10,11 @@ using PersonalSite.Application.Common.Interfaces;
 
 namespace PersonalSite.Application.Projects.Queries.GetProjects
 {
-	public class GetProjectsQuery : IRequest<ProjectsVm>
+	public class GetProjectsQuery : IRequest<IEnumerable<ProjectDto>>
 	{
 	}
 
-	public class GetProjectsQueryHandler : IRequestHandler<GetProjectsQuery, ProjectsVm>
+	public class GetProjectsQueryHandler : IRequestHandler<GetProjectsQuery, IEnumerable<ProjectDto>>
 	{
 		private readonly IDbContext _context;
 		private readonly IMapper _mapper;
@@ -24,14 +25,11 @@ namespace PersonalSite.Application.Projects.Queries.GetProjects
 			_mapper = mapper;
 		}
 
-		public async Task<ProjectsVm> Handle(GetProjectsQuery request, CancellationToken cancellationToken)
+		public async Task<IEnumerable<ProjectDto>> Handle(GetProjectsQuery request, CancellationToken cancellationToken)
 		{
-			return new ProjectsVm
-			{
-				List = await _context.Project.ProjectTo<ProjectDto>(_mapper.ConfigurationProvider)
+			return await _context.Project.ProjectTo<ProjectDto>(_mapper.ConfigurationProvider)
 				.OrderBy(t => t.Title)
-				.ToListAsync(cancellationToken)
-			};
+				.ToListAsync(cancellationToken);
 		}
 	}
 }
