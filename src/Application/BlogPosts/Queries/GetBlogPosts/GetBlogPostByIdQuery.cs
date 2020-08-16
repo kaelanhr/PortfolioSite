@@ -13,7 +13,7 @@ namespace PersonalSite.Application.BlogPosts.Queries.GetBlogPosts
 {
 	public class GetBlogPostByIdQuery : IRequest<BlogPostDto>
 	{
-		public Guid BlogId { get; set; }
+		public Guid Id { get; set; }
 	}
 
 	public class GetBlogPostByIdQueryHandler : IRequestHandler<GetBlogPostByIdQuery, BlogPostDto>
@@ -30,7 +30,7 @@ namespace PersonalSite.Application.BlogPosts.Queries.GetBlogPosts
 		public async Task<BlogPostDto> Handle(GetBlogPostByIdQuery request, CancellationToken cancellationToken)
 		{
 			return await _context.BlogPost
-				.Where(p => p.BlogId == request.BlogId)
+				.Where(p => p.Id == request.Id)
 				.ProjectTo<BlogPostDto>(_mapper.ConfigurationProvider)
 				.FirstOrDefaultAsync(cancellationToken);
 		}

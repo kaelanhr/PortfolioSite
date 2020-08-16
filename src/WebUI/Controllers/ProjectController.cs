@@ -1,20 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using PersonalSite.Application.Projects.CreateProject;
 using PersonalSite.Application.Projects.DeleteProject;
 using PersonalSite.Application.Projects.Queries.GetProjects;
 using PersonalSite.Application.Projects.UpdateProject;
-using PersonalSite.Domain.Entities;
-using PersonalSite.Services;
 
 namespace PersonalSite.WebUI.Controllers
 {
@@ -108,8 +101,7 @@ namespace PersonalSite.WebUI.Controllers
 		[Route("{id}")]
 		public async Task<ProjectDto> GetByIdAsync(Guid id)
 		{
-			var a = await Mediator.Send(new GetProjectsQueryById { Id = id });
-			return a;
+			return await Mediator.Send(new GetProjectsQueryById { Id = id });
 		}
 
 		/// <summary>

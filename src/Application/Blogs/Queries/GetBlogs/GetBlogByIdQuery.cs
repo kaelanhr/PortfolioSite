@@ -31,6 +31,7 @@ namespace PersonalSite.Application.Blogs.Queries.GetBlogs
 		{
 			return await _context.Blog
 			.Where(p => p.Id == request.Id)
+			.Include(p => p.BlogPosts)
 			.ProjectTo<BlogDto>(_mapper.ConfigurationProvider)
 			.OrderBy(t => t.Title)
 			.FirstOrDefaultAsync(cancellationToken);
