@@ -78,18 +78,14 @@ namespace PersonalSite.WebUI.Controllers
 			return Ok(await Mediator.Send(new GetProjectsQuery()));
 		}
 
-		/// <summary>
-		/// Gets all projects which are highlighted.
-		/// </summary>
-		/// <returns>A list of highlighted projects.</returns>
-		//[HttpGet]
-		//[AllowAnonymous]
-		//[Route("Highlights")]
-		//public async Task<IEnumerable<ProjectDto>> GetHighlightedProjectsAsync()
-		//{
-		//	var result = _crudService.Get<Project>().Where(x => x.Highlight);
-		//	return await result.Select(m => new ProjectDto(m)).ToListAsync();
-		//}
+
+		[HttpGet]
+		[AllowAnonymous]
+		[Route("Highlights")]
+		public async Task<ActionResult<IEnumerable<ProjectDto>>> GetHighlightedProjectsAsync()
+		{
+			return Ok(await Mediator.Send(new GetProjectsHighlightedQuery()));
+		}
 
 		/// <summary>
 		/// Gets a single project, given an id.

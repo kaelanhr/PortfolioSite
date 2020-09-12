@@ -15,7 +15,7 @@ namespace PersonalSite.Application.Blogs.Queries.GetBlogs
 
 		public void Mapping(Profile profile)
 		{
-			profile.CreateMap<Project, BlogDto>();
+			profile.CreateMap<Blog, BlogDto>();
 		}
 	}
 }
