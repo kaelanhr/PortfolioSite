@@ -69,7 +69,7 @@ export default class Blog extends AbstractModel
 
 	public editModel = () => {
 		axios
-			.put("/Api/Blogs", {
+			.put(`/Api/Blogs/${this.id}`, {
 				id: this.id,
 				Title: this.title,
 			})

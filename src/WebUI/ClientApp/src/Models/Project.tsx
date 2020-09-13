@@ -52,7 +52,7 @@ export default class Project extends AbstractModel
 
 	public editModel = () => {
 		axios
-			.put("/Api/Project", {
+			.put(`/Api/Project/${this.id}`, {
 				id: this.id,
 				Title: this.title,
 				content: this.content,
