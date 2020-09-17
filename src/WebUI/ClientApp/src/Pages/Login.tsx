@@ -6,9 +6,7 @@ import TextField from "Components/Inputs/TextField";
 import ErrorMessage from "Components/Text/ErrorMessage";
 import { store } from "store";
 import { HomeHeader } from "./Home";
-import PageLayout from "./PageLayout";
-import ContentWrapper from 'Components/ContentWrapper/ContentWrapper';
-import Page from 'Components/Page/Page';
+import Page from "Components/Page/Page";
 
 interface LoginState {
 	errorMessage: string;
@@ -34,8 +32,12 @@ export default class Login extends Component<{}, LoginState> {
 	render() {
 		return (
 			<>
-				<Page header={<HomeHeader />} nameInHeader={false} wrapperType="content-wrapper">
-						<form onSubmit={this.SubmitHandler}>
+				<Page
+					header={<HomeHeader />}
+					nameInHeader={false}
+					wrapperType="content-wrapper"
+				>
+						<form onSubmit={this.SubmitHandler}  className="login-form">
 							<ErrorMessage>{this.state.errorMessage}</ErrorMessage>
 							<TextField
 								model={this.LoginModel}

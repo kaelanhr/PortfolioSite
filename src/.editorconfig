@@ -6,6 +6,9 @@ indent_style = space
 
 insert_final_newline = true
 
+[*.tsx]
+indent_style = tab
+
 [*.cs]
 indent_style = tab
 trim_trailing_whitespace = true

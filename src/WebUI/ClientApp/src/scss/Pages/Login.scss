@@ -1,0 +1,22 @@
+.login-form {
+	margin-top: 3rem;
+	h1 {
+		color: #16398b;
+	}
+	input[type="email"], input[type="password"] {
+		min-width: 15rem;
+	}
+
+	input[type="submit"] {
+		min-width: 5rem;
+		display: block;
+		background-color: #2E3444;
+		color: whitesmoke;
+		padding: 0.5rem 0.5rem;
+	}
+
+	input {
+		margin-top: 1rem;
+	}
+
+}
