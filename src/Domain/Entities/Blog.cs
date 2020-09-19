@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using PersonalSite.Domain.Common;
 
@@ -12,6 +13,10 @@ namespace PersonalSite.Domain.Entities
 		/// Gets or sets the header image for the blog.
 		/// </summary>
 		public string HeaderImagePath { get; set; }
+
+		public UploadedFile Header { get; set; }
+
+		public Guid HeaderImageId { get; set; }
 
 		/// <summary>
 		/// Gets or sets the title of the blog.

@@ -37,10 +37,26 @@ namespace PersonalSite.WebUI.Controllers
 		/// </summary>
 		/// <param name="blog">The blog being created.</param>
 		/// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
+		//[HttpPost]
+		//[Authorize]
+		//[Consumes("application/json")]
+		//[Route("")]
+		//public async Task<Guid> CreateAsync(CreateBlogCommand command)
+		//{
+		//	return await Mediator.Send(command);
+		//}
+
+
+		/// <summary>
+		/// Create a blog with an image.
+		/// </summary>
+		/// <param name="blog">The blog being created.</param>
+		/// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
 		[HttpPost]
+		[Consumes("multipart/form-data")]
 		[Authorize]
 		[Route("")]
-		public async Task<Guid> CreateAsync(CreateBlogCommand command)
+		public async Task<Guid> PostForm([FromForm] CreateBlogFormCommand command)
 		{
 			return await Mediator.Send(command);
 		}

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace PersonalSite.Application.Common.Interfaces
 {
@@ -27,6 +28,15 @@ namespace PersonalSite.Application.Common.Interfaces
 		/// </summary>
 		public DbSet<Project> Project { get; set; }
 
+		/// <summary>
+		/// Gets or sets the file so they can be managed by EF.
+		/// </summary>
+		public DbSet<UploadedFile> UploadedFile { get; set; }
+
 		Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+
+		IDbContextTransaction BeginTransaction();
+		void Commit();
+		void Rollback();
 	}
 }

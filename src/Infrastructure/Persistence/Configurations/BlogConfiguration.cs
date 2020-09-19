@@ -4,18 +4,15 @@ using PersonalSite.Domain.Entities;
 
 namespace PersonalSite.Infrastructure.Persistence.Configurations
 {
-	public class BlogConfiguration : IEntityTypeConfiguration<BlogPost>
+	public class BlogConfiguration : IEntityTypeConfiguration<Blog>
 	{
-		public void Configure(EntityTypeBuilder<BlogPost> builder)
+		public void Configure(EntityTypeBuilder<Blog> builder)
 		{
 			builder
-				.HasOne(p => p.Blog)
-				.WithMany(b => b.BlogPosts)
-				.IsRequired();
+				.HasOne(b => b.Header)
+				.WithOne(b => b.Blog)
+				.HasForeignKey<Blog>(x => x.HeaderImageId);
 
-			builder.Property(e => e.Content)
-				.HasMaxLength(500)
-				.IsRequired();
 		}
 	}
 }

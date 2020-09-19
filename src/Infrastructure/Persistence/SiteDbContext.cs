@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using PersonalSite.Application.Common.Interfaces;
 using PersonalSite.Domain.Common;
 using PersonalSite.Domain.Entities;
@@ -57,6 +58,10 @@ namespace PersonalSite.Infrastructure.Persistence
 		/// </summary>
 		public DbSet<Project> Project { get; set; }
 
+		/// <summary>
+		/// Gets or sets the file so they can be managed by EF.
+		/// </summary>
+		public DbSet<UploadedFile> UploadedFile { get; set; }
 
 		public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
 		{
@@ -86,6 +91,21 @@ namespace PersonalSite.Infrastructure.Persistence
 			builder.Entity<SiteUser>()
 				.HasIndex(u => u.UserName)
 				.IsUnique();
+		}
+
+		public IDbContextTransaction BeginTransaction()
+		{
+			return base.Database.BeginTransaction();
+		}
+
+		public void Commit()
+		{
+			base.Database.CommitTransaction();
+		}
+
+		public void Rollback()
+		{
+			base.Database.RollbackTransaction();
 		}
 	}
 }
