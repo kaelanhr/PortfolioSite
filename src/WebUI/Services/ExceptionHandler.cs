@@ -31,6 +31,8 @@ namespace PersonalSite.Services
 		{
 			var response = context.Response;
 			response.ContentType = "application/json";
+			response.StatusCode = 400;
+
 			await response.WriteAsync(JsonConvert.SerializeObject(new
 			{
 				error = new

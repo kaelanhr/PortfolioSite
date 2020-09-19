@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
@@ -78,6 +79,17 @@ namespace PersonalSite
 				options.SlidingExpiration = true;
 			});
 
+			int maxSize = 3000000;
+			services.Configure<FormOptions>(options =>
+			{
+
+				options.ValueLengthLimit = maxSize;
+				options.MultipartBodyLengthLimit = maxSize;
+				options.MultipartBoundaryLengthLimit = maxSize;
+				options.MultipartHeadersCountLimit = maxSize;
+				options.MultipartHeadersLengthLimit = maxSize;
+			});
+
 			services.AddScoped<DataSeedService, DataSeedService>();
 			//services.AddScoped<CrudService, CrudService>();
 		}
@@ -94,6 +106,12 @@ namespace PersonalSite
 			app.UseForwardedHeaders(new ForwardedHeadersOptions
 			{
 				ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto,
+			});
+
+			app.Use(async (context, next) =>
+			{
+				context.Features.Get<IHttpMaxRequestBodySizeFeature>().MaxRequestBodySize = 3000000; // 3mb
+				await next.Invoke();
 			});
 
 			if (env.IsDevelopment())

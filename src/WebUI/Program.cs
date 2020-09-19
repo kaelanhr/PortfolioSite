@@ -36,6 +36,13 @@ namespace PersonalSite
 				})
 				.ConfigureWebHostDefaults(webBuilder =>
 				{
+					int maxRequestLimit = 3000000;
+					webBuilder.ConfigureKestrel((context, options) =>
+					{
+						// Handle requests up to 3 MB
+						options.Limits.MaxRequestBodySize = maxRequestLimit;
+					});
+
 					webBuilder.UseStartup<Startup>();
 					webBuilder.UseSetting("https_port", "443");
 				});

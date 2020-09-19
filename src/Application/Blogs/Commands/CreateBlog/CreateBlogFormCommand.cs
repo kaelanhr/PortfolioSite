@@ -43,7 +43,6 @@ namespace PersonalSite.Application.Blogs.Commands.CreateBlog
 				Header = fileEntity
 			};
 
-			//_context.UploadedFile.Add(fileEntity);
 			_context.Blog.Add(entity);
 
 			transaction.Commit();
