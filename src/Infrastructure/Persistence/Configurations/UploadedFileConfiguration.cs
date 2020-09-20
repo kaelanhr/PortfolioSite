@@ -18,6 +18,8 @@ namespace PersonalSite.Infrastructure.Persistence.Configurations
 				.Property(x => x.FileName).IsRequired();
 
 			builder.ToTable("__Files");
+
+			builder.Ignore(x => x.Contents);
 		}
 	}
 }

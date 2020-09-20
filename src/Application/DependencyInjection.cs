@@ -4,6 +4,7 @@ using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using PersonalSite.Application.Common.Behaviours;
+using PersonalSite.Application.Services;
 
 namespace PersonalSite.Application
 {
@@ -17,6 +18,7 @@ namespace PersonalSite.Application
 			services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
 			services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UnhandledExceptionBehaviour<,>));
 
+			services.AddScoped<FileService>();
 			return services;
 		}
 	}

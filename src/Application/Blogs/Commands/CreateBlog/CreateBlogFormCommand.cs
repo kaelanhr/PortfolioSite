@@ -5,6 +5,8 @@ using MediatR;
 using PersonalSite.Application.Common.Interfaces;
 using PersonalSite.Domain.Entities;
 using Microsoft.AspNetCore.Http;
+using PersonalSite.Application.Services;
+using PersonalSite.Application.Common.Exceptions;
 
 namespace PersonalSite.Application.Blogs.Commands.CreateBlog
 {
@@ -18,35 +20,33 @@ namespace PersonalSite.Application.Blogs.Commands.CreateBlog
 	public class CreateBlogFormCommandHandler : IRequestHandler<CreateBlogFormCommand, Guid>
 	{
 		private readonly IDbContext _context;
+		private readonly FileService _fileService;
 
-		public CreateBlogFormCommandHandler(IDbContext context)
+		public CreateBlogFormCommandHandler(IDbContext context, FileService fileService)
 		{
 			_context = context;
+			_fileService = fileService;
 		}
 
 		public async Task<Guid> Handle(CreateBlogFormCommand request, CancellationToken cancellationToken)
 		{
 
-			using var transaction = _context.BeginTransaction();
-
-			var fileEntity = new UploadedFile
+			if (_fileService.ValidateFile(request.File))
 			{
-				Container = "Blog",
-				ContentType = request.File.ContentType,
-				FileLength	= request.File.Length,
-				FileName = request.File.FileName,
-			};
+				throw new ValidationException();
+			}
 
+			var processedFile = await _fileService.ProcessFile(request.File, "blog");
 			var entity = new Blog
 			{
-				Title = request.Title,
-				Header = fileEntity
+			Title = request.Title,
+			Header = processedFile
 			};
 
 			_context.Blog.Add(entity);
 
-			transaction.Commit();
 			await _context.SaveChangesAsync(cancellationToken);
+			await _fileService.SaveFile(processedFile);
 
 			return entity.Id;
 		}
