@@ -19,7 +19,7 @@ namespace PersonalSite.Infrastructure.Persistence.Configurations
 
 			builder.ToTable("__Files");
 
-			builder.Ignore(x => x.Contents);
+			builder.Ignore(x => x.Content);
 		}
 	}
 }

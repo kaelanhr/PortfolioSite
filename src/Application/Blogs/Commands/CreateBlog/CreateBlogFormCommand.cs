@@ -2,11 +2,11 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using PersonalSite.Application.Common.Interfaces;
-using PersonalSite.Domain.Entities;
 using Microsoft.AspNetCore.Http;
-using PersonalSite.Application.Services;
 using PersonalSite.Application.Common.Exceptions;
+using PersonalSite.Application.Common.Interfaces;
+using PersonalSite.Application.Services;
+using PersonalSite.Domain.Entities;
 
 namespace PersonalSite.Application.Blogs.Commands.CreateBlog
 {
@@ -14,7 +14,7 @@ namespace PersonalSite.Application.Blogs.Commands.CreateBlog
 	public class CreateBlogFormCommand : IRequest<Guid>
 	{
 		public string Title { get; set; }
-		public IFormFile File {get; set;}
+		public IFormFile File { get; set; }
 	}
 
 	public class CreateBlogFormCommandHandler : IRequestHandler<CreateBlogFormCommand, Guid>
@@ -36,11 +36,11 @@ namespace PersonalSite.Application.Blogs.Commands.CreateBlog
 				throw new ValidationException();
 			}
 
-			var processedFile = await _fileService.ProcessFile(request.File, "blog");
+			var processedFile = _fileService.ProcessFile(request.File, "blog");
 			var entity = new Blog
 			{
-			Title = request.Title,
-			Header = processedFile
+				Title = request.Title,
+				Header = processedFile
 			};
 
 			_context.Blog.Add(entity);

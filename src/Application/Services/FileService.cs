@@ -21,41 +21,31 @@ namespace PersonalSite.Application.Services
 			return false;
 		}
 
-		public async Task<UploadedFile> ProcessFile(IFormFile file, string containerName)
+		public UploadedFile ProcessFile(IFormFile file, string containerName)
 		{
-			using (var memoryStream = new MemoryStream())
+			return new UploadedFile
 			{
-				await file.CopyToAsync(memoryStream);
-
-				var fileEntity = new UploadedFile
-				{
-					Container = containerName,
-					ContentType = file.ContentType,
-					FileLength = file.Length,
-					FileName = file.FileName,
-				};
-
-				fileEntity.Contents = memoryStream.ToArray();
-
-				return fileEntity;
-			}
+				Container = containerName,
+				ContentType = file.ContentType,
+				FileLength = file.Length,
+				FileName = file.FileName,
+				Content = file.OpenReadStream()
+			};
 		}
 
 		public async Task SaveFile(UploadedFile file)
 		{
 			// set the file path and file name.
-			var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", file.Container, file.Id.ToString());
+			var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", file.Container);
 
-			if(!Directory.Exists(filePath))
+			if (!Directory.Exists(filePath))
 			{
 				Directory.CreateDirectory(filePath);
 			}
 
 			// save to the file system.
-			using (var fileStream = new FileStream(Path.Combine(filePath, file.Id.ToString()), FileMode.Create))
-			{
-				await fileStream.WriteAsync(file.Contents);
-			}
+			await using var writeStream = File.OpenWrite(Path.Combine(filePath, file.Id.ToString()));
+			await file.Content.CopyToAsync(writeStream);
 		}
 	}
 }

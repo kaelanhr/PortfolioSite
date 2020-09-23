@@ -1,4 +1,5 @@
-﻿using PersonalSite.Domain.Common;
+﻿using System.IO;
+using PersonalSite.Domain.Common;
 
 namespace PersonalSite.Domain.Entities
 {
@@ -26,6 +27,6 @@ namespace PersonalSite.Domain.Entities
 
 		public Blog Blog { get; set; }
 
-		public byte[] Contents { get; set; }
+		public Stream Content { get; set; }
 	}
 }
