@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -46,6 +47,20 @@ namespace PersonalSite.Application.Services
 			// save to the file system.
 			await using var writeStream = File.OpenWrite(Path.Combine(filePath, file.Id.ToString()));
 			await file.Content.CopyToAsync(writeStream);
+		}
+
+		public void DeleteFile(string container, Guid id)
+		{
+			// set the file path and file name.
+			var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", container, id.ToString());
+
+			if (File.Exists(filePath))
+			{
+				File.Delete(filePath);
+				return;
+			}
+
+			throw new FileNotFoundException();
 		}
 	}
 }
