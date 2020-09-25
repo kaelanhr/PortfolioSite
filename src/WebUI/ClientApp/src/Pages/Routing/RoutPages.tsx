@@ -1,14 +1,13 @@
-import React, { Component } from "react";
-import { Route, Switch } from "react-router";
 import About from "Pages/About";
 import Admin from "Pages/Admin";
+import Blogs from "Pages/Blogs";
 import Home from "Pages/Home";
 import Login from "Pages/Login";
 import Logout from "Pages/Logout";
 import Projects from "Pages/Projects";
+import React, { Component } from "react";
+import { Route, Switch } from "react-router";
 import { store } from "store";
-import Footer from 'Components/Footer/Footer';
-import Blogs from 'Pages/Blogs';
 
 export default class RoutPages extends Component {
 	render() {

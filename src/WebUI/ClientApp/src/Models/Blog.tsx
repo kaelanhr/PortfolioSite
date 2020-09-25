@@ -1,9 +1,9 @@
-import AbstractModel, {
-	IAbstractAttributes,
-	IModelMethods,
-} from "./AbstractModel";
 import axios from "axios";
 import { store } from "store";
+import AbstractModel, {
+	IAbstractAttributes,
+	IModelMethods
+} from "./AbstractModel";
 import BlogPosts from "./BlogPost";
 
 export default class Blog extends AbstractModel
@@ -21,10 +21,14 @@ export default class Blog extends AbstractModel
 			if (attributes.blogPosts) {
 				this.blogPosts = attributes.blogPosts;
 			}
+			if (attributes.headerImageFile) {
+				this.headerImageFile = attributes.headerImageFile;
+			}
 		}
 	}
 
 	public headerImagePath?: string;
+	public headerImageFile: any;
 	public title: string;
 	public blogPosts: BlogPosts[];
 
@@ -97,4 +101,5 @@ export interface IBlogAttributes extends IAbstractAttributes {
 	title: string;
 	headerImagePath?: string;
 	blogPosts: BlogPosts[];
+	headerImageFile: any;
 }

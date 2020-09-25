@@ -1,16 +1,17 @@
-import React, { Component } from "react";
-import Blog from "Models/Blog";
+import axios from "axios";
+import AdminCrudForm, {
+	EntityAdminAction
+} from "Components/Form/AdminCrudForm";
 import TextField from "Components/Inputs/TextField";
-import Checkbox from "Components/Inputs/Checkbox";
-import MarkdownField from "Components/Inputs/MarkdownField";
-import AdminCrudForm, { EntityAdminAction } from "Components/Form/AdminCrudForm";
-import { observable, action } from "mobx";
+import { action, observable } from "mobx";
 import { observer } from "mobx-react";
-import axios from 'axios';
+import Blog from "Models/Blog";
+import React, { Component } from "react";
+import UploadFile from "../../Components/Inputs/UploadFile";
 
 interface CreatePageProps {
 	model?: Blog;
-	action: EntityAdminAction
+	action: EntityAdminAction;
 }
 
 @observer
@@ -27,11 +28,6 @@ export default class BlogCreatePage extends Component<CreatePageProps> {
 
 	@observable
 	private file: any = null;
-
-	@action
-	private onChange = (e: any) => {
-		this.file = e.target.files[0];
-	}
 
 	@action
 	SubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
@@ -72,11 +68,6 @@ export default class BlogCreatePage extends Component<CreatePageProps> {
 	render() {
 		return (
 			<>
-				<form onSubmit={(e) => this.SubmitHandler(e)}>
-					<h1>File Upload</h1>
-					<input type="file" onChange={this.onChange} />
-					<button type="submit">Upload</button>
-				</form>
 				<AdminCrudForm
 					entityAction={this.props.action}
 					entityDisplayName="Blog"
@@ -90,6 +81,11 @@ export default class BlogCreatePage extends Component<CreatePageProps> {
 						type="text"
 						label="Title"
 						value={this.model.title}
+					/>
+					<UploadFile
+						model={this.model}
+						modelProperty="headerImageFile"
+						label="Header Image"
 					/>
 				</AdminCrudForm>
 			</>

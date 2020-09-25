@@ -20,6 +20,22 @@ namespace PersonalSite.Infrastructure.Persistence.Configurations
 			builder.ToTable("__Files");
 
 			builder.Ignore(x => x.Content);
+
+			builder
+				.HasOne(b => b.Blog)
+				.WithOne(b => b.Header)
+				.HasForeignKey<Blog>(x => x.HeaderImageId);
+
+			builder
+				.HasOne(b => b.BlogPost)
+				.WithOne(b => b.Header)
+				.HasForeignKey<BlogPost>(x => x.HeaderImageId);
+
+			builder
+				.HasOne(b => b.Project)
+				.WithOne(b => b.Header)
+				.HasForeignKey<Project>(x => x.HeaderImageId);
+
 		}
 	}
 }

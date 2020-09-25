@@ -26,6 +26,8 @@ namespace PersonalSite.Domain.Entities
 		public long FileLength { get; set; }
 
 		public Blog Blog { get; set; }
+		public BlogPost BlogPost { get; set; }
+		public Project Project { get; set; }
 
 		public Stream Content { get; set; }
 	}

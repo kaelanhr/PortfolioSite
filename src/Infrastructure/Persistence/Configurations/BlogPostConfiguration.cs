@@ -16,7 +16,6 @@ namespace PersonalSite.Infrastructure.Persistence.Configurations
 			builder.Property(e => e.Content)
 				.HasMaxLength(500)
 				.IsRequired();
-
 		}
 	}
 }

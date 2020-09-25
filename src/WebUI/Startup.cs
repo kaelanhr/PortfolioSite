@@ -127,12 +127,14 @@ namespace PersonalSite
 				app.UseHsts();
 			}
 
-			app.UseStaticFiles();
+
 
 			if (!env.IsDevelopment())
 			{
 				app.UseSpaStaticFiles();
 			}
+
+			app.UseStaticFiles();
 
 			app.UseMiddleware<ExceptionHandler>();
 			app.UseRouting();

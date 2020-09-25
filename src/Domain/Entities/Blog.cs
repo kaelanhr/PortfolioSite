@@ -14,8 +14,14 @@ namespace PersonalSite.Domain.Entities
 		/// </summary>
 		public string HeaderImagePath { get; set; }
 
+		/// <summary>
+		/// The header image file content and meta data
+		/// </summary>
 		public UploadedFile Header { get; set; }
 
+		/// <summary>
+		/// The id of the blogs header image.
+		/// </summary>
 		public Guid HeaderImageId { get; set; }
 
 		/// <summary>
